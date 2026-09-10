@@ -1,0 +1,196 @@
+2026-09-04 13:58:56,624 INFO ============================================================
+2026-09-04 13:58:56,624 INFO PASADA 1: CENSO DE TEMAS
+2026-09-04 13:58:56,624 INFO   Países: ES | Ventana: 24h | Muestreo: 1/4
+2026-09-04 13:58:56,624 INFO ============================================================
+2026-09-04 13:58:59,777 INFO   censo: 5/24 ficheros | 17718 filas | 507 de países pedidos
+2026-09-04 13:59:03,178 INFO   censo: 10/24 ficheros | 30863 filas | 754 de países pedidos
+2026-09-04 13:59:06,566 INFO   censo: 15/24 ficheros | 43963 filas | 988 de países pedidos
+2026-09-04 13:59:10,281 INFO   censo: 20/24 ficheros | 64193 filas | 1578 de países pedidos
+2026-09-04 13:59:13,454 INFO   censo: 24/24 ficheros | 84322 filas | 2125 de países pedidos
+2026-09-04 13:59:13,959 INFO Censo terminado: 84322 filas leídas, 2125 de países pedidos
+2026-09-04 13:59:13,959 INFO [ES] 375 etiquetas temáticas distintas
+2026-09-04 13:59:13,963 INFO [ES] 90 grupos temáticos (tras fusionar y filtrar)
+2026-09-04 13:59:13,963 INFO   #1   329 arts  [SECURITY_SERVICES] ←
+2026-09-04 13:59:13,964 INFO   #2   327 arts  [MEDICAL] ←
+2026-09-04 13:59:13,964 INFO   #3   327 arts  [TAX_ECON_PRICE] ←
+2026-09-04 13:59:13,964 INFO   #4   202 arts  [TRIAL] ←
+2026-09-04 13:59:13,964 INFO   #5   199 arts  [MARITIME, MARITIME_INCIDENT] ←
+2026-09-04 13:59:13,964 INFO   #6   183 arts  [URBAN] ←
+2026-09-04 13:59:13,964 INFO   #7   159 arts  [BORDER] ←
+2026-09-04 13:59:13,964 INFO   #8   144 arts  [SCIENCE] ←
+2026-09-04 13:59:13,964 INFO   #9   143 arts  [IDEOLOGY]
+2026-09-04 13:59:13,964 INFO   #10   124 arts  [IMMIGRATION]
+2026-09-04 13:59:13,964 INFO   #11   123 arts  [TAX_MILITARY_TITLE]
+2026-09-04 13:59:13,964 INFO 
+2026-09-04 13:59:13,964 INFO ============================================================
+2026-09-04 13:59:13,964 INFO PASADA 2: ANÁLISIS DE POLARIZACIÓN
+2026-09-04 13:59:13,964 INFO ============================================================
+2026-09-04 13:59:13,968 INFO 8 grupos temáticos únicos a analizar
+2026-09-04 13:59:13,968 INFO --- Analizando grupo: SECURITY_SERVICES (329 artículos aprox) ---
+2026-09-04 13:59:18,384 INFO   [ES] 284 artículos, 51 medios, HHI=0.032
+2026-09-04 13:59:25,102 INFO   [ES] eje: 'Seguridad pública y orden' | Reforzar cuerpos de seguridad y endurece ↔ Cuestionar excesos institucionales y def
+2026-09-04 13:59:36,283 INFO     clasificados 20/284 titulares
+2026-09-04 13:59:47,545 INFO     clasificados 40/284 titulares
+2026-09-04 13:59:55,310 INFO     clasificados 60/284 titulares
+2026-09-04 14:00:03,664 INFO     clasificados 80/284 titulares
+2026-09-04 14:00:14,175 INFO     clasificados 100/284 titulares
+2026-09-04 14:00:24,865 INFO     clasificados 120/284 titulares
+2026-09-04 14:00:35,860 INFO     clasificados 140/284 titulares
+2026-09-04 14:00:45,241 INFO     clasificados 160/284 titulares
+2026-09-04 14:00:52,919 INFO     clasificados 180/284 titulares
+2026-09-04 14:01:01,152 INFO     clasificados 200/284 titulares
+2026-09-04 14:01:08,833 INFO     clasificados 220/284 titulares
+2026-09-04 14:01:16,511 INFO     clasificados 240/284 titulares
+2026-09-04 14:01:24,375 INFO     clasificados 260/284 titulares
+2026-09-04 14:01:32,123 INFO     clasificados 280/284 titulares
+2026-09-04 14:01:35,188 INFO     clasificados 284/284 titulares
+2026-09-04 14:01:35,694 INFO   [ES] clasificación: 176 on-topic, 108 off-topic de 284 total
+2026-09-04 14:01:35,695 INFO   [ES] stances:  min=-0.70 max=0.70 mean=-0.07 std=0.34
+2026-09-04 14:01:35,695 INFO   [ES] hostil:   min=0.00 max=0.70 mean=0.18
+2026-09-04 14:01:35,695 INFO   [ES] confid:   min=0.20 max=0.80 mean=0.53
+2026-09-04 14:01:35,742 INFO   [ES] ideológica=0.261 afectiva=0.308 compuesta=0.283 ✓
+2026-09-04 14:01:35,742 INFO --- Analizando grupo: MEDICAL (327 artículos aprox) ---
+2026-09-04 14:02:29,344 INFO   [ES] 292 artículos, 55 medios, HHI=0.035
+2026-09-04 14:02:32,026 INFO   [ES] eje: 'Seguridad y salud pública' | El sistema sanitario y las instituciones ↔ Los riesgos para la salud y la seguridad
+2026-09-04 14:02:39,034 INFO     clasificados 20/292 titulares
+2026-09-04 14:02:46,410 INFO     clasificados 40/292 titulares
+2026-09-04 14:02:54,125 INFO     clasificados 60/292 titulares
+2026-09-04 14:03:01,557 INFO     clasificados 80/292 titulares
+2026-09-04 14:03:10,328 INFO     clasificados 100/292 titulares
+2026-09-04 14:03:18,301 INFO     clasificados 120/292 titulares
+2026-09-04 14:03:25,729 INFO     clasificados 140/292 titulares
+2026-09-04 14:03:33,258 INFO     clasificados 160/292 titulares
+2026-09-04 14:03:41,635 INFO     clasificados 180/292 titulares
+2026-09-04 14:03:49,434 INFO     clasificados 200/292 titulares
+2026-09-04 14:03:56,982 INFO     clasificados 220/292 titulares
+2026-09-04 14:04:04,483 INFO     clasificados 240/292 titulares
+2026-09-04 14:04:12,028 INFO     clasificados 260/292 titulares
+2026-09-04 14:04:19,530 INFO     clasificados 280/292 titulares
+2026-09-04 14:04:24,857 INFO     clasificados 292/292 titulares
+2026-09-04 14:04:25,363 INFO   [ES] clasificación: 149 on-topic, 143 off-topic de 292 total
+2026-09-04 14:04:25,363 INFO   [ES] stances:  min=-0.70 max=0.80 mean=0.30 std=0.34
+2026-09-04 14:04:25,363 INFO   [ES] hostil:   min=0.00 max=0.40 mean=0.09
+2026-09-04 14:04:25,363 INFO   [ES] confid:   min=0.20 max=0.90 mean=0.58
+2026-09-04 14:04:25,368 INFO   [ES] ideológica=0.161 afectiva=0.138 compuesta=0.149 ✓
+2026-09-04 14:04:25,368 INFO --- Analizando grupo: TAX_ECON_PRICE (327 artículos aprox) ---
+2026-09-04 14:04:29,966 INFO   [ES] 255 artículos, 53 medios, HHI=0.034
+2026-09-04 14:04:32,404 INFO   [ES] eje: 'Acceso a vivienda y coste de vida' | El mercado y la iniciativa privada puede ↔ Se necesita intervención pública y regul
+2026-09-04 14:04:39,471 INFO     clasificados 20/255 titulares
+2026-09-04 14:04:46,963 INFO     clasificados 40/255 titulares
+2026-09-04 14:04:54,242 INFO     clasificados 60/255 titulares
+2026-09-04 14:05:01,537 INFO     clasificados 80/255 titulares
+2026-09-04 14:05:10,094 INFO     clasificados 100/255 titulares
+2026-09-04 14:05:17,474 INFO     clasificados 120/255 titulares
+2026-09-04 14:05:24,756 INFO     clasificados 140/255 titulares
+2026-09-04 14:05:32,412 INFO     clasificados 160/255 titulares
+2026-09-04 14:05:41,002 INFO     clasificados 180/255 titulares
+2026-09-04 14:05:50,475 INFO     clasificados 200/255 titulares
+2026-09-04 14:05:57,805 INFO     clasificados 220/255 titulares
+2026-09-04 14:06:05,282 INFO     clasificados 240/255 titulares
+2026-09-04 14:06:11,984 INFO     clasificados 255/255 titulares
+2026-09-04 14:06:12,489 INFO   [ES] clasificación: 66 on-topic, 189 off-topic de 255 total
+2026-09-04 14:06:12,489 INFO   [ES] stances:  min=-0.50 max=0.70 mean=0.21 std=0.34
+2026-09-04 14:06:12,489 INFO   [ES] hostil:   min=0.00 max=0.40 mean=0.07
+2026-09-04 14:06:12,489 INFO   [ES] confid:   min=0.20 max=0.80 mean=0.45
+2026-09-04 14:06:12,491 INFO   [ES] ideológica=0.198 afectiva=0.113 compuesta=0.149 ✓
+2026-09-04 14:06:12,491 INFO --- Analizando grupo: TRIAL (202 artículos aprox) ---
+2026-09-04 14:06:16,966 INFO   [ES] 207 artículos, 51 medios, HHI=0.032
+2026-09-04 14:06:19,823 INFO   [ES] eje: 'Independencia judicial e impunidad política' | La justicia actúa con independencia fren ↔ El sistema judicial es instrumentalizado
+2026-09-04 14:06:26,993 INFO     clasificados 20/207 titulares
+2026-09-04 14:06:34,996 INFO     clasificados 40/207 titulares
+2026-09-04 14:06:42,145 INFO     clasificados 60/207 titulares
+2026-09-04 14:06:49,323 INFO     clasificados 80/207 titulares
+2026-09-04 14:06:56,789 INFO     clasificados 100/207 titulares
+2026-09-04 14:07:04,198 INFO     clasificados 120/207 titulares
+2026-09-04 14:07:11,841 INFO     clasificados 140/207 titulares
+2026-09-04 14:07:23,385 INFO     clasificados 160/207 titulares
+2026-09-04 14:07:30,978 INFO     clasificados 180/207 titulares
+2026-09-04 14:07:38,364 INFO     clasificados 200/207 titulares
+2026-09-04 14:07:44,917 INFO     clasificados 207/207 titulares
+2026-09-04 14:07:45,423 INFO   [ES] clasificación: 71 on-topic, 136 off-topic de 207 total
+2026-09-04 14:07:45,423 INFO   [ES] stances:  min=-0.70 max=0.70 mean=0.12 std=0.38
+2026-09-04 14:07:45,423 INFO   [ES] hostil:   min=0.00 max=0.50 mean=0.15
+2026-09-04 14:07:45,423 INFO   [ES] confid:   min=0.20 max=0.85 mean=0.55
+2026-09-04 14:07:45,428 INFO   [ES] ideológica=0.235 afectiva=0.231 compuesta=0.233 ✓
+2026-09-04 14:07:45,428 INFO --- Analizando grupo: MARITIME, MARITIME_INCIDENT (199 artículos aprox) ---
+2026-09-04 14:07:49,823 INFO   [ES] 149 artículos, 46 medios, HHI=0.033
+2026-09-04 14:07:52,472 INFO   [ES] eje: 'Seguridad marítima y narcotráfico' | Reforzar el control marítimo y las front ↔ Las operaciones de vigilancia son insufi
+2026-09-04 14:07:59,308 INFO     clasificados 20/149 titulares
+2026-09-04 14:08:06,729 INFO     clasificados 40/149 titulares
+2026-09-04 14:08:14,276 INFO     clasificados 60/149 titulares
+2026-09-04 14:08:21,884 INFO     clasificados 80/149 titulares
+2026-09-04 14:08:29,595 INFO     clasificados 100/149 titulares
+2026-09-04 14:08:36,937 INFO     clasificados 120/149 titulares
+2026-09-04 14:08:43,945 INFO     clasificados 140/149 titulares
+2026-09-04 14:08:49,215 INFO     clasificados 149/149 titulares
+2026-09-04 14:08:49,719 INFO   [ES] clasificación: 33 on-topic, 116 off-topic de 149 total
+2026-09-04 14:08:49,719 INFO   [ES] stances:  min=-0.80 max=0.60 mean=-0.10 std=0.34
+2026-09-04 14:08:49,719 INFO   [ES] hostil:   min=0.00 max=0.50 mean=0.09
+2026-09-04 14:08:49,719 INFO   [ES] confid:   min=0.20 max=0.85 mean=0.51
+2026-09-04 14:08:49,722 INFO   [ES] ideológica=0.371 afectiva=0.191 compuesta=0.266 ⚠ no fiable
+2026-09-04 14:08:49,723 INFO --- Analizando grupo: URBAN (183 artículos aprox) ---
+2026-09-04 14:08:54,038 INFO   [ES] 159 artículos, 45 medios, HHI=0.038
+2026-09-04 14:08:56,503 INFO   [ES] eje: 'Urbanismo y espacio público' | El desarrollo urbano y la modernización  ↔ La especulación urbanística y el turismo
+2026-09-04 14:09:03,152 INFO     clasificados 20/159 titulares
+2026-09-04 14:09:10,538 INFO     clasificados 40/159 titulares
+2026-09-04 14:09:17,897 INFO     clasificados 60/159 titulares
+2026-09-04 14:09:25,782 INFO     clasificados 80/159 titulares
+2026-09-04 14:09:33,052 INFO     clasificados 100/159 titulares
+2026-09-04 14:09:40,459 INFO     clasificados 120/159 titulares
+2026-09-04 14:09:47,959 INFO     clasificados 140/159 titulares
+2026-09-04 14:09:55,170 INFO     clasificados 159/159 titulares
+2026-09-04 14:09:55,673 INFO   [ES] clasificación: 40 on-topic, 119 off-topic de 159 total
+2026-09-04 14:09:55,673 INFO   [ES] stances:  min=-0.50 max=0.70 mean=-0.00 std=0.36
+2026-09-04 14:09:55,674 INFO   [ES] hostil:   min=0.00 max=0.60 mean=0.07
+2026-09-04 14:09:55,674 INFO   [ES] confid:   min=0.20 max=0.70 mean=0.43
+2026-09-04 14:09:55,675 INFO   [ES] ideológica=0.253 afectiva=0.147 compuesta=0.193 ⚠ no fiable
+2026-09-04 14:09:55,675 INFO --- Analizando grupo: BORDER (159 artículos aprox) ---
+2026-09-04 14:09:59,946 INFO   [ES] 129 artículos, 44 medios, HHI=0.036
+2026-09-04 14:10:02,955 INFO   [ES] eje: 'Gestión migratoria en Ceuta' | La entrada masiva es una crisis de segur ↔ El gobierno gestiona la situación diplom
+2026-09-04 14:10:10,326 INFO     clasificados 20/129 titulares
+2026-09-04 14:10:21,809 INFO     clasificados 40/129 titulares
+2026-09-04 14:10:30,704 INFO     clasificados 60/129 titulares
+2026-09-04 14:10:39,084 INFO     clasificados 80/129 titulares
+2026-09-04 14:10:50,691 INFO     clasificados 100/129 titulares
+2026-09-04 14:10:59,146 INFO     clasificados 120/129 titulares
+2026-09-04 14:11:03,612 INFO     clasificados 129/129 titulares
+2026-09-04 14:11:04,114 INFO   [ES] clasificación: 73 on-topic, 56 off-topic de 129 total
+2026-09-04 14:11:04,114 INFO   [ES] stances:  min=-0.90 max=0.70 mean=-0.13 std=0.41
+2026-09-04 14:11:04,115 INFO   [ES] hostil:   min=0.00 max=0.80 mean=0.20
+2026-09-04 14:11:04,115 INFO   [ES] confid:   min=0.20 max=0.85 mean=0.58
+2026-09-04 14:11:04,117 INFO   [ES] ideológica=0.248 afectiva=0.250 compuesta=0.249 ✓
+2026-09-04 14:11:04,117 INFO --- Analizando grupo: SCIENCE (144 artículos aprox) ---
+2026-09-04 14:11:08,567 INFO   [ES] 137 artículos, 46 medios, HHI=0.040
+2026-09-04 14:11:11,255 INFO   [ES] eje: 'Ciencia, salud y tecnología en la sociedad' | La innovación científica y tecnológica m ↔ El avance sin control ético de la cienci
+2026-09-04 14:11:18,681 INFO     clasificados 20/137 titulares
+2026-09-04 14:11:26,512 INFO     clasificados 40/137 titulares
+2026-09-04 14:11:35,421 INFO     clasificados 60/137 titulares
+2026-09-04 14:11:42,968 INFO     clasificados 80/137 titulares
+2026-09-04 14:11:50,576 INFO     clasificados 100/137 titulares
+2026-09-04 14:11:58,696 INFO     clasificados 120/137 titulares
+2026-09-04 14:12:05,629 INFO     clasificados 137/137 titulares
+2026-09-04 14:12:06,134 INFO   [ES] clasificación: 43 on-topic, 94 off-topic de 137 total
+2026-09-04 14:12:06,135 INFO   [ES] stances:  min=-0.70 max=0.60 mean=-0.27 std=0.35
+2026-09-04 14:12:06,135 INFO   [ES] hostil:   min=0.00 max=0.20 mean=0.01
+2026-09-04 14:12:06,136 INFO   [ES] confid:   min=0.30 max=0.85 mean=0.56
+2026-09-04 14:12:06,142 INFO   [ES] ideológica=0.229 afectiva=0.018 compuesta=0.064 ⚠ no fiable
+2026-09-04 14:12:06,142 INFO 
+2026-09-04 14:12:06,142 INFO ============================================================
+2026-09-04 14:12:06,142 INFO RESULTADOS
+2026-09-04 14:12:06,142 INFO ============================================================
+2026-09-04 14:12:06,143 INFO [ES] España:
+2026-09-04 14:12:06,143 INFO   Ideológica: 0.220 | Afectiva: 0.218 | Compuesta: 0.218 | Tipo dominante: mixed
+2026-09-04 14:12:06,143 INFO   #1 Seguridad pública y orden  ideo=0.26  afec=0.31  comp=0.28  n=176  ✓
+2026-09-04 14:12:06,143 INFO   #2 Seguridad marítima y narc  ideo=0.37  afec=0.19  comp=0.27  n= 33  ⚠
+2026-09-04 14:12:06,143 INFO   #3 Gestión migratoria en Ceu  ideo=0.25  afec=0.25  comp=0.25  n= 73  ✓
+2026-09-04 14:12:06,143 INFO   #4 Independencia judicial e   ideo=0.23  afec=0.23  comp=0.23  n= 71  ✓
+2026-09-04 14:12:06,143 INFO   #5 Urbanismo y espacio públi  ideo=0.25  afec=0.15  comp=0.19  n= 40  ⚠
+2026-09-04 14:12:06,143 INFO   #6 Seguridad y salud pública  ideo=0.16  afec=0.14  comp=0.15  n=149  ✓
+2026-09-04 14:12:06,143 INFO   #7 Acceso a vivienda y coste  ideo=0.20  afec=0.11  comp=0.15  n= 66  ✓
+2026-09-04 14:12:06,143 INFO   #8 Ciencia, salud y tecnolog  ideo=0.23  afec=0.02  comp=0.06  n= 43  ⚠
+2026-09-04 14:12:06,147 INFO 
+2026-09-04 14:12:06,147 INFO Snapshot guardado en data/snapshot.json
+
+país                 comp   ideo   afec tipo          temas  estado
+------------------------------------------------------------------------
+España              0.218  0.220  0.218 mixed             8  fiable

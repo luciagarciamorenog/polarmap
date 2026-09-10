@@ -1,0 +1,13 @@
+# Secrets
+.env
+*.env
+
+# GDELT cache (20-40 MB por fichero, se regenera)
+data/cache/
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store

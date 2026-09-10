@@ -1,0 +1,50 @@
+2026-09-04 13:40:33,046 INFO ============================================================
+2026-09-04 13:40:33,046 INFO PASADA 1: CENSO DE TEMAS
+2026-09-04 13:40:33,046 INFO   Países: ES | Ventana: 24h | Muestreo: 1/4
+2026-09-04 13:40:33,047 INFO ============================================================
+2026-09-04 13:40:36,071 INFO   censo: 5/24 ficheros | 15782 filas | 414 de países pedidos
+2026-09-04 13:40:39,395 INFO   censo: 10/24 ficheros | 27299 filas | 590 de países pedidos
+2026-09-04 13:40:42,782 INFO   censo: 15/24 ficheros | 40485 filas | 785 de países pedidos
+2026-09-04 13:40:46,671 INFO   censo: 20/24 ficheros | 61918 filas | 1347 de países pedidos
+2026-09-04 13:40:49,880 INFO   censo: 24/24 ficheros | 80477 filas | 1857 de países pedidos
+2026-09-04 13:40:50,385 INFO Censo terminado: 80477 filas leídas, 1857 de países pedidos
+2026-09-04 13:40:50,385 INFO [ES] 343 etiquetas temáticas distintas
+2026-09-04 13:40:50,388 INFO [ES] 72 grupos temáticos (tras fusionar y filtrar)
+2026-09-04 13:40:50,388 INFO   #1   292 arts  [MEDICAL] ←
+2026-09-04 13:40:50,388 INFO   #2   282 arts  [TAX_ECON_PRICE] ←
+2026-09-04 13:40:50,388 INFO   #3   272 arts  [SECURITY_SERVICES] ←
+2026-09-04 13:40:50,388 INFO   #4   195 arts  [TRIAL] ←
+2026-09-04 13:40:50,388 INFO   #5   158 arts  [URBAN] ←
+2026-09-04 13:40:50,388 INFO   #6   146 arts  [MARITIME, MARITIME_INCIDENT] ←
+2026-09-04 13:40:50,388 INFO   #7   140 arts  [BORDER] ←
+2026-09-04 13:40:50,388 INFO   #8   138 arts  [SCIENCE] ←
+2026-09-04 13:40:50,388 INFO   #9   134 arts  [IMMIGRATION]
+2026-09-04 13:40:50,388 INFO   #10   111 arts  [PROTEST]
+2026-09-04 13:40:50,388 INFO   #11   104 arts  [PUBLIC_TRANSPORT]
+2026-09-04 13:40:50,388 INFO 
+2026-09-04 13:40:50,388 INFO ============================================================
+2026-09-04 13:40:50,388 INFO PASADA 2: ANÁLISIS DE POLARIZACIÓN
+2026-09-04 13:40:50,388 INFO ============================================================
+2026-09-04 13:40:50,390 INFO 8 grupos temáticos únicos a analizar
+2026-09-04 13:40:50,391 INFO --- Analizando grupo: MEDICAL (292 artículos aprox) ---
+2026-09-04 13:40:54,715 INFO   [ES] 256 artículos, 53 medios, HHI=0.034
+Traceback (most recent call last):
+  File "/Users/luciagarciamoreno/Documents/polarmap/pipeline_discover.py", line 618, in <module>
+    main()
+    ~~~~^^
+  File "/Users/luciagarciamoreno/Documents/polarmap/pipeline_discover.py", line 513, in main
+    results = analyze_topic(
+        group, group_countries,
+    ...<4 lines>...
+        api_key=None,  # usa ANTHROPIC_API_KEY del entorno
+    )
+  File "/Users/luciagarciamoreno/Documents/polarmap/pipeline_discover.py", line 122, in analyze_topic
+    axis = discover_axis(
+        titles, group.tags, country_name, api_key=api_key,
+    )
+  File "/Users/luciagarciamoreno/Documents/polarmap/analysis/discover.py", line 538, in discover_axis
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: Falta ANTHROPIC_API_KEY. Expórtala con:
+  export ANTHROPIC_API_KEY=sk-ant-...

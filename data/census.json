@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-09-04T11:36:36.492189+00:00",
+  "window_hours": 24,
+  "total_rows": 80477,
+  "countries": {
+    "ES": {
+      "country_name": "España",
+      "n_themes": 343,
+      "n_groups": 41,
+      "top_groups": [
+        {
+          "tags": [
+            "MEDICAL"
+          ],
+          "count": 292
+        },
+        {
+          "tags": [
+            "TAX_ECON_PRICE"
+          ],
+          "count": 282
+        },
+        {
+          "tags": [
+            "SECURITY_SERVICES"
+          ],
+          "count": 272
+        },
+        {
+          "tags": [
+            "TRIAL"
+          ],
+          "count": 195
+        },
+        {
+          "tags": [
+            "URBAN"
+          ],
+          "count": 158
+        },
+        {
+          "tags": [
+            "MARITIME",
+            "MARITIME_INCIDENT"
+          ],
+          "count": 146
+        },
+        {
+          "tags": [
+            "BORDER"
+          ],
+          "count": 140
+        },
+        {
+          "tags": [
+            "SCIENCE"
+          ],
+          "count": 138
+        }
+      ]
+    }
+  }
+}

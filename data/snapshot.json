@@ -1,0 +1,262 @@
+{
+  "generated_at": "2026-09-04T12:12:06.143768+00:00",
+  "window_hours": 24,
+  "source": "gdelt_gkg_files",
+  "methodology_version": "0.3",
+  "methodology_notes": {
+    "ideological": "Índice Esteban-Ray (α=1.0) con test de Hartigan. Mide si las posiciones se reparten en dos bloques separados, no si hay diversidad de opiniones.",
+    "affective": "Hostilidad concentrada en los extremos del eje. Mide si los que están en cada polo se expresan con agresividad hacia el otro bando.",
+    "composite": "Media geométrica de ideológica y afectiva. Un valor alto requiere AMBAS: división en bloques Y hostilidad entre ellos.",
+    "dominant_type": "Indica qué dimensión pesa más: 'ideological' si hay bloques sin mucho odio, 'affective' si hay odio sin bloques claros, 'mixed' si van parejas."
+  },
+  "countries": {
+    "ES": {
+      "country": "ES",
+      "country_name": "España",
+      "status": "ok",
+      "topics": [
+        {
+          "rank": 1,
+          "label": "Seguridad pública y orden",
+          "tags": [
+            "SECURITY_SERVICES"
+          ],
+          "axis": {
+            "pole_a": "Reforzar cuerpos de seguridad y endurecer respuesta policial ante delincuencia e inmigración irregular",
+            "pole_b": "Cuestionar excesos institucionales y defender garantías civiles frente al Estado policial"
+          },
+          "n_articles": 176,
+          "metrics": {
+            "ideological": 0.26066974525878633,
+            "bimodality": 0,
+            "dip_pvalue": 1,
+            "affective_index": 0.30821917808219185,
+            "composite": 0.2834491394140357,
+            "n": 176,
+            "n_effective": 164.36011904761907,
+            "sufficient_data": true
+          },
+          "source_quality": {
+            "n_domains": 51,
+            "hhi": 0.032434040864907754,
+            "top_share": 0.07042253521126761,
+            "reliable": true
+          },
+          "trustworthy": true
+        },
+        {
+          "rank": 2,
+          "label": "Seguridad marítima y narcotráfico",
+          "tags": [
+            "MARITIME",
+            "MARITIME_INCIDENT"
+          ],
+          "axis": {
+            "pole_a": "Reforzar el control marítimo y las fronteras para frenar el tráfico de drogas y la inmigración irregular",
+            "pole_b": "Las operaciones de vigilancia son insuficientes y criminalizan la movilidad humana en el mar"
+          },
+          "n_articles": 33,
+          "metrics": {
+            "ideological": 0.3708373956814514,
+            "bimodality": 0,
+            "dip_pvalue": 1,
+            "affective_index": 0.19090909090909092,
+            "composite": 0.2660756097139321,
+            "n": 33,
+            "n_effective": 29.559088500264973,
+            "sufficient_data": true
+          },
+          "source_quality": {
+            "n_domains": 46,
+            "hhi": 0.032566100626097924,
+            "top_share": 0.06040268456375839,
+            "reliable": true
+          },
+          "trustworthy": false
+        },
+        {
+          "rank": 3,
+          "label": "Gestión migratoria en Ceuta",
+          "tags": [
+            "BORDER"
+          ],
+          "axis": {
+            "pole_a": "La entrada masiva es una crisis de seguridad que exige respuesta firme y coordinación con la UE",
+            "pole_b": "El gobierno gestiona la situación diplomáticamente con Marruecos sin criminalizar la migración"
+          },
+          "n_articles": 73,
+          "metrics": {
+            "ideological": 0.24818817892640746,
+            "bimodality": 0,
+            "dip_pvalue": 1,
+            "affective_index": 0.2504132231404958,
+            "composite": 0.24929821866658367,
+            "n": 73,
+            "n_effective": 68.84886601867731,
+            "sufficient_data": true
+          },
+          "source_quality": {
+            "n_domains": 44,
+            "hhi": 0.03635598822186167,
+            "top_share": 0.06201550387596899,
+            "reliable": true
+          },
+          "trustworthy": true
+        },
+        {
+          "rank": 4,
+          "label": "Independencia judicial e impunidad política",
+          "tags": [
+            "TRIAL"
+          ],
+          "axis": {
+            "pole_a": "La justicia actúa con independencia frente a los poderes políticos",
+            "pole_b": "El sistema judicial es instrumentalizado o protege a las élites"
+          },
+          "n_articles": 71,
+          "metrics": {
+            "ideological": 0.23459464836450977,
+            "bimodality": 0,
+            "dip_pvalue": 1,
+            "affective_index": 0.2305555555555555,
+            "composite": 0.23256633351377354,
+            "n": 71,
+            "n_effective": 67.31191011235957,
+            "sufficient_data": true
+          },
+          "source_quality": {
+            "n_domains": 51,
+            "hhi": 0.03204275479007678,
+            "top_share": 0.06763285024154589,
+            "reliable": true
+          },
+          "trustworthy": true
+        },
+        {
+          "rank": 5,
+          "label": "Urbanismo y espacio público",
+          "tags": [
+            "URBAN"
+          ],
+          "axis": {
+            "pole_a": "El desarrollo urbano y la modernización mejoran las ciudades y la calidad de vida",
+            "pole_b": "La especulación urbanística y el turismo masivo degradan el tejido social y el entorno"
+          },
+          "n_articles": 40,
+          "metrics": {
+            "ideological": 0.25285467069585604,
+            "bimodality": 0,
+            "dip_pvalue": 1,
+            "affective_index": 0.1466666666666667,
+            "composite": 0.19257557400163422,
+            "n": 40,
+            "n_effective": 37.194103194103185,
+            "sufficient_data": true
+          },
+          "source_quality": {
+            "n_domains": 45,
+            "hhi": 0.037617182864601875,
+            "top_share": 0.06918238993710692,
+            "reliable": true
+          },
+          "trustworthy": false
+        },
+        {
+          "rank": 6,
+          "label": "Seguridad y salud pública",
+          "tags": [
+            "MEDICAL"
+          ],
+          "axis": {
+            "pole_a": "El sistema sanitario y las instituciones protegen adecuadamente a los ciudadanos",
+            "pole_b": "Los riesgos para la salud y la seguridad siguen sin atenderse correctamente"
+          },
+          "n_articles": 149,
+          "metrics": {
+            "ideological": 0.16147625693070747,
+            "bimodality": 0,
+            "dip_pvalue": 1,
+            "affective_index": 0.13804347826086955,
+            "composite": 0.14930085118063025,
+            "n": 149,
+            "n_effective": 140.15641097686617,
+            "sufficient_data": true
+          },
+          "source_quality": {
+            "n_domains": 55,
+            "hhi": 0.034551510602364416,
+            "top_share": 0.07534246575342465,
+            "reliable": true
+          },
+          "trustworthy": true
+        },
+        {
+          "rank": 7,
+          "label": "Acceso a vivienda y coste de vida",
+          "tags": [
+            "TAX_ECON_PRICE"
+          ],
+          "axis": {
+            "pole_a": "El mercado y la iniciativa privada pueden resolver el acceso a la vivienda y los servicios básicos",
+            "pole_b": "Se necesita intervención pública y regulación para garantizar precios asequibles y condiciones dignas"
+          },
+          "n_articles": 66,
+          "metrics": {
+            "ideological": 0.1979874674075337,
+            "bimodality": 0,
+            "dip_pvalue": 1,
+            "affective_index": 0.11250000000000002,
+            "composite": 0.14924339209274073,
+            "n": 66,
+            "n_effective": 59.79999999999999,
+            "sufficient_data": true
+          },
+          "source_quality": {
+            "n_domains": 53,
+            "hhi": 0.03437139561707035,
+            "top_share": 0.0784313725490196,
+            "reliable": true
+          },
+          "trustworthy": true
+        },
+        {
+          "rank": 8,
+          "label": "Ciencia, salud y tecnología en la sociedad",
+          "tags": [
+            "SCIENCE"
+          ],
+          "axis": {
+            "pole_a": "La innovación científica y tecnológica mejora la vida humana y merece inversión pública",
+            "pole_b": "El avance sin control ético de la ciencia y la IA genera riesgos sociales y desigualdades"
+          },
+          "n_articles": 43,
+          "metrics": {
+            "ideological": 0.22871094874488285,
+            "bimodality": 0,
+            "dip_pvalue": 1,
+            "affective_index": 0.017857142857142856,
+            "composite": 0.06390715206242609,
+            "n": 43,
+            "n_effective": 41.1090320259086,
+            "sufficient_data": true
+          },
+          "source_quality": {
+            "n_domains": 46,
+            "hhi": 0.04011934572966061,
+            "top_share": 0.0948905109489051,
+            "reliable": true
+          },
+          "trustworthy": false
+        }
+      ],
+      "overall": {
+        "ideological": 0.2201,
+        "affective": 0.2185,
+        "composite": 0.2181,
+        "dominant_type": "mixed"
+      },
+      "map_color": 0.2181,
+      "trustworthy": true
+    }
+  }
+}

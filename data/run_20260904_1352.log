@@ -1,0 +1,71 @@
+2026-09-04 13:52:55,869 INFO ============================================================
+2026-09-04 13:52:55,869 INFO PASADA 1: CENSO DE TEMAS
+2026-09-04 13:52:55,869 INFO   Países: ES | Ventana: 24h | Muestreo: 1/4
+2026-09-04 13:52:55,869 INFO ============================================================
+2026-09-04 13:52:59,180 INFO   censo: 5/24 ficheros | 17718 filas | 507 de países pedidos
+2026-09-04 13:53:02,525 INFO   censo: 10/24 ficheros | 30863 filas | 754 de países pedidos
+2026-09-04 13:53:05,897 INFO   censo: 15/24 ficheros | 43963 filas | 988 de países pedidos
+2026-09-04 13:53:09,610 INFO   censo: 20/24 ficheros | 64193 filas | 1578 de países pedidos
+2026-09-04 13:53:12,755 INFO   censo: 24/24 ficheros | 84322 filas | 2125 de países pedidos
+2026-09-04 13:53:13,260 INFO Censo terminado: 84322 filas leídas, 2125 de países pedidos
+2026-09-04 13:53:13,261 INFO [ES] 375 etiquetas temáticas distintas
+2026-09-04 13:53:13,264 INFO [ES] 90 grupos temáticos (tras fusionar y filtrar)
+2026-09-04 13:53:13,265 INFO   #1   329 arts  [SECURITY_SERVICES] ←
+2026-09-04 13:53:13,265 INFO   #2   327 arts  [MEDICAL] ←
+2026-09-04 13:53:13,265 INFO   #3   327 arts  [TAX_ECON_PRICE] ←
+2026-09-04 13:53:13,265 INFO   #4   202 arts  [TRIAL] ←
+2026-09-04 13:53:13,265 INFO   #5   199 arts  [MARITIME, MARITIME_INCIDENT] ←
+2026-09-04 13:53:13,265 INFO   #6   183 arts  [URBAN] ←
+2026-09-04 13:53:13,265 INFO   #7   159 arts  [BORDER] ←
+2026-09-04 13:53:13,265 INFO   #8   144 arts  [SCIENCE] ←
+2026-09-04 13:53:13,265 INFO   #9   143 arts  [IDEOLOGY]
+2026-09-04 13:53:13,265 INFO   #10   124 arts  [IMMIGRATION]
+2026-09-04 13:53:13,265 INFO   #11   123 arts  [TAX_MILITARY_TITLE]
+2026-09-04 13:53:13,265 INFO 
+2026-09-04 13:53:13,265 INFO ============================================================
+2026-09-04 13:53:13,265 INFO PASADA 2: ANÁLISIS DE POLARIZACIÓN
+2026-09-04 13:53:13,265 INFO ============================================================
+2026-09-04 13:53:13,267 INFO 8 grupos temáticos únicos a analizar
+2026-09-04 13:53:13,267 INFO --- Analizando grupo: SECURITY_SERVICES (329 artículos aprox) ---
+2026-09-04 13:53:17,774 INFO   [ES] 284 artículos, 51 medios, HHI=0.032
+2026-09-04 13:53:18,048 WARNING error descubriendo eje para SECURITY_SERVICES: 401 Client Error: Unauthorized for url: https://api.anthropic.com/v1/messages
+2026-09-04 13:53:18,050 INFO   [ES] sin debate claro → saltar
+2026-09-04 13:53:18,050 INFO --- Analizando grupo: MEDICAL (327 artículos aprox) ---
+2026-09-04 13:53:22,412 INFO   [ES] 284 artículos, 53 medios, HHI=0.036
+2026-09-04 13:53:22,608 WARNING error descubriendo eje para MEDICAL: 401 Client Error: Unauthorized for url: https://api.anthropic.com/v1/messages
+2026-09-04 13:53:22,609 INFO   [ES] sin debate claro → saltar
+2026-09-04 13:53:22,609 INFO --- Analizando grupo: TAX_ECON_PRICE (327 artículos aprox) ---
+2026-09-04 13:53:26,966 INFO   [ES] 288 artículos, 56 medios, HHI=0.034
+2026-09-04 13:53:27,273 WARNING error descubriendo eje para TAX_ECON_PRICE: 401 Client Error: Unauthorized for url: https://api.anthropic.com/v1/messages
+2026-09-04 13:53:27,274 INFO   [ES] sin debate claro → saltar
+2026-09-04 13:53:27,274 INFO --- Analizando grupo: TRIAL (202 artículos aprox) ---
+2026-09-04 13:53:31,678 INFO   [ES] 181 artículos, 44 medios, HHI=0.035
+2026-09-04 13:53:31,881 WARNING error descubriendo eje para TRIAL: 401 Client Error: Unauthorized for url: https://api.anthropic.com/v1/messages
+2026-09-04 13:53:31,883 INFO   [ES] sin debate claro → saltar
+2026-09-04 13:53:31,883 INFO --- Analizando grupo: MARITIME, MARITIME_INCIDENT (199 artículos aprox) ---
+2026-09-04 13:53:36,266 INFO   [ES] 171 artículos, 47 medios, HHI=0.036
+2026-09-04 13:53:36,461 WARNING error descubriendo eje para MARITIME, MARITIME_INCIDENT: 401 Client Error: Unauthorized for url: https://api.anthropic.com/v1/messages
+2026-09-04 13:53:36,462 INFO   [ES] sin debate claro → saltar
+2026-09-04 13:53:36,463 INFO --- Analizando grupo: URBAN (183 artículos aprox) ---
+2026-09-04 13:53:40,844 INFO   [ES] 152 artículos, 45 medios, HHI=0.035
+2026-09-04 13:53:41,083 WARNING error descubriendo eje para URBAN: 401 Client Error: Unauthorized for url: https://api.anthropic.com/v1/messages
+2026-09-04 13:53:41,085 INFO   [ES] sin debate claro → saltar
+2026-09-04 13:53:41,085 INFO --- Analizando grupo: BORDER (159 artículos aprox) ---
+2026-09-04 13:53:45,534 INFO   [ES] 138 artículos, 44 medios, HHI=0.039
+2026-09-04 13:53:45,798 WARNING error descubriendo eje para BORDER: 401 Client Error: Unauthorized for url: https://api.anthropic.com/v1/messages
+2026-09-04 13:53:45,800 INFO   [ES] sin debate claro → saltar
+2026-09-04 13:53:45,800 INFO --- Analizando grupo: SCIENCE (144 artículos aprox) ---
+2026-09-04 13:53:50,181 INFO   [ES] 115 artículos, 38 medios, HHI=0.040
+2026-09-04 13:53:50,392 WARNING error descubriendo eje para SCIENCE: 401 Client Error: Unauthorized for url: https://api.anthropic.com/v1/messages
+2026-09-04 13:53:50,394 INFO   [ES] sin debate claro → saltar
+2026-09-04 13:53:50,394 INFO 
+2026-09-04 13:53:50,394 INFO ============================================================
+2026-09-04 13:53:50,394 INFO RESULTADOS
+2026-09-04 13:53:50,394 INFO ============================================================
+2026-09-04 13:53:50,395 INFO [ES] España: sin datos suficientes
+2026-09-04 13:53:50,398 INFO 
+2026-09-04 13:53:50,398 INFO Snapshot guardado en data/snapshot.json
+
+país                 comp   ideo   afec tipo          temas  estado
+------------------------------------------------------------------------
+España                 --     --     -- --                0  sin datos
