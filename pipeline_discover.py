@@ -13,8 +13,7 @@ EN VEZ DE DECIRLE AL SISTEMA QUÉ TEMAS BUSCAR, ESTE PIPELINE:
   5. Genera snapshot.json con el contrato v1 (CONTRACT.md) para el mapa,
      y el detalle interno en data/internal/
 
-Uso:
-    export ANTHROPIC_API_KEY=sk-ant-...
+Uso (la key se lee de .env en la raíz del proyecto; ver .env.example):
     python3 pipeline_discover.py                 # los 10 países v1
     python3 pipeline_discover.py --countries ES --hours 24
 
@@ -30,6 +29,7 @@ Coste típico (5 temas, 1 país):
 
 from __future__ import annotations
 
+import os
 import json
 import argparse
 import logging
@@ -55,6 +55,7 @@ logging.basicConfig(
 log = logging.getLogger("pipeline_discover")
 
 OUT_DIR = Path("data")
+ENV_PATH = Path(__file__).resolve().parent / ".env"
 INTERNAL_DIR = OUT_DIR / "internal"
 AXES_PATH = INTERNAL_DIR / "axes.json"
 
@@ -408,6 +409,25 @@ def build_country_output(country: str, topic_results: list[dict],
     }
 
 
+def load_env(path: Path = ENV_PATH) -> None:
+    """
+    Carga KEY=valor desde .env (ignorado por git). Gana sobre lo que
+    haya exportado en la terminal, para que una key vieja olvidada en
+    el entorno no tape la del proyecto.
+    """
+    if not path.exists():
+        return
+    for line in path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key = key.strip().removeprefix("export ").strip()
+        value = value.strip().strip('"').strip("'")
+        if key and value:
+            os.environ[key] = value
+
+
 def main():
     ap = argparse.ArgumentParser(
         description="Descubrimiento automático de temas polarizantes",
@@ -445,6 +465,23 @@ def main():
              "snapshot_partial.json si no, para no pisar el mapa)",
     )
     args = ap.parse_args()
+
+    load_env()
+    key = os.environ.get("ANTHROPIC_API_KEY", "")
+    if not args.census_only:
+        # Fallar antes del censo, no 20 s después.
+        if not key:
+            raise SystemExit(
+                f"Falta ANTHROPIC_API_KEY. Créala en {ENV_PATH} "
+                "(copia .env.example)")
+        if "..." in key or len(key) < 60:
+            raise SystemExit(
+                "ANTHROPIC_API_KEY parece abreviada (la consola muestra "
+                "sk-ant-...XXXX). Crea una key nueva y copia la completa.")
+        if not key.startswith("sk-ant-") or key.count("sk-ant-") > 1:
+            raise SystemExit(
+                f"ANTHROPIC_API_KEY mal pegada en {ENV_PATH}: debe empezar "
+                "por sk-ant- una sola vez (¿quedó texto de la plantilla?)")
 
     countries = [c.strip().upper() for c in args.countries.split(",")]
     if args.out is None:

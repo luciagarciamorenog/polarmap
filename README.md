@@ -7,7 +7,7 @@ métricas defendibles y validación contra fuentes establecidas.
 
 ```bash
 pip install numpy scipy pandas requests diptest
-export ANTHROPIC_API_KEY=sk-...
+cp .env.example .env   # y pega tu key completa en .env
 
 # Validar que las métricas funcionan (no necesita red ni API key)
 cd analysis && python test_metrics.py
