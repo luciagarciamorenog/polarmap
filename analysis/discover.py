@@ -514,6 +514,51 @@ def fetch_articles_for_group(tags: list[str], countries: list[str],
 API_URL = "https://api.anthropic.com/v1/messages"
 DISCOVER_MODEL = "claude-sonnet-4-6"
 
+# Reintentos ante errores transitorios (red, 429, 5xx).
+API_RETRIES = 3
+API_BACKOFF = 2.0  # segundos, se duplica en cada intento
+
+
+class FatalAPIError(RuntimeError):
+    """Error que no se arregla reintentando (key inválida o revocada,
+    petición mal formada). Aborta la corrida: publicar un mapa gris
+    por una key caducada es peor que no publicar."""
+
+
+class TransientAPIError(RuntimeError):
+    """La API no respondió bien tras agotar los reintentos."""
+
+
+def _call_api(body: dict, api_key: str, timeout: int) -> str:
+    """POST a Messages con reintentos. Devuelve el texto de la respuesta."""
+    headers = {
+        "x-api-key": api_key,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+    }
+    last = None
+    for attempt in range(API_RETRIES):
+        if attempt:
+            time.sleep(API_BACKOFF * 2 ** (attempt - 1))
+        try:
+            resp = requests.post(API_URL, headers=headers, json=body,
+                                 timeout=timeout)
+        except requests.RequestException as e:
+            last = f"red: {e}"
+            continue
+        if resp.status_code == 429 or resp.status_code >= 500:
+            last = f"HTTP {resp.status_code}"
+            continue
+        if resp.status_code >= 400:
+            raise FatalAPIError(
+                f"HTTP {resp.status_code}: {resp.text[:300]}")
+        try:
+            return resp.json()["content"][0]["text"].strip()
+        except (ValueError, KeyError, IndexError, TypeError) as e:
+            last = f"respuesta sin texto: {e}"
+    raise TransientAPIError(
+        f"sin respuesta válida tras {API_RETRIES} intentos ({last})")
+
 
 def discover_axis(titles: list[str], tag_names: list[str],
                   country_name: str, api_key: str | None = None,
@@ -530,6 +575,9 @@ def discover_axis(titles: list[str], tag_names: list[str],
     Si no hay debate claro (son noticias puramente informativas sin
     posicionamiento), devuelve None. Esto es correcto: no todo tema
     genera polarización.
+
+    Un fallo de la API NO es "sin debate": lanza FatalAPIError o
+    TransientAPIError para que el pipeline lo distinga.
 
     Coste: una sola llamada por tema, ~300 tokens. Barato.
     """
@@ -571,25 +619,13 @@ SIN NINGUNA dimensión política, social o de opinión (por ejemplo, resultados
 deportivos, el tiempo meteorológico, obituarios). Si hay CUALQUIER debate
 subyacente, aunque sea sutil, identifícalo."""
 
-    headers = {
-        "x-api-key": key,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-    }
     body = {
         "model": DISCOVER_MODEL,
         "max_tokens": 300,
         "temperature": 0.2,
         "messages": [{"role": "user", "content": prompt}],
     }
-
-    try:
-        resp = requests.post(API_URL, headers=headers, json=body, timeout=30)
-        resp.raise_for_status()
-        text = resp.json()["content"][0]["text"].strip()
-    except Exception as e:
-        log.warning("error descubriendo eje para %s: %s", tags_str, e)
-        return None
+    text = _call_api(body, key, timeout=30)
 
     # Parsear la respuesta (formato clave: valor en cada línea)
     parsed = {}
@@ -638,6 +674,8 @@ class StanceResult:
     hostility: float     # 0 (neutro) a 1 (hostil)
     confidence: float    # 0 a 1
     off_topic: bool      # True si el titular no va del tema
+    failed: bool = False  # True si NO se pudo clasificar (API o parseo).
+                          # No es off-topic: es un dato perdido.
 
 
 def classify_stances(titles: list[str], pole_a: str, pole_b: str,
@@ -660,6 +698,9 @@ def classify_stances(titles: list[str], pole_a: str, pole_b: str,
 
     Envía en lotes de 20 para abaratar. Una pausa entre lotes
     para no saturar la API.
+
+    Un lote que falla tras los reintentos vuelve con failed=True (no
+    off_topic). Una key inválida lanza FatalAPIError y corta todo.
     """
     key = api_key or os.environ.get("ANTHROPIC_API_KEY")
     if not key:
@@ -719,11 +760,6 @@ IMPORTANTE:
 - Los titulares pueden estar en cualquier idioma. Evalúa el contenido, no el idioma.
 - Sé GENEROSO con off_topic=false. Marca off_topic=true solo si realmente no tiene NADA que ver."""
 
-    headers = {
-        "x-api-key": api_key,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
-    }
     body = {
         "model": CLASSIFY_MODEL,
         "max_tokens": 2000,
@@ -732,18 +768,20 @@ IMPORTANTE:
     }
 
     try:
-        resp = requests.post(API_URL, headers=headers, json=body, timeout=60)
-        resp.raise_for_status()
-        text = resp.json()["content"][0]["text"].strip()
-    except Exception as e:
-        log.warning("error clasificando lote: %s", e)
-        # Devolver todo como off-topic en caso de error (fail safe)
-        return [StanceResult(t, 0.0, 0.0, 0.0, True) for t in titles]
+        text = _call_api(body, api_key, timeout=60)
+    except TransientAPIError as e:
+        log.error("lote de %d titulares SIN clasificar: %s", len(titles), e)
+        return _failed(titles)
 
     # Parsear el JSON de la respuesta.
     # Claude a veces envuelve el JSON en ```json ... ```
     # o añade texto antes/después. Buscamos el array.
     return _parse_classify_response(text, titles)
+
+
+def _failed(titles: list[str]) -> list[StanceResult]:
+    return [StanceResult(t, 0.0, 0.0, 0.0, off_topic=True, failed=True)
+            for t in titles]
 
 
 def _parse_classify_response(text: str, titles: list[str]
@@ -760,14 +798,17 @@ def _parse_classify_response(text: str, titles: list[str]
     # Buscar el array JSON (puede haber texto antes o después)
     match = re.search(r"\[.*\]", cleaned, re.DOTALL)
     if not match:
-        log.warning("no se encontró JSON array en la respuesta")
-        return [StanceResult(t, 0.0, 0.0, 0.0, True) for t in titles]
+        log.error("no se encontró JSON array en la respuesta")
+        return _failed(titles)
 
     try:
         items = json.loads(match.group(0))
     except json.JSONDecodeError as e:
-        log.warning("JSON inválido en respuesta de clasificación: %s", e)
-        return [StanceResult(t, 0.0, 0.0, 0.0, True) for t in titles]
+        log.error("JSON inválido en respuesta de clasificación: %s", e)
+        return _failed(titles)
+    if not isinstance(items, list):
+        log.error("la respuesta de clasificación no es un array")
+        return _failed(titles)
 
     # Mapear resultados por id
     by_id = {}
@@ -777,14 +818,25 @@ def _parse_classify_response(text: str, titles: list[str]
 
     results = []
     for j, title in enumerate(titles):
-        item = by_id.get(j + 1, {})
+        item = by_id.get(j + 1)
+        if item is None:
+            # Respuesta cortada o id que falta: dato perdido, no off-topic.
+            results.append(StanceResult(title, 0.0, 0.0, 0.0,
+                                        off_topic=True, failed=True))
+            continue
         try:
             stance = float(item.get("stance", 0))
             hostility = float(item.get("hostility", 0))
             confidence = float(item.get("confidence", 0))
             off_topic = bool(item.get("off_topic", True))
         except (ValueError, TypeError):
-            stance, hostility, confidence, off_topic = 0.0, 0.0, 0.0, True
+            results.append(StanceResult(title, 0.0, 0.0, 0.0,
+                                        off_topic=True, failed=True))
+            continue
+        if not all(np.isfinite([stance, hostility, confidence])):
+            results.append(StanceResult(title, 0.0, 0.0, 0.0,
+                                        off_topic=True, failed=True))
+            continue
 
         # Limitar a rangos válidos
         stance = max(-1.0, min(1.0, stance))

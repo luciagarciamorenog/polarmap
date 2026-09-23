@@ -23,6 +23,7 @@ from collections import Counter
 # Para que funcione tanto con pytest como ejecutado directamente
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from analysis import discover
 from analysis.discover import (
     is_noise_theme, extract_themes,
     build_topic_groups, _parse_classify_response,
@@ -227,6 +228,8 @@ def test_parse_response_garbage():
     results = _parse_classify_response(text, ["titulo 1", "titulo 2"])
     assert len(results) == 2
     assert all(r.off_topic is True for r in results)
+    # Basura no es off-topic de verdad: es un dato perdido.
+    assert all(r.failed is True for r in results)
 
     print("[OK] fail safe con respuesta basura")
 
@@ -240,6 +243,109 @@ def test_parse_response_clamping():
     assert results[0].confidence == 0.0  # clamped
 
     print("[OK] clamping de valores fuera de rango")
+
+
+def test_parse_response_missing_ids():
+    """Respuesta cortada: los ids que faltan son fallos, no off-topic."""
+    text = '[{"id":1,"stance":0.5,"hostility":0.1,"confidence":0.9,"off_topic":false}]'
+    results = _parse_classify_response(text, ["t1", "t2", "t3"])
+    assert results[0].failed is False and results[0].off_topic is False
+    assert [r.failed for r in results[1:]] == [True, True]
+
+    print("[OK] ids ausentes cuentan como fallidos")
+
+
+class _FakeResp:
+    def __init__(self, status, payload=None, text=""):
+        self.status_code = status
+        self._payload = payload
+        self.text = text
+
+    def json(self):
+        if self._payload is None:
+            raise ValueError("sin json")
+        return self._payload
+
+
+def _with_responses(responses, fn):
+    """Ejecuta fn con requests.post devolviendo `responses` en orden."""
+    calls = []
+
+    def fake_post(*a, **k):
+        calls.append(1)
+        r = responses[min(len(calls), len(responses)) - 1]
+        if isinstance(r, Exception):
+            raise r
+        return r
+
+    orig_post, orig_backoff = discover.requests.post, discover.API_BACKOFF
+    discover.requests.post, discover.API_BACKOFF = fake_post, 0
+    try:
+        return fn(), len(calls)
+    finally:
+        discover.requests.post, discover.API_BACKOFF = orig_post, orig_backoff
+
+
+def _ok(text):
+    return _FakeResp(200, {"content": [{"text": text}]})
+
+
+def test_api_retries_and_errors():
+    body = {"model": "m", "messages": []}
+
+    out, n = _with_responses([_FakeResp(500), _ok("hola")],
+                             lambda: discover._call_api(body, "k", 5))
+    assert out == "hola" and n == 2
+
+    try:
+        _with_responses([_FakeResp(401, text="invalid x-api-key")],
+                        lambda: discover._call_api(body, "k", 5))
+        assert False, "401 debería ser fatal"
+    except discover.FatalAPIError as e:
+        assert "401" in str(e)
+
+    try:
+        _with_responses([_FakeResp(429)],
+                        lambda: discover._call_api(body, "k", 5))
+        assert False, "429 persistente debería agotar reintentos"
+    except discover.TransientAPIError:
+        pass
+
+    net = discover.requests.ConnectionError("sin red")
+    try:
+        _with_responses([net], lambda: discover._call_api(body, "k", 5))
+        assert False, "sin red debería agotar reintentos"
+    except discover.TransientAPIError:
+        pass
+
+    print("[OK] reintentos, 401 fatal, 429/red transitorios")
+
+
+def test_classify_api_failure_is_not_off_topic():
+    """El bug original: un lote caído se contaba como off-topic."""
+    results, _ = _with_responses(
+        [_FakeResp(503)],
+        lambda: discover.classify_stances(["a", "b"], "A", "B",
+                                          api_key="k"))
+    assert all(r.failed for r in results)
+
+    try:
+        _with_responses([_FakeResp(401)],
+                        lambda: discover.classify_stances(["a"], "A", "B",
+                                                          api_key="k"))
+        assert False, "key inválida debería cortar la corrida"
+    except discover.FatalAPIError:
+        pass
+
+    try:
+        _with_responses([_FakeResp(500)],
+                        lambda: discover.discover_axis(["a"], ["T"], "ES",
+                                                       api_key="k"))
+        assert False, "fallo de API no es 'sin debate'"
+    except discover.TransientAPIError:
+        pass
+
+    print("[OK] fallos de API se distinguen de off-topic y de sin debate")
 
 
 # ─────────────────────────────────────────────────────────────
@@ -256,5 +362,8 @@ if __name__ == "__main__":
     test_parse_response_markdown()
     test_parse_response_garbage()
     test_parse_response_clamping()
+    test_parse_response_missing_ids()
+    test_api_retries_and_errors()
+    test_classify_api_failure_is_not_off_topic()
     print()
     print("=== TODOS LOS TESTS PASAN ===")

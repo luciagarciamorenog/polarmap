@@ -10,10 +10,12 @@ EN VEZ DE DECIRLE AL SISTEMA QUÉ TEMAS BUSCAR, ESTE PIPELINE:
      b. Claude define el eje de debate
      c. Clasifica posturas
      d. Calcula métricas de polarización (ideológica y afectiva)
-  5. Genera snapshot.json listo para el mapa web
+  5. Genera snapshot.json con el contrato v1 (CONTRACT.md) para el mapa,
+     y el detalle interno en data/internal/
 
 Uso:
     export ANTHROPIC_API_KEY=sk-ant-...
+    python3 pipeline_discover.py                 # los 10 países v1
     python3 pipeline_discover.py --countries ES --hours 24
 
     # Solo el censo (sin gastar API):
@@ -32,17 +34,19 @@ import json
 import argparse
 import logging
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import numpy as np
 
+from analysis import contract
 from analysis.discover import (
     run_census, build_topic_groups, fetch_articles_for_group,
     discover_axis, classify_stances, source_concentration,
-    TopicGroup,
+    TopicGroup, TransientAPIError,
 )
 from analysis.metrics import polarization_profile
+from ingest.gkg_files import gkg_timestamps
 
 logging.basicConfig(
     level=logging.INFO,
@@ -51,6 +55,12 @@ logging.basicConfig(
 log = logging.getLogger("pipeline_discover")
 
 OUT_DIR = Path("data")
+INTERNAL_DIR = OUT_DIR / "internal"
+AXES_PATH = INTERNAL_DIR / "axes.json"
+
+# Si más de este porcentaje de titulares de un tema no se pudo
+# clasificar (API o parseo), el tema no vale y la corrida no se publica.
+MAX_FAILED_SHARE = 0.10
 
 # Metadatos de países: nombre legible e idioma principal.
 # El idioma se usa para que Claude clasifique en el idioma correcto
@@ -67,13 +77,15 @@ COUNTRY_META = {
     "BR": {"name": "Brasil", "lang": "por"},
     "AR": {"name": "Argentina", "lang": "spa"},
     "MX": {"name": "México", "lang": "spa"},
+    "CL": {"name": "Chile", "lang": "spa"},
     "IN": {"name": "India", "lang": "eng"},
 }
 
 
 def analyze_topic(group: TopicGroup, countries: list[str],
                   hours_back: int, every_n: int, max_files: int,
-                  min_articles: int, api_key: str | None
+                  min_articles: int, api_key: str | None,
+                  axes_registry: dict[str, list[str]],
                   ) -> dict[str, dict]:
     """
     Analiza UN grupo temático para todos los países pedidos.
@@ -112,16 +124,29 @@ def analyze_topic(group: TopicGroup, countries: list[str],
             }
             continue
 
-        # Concentración de fuentes (¿dominan 2-3 medios?)
-        conc = source_concentration(arts)
-        log.info("  [%s] %d artículos, %d medios, HHI=%.3f",
-                 country, len(arts), conc["n_domains"], conc["hhi"])
+        # Concentración cruda, solo para el log: la que decide trust se
+        # mide abajo sobre los titulares on-topic (CONTRACT.md §3).
+        conc_raw = source_concentration(arts)
+        log.info("  [%s] %d artículos, %d medios, HHI=%.3f (crudo)",
+                 country, len(arts), conc_raw["n_domains"],
+                 conc_raw["hhi"])
 
         # Descubrir el eje de debate (una llamada a Claude)
-        titles = [a.title for a in arts if a.title.strip()]
-        axis = discover_axis(
-            titles, group.tags, country_name, api_key=api_key,
-        )
+        arts = [a for a in arts if a.title.strip()]
+        titles = [a.title for a in arts]
+        try:
+            axis = discover_axis(
+                titles, group.tags, country_name, api_key=api_key,
+            )
+        except TransientAPIError as e:
+            log.error("  [%s] la API falló al descubrir el eje: %s",
+                      country, e)
+            results[country] = {
+                "status": "api_error",
+                "n_articles": len(arts),
+                "error": str(e),
+            }
+            continue
         if axis is None:
             log.info("  [%s] sin debate claro → saltar", country)
             results[country] = {
@@ -129,6 +154,10 @@ def analyze_topic(group: TopicGroup, countries: list[str],
                 "n_articles": len(arts),
             }
             continue
+
+        # Si el tema ya salió antes, reutilizar sus polos (orientación
+        # congelada por etiqueta normalizada).
+        axis = contract.freeze_axis(axis, axes_registry)
 
         log.info("  [%s] eje: '%s' | %s ↔ %s",
                  country, axis["label"], axis["pole_a"][:40],
@@ -146,18 +175,34 @@ def analyze_topic(group: TopicGroup, countries: list[str],
         )
 
         # Filtrar los que son off-topic o sin confianza
-        stances, hostilities, confidences = [], [], []
-        for r in stance_results:
-            if r.off_topic or not np.isfinite(r.stance):
+        # classify_stances devuelve un resultado por titular, en orden.
+        n_failed = sum(r.failed for r in stance_results)
+        if n_failed > MAX_FAILED_SHARE * len(stance_results):
+            log.error("  [%s] %d de %d titulares SIN clasificar (API o "
+                      "respuesta ilegible) → tema descartado",
+                      country, n_failed, len(stance_results))
+            results[country] = {
+                "status": "classification_failed",
+                "axis": axis,
+                "n_articles": len(arts),
+                "n_failed": n_failed,
+            }
+            continue
+
+        stances, hostilities, confidences, on_topic = [], [], [], []
+        for art, r in zip(arts, stance_results):
+            if r.failed or r.off_topic or not np.isfinite(r.stance):
                 continue
+            on_topic.append(art)
             stances.append(r.stance)
             hostilities.append(r.hostility)
             confidences.append(r.confidence)
 
         # DIAGNÓSTICO
-        n_off = len(stance_results) - len(stances)
-        log.info('  [%s] clasificación: %d on-topic, %d off-topic de %d total',
-                 country, len(stances), n_off, len(stance_results))
+        n_off = len(stance_results) - len(stances) - n_failed
+        log.info('  [%s] clasificación: %d on-topic, %d off-topic, '
+                 '%d fallidos de %d total', country, len(stances), n_off,
+                 n_failed, len(stance_results))
         if stances:
             s = np.array(stances)
             h = np.array(hostilities)
@@ -174,8 +219,11 @@ def analyze_topic(group: TopicGroup, countries: list[str],
                      country, len(stances))
             results[country] = {
                 "status": "insufficient_after_filtering",
+                "axis": axis,
                 "n_articles": len(arts),
                 "n_classified": len(stances),
+                "n_effective": float(len(stances)),
+                "n_failed": n_failed,
             }
             continue
 
@@ -188,25 +236,22 @@ def analyze_topic(group: TopicGroup, countries: list[str],
             min_n=min_articles,
         )
 
-        # Determinar fiabilidad
-        trustworthy = bool(
-            profile.get("sufficient_data")
-            and conc["reliable"]
-            and profile.get("n_effective", 0) >= 50
-        )
-
+        conc = source_concentration(on_topic)
         results[country] = {
             "status": "ok",
             "axis": axis,
             "n_articles": len(arts),
             "n_classified": len(stances),
+            "n_effective": profile.get("n_effective", 0),
+            "n_failed": n_failed,
             "metrics": profile,
             "source_quality": {
                 k: conc[k] for k in
                 ("n_domains", "hhi", "top_share", "reliable")
             },
-            "trustworthy": trustworthy,
         }
+        trustworthy = contract.topic_is_trust(results[country])
+        results[country]["trustworthy"] = trustworthy
 
         log.info("  [%s] ideológica=%.3f afectiva=%.3f compuesta=%.3f %s",
                  country,
@@ -368,8 +413,8 @@ def main():
         description="Descubrimiento automático de temas polarizantes",
     )
     ap.add_argument(
-        "--countries", default="ES",
-        help="Códigos de país separados por coma (ES,FR,DE,GB)",
+        "--countries", default=",".join(contract.V1_COUNTRIES),
+        help="Códigos de país separados por coma (default: los 10 v1)",
     )
     ap.add_argument(
         "--hours", type=int, default=24,
@@ -385,19 +430,32 @@ def main():
     )
     ap.add_argument(
         "--min-articles", type=int, default=30,
-        help="Mínimo de artículos para analizar un tema (default: 30)",
+        help="Mínimo de artículos para analizar un tema (default: 30). "
+             "Suelo de análisis, no de trust: trust exige n>=80 "
+             "(CONTRACT.md §3)",
     )
     ap.add_argument(
         "--census-only", action="store_true",
         help="Solo ejecuta el censo (sin llamar a la API de Claude)",
     )
     ap.add_argument(
-        "--out", default="snapshot.json",
-        help="Nombre del archivo de salida (default: snapshot.json)",
+        "--out", default=None,
+        help="Nombre del archivo de salida en data/ (default: "
+             "snapshot.json si se piden los 10 países v1, "
+             "snapshot_partial.json si no, para no pisar el mapa)",
     )
     args = ap.parse_args()
 
     countries = [c.strip().upper() for c in args.countries.split(",")]
+    if args.out is None:
+        full_run = set(contract.V1_COUNTRIES) <= set(countries)
+        args.out = "snapshot.json" if full_run else "snapshot_partial.json"
+
+    # Fin de ventana: el fichero GKG más reciente cubre 15 min.
+    window_end = datetime.strptime(
+        gkg_timestamps(args.hours, args.every)[0], "%Y%m%d%H%M%S",
+    ) + timedelta(minutes=15)
+    ts = window_end.strftime("%Y-%m-%dT%H:%M:%SZ")
 
     # ─────────────────────────────────────────────────────────────
     # PASADA 1: CENSO
@@ -507,6 +565,8 @@ def main():
 
     # Analizar cada grupo para los países que lo tienen
     all_topic_results: dict[str, list[dict]] = defaultdict(list)
+    axes_registry = (json.loads(AXES_PATH.read_text())
+                     if AXES_PATH.exists() else {})
 
     for key, group in unique_groups.items():
         group_countries = group_to_countries[key]
@@ -517,6 +577,7 @@ def main():
             max_files=60,
             min_articles=args.min_articles,
             api_key=None,  # usa ANTHROPIC_API_KEY del entorno
+            axes_registry=axes_registry,
         )
 
         for country, result in results.items():
@@ -558,60 +619,69 @@ def main():
         else:
             log.info("[%s] %s: sin datos suficientes", country, name)
 
-    # Guardar JSON
-    OUT_DIR.mkdir(exist_ok=True)
-    path = OUT_DIR / args.out
-    snapshot = {
+    # Detalle interno (dip test, HHI, dominios, notas): fuera del
+    # contrato público, se queda en data/internal/.
+    INTERNAL_DIR.mkdir(parents=True, exist_ok=True)
+    internal = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "ts": ts,
         "window_hours": args.hours,
+        "every_n": args.every,
         "source": "gdelt_gkg_files",
         "methodology_version": "0.3",
-        "methodology_notes": {
-            "ideological": (
-                "Índice Esteban-Ray (α=1.0) con test de Hartigan. "
-                "Mide si las posiciones se reparten en dos bloques "
-                "separados, no si hay diversidad de opiniones."
-            ),
-            "affective": (
-                "Hostilidad concentrada en los extremos del eje. "
-                "Mide si los que están en cada polo se expresan con "
-                "agresividad hacia el otro bando."
-            ),
-            "composite": (
-                "Media geométrica de ideológica y afectiva. "
-                "Un valor alto requiere AMBAS: división en bloques "
-                "Y hostilidad entre ellos."
-            ),
-            "dominant_type": (
-                "Indica qué dimensión pesa más: 'ideological' si hay "
-                "bloques sin mucho odio, 'affective' si hay odio sin "
-                "bloques claros, 'mixed' si van parejas."
-            ),
-        },
+        "raw_topic_results": all_topic_results,
         "countries": output_countries,
     }
+    internal_path = INTERNAL_DIR / f"{Path(args.out).stem}_full.json"
+    internal_path.write_text(json.dumps(
+        internal, indent=2, ensure_ascii=False, default=str))
+    AXES_PATH.write_text(json.dumps(
+        axes_registry, indent=2, ensure_ascii=False, sort_keys=True))
 
-    path.write_text(json.dumps(snapshot, indent=2, ensure_ascii=False))
+    # Si la API falló en algún tema, el gris del mapa no significaría
+    # "pocos datos" sino "no pudimos medir". No se publica.
+    failures = [(c, t.get("axis", {}).get("label") or "|".join(t["tags"]),
+                 t["status"])
+                for c, ts_ in all_topic_results.items() for t in ts_
+                if t["status"] in ("api_error", "classification_failed")]
+    if failures:
+        log.error("")
+        log.error("%d tema(s) con fallos de la API; NO se publica %s "
+                  "(el anterior queda intacto). Detalle en %s",
+                  len(failures), OUT_DIR / args.out, internal_path)
+        for c, label, status in failures:
+            log.error("  [%s] %s: %s", c, label, status)
+        raise SystemExit(1)
+
+    # Snapshot público, contrato v1. Escritura atómica: o el fichero
+    # nuevo entero, o el anterior intacto.
+    snapshot = contract.build_snapshot(all_topic_results, ts, args.hours)
+    path = OUT_DIR / args.out
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(contract.dumps(snapshot))
+    tmp.replace(path)
     log.info("")
-    log.info("Snapshot guardado en %s", path)
+    log.info("Snapshot v1 guardado en %s (detalle en %s)",
+             path, internal_path)
 
     # Tabla resumen compacta
     print()
-    print(f"{'país':<18} {'comp':>6} {'ideo':>6} {'afec':>6} "
-          f"{'tipo':<13} {'temas':>5}  estado")
-    print("-" * 72)
-    for country in countries:
-        c = output_countries[country]
-        if c.get("overall"):
-            ov = c["overall"]
-            n_topics = len(c["topics"])
-            trust = "fiable" if c["trustworthy"] else "NO fiable"
-            print(f"{c['country_name']:<18} {ov['composite']:>6.3f} "
-                  f"{ov['ideological']:>6.3f} {ov['affective']:>6.3f} "
-                  f"{ov['dominant_type']:<13} {n_topics:>5}  {trust}")
+    print(f"{'país':<18} {'color':>6} {'dom':<5} {'n':>5} {'ne':>5} "
+          f"{'temas':>5}  estado")
+    print("-" * 60)
+    for code, c in snapshot["countries"].items():
+        name = COUNTRY_META.get(code, {}).get("name", code)
+        n_trust = sum(t["trust"] for t in c["topics"])
+        if code not in countries:
+            estado = "no pedido"
+        elif c["trust"]:
+            estado = "fiable"
         else:
-            print(f"{c['country_name']:<18} {'--':>6} {'--':>6} "
-                  f"{'--':>6} {'--':<13} {'0':>5}  sin datos")
+            estado = "gris"
+        color = f"{c['color']:.3f}" if c["trust"] else "--"
+        print(f"{name:<18} {color:>6} {c['dom'] or '--':<5} "
+              f"{c['n']:>5} {c['ne']:>5} "
+              f"{n_trust:>2}/{len(c['topics']):<2}  {estado}")
 
 
 if __name__ == "__main__":
