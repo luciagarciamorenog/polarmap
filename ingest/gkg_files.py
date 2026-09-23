@@ -33,6 +33,7 @@ import gzip
 import time
 import zipfile
 import logging
+import re
 import unicodedata
 from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta, timezone
@@ -51,7 +52,9 @@ CACHE_DIR = Path("data/cache")
 COL_DATE = 1           # V2.1DATE  (YYYYMMDDHHMMSS)
 COL_SOURCE_NAME = 3    # V2SourceCommonName (dominio)
 COL_DOC_ID = 4         # V2DocumentIdentifier (URL)
-COL_THEMES = 7         # V2EnhancedThemes / V2Themes
+COL_THEMES = 7         # V1Themes: cada tema una vez, sin posición
+COL_ENHANCED_THEMES = 8  # V2EnhancedThemes: "TEMA,offset;..." una entrada
+                         # POR MENCIÓN. Es la que dice si el tema es central.
 COL_TONE = 15          # V2Tone (lista separada por comas; el primero es el tono)
 
 # Mapeo tema propio -> etiquetas GKG de GDELT.
@@ -208,6 +211,18 @@ def domain_to_country(domain: str) -> str | None:
     return None
 
 
+# Restos que los CMS meten en el slug y no son parte del titular.
+_SLUG_PREFIXES = {"noticia", "noticias"}           # Europa Press y otros
+_SLUG_SUFFIXES = {"nt", "ntrc", "nts", "ntv", "ntb", "ntx", "ctx"}  # Vocento
+_SLUG_CODE = re.compile(r"^(\d[a-z]{1,4}|[a-z]\d[a-z0-9]{0,2})$")  # 1tna, 1b, p7m
+_SLUG_HASH = re.compile(r"^(?=.*\d)[0-9a-f]{12,}$")  # 202609226ab2...
+
+
+def _is_slug_junk(word: str) -> bool:
+    return bool(word.isdigit() or _SLUG_HASH.match(word)
+                or _SLUG_CODE.match(word))
+
+
 def slug_to_title(url: str) -> str:
     """
     Reconstruye un titular aproximado desde el slug de la URL.
@@ -234,13 +249,43 @@ def slug_to_title(url: str) -> str:
     seg = seg.replace("_", "-")
     parts = [p for p in seg.split("-") if p]
 
-    # descartar fragmentos que son solo dígitos o ids cortos
-    words = [p for p in parts if not p.isdigit() and len(p) > 1]
+    # descartar fragmentos que son solo dígitos, hashes o ids cortos
+    words = [p.lower() for p in parts if len(p) > 1 and not _is_slug_junk(p.lower())]
+    while words and words[0] in _SLUG_PREFIXES:
+        words.pop(0)
+    while words and words[-1] in _SLUG_SUFFIXES:
+        words.pop()
     if len(words) < 4:
         return ""
     # slugs demasiado largos suelen arrastrar ids: cortar
     words = words[:20]
     return " ".join(words)
+
+
+# Secciones que nunca son debate público. Se miran los segmentos de la
+# ruta (no el slug): /deportes/futbol/... o /gente/... se descartan.
+SOFT_SECTIONS = {
+    "deportes", "deporte", "futbol", "baloncesto", "motor", "gente",
+    "famosos", "corazon", "horoscopo", "loterias", "loteria", "el-tiempo",
+    "tiempo", "television", "tv", "series", "programas", "cine", "musica",
+    "gastronomia", "recetas", "cocina", "viajes", "estilo", "moda",
+    "belleza", "lifestyle", "ocio", "planes", "escaparate", "compras",
+    "ofertas", "mascotas",
+}
+
+
+def is_soft_section(url: str) -> bool:
+    """¿El artículo está en una sección blanda (deportes, famosos...)?"""
+    try:
+        segs = [x for x in urlparse(url).path.lower().split("/") if x]
+    except ValueError:
+        return False
+    return any(seg in SOFT_SECTIONS for seg in segs[:-1])
+
+
+def title_key(title: str) -> str:
+    """Clave para detectar la misma pieza sindicada en varios medios."""
+    return " ".join(title.split())
 
 
 def matches_topic(themes_field: str, topic: str) -> bool:

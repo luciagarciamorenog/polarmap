@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ingest.gkg_files import (
     slug_to_title, domain_to_country, matches_topic,
     parse_gkg_zip, gkg_timestamps, source_concentration,
+    is_soft_section,
 )
 
 print("=== slug_to_title ===")
@@ -129,6 +130,44 @@ print(f"  minutos usados: {sorted(mins)} (deben ser 00/15/30/45)")
 print()
 print("=== concentracion de fuentes ===")
 print(f"  {source_concentration(arts)}")
+
+print()
+print("=== limpieza de slugs (restos de CMS) ===")
+slugs = [
+    ("https://www.ideal.es/sociedad/gobierno-prorrogara-ayudas-gasoleo-agricola-final-ano-20260922-ntrc.html",
+     "gobierno prorrogara ayudas gasoleo agricola final ano"),
+    ("https://www.larazon.es/x/puede-vecino-negarse-pagar-derrama-esto-dice-ley_202609226ab2b42279081b6c7a870df8.html",
+     "puede vecino negarse pagar derrama esto dice ley"),
+    ("https://www.europapress.es/nacional/noticia-muere-hombre-anos-resulto-herido-incendio-20260923.html",
+     "muere hombre anos resulto herido incendio"),
+    ("https://www.elconfidencial.com/espana/menores-detenidos-robo-violencia-lorca_1tna-1tps/",
+     "menores detenidos robo violencia lorca"),
+    ("https://www.abc.es/espana/ofensiva-vox-ley-nietos-exige-pruebas-descendencia-nt.html",
+     "ofensiva vox ley nietos exige pruebas descendencia"),
+    # palabras normales que se parecen a códigos no se tocan
+    ("https://elpais.com/espana/2026-09-23/el-pp-y-vox-pactan-los-presupuestos-de-2027.html",
+     "el pp vox pactan los presupuestos de"),
+]
+for url, esperado in slugs:
+    got = slug_to_title(url)
+    checks.append((f"slug limpio: {esperado[:40]}", got == esperado))
+    print(f"  [{'PASA' if got == esperado else 'FALLA'}] '{got}'")
+
+print()
+print("=== secciones blandas ===")
+blandas = [
+    ("https://www.marca.es/futbol/real-madrid/gana-la-liga.html", True),
+    ("https://www.abc.es/gente/cindy-crawford-hijo-nt.html", True),
+    ("https://www.elpais.com/deportes/2026-09-23/algo-muy-largo-aqui.html", True),
+    ("https://www.elpais.com/espana/2026-09-23/debate-sobre-vivienda.html", False),
+    ("https://www.eldiario.es/opinion/la-justicia-lenta-y-desigual.html", False),
+    # la palabra en el slug no cuenta, solo en la ruta
+    ("https://www.elpais.com/economia/el-motor-de-la-economia-se-frena.html", False),
+]
+for url, esperado in blandas:
+    got = is_soft_section(url)
+    checks.append((f"blanda={esperado}: {url[12:50]}", got == esperado))
+    print(f"  [{'PASA' if got == esperado else 'FALLA'}] {got!s:<5} {url}")
 
 fallos = [d for d, ok in checks if not ok]
 print()

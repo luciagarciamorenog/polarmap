@@ -41,8 +41,9 @@ import requests
 
 from ingest.gkg_files import (
     download_gkg, gkg_timestamps, domain_to_country, slug_to_title,
-    source_concentration, Article, CACHE_DIR,
-    COL_DATE, COL_SOURCE_NAME, COL_DOC_ID, COL_THEMES, COL_TONE,
+    source_concentration, Article, CACHE_DIR, is_soft_section, title_key,
+    COL_DATE, COL_SOURCE_NAME, COL_DOC_ID, COL_THEMES, COL_ENHANCED_THEMES,
+    COL_TONE,
 )
 
 log = logging.getLogger(__name__)
@@ -158,6 +159,71 @@ def extract_themes(themes_field: str) -> list[str]:
     return result
 
 
+# Un tema cuenta para un artículo solo si GKG lo detecta al menos estas
+# veces en el texto. Con una sola mención, el 60-75 % de los artículos
+# de un grupo hablaba de otra cosa (medido en ES, 23-sep-2026).
+MIN_MENTIONS = 2
+
+
+def theme_mentions(row: list[str]) -> Counter:
+    """
+    Menciones por tema en un artículo, sin etiquetas de ruido.
+
+    Lee V2EnhancedThemes (una entrada por mención). Si viene vacío,
+    cae a V1Themes contando 1 por tema.
+    """
+    field = row[COL_ENHANCED_THEMES] if len(row) > COL_ENHANCED_THEMES else ""
+    if not field:
+        return Counter(extract_themes(row[COL_THEMES]))
+    counts = Counter()
+    for part in field.split(";"):
+        name = part.split(",")[0].strip().upper()
+        if name and not is_noise_theme(name):
+            counts[name] += 1
+    return counts
+
+
+@dataclass
+class AdmitStats:
+    """Qué se descarta antes de analizar, para poder reportarlo."""
+    seen: int = 0
+    no_title: int = 0
+    soft: int = 0
+    duplicate: int = 0
+    admitted: int = 0
+
+
+def _admit(row: list[str], cset: set[str],
+           seen_keys: dict[str, set[str]], stats: AdmitStats
+           ) -> tuple[str, str] | None:
+    """
+    Filtro común a censo y extracción: país pedido, titular
+    reconstruible, sección no blanda y pieza no sindicada ya vista.
+    Devuelve (country, title) o None.
+    """
+    if len(row) <= COL_TONE:
+        return None
+    country = domain_to_country(row[COL_SOURCE_NAME])
+    if country is None or country not in cset:
+        return None
+    stats.seen += 1
+    url = row[COL_DOC_ID]
+    title = slug_to_title(url)
+    if not title:
+        stats.no_title += 1
+        return None
+    if is_soft_section(url):
+        stats.soft += 1
+        return None
+    key = title_key(title)
+    if key in seen_keys[country]:
+        stats.duplicate += 1
+        return None
+    seen_keys[country].add(key)
+    stats.admitted += 1
+    return country, title
+
+
 # ===================================================================
 # PASADA 1: CENSO DE TEMAS POR PAÍS
 # ===================================================================
@@ -175,10 +241,13 @@ class ThemeCensus:
     total_country: int   # filas que pertenecen a algún país pedido
 
 
-def _census_one_zip(raw: bytes, countries: set[str]
+def _census_one_zip(raw: bytes, countries: set[str],
+                    seen_keys: dict[str, set[str]], stats: AdmitStats,
                     ) -> tuple[dict, dict, int, int]:
     """
     Lee UN fichero GKG y cuenta temas por país. NO guarda titulares.
+    Solo cuenta artículos que pasan _admit y temas con saliencia
+    (>= MIN_MENTIONS), para que el censo mida lo mismo que se analiza.
 
     Devuelve (counts, cooccur, n_rows, n_country_match).
     """
@@ -203,16 +272,14 @@ def _census_one_zip(raw: bytes, countries: set[str]
     )
     for row in reader:
         n_rows += 1
-        if len(row) <= COL_TONE:
+        admitted = _admit(row, countries, seen_keys, stats)
+        if admitted is None:
             continue
-
-        domain = row[COL_SOURCE_NAME]
-        country = domain_to_country(domain)
-        if country is None or country not in countries:
-            continue
+        country, _ = admitted
         n_country += 1
 
-        themes = extract_themes(row[COL_THEMES])
+        themes = [t for t, m in theme_mentions(row).items()
+                  if m >= MIN_MENTIONS]
         if not themes:
             continue
 
@@ -255,6 +322,8 @@ def run_census(countries: list[str], hours_back: int = 24,
     all_cooccur: dict[str, Counter] = defaultdict(Counter)
     total_rows = 0
     total_country = 0
+    seen_keys: dict[str, set[str]] = defaultdict(set)
+    stats = AdmitStats()
 
     for i, stamp in enumerate(stamps, 1):
         # Recordatorio: GDELT publica DOS series por intervalo:
@@ -265,7 +334,8 @@ def run_census(countries: list[str], hours_back: int = 24,
             raw = download_gkg(stamp, cache_dir, translation=is_trans)
             if raw is None:
                 continue
-            counts, cooccur, nr, nc = _census_one_zip(raw, cset)
+            counts, cooccur, nr, nc = _census_one_zip(raw, cset,
+                                                      seen_keys, stats)
             total_rows += nr
             total_country += nc
             for country, ctr in counts.items():
@@ -277,6 +347,11 @@ def run_census(countries: list[str], hours_back: int = 24,
             log.info("  censo: %d/%d ficheros | %d filas | %d de países pedidos",
                      i, len(stamps), total_rows, total_country)
         time.sleep(pause)
+
+    log.info("  censo: %d artículos de los países pedidos → %d admitidos "
+             "(sin titular %d, sección blanda %d, sindicados %d)",
+             stats.seen, stats.admitted, stats.no_title, stats.soft,
+             stats.duplicate)
 
     return ThemeCensus(
         counts=dict(all_counts),
@@ -438,8 +513,10 @@ def fetch_articles_for_group(tags: list[str], countries: list[str],
     cset = set(countries)
     tags_upper = {t.upper() for t in tags}
 
-    # Dedup por URL dentro de cada país
-    seen_urls: dict[str, set[str]] = defaultdict(set)
+    # Dedup por titular (cubre la misma URL y la pieza sindicada)
+    seen_keys: dict[str, set[str]] = defaultdict(set)
+    stats = AdmitStats()
+    n_low_salience = 0
     by_country: dict[str, list[Article]] = defaultdict(list)
 
     csv.field_size_limit(10 * 1024 * 1024)
@@ -464,25 +541,27 @@ def fetch_articles_for_group(tags: list[str], countries: list[str],
             for row in reader:
                 if len(row) <= COL_TONE:
                     continue
-
-                domain = row[COL_SOURCE_NAME]
-                country = domain_to_country(domain)
+                country = domain_to_country(row[COL_SOURCE_NAME])
                 if country is None or country not in cset:
                     continue
 
-                # ¿Tiene alguna etiqueta del grupo?
-                row_themes = extract_themes(row[COL_THEMES])
-                if not any(t in tags_upper for t in row_themes):
+                # ¿El grupo es central en el artículo, no una mención
+                # de pasada? (antes de _admit, para no marcar como visto
+                # un titular que este grupo no usa)
+                mentions = theme_mentions(row)
+                salience = sum(mentions[t] for t in tags_upper)
+                if salience == 0:
+                    continue
+                if salience < MIN_MENTIONS:
+                    n_low_salience += 1
                     continue
 
+                admitted = _admit(row, cset, seen_keys, stats)
+                if admitted is None:
+                    continue
+                _, title = admitted
                 url = row[COL_DOC_ID]
-                if url in seen_urls[country]:
-                    continue
-                seen_urls[country].add(url)
-
-                title = slug_to_title(url)
-                if not title:
-                    continue
+                domain = row[COL_SOURCE_NAME]
 
                 tone = None
                 try:
@@ -498,6 +577,10 @@ def fetch_articles_for_group(tags: list[str], countries: list[str],
                     tone=tone,
                 ))
 
+    log.info("  extracción: %d admitidos | descartados: %d mención de "
+             "pasada, %d sin titular, %d sección blanda, %d sindicados",
+             stats.admitted, n_low_salience, stats.no_title, stats.soft,
+             stats.duplicate)
     return dict(by_country)
 
 

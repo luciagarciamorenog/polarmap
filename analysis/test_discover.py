@@ -18,7 +18,7 @@ O directamente:
 
 import sys
 from pathlib import Path
-from collections import Counter
+from collections import Counter, defaultdict
 
 # Para que funcione tanto con pytest como ejecutado directamente
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -245,6 +245,47 @@ def test_parse_response_clamping():
     print("[OK] clamping de valores fuera de rango")
 
 
+def _row(url, domain="elpais.com", v1="", v2=""):
+    r = [""] * 27
+    r[3], r[4], r[7], r[8], r[15] = domain, url, v1, v2, "-1,1,1,1,0,0,0"
+    return r
+
+
+def test_theme_mentions():
+    """Cuenta menciones desde V2EnhancedThemes, cae a V1 si falta."""
+    row = _row("u", v1="TRIAL;MEDICAL",
+               v2="TRIAL,10;TRIAL,500;MEDICAL,900;LEADER,3")
+    m = discover.theme_mentions(row)
+    assert m["TRIAL"] == 2 and m["MEDICAL"] == 1
+    assert "LEADER" not in m  # ruido
+
+    m = discover.theme_mentions(_row("u", v1="TRIAL;MEDICAL", v2=""))
+    assert m["TRIAL"] == 1 and m["MEDICAL"] == 1
+
+    print("[OK] menciones por tema (V2 con fallback a V1)")
+
+
+def test_admit_filters():
+    """País, titular, sección blanda y sindicación, con contadores."""
+    stats = discover.AdmitStats()
+    seen = defaultdict(set)
+    base = "https://www.ideal.es/sociedad/gobierno-prorrogara-ayudas-gasoleo-agricola-final-ano-ntrc.html"
+    rows = [
+        _row(base, "ideal.es"),
+        _row(base.replace("ideal.es", "diariosur.es"), "diariosur.es"),  # sindicada
+        _row("https://www.abc.es/deportes/el-madrid-gana-otra-vez-la-liga.html", "abc.es"),
+        _row("https://www.abc.es/12345678", "abc.es"),
+        _row("https://nytimes.com/2026/border-policy-shift-explained-here.html", "nytimes.com"),
+    ]
+    out = [discover._admit(r, {"ES"}, seen, stats) for r in rows]
+    assert out[0] == ("ES", "gobierno prorrogara ayudas gasoleo agricola final ano")
+    assert out[1:] == [None, None, None, None]
+    assert (stats.seen, stats.admitted, stats.duplicate, stats.soft,
+            stats.no_title) == (4, 1, 1, 1, 1)
+
+    print("[OK] filtro común: sindicados, secciones blandas, sin titular")
+
+
 def test_parse_response_missing_ids():
     """Respuesta cortada: los ids que faltan son fallos, no off-topic."""
     text = '[{"id":1,"stance":0.5,"hostility":0.1,"confidence":0.9,"off_topic":false}]'
@@ -363,6 +404,8 @@ if __name__ == "__main__":
     test_parse_response_garbage()
     test_parse_response_clamping()
     test_parse_response_missing_ids()
+    test_theme_mentions()
+    test_admit_filters()
     test_api_retries_and_errors()
     test_classify_api_failure_is_not_off_topic()
     print()
