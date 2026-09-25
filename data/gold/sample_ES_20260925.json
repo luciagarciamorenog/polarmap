@@ -1,0 +1,1995 @@
+{
+ "created_at": "2026-09-25T11:31:32.361113+00:00",
+ "source_run": {
+  "ts": "2026-09-25T11:00:00Z",
+  "every_n": 2,
+  "methodology_version": "0.4"
+ },
+ "country": "ES",
+ "seed": 20260925,
+ "population": {
+  "total": 2091,
+  "assigned": 339,
+  "none": 1752,
+  "by_topic": {
+   "Independencia judicial y corrupción política": 65,
+   "Inteligencia artificial y tecnología": 51,
+   "Crisis de vivienda y desahucios": 148,
+   "Política migratoria": 75
+  }
+ },
+ "debates": [
+  {
+   "label": "Crisis de vivienda y desahucios",
+   "pole_a": "El Estado debe intervenir urgentemente con medidas coercitivas —decretos antidesahucios, limitación de fondos buitre, alquiler asequible— para garantizar el derecho a la vivienda.",
+   "pole_b": "Las medidas intervencionistas agravan el problema; la solución pasa por aumentar la oferta y respetar el marco legal y contractual vigente."
+  },
+  {
+   "label": "Política migratoria",
+   "pole_a": "España debe reforzar el control fronterizo, acelerar las devoluciones y exigir mayor colaboración a Marruecos para frenar la llegada irregular de migrantes.",
+   "pole_b": "La respuesta debe priorizar la acogida humanitaria, los derechos de los menores y la regularización, evitando criminalizar a los migrantes."
+  },
+  {
+   "label": "Independencia judicial y corrupción política",
+   "pole_a": "Los jueces actúan con independencia legítima al investigar a cargos del Gobierno; las quejas del Ejecutivo son un intento de presionar a la justicia.",
+   "pole_b": "El poder judicial es utilizado políticamente por la oposición para hostigar al Gobierno mediante causas sin fundamento o con filtraciones interesadas."
+  },
+  {
+   "label": "Inteligencia artificial y tecnología",
+   "pole_a": "El desarrollo acelerado de la IA exige regulación internacional urgente para prevenir riesgos sistémicos, desinformación y sustitución laboral.",
+   "pole_b": "Frenar la IA con regulación prematura lastra la innovación y la competitividad; los beneficios superan los riesgos si se gestiona con responsabilidad empresarial."
+  }
+ ],
+ "items": [
+  {
+   "id": "ES-001",
+   "title": "rosa alvarez elegida candidata alcaldia partido popular",
+   "domain": "hoy.es",
+   "url": "https://www.hoy.es/prov-caceres/rosa-alvarez-elegida-candidata-alcaldia-partido-popular-20260925084332-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-002",
+   "title": "comunicado windsor capital completa inversion estrategica millones dolares space labs",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/comunicados/internacional-00907/noticia-comunicado-windsor-capital-completa-inversion-estrategica-50-millones-dolares-space-labs-20260924221336.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-003",
+   "title": "cansino militar gas pimienta",
+   "domain": "publico.es",
+   "url": "https://www.publico.es/opinion/columnas/cansino-militar-gas-pimienta.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-004",
+   "title": "precio luz hoy viernes septiembre horas megavatio continua estable pero minimo dia situa euros",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/economia/precio-luz-hoy-viernes-25-septiembre-horas-megavatio-continua-estable-pero-minimo-dia-situa-30-euros-b50m_202609256ab5f42582932a3cf919f427.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-005",
+   "title": "los farmaceuticos sacan pecho por su cercania los abulenses",
+   "domain": "diariodeavila.es",
+   "url": "https://www.diariodeavila.es/noticia/zb8d7c91d-c347-4cb7-b6e8f7e7280aed3f/202609/los-farmaceuticos-sacan-pecho-por-su-cercania-a-los-abulenses",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-006",
+   "title": "el gobierno tiene filiados menores no acompanados en ceuta",
+   "domain": "diariodeburgos.es",
+   "url": "https://www.diariodeburgos.es/noticia/zf25470e6-a4d3-447b-a48146d4919947ec/202609/el-gobierno-tiene-filiados-2-383-menores-no-acompanados-en-ceuta",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-007",
+   "title": "diputacion impulsa renovacion carretera pedraza alba alaraz",
+   "domain": "lagacetadesalamanca.es",
+   "url": "https://www.lagacetadesalamanca.es/provincia/diputacion-impulsa-renovacion-carretera-pedraza-alba-alaraz-20260924072800-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-008",
+   "title": "eduardo fabian caparros solo ceuta",
+   "domain": "lagacetadesalamanca.es",
+   "url": "https://www.lagacetadesalamanca.es/opinion/firmas/eduardo-fabian-caparros-solo-ceuta-20260924055000-nt.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.2,
+    "off_topic": true
+   }
+  },
+  {
+   "id": "ES-009",
+   "title": "pleno rechaza ubicar recinto ferial llamas pp",
+   "domain": "eldiariomontanes.es",
+   "url": "https://www.eldiariomontanes.es/santander/pleno-rechaza-ubicar-recinto-ferial-llamas-pp-20260924141855-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-010",
+   "title": "google chips ia espacio suncatcher",
+   "domain": "que.es",
+   "url": "https://www.que.es/2026/09/25/google-chips-ia-espacio-suncatcher/",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": 0.3,
+    "hostility": 0.0,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-011",
+   "title": "espana presenta candidatura maria neira para dirigir oms",
+   "domain": "ultimahora.es",
+   "url": "https://www.ultimahora.es/noticias/nacional/2026/09/24/2715781/espana-presenta-candidatura-maria-neira-para-dirigir-oms.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-012",
+   "title": "la generacion espanola recurre la ia como un amigo",
+   "domain": "diariodeavila.es",
+   "url": "https://www.diariodeavila.es/noticia/z4764d47c-06f1-4454-a2458295278b46f4/202609/la-generacion-z-espanola-recurre-a-la-ia-como-un-amigo",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": 0.2,
+    "hostility": 0.0,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-013",
+   "title": "prision por disparar joven charanga durante fiestas granadasucesos granada",
+   "domain": "heraldo.es",
+   "url": "https://www.heraldo.es/noticias/sociedad/2026/09/24/prision-por-disparar-joven-charanga-durante-fiestas-granadasucesos-granada-2054484.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-014",
+   "title": "autoritat porturaria asegura futuro del bus nautic tras abandono tui",
+   "domain": "ultimahora.es",
+   "url": "https://www.ultimahora.es/noticias/palma/2026/09/24/2715581/autoritat-porturaria-asegura-futuro-del-bus-nautic-tras-abandono-tui.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-015",
+   "title": "psoe quiso aumentar pagos web vinculada leire diez pese volumen impactos segun testigo",
+   "domain": "ondacero.es",
+   "url": "https://www.ondacero.es/noticias/espana/psoe-quiso-aumentar-pagos-web-vinculada-leire-diez-pese-volumen-impactos-segun-testigo_202609246ab552d9f8fc5f73abb9be6b.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": -0.4,
+    "hostility": 0.2,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-016",
+   "title": "provincia valladolid contabiliza dos desahucios dia mayoria",
+   "domain": "elnortedecastilla.es",
+   "url": "https://www.elnortedecastilla.es/valladolid/provincia-valladolid-contabiliza-dos-desahucios-dia-mayoria-20260924200316-nt.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.55,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-017",
+   "title": "fallos localizacion dos meses reparar dispositivos deficiencias pulseras agresores",
+   "domain": "publico.es",
+   "url": "https://www.publico.es/mujer/violencia-machista/fallos-localizacion-dos-meses-reparar-dispositivos-deficiencias-pulseras-agresores.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.0,
+    "hostility": 0.1,
+    "confidence": 0.2,
+    "off_topic": true
+   }
+  },
+  {
+   "id": "ES-018",
+   "title": "reclaman por una caida en la peatonal gregorio maranon",
+   "domain": "latribunadetoledo.es",
+   "url": "https://www.latribunadetoledo.es/noticia/zebb50039-5bfb-447c-955ac5633d9a7b50/202609/reclaman-por-una-caida-en-la-peatonal-gregorio-maranon",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-019",
+   "title": "comunicado atos consolida proveedores ti mejor valorados espana alcanza digital workplace",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/comunicados/empresas-00908/noticia-comunicado-atos-consolida-proveedores-ti-mejor-valorados-espana-alcanza-n1-digital-workplace-20260924155617.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-020",
+   "title": "derbi asturiano real oviedo canteranos",
+   "domain": "elcomercio.es",
+   "url": "https://www.elcomercio.es/real-oviedo/derbi-asturiano-real-oviedo-canteranos-20260924080220-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-021",
+   "title": "guardia civil frustra salidas ceuta peninsula migrantes",
+   "domain": "europasur.es",
+   "url": "https://www.europasur.es/campo-de-gibraltar/guardia-civil-frustra-salidas-ceuta-peninsula-24-migrantes_0_2008055339.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": -0.5,
+    "hostility": 0.1,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-022",
+   "title": "silvia fernandez diaz maricarmen sistema fallido guerra partidista",
+   "domain": "canarias7.es",
+   "url": "https://www.canarias7.es/opinion/firmas/silvia-fernandez-diaz-maricarmen-sistema-fallido-guerra-partidista-20260925074500-nt.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.0,
+    "hostility": 0.2,
+    "confidence": 0.3,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-023",
+   "title": "moncloa frena directora cni congreso crisis ceuta",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/espana/moncloa-frena-directora-cni-congreso-crisis-ceuta_202609256ab5ab7d82932a3cf919d9f0.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": 0.0,
+    "hostility": 0.1,
+    "confidence": 0.3,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-024",
+   "title": "sorpresa harvard estudiantes preguntan sanchez por corrupcion los casos su esposa su hermano",
+   "domain": "20minutos.es",
+   "url": "https://www.20minutos.es/internacional/sorpresa-harvard-estudiantes-preguntan-sanchez-por-corrupcion-los-casos-su-esposa-su-hermano_7041161_0.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": 0.6,
+    "hostility": 0.3,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-025",
+   "title": "resucitar moleculas de la prehistoria contra las superbacterias la nueva frontera de los antibioticos por ia",
+   "domain": "agenciasinc.es",
+   "url": "https://www.agenciasinc.es/Reportajes/Resucitar-moleculas-de-la-Prehistoria-contra-las-superbacterias-la-nueva-frontera-de-los-antibioticos-por-IA",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": 0.3,
+    "hostility": 0.0,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-026",
+   "title": "afectados quedaron vacaciones culpa agencia era unico",
+   "domain": "lagacetadesalamanca.es",
+   "url": "https://www.lagacetadesalamanca.es/salamanca/afectados-quedaron-vacaciones-culpa-agencia-era-unico-20260924064500-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-027",
+   "title": "una ia de openai vulnera un portal del gobierno australiano",
+   "domain": "diariodeburgos.es",
+   "url": "https://www.diariodeburgos.es/noticia/z8baab449-8791-45bd-8b1fa7e2553dc9df/202609/una-ia-de-openai-vulnera-un-portal-del-gobierno-australiano",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": -0.6,
+    "hostility": 0.2,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-028",
+   "title": "codorniu vende bodega california grupo boisset",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/economia/codorniu-vende-bodega-california-grupo-boisset_202609246ab5392f5e0dc70596ab2d9d.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-029",
+   "title": "sociedad cazadores gran canaria propone cuerpo guardias",
+   "domain": "canarias7.es",
+   "url": "https://www.canarias7.es/canarias/gran-canaria/sociedad-cazadores-gran-canaria-propone-cuerpo-guardias-20260925071000-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-030",
+   "title": "protesta tenerife desahucios maricarmen",
+   "domain": "elespanol.com",
+   "url": "https://diariodeavisos.elespanol.com/2026/09/protesta-tenerife-desahucios-maricarmen/",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.4,
+    "hostility": 0.2,
+    "confidence": 0.65,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-031",
+   "title": "barcelona desaloja asentamiento tiendas campana cobi poco piromusical",
+   "domain": "lavanguardia.com",
+   "url": "https://www.lavanguardia.com/local/barcelona/20260924/11643122/barcelona-desaloja-asentamiento-tiendas-campana-cobi-poco-piromusical.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-032",
+   "title": "aceituna alorena posa camara vuelve concurso retrata",
+   "domain": "diariosur.es",
+   "url": "https://www.diariosur.es/interior/aceituna-alorena-posa-camara-vuelve-concurso-retrata-20260924134945-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-033",
+   "title": "maricarmen mayores muertos cosas pp",
+   "domain": "publico.es",
+   "url": "https://www.publico.es/opinion/columnas/maricarmen-7-291-mayores-muertos-cosas-pp.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.5,
+    "hostility": 0.7,
+    "confidence": 0.65,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-034",
+   "title": "maricarmen desahucios fondos buitre madrid",
+   "domain": "que.es",
+   "url": "https://www.que.es/2026/09/25/maricarmen-desahucios-fondos-buitre-madrid/",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.6,
+    "hostility": 0.3,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-035",
+   "title": "desahucio maricarmen espolea gobierno lanzar decreto vivienda",
+   "domain": "canarias7.es",
+   "url": "https://www.canarias7.es/nacional/politica/desahucio-maricarmen-espolea-gobierno-lanzar-decreto-vivienda-20260924203216-ntrc.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.5,
+    "hostility": 0.1,
+    "confidence": 0.75,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-036",
+   "title": "el fiscal pide hasta anos de carcel para dos ultraderechistas por atacar con explosivos una sede del psoe durante una",
+   "domain": "elpais.com",
+   "url": "https://elpais.com/espana/2026-09-24/el-fiscal-pide-hasta-19-anos-de-carcel-para-dos-ultraderechistas-por-atacar-con-explosivos-una-sede-del-psoe-durante-una-charla.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-037",
+   "title": "expertos quironsalud huelva recuerda importancia proteccion solar todo ano",
+   "domain": "huelvainformacion.es",
+   "url": "https://www.huelvainformacion.es/huelva/expertos-quironsalud-huelva-recuerda-importancia-proteccion-solar-todo-ano_0_2008061433.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-038",
+   "title": "cambio drastico que avisa aemet pone castilla leon foco",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/castilla-y-leon/cambio-drastico-que-avisa-aemet-pone-castilla-leon-foco_202609256ab563e4f8fc5f73abb9c932.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-039",
+   "title": "iphone pro que bloquea reinicia solo cuando llega solucion",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/tecnologia/iphone-18-pro-que-bloquea-reinicia-solo-cuando-llega-solucion_202609246ab56cd3f8fc5f73abb9ce29.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-040",
+   "title": "suspenden sequia desembalse eugi",
+   "domain": "diariodenavarra.es",
+   "url": "https://www.diariodenavarra.es/noticias/navarra/pamplona-comarca/2026/09/25/suspenden-sequia-desembalse-eugi-836400-16.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-041",
+   "title": "sordo pide sacar gorrazos los fondos buitre de espana",
+   "domain": "libertaddigital.com",
+   "url": "https://www.libertaddigital.com/libremercado/2026-09-24/sordo-pide-sacar-a-gorrazos-a-los-fondos-buitre-de-espana-7465239/",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.8,
+    "hostility": 0.7,
+    "confidence": 0.9,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-042",
+   "title": "remodelacion gobierno municipal aviles salida definitiva iu",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/asturias/noticia-remodelacion-gobierno-municipal-aviles-salida-definitiva-iu-20260924115043.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-043",
+   "title": "medio millon luces asistente virtual seguridad feria",
+   "domain": "diariosur.es",
+   "url": "https://www.diariosur.es/costadelsol/torremolinos/medio-millon-luces-asistente-virtual-seguridad-feria-20260924175852-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-044",
+   "title": "desahucios espana graficos cuantos hay dia comunidades registran mas",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/economia/construccion-y-vivienda-00342/noticia-desahucios-espana-2026-graficos-cuantos-hay-dia-comunidades-registran-mas-20260924142327.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-045",
+   "title": "alzheimer centra ix congreso derecho sanitario comunitat valenciana",
+   "domain": "lavanguardia.com",
+   "url": "https://www.lavanguardia.com/local/valencia/20260924/11643102/alzheimer-centra-ix-congreso-derecho-sanitario-comunitat-valenciana.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-046",
+   "title": "alquilar un piso en burgos ya es mas caro que comprarlo",
+   "domain": "diariodeburgos.es",
+   "url": "https://www.diariodeburgos.es/noticia/ze3ba1a9b-ebac-4507-807bdf17d0da2917/202609/alquilar-un-piso-en-burgos-ya-es-mas-caro-que-comprarlo",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-047",
+   "title": "inmigrantes llegan cuatro pateras baleares",
+   "domain": "elconfidencial.com",
+   "url": "https://www.elconfidencial.com/sucesos/2026-09-25/inmigrantes-llegan-cuatro-pateras-baleares-1tna-1tps_4431206/",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-048",
+   "title": "jurado popular jaen considera culpable acusado crimen",
+   "domain": "abc.es",
+   "url": "https://www.abc.es/espana/andalucia/jaen/jurado-popular-jaen-considera-culpable-acusado-crimen-20260924124917-nts.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-049",
+   "title": "jimenez vox dice gobierno navarra fracaso practico moral pide dimision chivite",
+   "domain": "diariodenavarra.es",
+   "url": "https://www.diariodenavarra.es/noticias/navarra/2026/09/24/jimenez-vox-dice-gobierno-navarra-fracaso-practico-moral-pide-dimision-chivite-836403-15.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-050",
+   "title": "psc reclama acelerar comedor social badalona gobierno culpa retraso incasol",
+   "domain": "lavanguardia.com",
+   "url": "https://www.lavanguardia.com/local/barcelones-nord/20260924/11642894/psc-reclama-acelerar-comedor-social-badalona-gobierno-culpa-retraso-incasol.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-051",
+   "title": "vivienda nulo compromiso gobierno cadiz centran pleno",
+   "domain": "lavozdigital.es",
+   "url": "https://www.lavozdigital.es/provincia/cadiz/vivienda-nulo-compromiso-gobierno-cadiz-centran-pleno-20260924130903-ntv.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.3,
+    "hostility": 0.1,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-052",
+   "title": "madrid nuevo norte suelos vivienda libre",
+   "domain": "que.es",
+   "url": "https://www.que.es/2026/09/24/madrid-nuevo-norte-suelos-vivienda-libre/",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.3,
+    "hostility": 0.0,
+    "confidence": 0.4,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-053",
+   "title": "avanza conexion boton panico taxis gran canaria",
+   "domain": "canarias7.es",
+   "url": "https://www.canarias7.es/canarias/gran-canaria/avanza-conexion-boton-panico-taxis-gran-canaria-20260924183234-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-054",
+   "title": "el secreto historico que esconden estos rincones de castilla la mancha",
+   "domain": "infoclm.es",
+   "url": "https://www.infoclm.es/cultura/2026/09/24/el-secreto-historico-que-esconden-estos-rincones-de-castilla-la-mancha/",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-055",
+   "title": "botones navegacion clasicos telefono android perdiendote mejores funcionalidades telefono te hara navegar rapido",
+   "domain": "cope.es",
+   "url": "https://www.cope.es/actualidad/tecnologia/noticias/botones-navegacion-clasicos-telefono-android-perdiendote-mejores-funcionalidades-telefono-te-hara-navegar-rapido-20260924_3442555.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-056",
+   "title": "incendio vivienda almeria heridos",
+   "domain": "elconfidencial.com",
+   "url": "https://www.elconfidencial.com/espana/andalucia/2026-09-24/incendio-vivienda-almeria-heridos-1tna-1tps_4431074/",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-057",
+   "title": "sanchez ocho anos hacer nada vivienda",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/opinion/sanchez-ocho-anos-hacer-nada-vivienda_202609246ab57646a520494aafd602a3.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.6,
+    "hostility": 0.6,
+    "confidence": 0.75,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-058",
+   "title": "cardiotoxicidad terapia cancer aparecer forma aguda anos",
+   "domain": "diariodenavarra.es",
+   "url": "https://www.diariodenavarra.es/noticias/vivir/2026/09/25/cardiotoxicidad-terapia-cancer-aparecer-forma-aguda-10-20-anos-836467-108.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-059",
+   "title": "susana diaz explicacion zapatero sobre joyas peor",
+   "domain": "abc.es",
+   "url": "https://www.abc.es/espana/andalucia/susana-diaz-explicacion-zapatero-sobre-joyas-peor-20260924191631-nts.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": -0.4,
+    "hostility": 0.3,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-060",
+   "title": "baleares recibe inmigrantes repartidos diez pateras",
+   "domain": "abc.es",
+   "url": "https://www.abc.es/espana/baleares/baleares-recibe-183-inmigrantes-repartidos-diez-pateras-20260924124147-nt.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-061",
+   "title": "lo mas odiado amigos fondos buitre desahucio maricarmen",
+   "domain": "elconfidencial.com",
+   "url": "https://www.elconfidencial.com/espana/2026-09-24/lo-mas-odiado-amigos-fondos-buitre-desahucio-maricarmen_4430839/",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.6,
+    "hostility": 0.5,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-062",
+   "title": "abuelo fundo semar ayudo salvar virgen angustias",
+   "domain": "ideal.es",
+   "url": "https://www.ideal.es/granada/abuelo-fundo-semar-ayudo-salvar-virgen-angustias-20260925232535-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-063",
+   "title": "renault invertira millones en espana hasta",
+   "domain": "latribunadetoledo.es",
+   "url": "https://www.latribunadetoledo.es/noticia/zb825420e-1506-4249-b8774213e1c1713c/202609/renault-invertira-600-millones-en-espana-hasta-2030",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-064",
+   "title": "canal sur convoca oposiciones cubrir",
+   "domain": "europasur.es",
+   "url": "https://www.europasur.es/andalucia/canal-sur-convoca-oposiciones-cubrir_0_2008059520.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-065",
+   "title": "detenidas diez personas por incitar redes sociales migracion irregular masiva ceuta melilla",
+   "domain": "20minutos.es",
+   "url": "https://www.20minutos.es/internacional/detenidas-diez-personas-por-incitar-redes-sociales-migracion-irregular-masiva-ceuta-melilla_7041106_0.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": -0.5,
+    "hostility": 0.3,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-066",
+   "title": "maria diaz de la cebosa pisa horas clase crisis atencion",
+   "domain": "eldiariomontanes.es",
+   "url": "https://www.eldiariomontanes.es/opinion/maria-diaz-de-la-cebosa-pisa-horas-clase-crisis-atencion-20260925071115-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-067",
+   "title": "analisis de mercados de septiembre de septiembre",
+   "domain": "euribor.com.es",
+   "url": "https://www.euribor.com.es/2026/09/25/analisis-de-mercados-25-de-septiembre-de-2026-25-septiembre-2026/",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-068",
+   "title": "cafe hielo cuesta centimos polemica enfrenta clientes hosteleros",
+   "domain": "diariodeleon.es",
+   "url": "https://www.diariodeleon.es/leon/260924/2098319/cafe-hielo-cuesta-10-centimos-polemica-enfrenta-clientes-hosteleros.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-069",
+   "title": "bolanos persiste choque cgpj acusa negarle acceso",
+   "domain": "abc.es",
+   "url": "https://www.abc.es/espana/bolanos-persiste-choque-cgpj-acusa-negarle-acceso-20260925100058-nt.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": 0.75,
+    "hostility": 0.5,
+    "confidence": 0.8,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-070",
+   "title": "combinar chaqueta viral zara cuatro looks prendas",
+   "domain": "hoy.es",
+   "url": "https://www.hoy.es/gente-estilo/combinar-chaqueta-viral-zara-cuatro-looks-prendas-20260924162649-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-071",
+   "title": "mas migrantes ceuta han retornado marruecos agosto",
+   "domain": "lavanguardia.com",
+   "url": "https://www.lavanguardia.com/politica/20260924/11642973/mas-7-533-migrantes-ceuta-han-retornado-marruecos-agosto.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": -0.3,
+    "hostility": 0.0,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-072",
+   "title": "alejandro ortiz experto fiscal",
+   "domain": "elconfidencial.com",
+   "url": "https://www.elconfidencial.com/economia/2026-09-25/alejandro-ortiz-experto-fiscal_4429600/",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-073",
+   "title": "compraventa viviendas castilla mancha aumenta julio ralentiza respecto mes anterior",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/castilla-lamancha/noticia-compraventa-viviendas-castilla-mancha-aumenta-73-julio-ralentiza-respecto-mes-anterior-20260925091120.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.8,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-074",
+   "title": "apertura curso judicial asturias tribunales resolver presiones",
+   "domain": "elcomercio.es",
+   "url": "https://www.elcomercio.es/asturias/apertura-curso-judicial-asturias-tribunales-resolver-presiones-20260924150704-nt.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.4,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-075",
+   "title": "girona albacete horario canal ver online directo",
+   "domain": "abc.es",
+   "url": "https://www.abc.es/espana/cataluna/girona-albacete-horario-canal-ver-online-directo-20260925051500-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-076",
+   "title": "rafael civantos intemperie moral desahucio",
+   "domain": "ideal.es",
+   "url": "https://www.ideal.es/opinion/rafael-civantos-intemperie-moral-desahucio-20260925213731-nt.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.4,
+    "hostility": 0.3,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-077",
+   "title": "openai anthropic advierten consejo seguridad onu ia nuevo renacimiento caos",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/economia/noticia-openai-anthropic-advierten-consejo-seguridad-onu-ia-nuevo-renacimiento-caos-20260924182903.html",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": -0.55,
+    "hostility": 0.1,
+    "confidence": 0.8,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-078",
+   "title": "page pide bruselas ayudas despoblacion municipios",
+   "domain": "abc.es",
+   "url": "https://www.abc.es/espana/castilla-la-mancha/page-pide-bruselas-ayudas-despoblacion-267-municipios-20260924153926-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-079",
+   "title": "audiencia anula condena fernando roig delitos contra hacienda publica falsedad obras ceramica",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/comunitat-valenciana/noticia-audiencia-anula-condena-fernando-roig-delitos-contra-hacienda-publica-falsedad-obras-ceramica-20260924183403.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": -0.2,
+    "hostility": 0.1,
+    "confidence": 0.4,
+    "off_topic": true
+   }
+  },
+  {
+   "id": "ES-080",
+   "title": "justicia anula deuda euros confirmar que acoger casa familiar motivo retirar ingreso minimo vital mantiene vulnerabilidad",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/economia/justicia-anula-deuda-9200-euros-confirmar-que-acoger-casa-familiar-motivo-retirar-ingreso-minimo-vital-mantiene-vulnerabilidad-b50m_202609246ab5379cd5f3ae10c734677a.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-081",
+   "title": "ana belen ian gibson lectores jovenes marcan",
+   "domain": "hoy.es",
+   "url": "https://www.hoy.es/caceres/ana-belen-ian-gibson-lectores-jovenes-marcan-20260925074936-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-082",
+   "title": "albares marruecos rabat ceuta migracion onu",
+   "domain": "elconfidencial.com",
+   "url": "https://www.elconfidencial.com/espana/2026-09-24/albares-marruecos-rabat-ceuta-migracion-onu_4431145/",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.3,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-083",
+   "title": "interior condecora monja independentista lucia caram denuncio golpe estado cataluna",
+   "domain": "elconfidencial.com",
+   "url": "https://www.elconfidencial.com/espana/2026-09-25/interior-condecora-monja-independentista-lucia-caram-denuncio-golpe-estado-cataluna_4431002/",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-084",
+   "title": "munoz machado desgrana influencia pensadores ilustrados pintura goya conferencia prado",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/cultura/exposiciones-00131/noticia-munoz-machado-desgrana-influencia-pensadores-ilustrados-pintura-goya-conferencia-prado-20260924180905.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-085",
+   "title": "puede una ia desenmascarar otra pangram una herramienta casi infalible para detectar textos novelas creadas por maquinas",
+   "domain": "elpais.com",
+   "url": "https://elpais.com/tecnologia/2026-09-24/puede-una-ia-desenmascarar-a-otra-pangram-una-herramienta-casi-infalible-para-detectar-textos-y-novelas-creadas-por-maquinas.html",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": -0.3,
+    "hostility": 0.0,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-086",
+   "title": "pp lleva asamblea extremadura acoso jueza biedma",
+   "domain": "hoy.es",
+   "url": "https://www.hoy.es/extremadura/pp-lleva-asamblea-extremadura-acoso-jueza-biedma-20260924131638-nt.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": -0.4,
+    "hostility": 0.3,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-087",
+   "title": "centenares personas salen calles gallegas solidaridad maricarmen fondos buitre fuera aqui",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/galicia/noticia-centenares-personas-salen-calles-gallegas-solidaridad-maricarmen-fondos-buitre-fuera-aqui-20260924204910.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.7,
+    "hostility": 0.5,
+    "confidence": 0.75,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-088",
+   "title": "agenda cultural fin semana cordoba galvan real",
+   "domain": "abc.es",
+   "url": "https://www.abc.es/espana/andalucia/cordoba/agenda-cultural-fin-semana-cordoba-galvan-real-20260925070920-nts.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-089",
+   "title": "pp incomodo reitera debate ceuties usar gas",
+   "domain": "diariosur.es",
+   "url": "https://www.diariosur.es/nacional/pp-incomodo-reitera-debate-ceuties-usar-gas-20260924120604-ntrc.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": -0.6,
+    "hostility": 0.4,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-090",
+   "title": "openai agente ia medicare australia acceso archivos no publicos",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/tecnologia-consumo/inteligencia-artificial/openai-agente-ia-medicare-australia-acceso-archivos-no-publicos_202609246ab54ec4f8fc5f73abb9bbc8.html",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": -0.5,
+    "hostility": 0.1,
+    "confidence": 0.65,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-091",
+   "title": "herida una joven en un atropello en el",
+   "domain": "diariodeburgos.es",
+   "url": "https://www.diariodeburgos.es/noticia/z128e7249-2e99-489b-8dadcf2cb7deb71f/202609/herida-una-joven-en-un-atropello-en-el-g-3",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-092",
+   "title": "closedquorum el malware que vota con cuatro ia mientras tu sigues mirando solo al chatbot",
+   "domain": "ticweb.es",
+   "url": "https://www.ticweb.es/closedquorum-el-malware-que-vota-con-cuatro-ia-mientras-tu-sigues-mirando-solo-al-chatbot/",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": -0.7,
+    "hostility": 0.4,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-093",
+   "title": "que es urbagestion como opera fondo detras desahucio maricarmen madrid",
+   "domain": "20minutos.es",
+   "url": "https://www.20minutos.es/nacional/que-es-urbagestion-como-opera-fondo-detras-desahucio-maricarmen-madrid_7040749_0.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.3,
+    "hostility": 0.1,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-094",
+   "title": "perros segmentan habla escuchan tendencia consonantes similar humanos",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/ciencia/laboratorio/noticia-perros-segmentan-habla-escuchan-tendencia-consonantes-similar-humanos-20260924200100.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-095",
+   "title": "colas gasolineras navarras frontera avalancha automovilistas franceses",
+   "domain": "diariodenavarra.es",
+   "url": "https://www.diariodenavarra.es/noticias/negocios/dn-management/2026/09/25/colas-gasolineras-navarras-frontera-avalancha-automovilistas-franceses-836425-84.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-096",
+   "title": "disney plus sube precio sin anuncios",
+   "domain": "que.es",
+   "url": "https://www.que.es/2026/09/24/disney-plus-sube-precio-sin-anuncios/",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-097",
+   "title": "vecinos ceuta piden auxilio pleno malaguenos abandoneis",
+   "domain": "diariosur.es",
+   "url": "https://www.diariosur.es/malaga-capital/vecinos-ceuta-piden-auxilio-pleno-malaguenos-abandoneis-20260924154112-nt.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": -0.5,
+    "hostility": 0.4,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-098",
+   "title": "elsa punset epidemia soledad terrible",
+   "domain": "elconfidencial.com",
+   "url": "https://www.elconfidencial.com/alma-corazon-vida/2026-09-24/elsa-punset-epidemia-soledad-terrible-1qrt_4430828/",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-099",
+   "title": "maricarmen desahucio asturias casos",
+   "domain": "elcomercio.es",
+   "url": "https://www.elcomercio.es/asturias/maricarmen-desahucio-asturias-casos-20260924075254-nt.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.3,
+    "hostility": 0.1,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-100",
+   "title": "cia alerta ataque con drones rusia espana",
+   "domain": "elespanol.com",
+   "url": "https://diariodeavisos.elespanol.com/2026/09/cia-alerta-ataque-con-drones-rusia-a-espana/",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-101",
+   "title": "trump califica gran reunion encuentro xi jinping casa blanca",
+   "domain": "infolibre.es",
+   "url": "https://www.infolibre.es/internacional/trump-califica-gran-reunion-encuentro-xi-jinping-casa-blanca_1_2236864.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-102",
+   "title": "seminci abrira salas comunidad educativa veintena largometrajes programas cortometrajes",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/castilla-y-leon/noticia-71-seminci-abrira-salas-comunidad-educativa-veintena-largometrajes-programas-cortometrajes-20260924133016.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-103",
+   "title": "rescatado cayuco hierro personas varios ninos",
+   "domain": "abc.es",
+   "url": "https://www.abc.es/espana/canarias/rescatado-cayuco-hierro-107-personas-varios-ninos-20260925094414-nt.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": 0.2,
+    "hostility": 0.0,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-104",
+   "title": "australia investiga acceso autorizacion openai sistema publico salud pais",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/internacional/australia-investiga-acceso-autorizacion-openai-sistema-publico-salud-pais_202609246ab532b1f8fc5f73abb9a8bb.html",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": -0.4,
+    "hostility": 0.1,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-105",
+   "title": "andalucia adelanta campana gripe covid anos vacuna alta carga",
+   "domain": "diariodesevilla.es",
+   "url": "https://www.diariodesevilla.es/andalucia/andalucia-adelanta-campana-gripe-covid-75-anos-vacuna-alta-carga_0_2008059660.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-106",
+   "title": "el valor de las joyas de zapatero segun la tasacion pericial apunta un delito fiscal aunque haya prescrito",
+   "domain": "elpais.com",
+   "url": "https://elpais.com/espana/2026-09-24/el-valor-de-las-joyas-de-zapatero-segun-la-tasacion-pericial-apunta-a-un-delito-fiscal-aunque-haya-prescrito.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": 0.5,
+    "hostility": 0.3,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-107",
+   "title": "maricarmen de anos pasa su primera noche sin casa en el hospital acompanada de su primo vicente con un cuadro",
+   "domain": "elpais.com",
+   "url": "https://elpais.com/espana/madrid/2026-09-24/maricarmen-de-87-anos-pasa-su-primera-noche-sin-casa-en-el-hospital-acompanada-de-su-primo-vicente-y-con-un-cuadro-de-agotamiento-severo.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.2,
+    "hostility": 0.1,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-108",
+   "title": "zapatero opone yanes perite joyas cree joyeria",
+   "domain": "abc.es",
+   "url": "https://www.abc.es/espana/zapatero-opone-yanes-perite-joyas-cree-joyeria-20260924161739-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-109",
+   "title": "caso plus ultra denuncia sepi",
+   "domain": "que.es",
+   "url": "https://www.que.es/2026/09/24/caso-plus-ultra-denuncia-sepi/",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": 0.3,
+    "hostility": 0.2,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-110",
+   "title": "fiscalidad otro lado arte",
+   "domain": "heraldo.es",
+   "url": "https://www.heraldo.es/noticias/aragon/zaragoza/2026/09/25/fiscalidad-otro-lado-arte-2054341.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-111",
+   "title": "bustinduy eleva tono avisa psoe aprobar si si decreto vivienda aqui hemos llegado",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/nacional/noticia-bustinduy-eleva-tono-avisa-psoe-aprobar-si-si-decreto-vivienda-aqui-hemos-llegado-20260924134201.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.7,
+    "hostility": 0.4,
+    "confidence": 0.8,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-112",
+   "title": "piden asegurar el derecho vivienda proteger las personas",
+   "domain": "latribunadetoledo.es",
+   "url": "https://www.latribunadetoledo.es/noticia/z23d557a2-642f-42de-92e1f9bf4fb3bd1b/202609/piden-asegurar-el-derecho-a-vivienda-y-proteger-a-las-personas",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.6,
+    "hostility": 0.1,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-113",
+   "title": "nueve ciudadanos juzgaran begona gomez incomunicados para deliberar por euros dia",
+   "domain": "ultimahora.es",
+   "url": "https://www.ultimahora.es/noticias/nacional/2026/09/25/2715939/nueve-ciudadanos-juzgaran-begona-gomez-incomunicados-para-deliberar-por-euros-dia.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-114",
+   "title": "torres destaca menores ceuta reubicados peninsula",
+   "domain": "hoy.es",
+   "url": "https://www.hoy.es/nacional/torres-destaca-172-menores-ceuta-reubicados-peninsula-20260924134621-ntrc.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": 0.5,
+    "hostility": 0.0,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-115",
+   "title": "junts admite ahora negociaciones gobierno materia vivienda dice entrego propuestas sanchez",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/economia/construccion-y-vivienda-00342/noticia-junts-admite-ahora-negociaciones-gobierno-materia-vivienda-dice-entrego-propuestas-sanchez-20260924135843.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-116",
+   "title": "detenidos por ocultar migrantes ceuta",
+   "domain": "elconfidencial.com",
+   "url": "https://www.elconfidencial.com/espana/2026-09-24/detenidos-por-ocultar-migrantes-ceuta-1tna-1tps_4430649/",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": -0.3,
+    "hostility": 0.2,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-117",
+   "title": "culmina proceso coccion azulejo macarena",
+   "domain": "diariodesevilla.es",
+   "url": "https://www.diariodesevilla.es/semana_santa/culmina-proceso-coccion-azulejo-macarena_0_2008060871.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-118",
+   "title": "sanchez harvard tecnoligarcas begona gomez chantaje marruecos",
+   "domain": "ideal.es",
+   "url": "https://www.ideal.es/nacional/sanchez-harvard-tecnoligarcas-begona-gomez-chantaje-marruecos-20260925083237-ntrc.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": 0.5,
+    "hostility": 0.4,
+    "confidence": 0.55,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-119",
+   "title": "abadia retuerta ledomaine renueva tercer ano consecutivo tres llaves michelin maxima distincion guia roja hoteles",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/castilla-y-leon/abadia-retuerta-ledomaine-renueva-tercer-ano-consecutivo-tres-llaves-michelin-maxima-distincion-guia-roja-hoteles_202609246ab51edfa520494aafd5c979.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-120",
+   "title": "migracion canarias repunta septiembre clavijo achaca",
+   "domain": "canarias7.es",
+   "url": "https://www.canarias7.es/politica/migracion-canarias-repunta-septiembre-100-clavijo-achaca-20260925073000-nt.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": -0.2,
+    "hostility": 0.1,
+    "confidence": 0.4,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-121",
+   "title": "james rhodes ofrecio pagar alquiler maricarmen fondos buitres comportan tiburones",
+   "domain": "lavanguardia.com",
+   "url": "https://www.lavanguardia.com/local/madrid/20260924/11642863/james-rhodes-ofrecio-pagar-alquiler-maricarmen-fondos-buitres-comportan-tiburones.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.6,
+    "hostility": 0.5,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-122",
+   "title": "vigilancia ansiedad reloj inteligente",
+   "domain": "elconfidencial.com",
+   "url": "https://www.elconfidencial.com/salud/2026-09-25/vigilancia-ansiedad-reloj-inteligente_4429673/",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-123",
+   "title": "pedro sanchez haber desahucios espana gobierno",
+   "domain": "abc.es",
+   "url": "https://www.abc.es/espana/pedro-sanchez-2015-haber-desahucios-espana-gobierno-20260924171955-nt.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.4,
+    "hostility": 0.2,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-124",
+   "title": "capitales espanolas mas subido precio vivienda ultimo ano",
+   "domain": "20minutos.es",
+   "url": "https://www.20minutos.es/vivienda/capitales-espanolas-mas-subido-precio-vivienda-ultimo-ano_7040856_0.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-125",
+   "title": "caso leire diez pagos psoe",
+   "domain": "que.es",
+   "url": "https://www.que.es/2026/09/24/caso-leire-diez-pagos-psoe/",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": 0.4,
+    "hostility": 0.2,
+    "confidence": 0.5,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-126",
+   "title": "ayudas de hasta euros para el carnet de conducir requisitos plazos como solicitarlas",
+   "domain": "diariodeleon.es",
+   "url": "https://www.diariodeleon.es/castilla-y-leon/260924/2098331/ayudas-de-hasta-900-euros-para-el-carnet-de-conducir-requisitos-plazos-y-como-solicitarlas.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-127",
+   "title": "los perros tambien prefieren las consonantes asi es como nuestro lenguaje moldea su cerebro",
+   "domain": "elpais.com",
+   "url": "https://elpais.com/salud-y-bienestar/2026-09-24/los-perros-tambien-prefieren-las-consonantes-asi-es-como-nuestro-lenguaje-moldea-su-cerebro.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-128",
+   "title": "el nuevo campo de futbol de cebreros para finales de",
+   "domain": "diariodeavila.es",
+   "url": "https://www.diariodeavila.es/noticia/z47ab9d72-82e0-4a9c-a117705100f6c287/202609/el-nuevo-campo-de-futbol-de-cebreros-para-finales-de-2027",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-129",
+   "title": "muere ahogada lanzarote nina tres anos piscina alojamiento vacacional",
+   "domain": "larazon.es",
+   "url": "https://www.larazon.es/canarias/muere-ahogada-lanzarote-nina-tres-anos-piscina-alojamiento-vacacional_202609256ab624ead5f3ae10c734db6d.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-130",
+   "title": "marion cotillard respetemonos mas acabar mundo violento",
+   "domain": "lavanguardia.com",
+   "url": "https://www.lavanguardia.com/cultura/20260924/11643095/marion-cotillard-respetemonos-mas-acabar-mundo-violento.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-131",
+   "title": "comunicado hollyland weconnect explora sigue siendo insustituible era ia",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/comunicados/internacional-00907/noticia-comunicado-hollyland-weconnect-2026-explora-sigue-siendo-insustituible-era-ia-20260924160151.html",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": 0.2,
+    "hostility": 0.0,
+    "confidence": 0.35,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-132",
+   "title": "compraventa viviendas julio ine",
+   "domain": "lavanguardia.com",
+   "url": "https://www.lavanguardia.com/economia/20260925/11643569/compraventa-viviendas-julio-2026-ine.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.8,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-133",
+   "title": "desahucio maricarmen vivienda alquiler",
+   "domain": "elconfidencial.com",
+   "url": "https://www.elconfidencial.com/espana/segundo-parrafo/2026-09-25/desahucio-maricarmen-vivienda-alquiler-1hms_4431135/",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.4,
+    "hostility": 0.1,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-134",
+   "title": "fundacion la caixa recauda euros para alimentos",
+   "domain": "latribunadetoledo.es",
+   "url": "https://www.latribunadetoledo.es/noticia/z54ef971e-188e-4e6a-b75d8a2f4352acda/202609/fundacion-la-caixa-recauda-175-900-euros-para-alimentos",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-135",
+   "title": "juanma moreno lamenta union europea preste atencion",
+   "domain": "lagacetadesalamanca.es",
+   "url": "https://www.lagacetadesalamanca.es/nacional/juanma-moreno-lamenta-union-europea-preste-atencion-20260924133043-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-136",
+   "title": "illa exige pp vox junts dejar su posicion clasista apoyar decreto antidesahucios para evitar casos como maricarmen",
+   "domain": "20minutos.es",
+   "url": "https://www.20minutos.es/cataluna/illa-exige-pp-vox-junts-dejar-su-posicion-clasista-apoyar-decreto-antidesahucios-para-evitar-casos-como-maricarmen_7040771_0.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.8,
+    "hostility": 0.5,
+    "confidence": 0.9,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-137",
+   "title": "investigan presunta agresion racista grupal valencia difundida",
+   "domain": "diariosur.es",
+   "url": "https://www.diariosur.es/sociedad/investigan-presunta-agresion-racista-grupal-valencia-difundida-20260924141717-ntrc.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": 0.3,
+    "hostility": 0.2,
+    "confidence": 0.4,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-138",
+   "title": "combinacion ganadora sorteo bonoloto hoy jueves septiembre",
+   "domain": "elcomercio.es",
+   "url": "https://www.elcomercio.es/sorteos/bonoloto/combinacion-ganadora-sorteo-bonoloto-hoy-jueves-septiembre-20260924213726-nt.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-139",
+   "title": "hallan muerta isaura vazquez anciana desaparecida lugo",
+   "domain": "laregion.es",
+   "url": "https://www.laregion.es/galicia/hallan-muerta-isaura-vazquez-anciana-desaparecida-lugo_1_20260924-4425737.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-140",
+   "title": "hospital carmen severo ochoa cangas narcea incorpora cirugia compleja suelo pelvico",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/asturias/noticia-hospital-carmen-severo-ochoa-cangas-narcea-incorpora-cirugia-compleja-suelo-pelvico-20260924134954.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-141",
+   "title": "fiscalia europea pregunta si caso leire diez hay afectados fondos ue",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/nacional/noticia-fiscalia-europea-pregunta-si-caso-leire-diez-hay-afectados-fondos-ue-20260924161311.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": -0.2,
+    "hostility": 0.1,
+    "confidence": 0.6,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-142",
+   "title": "cine espanol se solidariza con los directores israelies naza san sebastian",
+   "domain": "heraldo.es",
+   "url": "https://www.heraldo.es/noticias/ocio-y-cultura/2026/09/24/cine-espanol-se-solidariza-con-los-directores-israelies-naza-san-sebastian-2054381.html",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-143",
+   "title": "un juzgado suspende el desahucio de una mujer con cancer terminal en tenerife",
+   "domain": "libertaddigital.com",
+   "url": "https://www.libertaddigital.com/canarias/2026-09-24/un-juzgado-suspende-el-desahucio-de-una-mujer-con-cancer-terminal-en-tenerife-7465296/",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.4,
+    "hostility": 0.0,
+    "confidence": 0.65,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-144",
+   "title": "costa insiste ante onu que ningun pais por si solo puede lograr paz avisa ia no debe controlar humanidad",
+   "domain": "20minutos.es",
+   "url": "https://www.20minutos.es/internacional/costa-insiste-ante-onu-que-ningun-pais-por-si-solo-puede-lograr-paz-avisa-ia-no-debe-controlar-humanidad_7040709_0.html",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": -0.6,
+    "hostility": 0.0,
+    "confidence": 0.75,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-145",
+   "title": "coca cola el refresco que atraviesa generaciones",
+   "domain": "diariosur.es",
+   "url": "https://www.diariosur.es/contentfactory/post/2026/09/22/coca-cola-el-refresco-que-atraviesa-generaciones/",
+   "model": {
+    "topic": null,
+    "stance": null,
+    "hostility": null,
+    "confidence": null,
+    "off_topic": null
+   }
+  },
+  {
+   "id": "ES-146",
+   "title": "rey pide gobernar ia defiende universidades espacio aprender convivir discrepancia",
+   "domain": "europapress.es",
+   "url": "https://www.europapress.es/sociedad/noticia-rey-pide-gobernar-ia-defiende-universidades-espacio-aprender-convivir-discrepancia-20260924140340.html",
+   "model": {
+    "topic": "Inteligencia artificial y tecnología",
+    "stance": -0.5,
+    "hostility": 0.0,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-147",
+   "title": "gobierno lanza decreto vivienda espoleado desahucio maricarmen",
+   "domain": "diariodenavarra.es",
+   "url": "https://www.diariodenavarra.es/noticias/actualidad/nacional/2026/09/25/gobierno-lanza-decreto-vivienda-espoleado-desahucio-maricarmen-836462-28.html",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.6,
+    "hostility": 0.1,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-148",
+   "title": "rescatadas cinco pateras migrantes aguas canarias ultimas horas",
+   "domain": "lavanguardia.com",
+   "url": "https://www.lavanguardia.com/local/canarias/20260924/11642849/rescatadas-cinco-pateras-429-migrantes-aguas-canarias-ultimas-horas.html",
+   "model": {
+    "topic": "Política migratoria",
+    "stance": 0.0,
+    "hostility": 0.0,
+    "confidence": 0.8,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-149",
+   "title": "la asamblea de inquilinas convoca en salamanca concentracion en solidaridad con maricarmen hoy las",
+   "domain": "tercerainformacion.es",
+   "url": "https://www.tercerainformacion.es/articulo/vivienda/24/09/2026/la-asamblea-de-inquilinas-convoca-en-salamanca-concentracion-en-solidaridad-con-maricarmen-hoy-a-las-1900/",
+   "model": {
+    "topic": "Crisis de vivienda y desahucios",
+    "stance": -0.6,
+    "hostility": 0.1,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  },
+  {
+   "id": "ES-150",
+   "title": "zapatero maniobra para apartar yanes del caso recusa la joyeria por tasar su fortuna en un plato de television",
+   "domain": "vozpopuli.com",
+   "url": "https://www.vozpopuli.com/espana/politica/zapatero-maniobra-para-apartar-a-yanes-del-caso-recusa-a-la-joyeria-por-tasar-su-fortuna-en-un-plato-de-television.html",
+   "model": {
+    "topic": "Independencia judicial y corrupción política",
+    "stance": -0.5,
+    "hostility": 0.5,
+    "confidence": 0.7,
+    "off_topic": false
+   }
+  }
+ ]
+}

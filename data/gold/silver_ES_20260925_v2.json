@@ -1,0 +1,1504 @@
+{
+ "ES-001": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-002": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-003": {
+  "topic": "none",
+  "hostility": 2,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-004": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-005": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-006": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-007": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-008": {
+  "topic": 1,
+  "hostility": 1,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 1,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-009": {
+  "topic": "none",
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-010": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0.5,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-011": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-012": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-013": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-014": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-015": {
+  "topic": 2,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-016": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-017": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-018": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "nonpolitical_rivals",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-019": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-020": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-021": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-022": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-023": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-024": {
+  "topic": 2,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-025": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0.5,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-026": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "nonpolitical_rivals",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-027": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-028": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-029": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "nonpolitical_rivals",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-030": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-031": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "unsure": true,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-032": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-033": {
+  "topic": 0,
+  "hostility": 2,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-034": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-035": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-036": {
+  "topic": "none",
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-037": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-038": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-039": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-040": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-041": {
+  "topic": 0,
+  "hostility": 2,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-042": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-043": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-044": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-045": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-046": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-047": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-048": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-049": {
+  "topic": "none",
+  "hostility": 2,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-050": {
+  "topic": "none",
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-051": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-052": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0.5,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-053": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-054": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-055": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-056": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-057": {
+  "topic": 0,
+  "hostility": 2,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": "na",
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-058": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-059": {
+  "topic": 2,
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-060": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-061": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-062": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-063": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-064": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-065": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-066": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-067": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-068": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "nonpolitical_controversy",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-069": {
+  "topic": 2,
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-070": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-071": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-072": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-073": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-074": {
+  "topic": 2,
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-075": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-076": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-077": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-078": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-079": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-080": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-081": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-082": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-083": {
+  "topic": "none",
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-084": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-085": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-086": {
+  "topic": 2,
+  "hostility": 2,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-087": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-088": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-089": {
+  "topic": "none",
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-090": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-091": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-092": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-093": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-094": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-095": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-096": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-097": {
+  "topic": 1,
+  "hostility": 2,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-098": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-099": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-100": {
+  "topic": "none",
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-101": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-102": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-103": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-104": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-105": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-106": {
+  "topic": 2,
+  "hostility": 0,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-107": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-108": {
+  "topic": 2,
+  "hostility": 0,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-109": {
+  "topic": 2,
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-110": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-111": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-112": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-113": {
+  "topic": 2,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-114": {
+  "topic": 1,
+  "hostility": 1,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-115": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-116": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-117": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-118": {
+  "topic": 2,
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "unsure": true,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-119": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-120": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-121": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-122": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-123": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": "na",
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-124": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-125": {
+  "topic": 2,
+  "hostility": 0,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-126": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-127": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-128": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-129": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-130": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-131": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0.5,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-132": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-133": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-134": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-135": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-136": {
+  "topic": 0,
+  "hostility": 2,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-137": {
+  "topic": "none",
+  "hostility": 2,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-138": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-139": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-140": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-141": {
+  "topic": 2,
+  "hostility": 0,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-142": {
+  "topic": "none",
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "political",
+  "conflict": 2,
+  "codebook": "v2"
+ },
+ "ES-143": {
+  "topic": 0,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-144": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-145": {
+  "topic": "none",
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "none_type": "no_stance",
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-146": {
+  "topic": 3,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 0,
+  "codebook": "v2"
+ },
+ "ES-147": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-148": {
+  "topic": 1,
+  "hostility": 0,
+  "us_them": "no",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": 0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-149": {
+  "topic": 0,
+  "hostility": 1,
+  "us_them": "social_groups",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -1,
+  "conflict": 1,
+  "codebook": "v2"
+ },
+ "ES-150": {
+  "topic": 2,
+  "hostility": 1,
+  "us_them": "political",
+  "input": "headline_lead",
+  "labeled_by": "claude",
+  "stance": -0.5,
+  "conflict": 1,
+  "codebook": "v2"
+ }
+}

@@ -1,0 +1,530 @@
+<title>Codificador Polarmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #F5F6F3;
+    --surface: #FFFFFF;
+    --ink: #1B2127;
+    --muted: #5D6770;
+    --rule: #D8DCDD;
+    --accent: #2D5B88;
+    --accent-soft: #E3EBF3;
+    --pole-a: #2B7572;
+    --pole-a-soft: #DDEFEE;
+    --pole-b: #7B4677;
+    --pole-b-soft: #F1E3EF;
+    --done: #3F7A4A;
+    --flag: #A36A12;
+    --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+    --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #14181B;
+      --surface: #1C2125;
+      --ink: #E5E8EA;
+      --muted: #9AA3AA;
+      --rule: #333A40;
+      --accent: #86AFD6;
+      --accent-soft: #22303D;
+      --pole-a: #6CC0BB;
+      --pole-a-soft: #1D3433;
+      --pole-b: #C99AC4;
+      --pole-b-soft: #35253A;
+      --done: #7CC08A;
+      --flag: #E0A84A;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #14181B;
+    --surface: #1C2125;
+    --ink: #E5E8EA;
+    --muted: #9AA3AA;
+    --rule: #333A40;
+    --accent: #86AFD6;
+    --accent-soft: #22303D;
+    --pole-a: #6CC0BB;
+    --pole-a-soft: #1D3433;
+    --pole-b: #C99AC4;
+    --pole-b-soft: #35253A;
+    --done: #7CC08A;
+    --flag: #E0A84A;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font: 15px/1.5 var(--sans);
+    padding-inline: 16px;
+    padding-block: 20px 48px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; display: grid; gap: 20px; }
+
+  header { display: grid; gap: 6px; }
+  .eyebrow {
+    font: 500 12px/1 var(--mono);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 { font: 600 22px/1.2 var(--sans); margin: 0; text-wrap: balance; }
+  .lede { margin: 0; color: var(--muted); max-width: 62ch; }
+
+  .status {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px;
+    font-variant-numeric: tabular-nums;
+  }
+  .status strong { font: 600 18px/1 var(--sans); }
+  .status .sep { color: var(--rule); }
+  .saving { font: 12px var(--mono); color: var(--muted); margin-left: auto; }
+
+  .strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14px, 1fr));
+    gap: 3px;
+  }
+  .strip button {
+    height: 14px; padding: 0; border: 1px solid var(--rule);
+    background: var(--surface); border-radius: 2px; cursor: pointer;
+  }
+  .strip button.done { background: var(--done); border-color: var(--done); }
+  .strip button.flagged { background: var(--flag); border-color: var(--flag); }
+  .strip button.current { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  details.codebook {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding-block: 10px;
+  }
+  details.codebook summary { cursor: pointer; font-weight: 600; }
+  .debates { display: grid; gap: 14px; margin-top: 12px; }
+  .debate h3 { margin: 0 0 4px; font: 600 14px var(--sans); }
+  .poles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pole { font-size: 13px; padding: 8px 10px; border-radius: 4px; }
+  .pole b { display: block; font: 500 11px var(--mono); letter-spacing: .05em; }
+  .pole.a { background: var(--pole-a-soft); } .pole.a b { color: var(--pole-a); }
+  .pole.b { background: var(--pole-b-soft); } .pole.b b { color: var(--pole-b); }
+  .rules { margin: 12px 0 0; padding-left: 18px; color: var(--muted); font-size: 13px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 20px;
+    display: grid; gap: 22px;
+  }
+  .clip { display: grid; gap: 8px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font: 12px var(--mono); color: var(--muted); }
+  .meta a { color: var(--accent); }
+  .headline { font: 500 22px/1.35 var(--serif); margin: 0; text-wrap: pretty; overflow-wrap: anywhere; }
+  .lead { font: 16px/1.5 var(--serif); color: var(--muted); margin: 0; max-width: 65ch; overflow-wrap: anywhere; }
+  .state-chip.review { color: var(--flag); border-color: var(--flag); }
+  .hint { font-size: 12px; color: var(--muted); margin: 0; }
+
+  fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 8px; min-width: 0; }
+  legend { font-weight: 600; padding: 0; margin-bottom: 8px; }
+  legend small { font-weight: 400; color: var(--muted); }
+  .opts { display: flex; flex-wrap: wrap; gap: 6px; }
+  .opts button {
+    font: 14px/1.25 var(--sans); color: var(--ink);
+    background: var(--paper); border: 1px solid var(--rule);
+    border-radius: 4px; padding: 8px 12px; cursor: pointer; text-align: left;
+  }
+  .opts button:hover { border-color: var(--muted); }
+  .opts button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); font-weight: 600; }
+  .opts.stance button { flex: 1 1 110px; text-align: center; }
+  .opts.stance button.sa[aria-pressed="true"] { background: var(--pole-a-soft); border-color: var(--pole-a); }
+  .opts.stance button.sb[aria-pressed="true"] { background: var(--pole-b-soft); border-color: var(--pole-b); }
+  .axis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 12px; color: var(--muted); }
+  .axis span:last-child { text-align: right; }
+  .axis b { font: 500 11px var(--mono); }
+  .axis .ka { color: var(--pole-a); } .axis .kb { color: var(--pole-b); }
+
+  .extras { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; }
+  .extras label { display: flex; gap: 6px; align-items: center; cursor: pointer; }
+  textarea {
+    width: 100%; min-height: 56px; resize: vertical;
+    font: 14px/1.4 var(--sans); color: var(--ink);
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 8px 10px;
+  }
+
+  .nav { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .nav button {
+    font: 600 14px var(--sans); border-radius: 4px; padding: 10px 14px; cursor: pointer;
+    border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
+  }
+  .nav .primary { background: var(--accent); border-color: var(--accent); color: var(--surface); margin-left: auto; }
+  .state-chip { font: 500 12px var(--mono); padding: 3px 8px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted); }
+  .state-chip.ok { color: var(--done); border-color: var(--done); }
+
+  button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .notice { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 16px; }
+  .notice p { margin: 0; }
+  kbd { font: 11px var(--mono); border: 1px solid var(--rule); border-radius: 3px; padding: 0 4px; }
+
+  @media (max-width: 520px) {
+    .poles, .axis { grid-template-columns: 1fr; }
+    .axis span:last-child { text-align: left; }
+    .headline { font-size: 19px; }
+    .card { padding: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Polarmap · set de referencia · Nivel 3</span>
+    <h1>Codifica cada titular a ciegas</h1>
+    <p class="lede">Lee el titular y la entradilla, lo mismo que lee el modelo, y contesta como lo entenderías tú. No ves lo que respondió el modelo; tus respuestas se guardan solas y Claude las compara después con las del pipeline.</p>
+  </header>
+
+  <div class="status" aria-live="polite">
+    <span><strong id="count-done">0</strong> de <span id="count-total">0</span> codificados</span>
+    <span class="sep">·</span>
+    <span id="count-flag">0 dudosos</span>
+    <span class="saving" id="saving"></span>
+  </div>
+
+  <nav class="strip" id="strip" aria-label="Titulares de la muestra"></nav>
+
+  <details class="codebook" id="codebook">
+    <summary>Libro de códigos: los debates del día y sus polos</summary>
+    <div class="debates" id="debates"></div>
+    <ul class="rules">
+      <li>Un titular va a un debate si trata de su asunto, aunque sea informativo y no tome postura.</li>
+      <li>Postura: dónde queda el titular entre el polo A y el polo B. Neutro si solo informa.</li>
+      <li>Hostilidad: agresividad del lenguaje, no desacuerdo. «Critica» es algo; «ataca», «vergüenza», «terminal» es alta.</li>
+      <li>«Nosotros contra ellos»: si el titular enfrenta a bandos, sean políticos o no (clubes, artistas, colectivos).</li>
+      <li>Codifica con el titular y la entradilla. Abre la noticia solo si con eso no se entiende; el modelo no lee más.</li>
+    </ul>
+  </details>
+
+  <div id="notice" class="notice" hidden><p id="notice-text"></p></div>
+
+  <article class="card" id="card" hidden>
+    <div class="clip">
+      <div class="meta">
+        <span id="item-id"></span>
+        <span id="item-domain"></span>
+        <a id="item-link" href="#" target="_blank" rel="noopener">Abrir la noticia ↗</a>
+        <span class="state-chip" id="item-state">Pendiente</span>
+      </div>
+      <p class="headline" id="item-title"></p>
+      <p class="lead" id="item-lead"></p>
+    </div>
+
+    <fieldset id="q-topic">
+      <legend>1. ¿De qué debate trata?</legend>
+      <div class="opts" id="opts-topic"></div>
+    </fieldset>
+
+    <fieldset id="q-stance" hidden>
+      <legend>2. Postura en el eje <small id="stance-debate"></small></legend>
+      <div class="axis"><span><b class="ka">A</b> <span id="axis-a"></span></span><span><b class="kb">B</b> <span id="axis-b"></span></span></div>
+      <div class="opts stance" id="opts-stance"></div>
+    </fieldset>
+
+    <fieldset id="q-none" hidden>
+      <legend>2. ¿Qué tipo de titular es?</legend>
+      <div class="opts" id="opts-none"></div>
+    </fieldset>
+
+    <fieldset id="q-host">
+      <legend>3. Hostilidad del lenguaje</legend>
+      <div class="opts" id="opts-host"></div>
+    </fieldset>
+
+    <fieldset id="q-us">
+      <legend>4. ¿Enfrenta a un «nosotros» contra un «ellos»?</legend>
+      <div class="opts" id="opts-us"></div>
+    </fieldset>
+
+    <div class="extras">
+      <label><input type="checkbox" id="unsure"> Dudoso</label>
+      <label><input type="checkbox" id="garbled"> Titular ilegible (excluir)</label>
+    </div>
+    <textarea id="note" placeholder="Nota opcional: por qué dudas, qué debate faltaría…" aria-label="Nota"></textarea>
+
+    <div class="nav">
+      <button id="prev" type="button">← Anterior</button>
+      <button id="next" type="button">Siguiente →</button>
+      <button id="next-pending" class="primary" type="button">Siguiente pendiente</button>
+    </div>
+    <p class="hint">Atajos: <kbd>←</kbd> <kbd>→</kbd> para moverte, <kbd>Enter</kbd> para ir al siguiente pendiente.</p>
+  </article>
+</div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const STANCES = [
+    { v: -1, t: "Muy A", c: "sa" }, { v: -0.5, t: "Algo A", c: "sa" },
+    { v: 0, t: "Neutro / informa", c: "" },
+    { v: 0.5, t: "Algo B", c: "sb" }, { v: 1, t: "Muy B", c: "sb" },
+    { v: "na", t: "No se puede saber", c: "" },
+  ];
+  const NONE_TYPES = [
+    { v: "no_stance", t: "Sin postura posible (suceso, servicio, dato)" },
+    { v: "political", t: "Político, pero de otro asunto" },
+    { v: "nonpolitical_controversy", t: "Controversia no política (deporte, cultura, sociedad)" },
+    { v: "other", t: "Otro" },
+  ];
+  const HOSTILITY = [{ v: 0, t: "Ninguna" }, { v: 1, t: "Algo" }, { v: 2, t: "Alta" }];
+  const US_THEM = [
+    { v: "no", t: "No" },
+    { v: "political", t: "Actores políticos" },
+    { v: "social_groups", t: "Grupos sociales" },
+    { v: "nonpolitical_rivals", t: "Rivales no políticos" },
+  ];
+
+  let db = null, userId = null;
+  let allItems = [], items = [], debates = [], labels = {}, limit = 0;
+
+  // meta/sample.limit acota la ronda (p. ej. los 30 de control).
+  function applyLimit() {
+    items = limit > 0 ? allItems.filter((it) => it.order <= limit) : allItems;
+    if (idx >= items.length) idx = 0;
+  }
+  let idx = 0;
+  const writeChains = {};
+  let pendingWrites = 0;
+
+  function notice(text) { $("notice-text").textContent = text; $("notice").hidden = false; }
+
+  // Etiquetas hechas antes de mostrar la entradilla: hay que revisarlas.
+  const INPUT = "headline_lead";
+  function needsReview(l) { return !!l && l.input !== INPUT; }
+
+  function isComplete(l) {
+    if (!l || needsReview(l)) return false;
+    if (l.garbled) return true;
+    if (l.topic === undefined || l.topic === null) return false;
+    if (l.topic === "none" ? !l.none_type : l.stance === undefined || l.stance === null) return false;
+    return l.hostility !== undefined && l.hostility !== null && !!l.us_them;
+  }
+
+  function renderStrip() {
+    const strip = $("strip");
+    if (strip.children.length !== items.length) {
+      strip.textContent = "";
+      items.forEach((it, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.id = "strip-" + it.id;
+        b.title = it.id;
+        b.setAttribute("aria-label", it.id);
+        b.addEventListener("click", () => go(i));
+        strip.appendChild(b);
+      });
+    }
+    let done = 0, flagged = 0;
+    items.forEach((it, i) => {
+      const l = labels[it.id];
+      const b = strip.children[i];
+      const ok = isComplete(l);
+      if (ok) done++;
+      if (l && l.unsure) flagged++;
+      b.className = (ok ? (l.unsure ? "flagged" : "done") : "") + (i === idx ? " current" : "");
+    });
+    $("count-done").textContent = done;
+    $("count-total").textContent = items.length;
+    $("count-flag").textContent = flagged + (flagged === 1 ? " dudoso" : " dudosos");
+  }
+
+  function renderCodebook() {
+    const box = $("debates");
+    box.textContent = "";
+    debates.forEach((d) => {
+      const el = document.createElement("div");
+      el.className = "debate";
+      const h = document.createElement("h3"); h.textContent = d.label;
+      const poles = document.createElement("div"); poles.className = "poles";
+      [["a", "Polo A", d.pole_a], ["b", "Polo B", d.pole_b]].forEach(([k, name, text]) => {
+        const p = document.createElement("div"); p.className = "pole " + k;
+        const b = document.createElement("b"); b.textContent = name;
+        p.append(b, document.createTextNode(text));
+        poles.appendChild(p);
+      });
+      el.append(h, poles);
+      box.appendChild(el);
+    });
+  }
+
+  function optionRow(container, options, current, onPick) {
+    container.textContent = "";
+    options.forEach((o) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = o.t;
+      if (o.c) b.className = o.c;
+      b.setAttribute("aria-pressed", String(current === o.v));
+      b.addEventListener("click", () => onPick(o.v));
+      container.appendChild(b);
+    });
+  }
+
+  function renderCard() {
+    const it = items[idx];
+    if (!it) return;
+    const l = labels[it.id] || {};
+    $("card").hidden = false;
+    $("item-id").textContent = it.id;
+    $("item-domain").textContent = it.domain;
+    $("item-link").href = it.url;
+    $("item-title").textContent = it.headline || it.title;
+    $("item-lead").textContent = it.lead || "";
+    $("item-lead").hidden = !it.lead;
+    const ok = isComplete(l);
+    const review = needsReview(labels[it.id]);
+    $("item-state").textContent = ok ? "Codificado" : review ? "Revisar con entradilla" : "Pendiente";
+    $("item-state").className = "state-chip" + (ok ? " ok" : review ? " review" : "");
+
+    const topicOpts = debates.map((d, i) => ({ v: i, t: d.label }))
+      .concat([{ v: "none", t: "Ninguno de estos" }]);
+    optionRow($("opts-topic"), topicOpts, l.topic, (v) => {
+      const patch = { topic: v };
+      if (v === "none") patch.stance = null; else patch.none_type = null;
+      save(it.id, patch);
+    });
+
+    const isDebate = typeof l.topic === "number";
+    $("q-stance").hidden = !isDebate;
+    $("q-none").hidden = l.topic !== "none";
+    if (isDebate) {
+      const d = debates[l.topic];
+      $("stance-debate").textContent = "· " + d.label;
+      $("axis-a").textContent = d.pole_a;
+      $("axis-b").textContent = d.pole_b;
+      optionRow($("opts-stance"), STANCES, l.stance, (v) => save(it.id, { stance: v }));
+    }
+    if (l.topic === "none") {
+      optionRow($("opts-none"), NONE_TYPES, l.none_type, (v) => save(it.id, { none_type: v }));
+    }
+    optionRow($("opts-host"), HOSTILITY, l.hostility, (v) => save(it.id, { hostility: v }));
+    optionRow($("opts-us"), US_THEM, l.us_them, (v) => save(it.id, { us_them: v }));
+    $("unsure").checked = !!l.unsure;
+    $("garbled").checked = !!l.garbled;
+    if (document.activeElement !== $("note")) $("note").value = l.note || "";
+  }
+
+  function render() { renderStrip(); renderCard(); }
+
+  function go(i) {
+    idx = Math.max(0, Math.min(items.length - 1, i));
+    render();
+    try { localStorage.setItem("polarmap-labeler-idx", String(idx)); } catch (e) {}
+  }
+
+  function nextPending() {
+    for (let k = 1; k <= items.length; k++) {
+      const j = (idx + k) % items.length;
+      if (!isComplete(labels[items[j].id])) return go(j);
+    }
+    go(idx);
+  }
+
+  function setSaving() {
+    $("saving").textContent = pendingWrites > 0 ? "Guardando…" : "Guardado";
+  }
+
+  // Una escritura a la vez por documento: se encadenan.
+  function save(id, patch) {
+    const next = Object.assign({}, labels[id] || {}, patch, {
+      item: id, labeled_by: userId, input: INPUT,
+      updated_at: new Date().toISOString(),
+    });
+    labels[id] = next;
+    render();
+    if (!db) return;
+    pendingWrites++; setSaving();
+    const body = JSON.parse(JSON.stringify(next));
+    writeChains[id] = (writeChains[id] || Promise.resolve())
+      .then(() => db.collection("labels").doc(id).set(body))
+      .catch((e) => {
+        if (e && e.code === "unavailable") {
+          return new Promise((r) => setTimeout(r, 400 + Math.random() * 600))
+            .then(() => db.collection("labels").doc(id).set(body));
+        }
+        throw e;
+      })
+      .catch((e) => {
+        notice(e && e.code === "invalid_argument"
+          ? "No tienes permiso para guardar etiquetas en esta página. Pide acceso de Colaborador."
+          : "No se pudo guardar " + id + ". Revisa la conexión y vuelve a marcar la respuesta.");
+      })
+      .finally(() => { pendingWrites--; setSaving(); });
+  }
+
+  let noteTimer = null;
+  $("note").addEventListener("input", () => {
+    const id = items[idx] && items[idx].id;
+    if (!id) return;
+    clearTimeout(noteTimer);
+    const value = $("note").value;
+    noteTimer = setTimeout(() => save(id, { note: value }), 600);
+  });
+  $("unsure").addEventListener("change", (e) => save(items[idx].id, { unsure: e.target.checked }));
+  $("garbled").addEventListener("change", (e) => save(items[idx].id, { garbled: e.target.checked }));
+  $("prev").addEventListener("click", () => go(idx - 1));
+  $("next").addEventListener("click", () => go(idx + 1));
+  $("next-pending").addEventListener("click", nextPending);
+  document.addEventListener("keydown", (e) => {
+    if (e.target.closest && e.target.closest("textarea, input")) return;
+    if (e.key === "ArrowLeft") go(idx - 1);
+    else if (e.key === "ArrowRight") go(idx + 1);
+    else if (e.key === "Enter" && !(e.target.closest && e.target.closest("button, a, summary"))) nextPending();
+  });
+
+  notice("Cargando la muestra…");
+
+  (async () => {
+    db = await window.claude?.use?.("db");
+    if (!db) {
+      notice("Esta página guarda las etiquetas en la base de datos del artifact. Ábrela desde claude.ai para codificar.");
+      return;
+    }
+    const user = await window.claude.use("user");
+    try { userId = user ? await user.id() : null; } catch (e) { userId = null; }
+
+    // En directo: si la muestra se carga o cambia con la página abierta,
+    // el libro de códigos y las opciones de debate se actualizan solos.
+    db.doc("meta/sample").onSnapshot((meta) => {
+      debates = (meta.exists && meta.data().debates) || [];
+      limit = (meta.exists && meta.data().limit) || 0;
+      applyLimit();
+      renderCodebook();
+      if (items.length) render();
+    }, () => notice("Se perdió la conexión con el libro de códigos. Recarga la página."));
+
+    db.collection("items").orderBy("order").limit(1000).onSnapshot((snap) => {
+      allItems = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+      applyLimit();
+      if (!items.length) { notice("La muestra aún no está cargada."); return; }
+      $("notice").hidden = true;
+      if (idx === 0) {
+        try {
+          const saved = parseInt(localStorage.getItem("polarmap-labeler-idx") || "0", 10);
+          if (saved > 0 && saved < items.length) idx = saved;
+        } catch (e) {}
+      }
+      render();
+    }, () => notice("Se perdió la conexión con la muestra. Recarga la página."));
+
+    db.collection("labels").limit(1000).onSnapshot((snap) => {
+      snap.docs.forEach((d) => {
+        // No pisar una respuesta local que aún se está guardando.
+        if (!d.metadata.hasPendingWrites) labels[d.id] = d.data();
+      });
+      if (items.length) render();
+    }, () => notice("Se perdió la conexión con tus etiquetas. Recarga la página."));
+  })();
+})();
+</script>

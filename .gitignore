@@ -18,3 +18,7 @@ data/internal/*_full.json
 data/snapshot_partial.json
 # Clasificación por titular de cada corrida (URLs; para auditar)
 data/internal/*_headlines.jsonl
+# Extractos de prensa (titular + entradilla): no se versionan
+data/gold/leads_*.json
+# Simulaciones del piloto (jueces falsos): no se versionan
+data/pilot/MOCK_*/
