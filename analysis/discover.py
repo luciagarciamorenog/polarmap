@@ -668,8 +668,9 @@ class TransientAPIError(RuntimeError):
     """La API no respondió bien tras agotar los reintentos."""
 
 
-def _call_api(body: dict, api_key: str, timeout: int) -> str:
-    """POST a Messages con reintentos. Devuelve el texto de la respuesta."""
+def _call_api_message(body: dict, api_key: str, timeout: int) -> dict:
+    """POST a Messages con reintentos. Devuelve el mensaje completo
+    (contenido y `usage`, que analysis/runner.py registra)."""
     headers = {
         "x-api-key": api_key,
         "anthropic-version": "2023-06-01",
@@ -692,11 +693,34 @@ def _call_api(body: dict, api_key: str, timeout: int) -> str:
             raise FatalAPIError(
                 f"HTTP {resp.status_code}: {resp.text[:300]}")
         try:
-            return resp.json()["content"][0]["text"].strip()
+            message = resp.json()
+            message["content"][0]["text"]          # debe traer texto
+            return message
         except (ValueError, KeyError, IndexError, TypeError) as e:
             last = f"respuesta sin texto: {e}"
     raise TransientAPIError(
         f"sin respuesta válida tras {API_RETRIES} intentos ({last})")
+
+
+def _call_api(body: dict, api_key: str, timeout: int) -> str:
+    """Como _call_api_message, pero devuelve solo el texto."""
+    return _call_api_message(body, api_key, timeout)["content"][0]["text"].strip()
+
+
+def _cached_system(text: str) -> list[dict]:
+    """Bloque de sistema cacheable: la parte fija que se repite en cada
+    lote de un mismo debate o país. Por debajo del mínimo del modelo
+    (1.024 tokens en Sonnet 4.6, 4.096 en Haiku 4.5) no se cachea, sin
+    error; runner.LEDGER lo deja ver en cache_write/cache_read."""
+    return [{"type": "text", "text": text,
+             "cache_control": {"type": "ephemeral"}}]
+
+
+def _require_key(api_key: str | None = None):
+    if api_key:
+        os.environ.setdefault("ANTHROPIC_API_KEY", api_key)
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        raise RuntimeError("Falta ANTHROPIC_API_KEY")
 
 
 def discover_axis(titles: list[str], tag_names: list[str],
@@ -819,70 +843,36 @@ ASSIGN_BATCH = 50
 MAX_DISCOVER_TITLES = 1200
 MAX_DEBATES = 6
 
+DISCOVER_INSTRUCTIONS = 'Identifica entre 3 y {max_debates} ASUNTOS DE DEBATE PÚBLICO presentes en estos titulares. Un asunto de debate es una cuestión de fondo en la que actores reales del país (partidos, colectivos, medios, expertos) defienden posturas enfrentadas.\n\nASUNTOS, NO SUCESOS. Los titulares hablan de hechos concretos del día; tu trabajo es agruparlos en el asunto de fondo que los conecta:\n- "Crisis en Ceuta", "llegada de pateras a Canarias" y "ley de nietos" → asunto "Política migratoria".\n- "Desahucio de una vecina", "precio del alquiler" y "ayudas a la compra" → asunto "Vivienda".\n- "Juicio a un cargo público", "amnistía" y "choque Gobierno-jueces" → asunto "Justicia e instituciones".\nSi dos asuntos candidatos comparten actores o se enmarcan igual, fúndelos en uno. Prefiere 4 asuntos que agrupen muchos titulares a 8 que agrupen pocos.\n\nPara cada asunto:\n- label: nombre corto (2-5 palabras) en el idioma principal del país. Debe servir igual otro día: sin nombres propios de personas ni fechas.\n- pole_a y pole_b: las dos posturas enfrentadas sobre QUÉ DEBE HACERSE o CÓMO VALORAR el asunto, cada una en una frase. Evita polos del tipo "el Gobierno lo hace bien / mal" salvo que el asunto sea precisamente la gestión de un actor.\n- includes: 3-6 sucesos o subtemas concretos de estos titulares que caen en el asunto.\n\nCriterios:\n- Cada asunto debe cubrir MUCHOS titulares (idealmente 40 o más). No inventes asuntos para llegar al máximo.\n- Que no se solapen: cada titular debería encajar como mucho en uno.\n- UN SOLO OBJETO POR ASUNTO. No juntes dos cuestiones en un eje (por ejemplo, «independencia judicial» y «corrupción» son dos asuntos: una noticia sobre un caso de corrupción no dice nada sobre si los jueces son independientes). Si un grupo de titulares mezcla dos cuestiones, elige la que más titulares puedan situar o créalas por separado.\n- Cada titular del asunto debe poder situarse en el eje por lo que cuenta. Si para situarlo hubiera que saber a qué partido perjudica, el eje está mal planteado.\n- Los dos polos hablan del MISMO objeto que el label y son posiciones que alguien defiende de verdad. No metas en un polo un asunto distinto (por ejemplo, no conviertas un debate sanitario en uno migratorio).\n- Redacción neutral y simétrica: ninguno de los polos debe sonar como el razonable.\n- Excluye sucesos, deportes, cultura y noticias de servicio que no tengan controversia.\n\nResponde SOLO con un array JSON, ordenado de más a menos titulares:\n[{{"label": "...", "pole_a": "...", "pole_b": "...", "includes": ["...", "..."]}}]\nSi no hay ningún debate, responde [].'
 
-def discover_debates(titles: list[str], country_name: str,
-                     api_key: str | None = None,
-                     max_debates: int = MAX_DEBATES) -> list[dict]:
-    """
-    Debates públicos presentes en los titulares de un país.
 
-    Devuelve [{"label", "pole_a", "pole_b", "includes"}, ...] (puede
-    ser []). `includes` son los sucesos del día que caen en ese asunto;
-    se pasan a la asignación para que no se queden en "ninguno".
-    Un fallo de la API o una respuesta ilegible lanza TransientAPIError;
-    una key inválida, FatalAPIError. Nunca se confunde con "no hay debate".
-    """
-    key = api_key or os.environ.get("ANTHROPIC_API_KEY")
-    if not key:
-        raise RuntimeError("Falta ANTHROPIC_API_KEY")
-
+def build_discover_body(titles: list[str], country_name: str,
+                        max_debates: int = MAX_DEBATES) -> dict:
     sample = titles
     if len(sample) > MAX_DISCOVER_TITLES:
         # Muestra sistemática, no aleatoria: reproducible entre corridas.
         step = len(sample) / MAX_DISCOVER_TITLES
         sample = [sample[int(i * step)] for i in range(MAX_DISCOVER_TITLES)]
     block = "\n".join(f"- {t}" for t in sample)
-
-    prompt = f"""Estos son {len(sample)} titulares de medios de {country_name} de las últimas 24 horas. Están reconstruidos desde la URL: sin tildes y a veces sin artículos.
-
-{block}
-
-Identifica entre 3 y {max_debates} ASUNTOS DE DEBATE PÚBLICO presentes en estos titulares. Un asunto de debate es una cuestión de fondo en la que actores reales del país (partidos, colectivos, medios, expertos) defienden posturas enfrentadas.
-
-ASUNTOS, NO SUCESOS. Los titulares hablan de hechos concretos del día; tu trabajo es agruparlos en el asunto de fondo que los conecta:
-- "Crisis en Ceuta", "llegada de pateras a Canarias" y "ley de nietos" → asunto "Política migratoria".
-- "Desahucio de una vecina", "precio del alquiler" y "ayudas a la compra" → asunto "Vivienda".
-- "Juicio a un cargo público", "amnistía" y "choque Gobierno-jueces" → asunto "Justicia e instituciones".
-Si dos asuntos candidatos comparten actores o se enmarcan igual, fúndelos en uno. Prefiere 4 asuntos que agrupen muchos titulares a 8 que agrupen pocos.
-
-Para cada asunto:
-- label: nombre corto (2-5 palabras) en el idioma principal del país. Debe servir igual otro día: sin nombres propios de personas ni fechas.
-- pole_a y pole_b: las dos posturas enfrentadas sobre QUÉ DEBE HACERSE o CÓMO VALORAR el asunto, cada una en una frase. Evita polos del tipo "el Gobierno lo hace bien / mal" salvo que el asunto sea precisamente la gestión de un actor.
-- includes: 3-6 sucesos o subtemas concretos de estos titulares que caen en el asunto.
-
-Criterios:
-- Cada asunto debe cubrir MUCHOS titulares (idealmente 40 o más). No inventes asuntos para llegar al máximo.
-- Que no se solapen: cada titular debería encajar como mucho en uno.
-- Los dos polos hablan del MISMO objeto que el label y son posiciones que alguien defiende de verdad. No metas en un polo un asunto distinto (por ejemplo, no conviertas un debate sanitario en uno migratorio).
-- Redacción neutral y simétrica: ninguno de los polos debe sonar como el razonable.
-- Excluye sucesos, deportes, cultura y noticias de servicio que no tengan controversia.
-
-Responde SOLO con un array JSON, ordenado de más a menos titulares:
-[{{"label": "...", "pole_a": "...", "pole_b": "...", "includes": ["...", "..."]}}]
-Si no hay ningún debate, responde []."""
-
-    body = {
+    prompt = (f"Estos son {len(sample)} titulares de medios de {country_name} de "
+              "las últimas 24 horas. Algunos están reconstruidos desde la URL: sin "
+              f"tildes y a veces sin artículos.\n\n{block}\n\n"
+              + DISCOVER_INSTRUCTIONS.format(max_debates=max_debates))
+    return {
         "model": DISCOVER_MODEL,
         "max_tokens": 2000,
         "temperature": 0.2,
         "messages": [{"role": "user", "content": prompt}],
     }
-    text = _call_api(body, key, timeout=120)
-    items = _json_array(text)
+
+
+def parse_debates(text: str, max_debates: int = MAX_DEBATES) -> list[dict]:
+    """Debates de la respuesta. Ilegible → TransientAPIError (nunca "no hay
+    debate"); lista vacía → no hay debates."""
+    items = _json_array(text or "")
     if items is None:
         raise TransientAPIError(
-            f"respuesta de debates ilegible: {text[:200]!r}")
-
+            f"respuesta de debates ilegible: {(text or '')[:200]!r}")
     debates, seen = [], set()
     for it in items:
         if not isinstance(it, dict):
@@ -902,9 +892,77 @@ Si no hay ningún debate, responde []."""
     return debates[:max_debates]
 
 
+def discover_debates(titles: list[str], country_name: str,
+                     api_key: str | None = None,
+                     max_debates: int = MAX_DEBATES) -> list[dict]:
+    """
+    Debates públicos presentes en los titulares de un país.
+
+    Devuelve [{"label", "pole_a", "pole_b", "includes"}, ...] (puede
+    ser []). `includes` son los sucesos del día que caen en ese asunto;
+    se pasan a la asignación para que no se queden en "ninguno".
+    Un fallo de la API o una respuesta ilegible lanza TransientAPIError;
+    una key inválida, FatalAPIError. Nunca se confunde con "no hay debate".
+    """
+    from analysis import runner
+    _require_key(api_key)
+    (text,) = runner.run([build_discover_body(titles, country_name, max_debates)],
+                         "debates", "sync")
+    if text is None:
+        raise TransientAPIError("la API no devolvió los debates")
+    return parse_debates(text, max_debates)
+
+
 # Resultado de assign_topics por titular:
 ASSIGN_NONE = 0      # no pertenece a ningún debate
 ASSIGN_FAILED = -1   # no se pudo asignar (API o respuesta ilegible)
+
+
+def build_assign_bodies(texts: list[str], debates: list[dict]
+                        ) -> list[tuple[dict, int]]:
+    """Una petición por cada ASSIGN_BATCH textos. La lista de debates va
+    en el bloque de sistema cacheable: es igual en todos los lotes del país."""
+    def describe(k, d):
+        line = f"{k}. {d['label']} (de «{d['pole_a']}» a «{d['pole_b']}»)"
+        if d.get("includes"):
+            line += "\n   incluye, entre otros: " + "; ".join(d["includes"])
+        return line
+    topics = "\n".join(describe(k, d) for k, d in enumerate(debates, 1))
+    system = f"""Asignas cada noticia al debate público del que trata.
+
+DEBATES:
+{topics}
+
+Reglas:
+- topic = número del debate si la noticia trata de su asunto, aunque sea de forma informativa y sin tomar postura. Cada debate es un asunto amplio: cuenta cualquier hecho del día que forme parte de él, no solo los ejemplos listados.
+- topic = 0 si no trata de ninguno. Ante la duda, 0: es mejor perder una noticia que meter una que no toca.
+- Si encaja en varios, el más central.
+
+Responde SOLO con un array JSON, un elemento por noticia:
+[{{"id": 1, "topic": 0}}]"""
+    bodies = []
+    for i in range(0, len(texts), ASSIGN_BATCH):
+        chunk = texts[i:i + ASSIGN_BATCH]
+        numbered = "\n".join(f"{j}. {t}" for j, t in enumerate(chunk, 1))
+        bodies.append(({
+            "model": ASSIGN_MODEL,
+            "max_tokens": 2000,
+            "temperature": 0,
+            "system": _cached_system(system),
+            "messages": [{"role": "user", "content":
+                          "NOTICIAS (titular y, si hay, entradilla; algunas "
+                          f"reconstruidas desde la URL, sin tildes):\n{numbered}"}],
+        }, len(chunk)))
+    return bodies
+
+
+def parse_assign(texts: list[str | None], bodies: list[tuple[dict, int]],
+                 n_debates: int) -> list[int]:
+    out: list[int] = []
+    for (_, n), text in zip(bodies, texts):
+        out.extend([ASSIGN_FAILED] * n if text is None
+                   else _parse_assign_response(text, n, n_debates))
+    return out
 
 
 def assign_topics(titles: list[str], debates: list[dict],
@@ -914,55 +972,11 @@ def assign_topics(titles: list[str], debates: list[dict],
     (ASSIGN_NONE) o marca que falló (ASSIGN_FAILED). Mismo orden que
     `titles`. FatalAPIError corta la corrida.
     """
-    key = api_key or os.environ.get("ANTHROPIC_API_KEY")
-    if not key:
-        raise RuntimeError("Falta ANTHROPIC_API_KEY")
-
-    out: list[int] = []
-    for i in range(0, len(titles), ASSIGN_BATCH):
-        out.extend(_assign_batch(titles[i:i + ASSIGN_BATCH], debates, key))
-        log.info("    asignados %d/%d titulares",
-                 min(i + ASSIGN_BATCH, len(titles)), len(titles))
-    return out
-
-
-def _assign_batch(titles: list[str], debates: list[dict],
-                  api_key: str) -> list[int]:
-    def describe(k, d):
-        line = f"{k}. {d['label']} (de «{d['pole_a']}» a «{d['pole_b']}»)"
-        if d.get("includes"):
-            line += "\n   incluye, entre otros: " + "; ".join(d["includes"])
-        return line
-    topics = "\n".join(describe(k, d) for k, d in enumerate(debates, 1))
-    numbered = "\n".join(f"{j}. {t}" for j, t in enumerate(titles, 1))
-    prompt = f"""Asigna cada titular al debate público del que trata.
-
-DEBATES:
-{topics}
-
-TITULARES (reconstruidos desde la URL, sin tildes):
-{numbered}
-
-Reglas:
-- topic = número del debate si el titular trata de su asunto, aunque sea de forma informativa y sin tomar postura. Cada debate es un asunto amplio: cuenta cualquier hecho del día que forme parte de él, no solo los ejemplos listados.
-- topic = 0 si no trata de ninguno. Ante la duda, 0: es mejor perder un titular que meter uno que no toca.
-- Si encaja en varios, el más central.
-
-Responde SOLO con un array JSON, un elemento por titular:
-[{{"id": 1, "topic": 0}}]"""
-
-    body = {
-        "model": ASSIGN_MODEL,
-        "max_tokens": 2000,
-        "temperature": 0,
-        "messages": [{"role": "user", "content": prompt}],
-    }
-    try:
-        text = _call_api(body, api_key, timeout=60)
-    except TransientAPIError as e:
-        log.error("lote de %d titulares SIN asignar: %s", len(titles), e)
-        return [ASSIGN_FAILED] * len(titles)
-    return _parse_assign_response(text, len(titles), len(debates))
+    from analysis import runner
+    _require_key(api_key)
+    bodies = build_assign_bodies(titles, debates)
+    texts = runner.run([b for b, _ in bodies], "asignacion", "sync")
+    return parse_assign(texts, bodies, len(debates))
 
 
 def _parse_assign_response(text: str, n_titles: int,
@@ -1001,16 +1015,85 @@ CLASSIFY_MODEL = "claude-sonnet-4-6"
 BATCH_SIZE = 20
 
 
+US_THEM = ("no", "political", "social_groups", "nonpolitical_rivals")
+
+
 @dataclass
 class StanceResult:
-    """Resultado de clasificar un titular."""
+    """Clasificación de un titular (libro de códigos v2, validate/CODEBOOK.md)."""
     title: str
-    stance: float        # -1 (polo A) a +1 (polo B)
-    hostility: float     # 0 (neutro) a 1 (hostil)
+    stance: float        # -1 (polo A) a +1 (polo B), framing incluido
+    hostility: float     # 0 (neutro) a 1 (hostil): SOLO el lenguaje
     confidence: float    # 0 a 1
     off_topic: bool      # True si el titular no va del tema
     failed: bool = False  # True si NO se pudo clasificar (API o parseo).
                           # No es off-topic: es un dato perdido.
+    conflict: float = float("nan")  # 0 a 1: conflictividad de la historia
+    us_them: str | None = None      # uno de US_THEM
+
+
+CLASSIFY_SYSTEM = """Eres un analista de medios. Codificas noticias para medir polarización en tres dimensiones distintas. No las mezcles.
+
+EJE DEL DEBATE:
+  Polo A (-1): {pole_a}
+  Polo B (+1): {pole_b}
+
+Cada noticia viene como «titular. entradilla» (a veces solo el titular).
+
+1. stance (-1.0 a +1.0): dónde queda la noticia entre el polo A y el polo B.
+   Cuenta la postura EXPLÍCITA y también la IMPLÍCITA por framing: qué hecho elige contar el medio, desde qué ángulo y con qué palabras.
+   - ±1.0: defiende un polo, o framing muy cargado (términos de un bando, una consigna como titular).
+   - ±0.5: el ángulo o la selección del hecho favorecen un polo sin afirmarlo.
+   - 0.0: dato o trámite sin ángulo, o noticia equilibrada que recoge a ambos bandos.
+   Ejemplos (eje «intervenir en vivienda» vs «mercado»): «Valladolid contabiliza un desahucio cada dos días» → -0.5; «"Maricarmen somos todas": Tenerife alza la voz contra los desahucios» → -1.0; «La compraventa cae un 5,1 % en julio» → 0.0.
+   Sitúa la noticia por lo que dice del asunto del eje, no por a qué partido perjudica.
+
+2. hostility (0.0 a 1.0): SOLO la agresividad del lenguaje (titular, entradilla y citas que el medio destaca). No la gravedad del hecho.
+   1.0 insulto, burla, deshumanización («a gorrazos», «invasión», «cloacas»); 0.5 léxico combativo («choque», «maniobra», «fondo buitre», «acoso»); 0.0 lenguaje neutro aunque el hecho sea grave.
+
+3. conflict (0.0 a 1.0): cuán conflictiva o dañina es la historia tal como se cuenta, independientemente de las palabras.
+   1.0 violencia, víctimas graves, crisis abierta, confrontación política directa; 0.5 disputa, crítica, queja, daño o riesgo limitado; 0.0 dato, servicio, logro, agenda.
+
+4. us_them: si la noticia presenta DOS partes identificables enfrentadas.
+   "political" (partidos, Gobierno, oposición, instituciones), "social_groups" (colectivos sociales), "nonpolitical_rivals" (clubes, empresas frente a clientes, asociaciones) o "no". No basta con una víctima o un culpable sin el otro bando.
+
+5. confidence (0.0 a 1.0): tu confianza en stance.
+
+6. off_topic: true SOLO si la noticia trata de algo completamente distinto del debate. Si trata del asunto aunque sea informativa, off_topic=false.
+
+Responde SOLO con un array JSON, un objeto por noticia:
+[{{"id":1,"stance":-0.5,"hostility":0.0,"conflict":0.5,"us_them":"no","confidence":0.8,"off_topic":false}}]"""
+
+
+def build_classify_bodies(texts: list[str], pole_a: str, pole_b: str
+                          ) -> list[tuple[dict, list[str]]]:
+    """Una petición por cada BATCH_SIZE textos. El libro de códigos y el
+    eje van en el bloque de sistema cacheable: iguales en todo el debate."""
+    system = CLASSIFY_SYSTEM.format(pole_a=pole_a, pole_b=pole_b)
+    bodies = []
+    for i in range(0, len(texts), BATCH_SIZE):
+        chunk = texts[i:i + BATCH_SIZE]
+        numbered = "\n".join(f"{j+1}. {t}" for j, t in enumerate(chunk))
+        bodies.append(({
+            "model": CLASSIFY_MODEL,
+            "max_tokens": 3000,
+            "temperature": 0.1,
+            "system": _cached_system(system),
+            "messages": [{"role": "user", "content": f"NOTICIAS:\n{numbered}"}],
+        }, chunk))
+    return bodies
+
+
+def parse_classify(texts: list[str | None],
+                   bodies: list[tuple[dict, list[str]]]) -> list[StanceResult]:
+    out: list[StanceResult] = []
+    for (_, chunk), text in zip(bodies, texts):
+        if text is None:
+            log.error("lote de %d titulares SIN clasificar", len(chunk))
+            out.extend(_failed(chunk))
+        else:
+            out.extend(_parse_classify_response(text, chunk))
+    return out
 
 
 def classify_stances(titles: list[str], pole_a: str, pole_b: str,
@@ -1018,100 +1101,18 @@ def classify_stances(titles: list[str], pole_a: str, pole_b: str,
                      api_key: str | None = None
                      ) -> list[StanceResult]:
     """
-    Clasifica la postura de cada titular en el eje pole_a ↔ pole_b.
-
-    Funciona exactamente como StanceClassifier.classify_batch pero
-    acepta polos dinámicos (generados por discover_axis) en vez de
-    buscarlos en el diccionario AXES.
-
-    El prompt pide tres cosas por titular:
-      stance     : posición en el eje (-1.0 a +1.0)
-      hostility  : nivel de hostilidad (0.0 a 1.0)
-      confidence : confianza del clasificador (0.0 a 1.0)
-
-    Y marca off_topic si el titular no tiene relación con el debate.
-
-    Envía en lotes de 20 para abaratar. Una pausa entre lotes
-    para no saturar la API.
+    Clasifica cada texto (titular, o titular + entradilla) en el eje
+    pole_a ↔ pole_b con el libro de códigos v2 (validate/CODEBOOK.md):
+    postura con framing, hostilidad del lenguaje, conflictividad,
+    nosotros/ellos, confianza y off_topic.
 
     Un lote que falla tras los reintentos vuelve con failed=True (no
     off_topic). Una key inválida lanza FatalAPIError y corta todo.
     """
-    key = api_key or os.environ.get("ANTHROPIC_API_KEY")
-    if not key:
-        raise RuntimeError("Falta ANTHROPIC_API_KEY")
-
-    all_results: list[StanceResult] = []
-
-    for i in range(0, len(titles), BATCH_SIZE):
-        batch = titles[i:i + BATCH_SIZE]
-        batch_results = _classify_batch(batch, pole_a, pole_b,
-                                        language, key)
-        all_results.extend(batch_results)
-
-        n_done = min(i + BATCH_SIZE, len(titles))
-        log.info("    clasificados %d/%d titulares", n_done, len(titles))
-        time.sleep(0.5)
-
-    return all_results
-
-
-def _classify_batch(titles: list[str], pole_a: str, pole_b: str,
-                    language: str, api_key: str
-                    ) -> list[StanceResult]:
-    """Clasifica un lote de hasta 20 titulares en una sola llamada."""
-
-    numbered = "\n".join(f"{j+1}. {t}" for j, t in enumerate(titles))
-
-    prompt = f"""Eres un analista de postura (stance) en el debate público.
-
-EJE DE DEBATE:
-  Polo A (-1): {pole_a}
-  Polo B (+1): {pole_b}
-
-Para cada titular, evalúa:
-  stance: posición en el eje (-1.0 = polo A extremo, 0.0 = centro/neutral, +1.0 = polo B extremo)
-  hostility: nivel de hostilidad o agresividad en el lenguaje (0.0 = neutro, 1.0 = muy hostil)
-  confidence: tu confianza en la clasificación (0.0 = no sé, 1.0 = muy seguro)
-
-REGLAS PARA off_topic:
-- off_topic=true SOLO si el titular habla de un tema COMPLETAMENTE DISTINTO
-  (ejemplo: un resultado deportivo cuando el eje es sobre migración).
-- Si el titular habla del tema pero de forma informativa sin tomar postura,
-  eso es stance=0.0 con off_topic=false. Un artículo neutral ES un dato válido.
-- Si el titular menciona el tema de pasada o tangencialmente,
-  pon off_topic=false con stance=0.0 y confidence baja (0.2-0.4).
-
-TITULARES:
-{numbered}
-
-Responde SOLO con un JSON array. Cada elemento es un objeto con: id (número del titular), stance, hostility, confidence, off_topic.
-Ejemplo: [{{"id":1,"stance":-0.6,"hostility":0.2,"confidence":0.8,"off_topic":false}}]
-
-IMPORTANTE:
-- Mide POSTURA, no sentimiento. Un terremoto es negativo pero no tiene postura.
-- El centro (0.0) es una posición legítima, no un fallo. La mayoría de titulares informativos serán cercanos a 0.
-- Hostilidad es agresividad del lenguaje, no desacuerdo.
-- Los titulares pueden estar en cualquier idioma. Evalúa el contenido, no el idioma.
-- Sé GENEROSO con off_topic=false. Marca off_topic=true solo si realmente no tiene NADA que ver."""
-
-    body = {
-        "model": CLASSIFY_MODEL,
-        "max_tokens": 2000,
-        "temperature": 0.1,
-        "messages": [{"role": "user", "content": prompt}],
-    }
-
-    try:
-        text = _call_api(body, api_key, timeout=60)
-    except TransientAPIError as e:
-        log.error("lote de %d titulares SIN clasificar: %s", len(titles), e)
-        return _failed(titles)
-
-    # Parsear el JSON de la respuesta.
-    # Claude a veces envuelve el JSON en ```json ... ```
-    # o añade texto antes/después. Buscamos el array.
-    return _parse_classify_response(text, titles)
+    from analysis import runner
+    _require_key(api_key)
+    bodies = build_classify_bodies(titles, pole_a, pole_b)
+    return parse_classify(runner.run([b for b, _ in bodies], "postura", "sync"), bodies)
 
 
 def _failed(titles: list[str]) -> list[StanceResult]:
@@ -1178,12 +1179,24 @@ def _parse_classify_response(text: str, titles: list[str]
         hostility = max(0.0, min(1.0, hostility))
         confidence = max(0.0, min(1.0, confidence))
 
+        # Campos v2: si faltan quedan como no medidos (nan / None), sin
+        # invalidar la postura, que es lo que alimenta el índice ideológico.
+        try:
+            conflict = float(item.get("conflict"))
+            conflict = max(0.0, min(1.0, conflict)) if np.isfinite(conflict) else float("nan")
+        except (TypeError, ValueError):
+            conflict = float("nan")
+        us_them = item.get("us_them")
+        us_them = us_them if us_them in US_THEM else None
+
         results.append(StanceResult(
             title=title,
             stance=stance,
             hostility=hostility,
             confidence=confidence,
             off_topic=off_topic,
+            conflict=conflict,
+            us_them=us_them,
         ))
 
     return results

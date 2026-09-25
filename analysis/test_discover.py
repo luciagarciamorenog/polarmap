@@ -286,6 +286,23 @@ def test_admit_filters():
     print("[OK] filtro común: sindicados, secciones blandas, sin titular")
 
 
+def test_parse_response_v2_fields():
+    """Libro de códigos v2: conflictividad y nosotros/ellos."""
+    text = ('[{"id":1,"stance":-0.5,"hostility":0.0,"conflict":0.5,'
+            '"us_them":"social_groups","confidence":0.8,"off_topic":false},'
+            '{"id":2,"stance":0.5,"hostility":0.2,"conflict":1.7,'
+            '"us_them":"tribus","confidence":0.9,"off_topic":false},'
+            '{"id":3,"stance":0,"hostility":0,"confidence":0.5,"off_topic":false}]')
+    r = _parse_classify_response(text, ["a", "b", "c"])
+    assert r[0].conflict == 0.5 and r[0].us_them == "social_groups"
+    assert r[1].conflict == 1.0            # recortado a [0, 1]
+    assert r[1].us_them is None            # categoría desconocida
+    assert r[2].conflict != r[2].conflict  # nan: no medido, no inventado
+    assert not any(x.failed for x in r)    # la postura sigue siendo válida
+
+    print("[OK] campos v2: conflictividad y nosotros/ellos")
+
+
 def test_parse_response_missing_ids():
     """Respuesta cortada: los ids que faltan son fallos, no off-topic."""
     text = '[{"id":1,"stance":0.5,"hostility":0.1,"confidence":0.9,"off_topic":false}]'
@@ -410,16 +427,19 @@ def test_assign_prompt_lists_includes():
     sent = {}
 
     def fake_call(body, key, timeout):
-        sent["prompt"] = body["messages"][0]["content"]
-        return '[{"id":1,"topic":1}]'
-    orig = discover._call_api
-    discover._call_api = fake_call
+        sent["system"] = body["system"][0]["text"]
+        sent["cache"] = body["system"][0].get("cache_control")
+        return {"content": [{"type": "text", "text": '[{"id":1,"topic":1}]'}],
+                "usage": {"input_tokens": 10, "output_tokens": 5}}
+    orig = discover._call_api_message
+    discover._call_api_message = fake_call
     try:
         deb = [dict(DEBATES[0], includes=["desahucio de una vecina"])]
         assert discover.assign_topics(["t"], deb, api_key="k") == [1]
     finally:
-        discover._call_api = orig
-    assert "incluye, entre otros: desahucio de una vecina" in sent["prompt"]
+        discover._call_api_message = orig
+    assert "incluye, entre otros: desahucio de una vecina" in sent["system"]
+    assert sent["cache"] == {"type": "ephemeral"}   # la parte fija se cachea
 
     print("[OK] la asignación ve los sucesos que agrupa cada asunto")
 
@@ -490,6 +510,7 @@ if __name__ == "__main__":
     test_parse_response_garbage()
     test_parse_response_clamping()
     test_parse_response_missing_ids()
+    test_parse_response_v2_fields()
     test_theme_mentions()
     test_admit_filters()
     test_parse_assign_response()

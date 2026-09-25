@@ -3,12 +3,14 @@ Pipeline de polarización por país con debates descubiertos por titular.
 
 POR PAÍS:
   1. Reúne todos los titulares analizables de la ventana (ficheros GKG
-     con caché; sin titular, secciones blandas y sindicados fuera).
+     con caché; sin titular, secciones blandas y sindicados fuera) y lee
+     de cada página el titular real y la entradilla (ingest/leads.py).
   2. Claude lee los titulares y propone los debates públicos del día,
      cada uno con dos polos.
   3. Un modelo barato asigna cada titular a un debate o a ninguno.
-  4. Por debate: clasifica postura y hostilidad, y calcula métricas de
-     polarización (ideológica y afectiva).
+  4. Por debate: clasifica con el libro de códigos v2 (validate/CODEBOOK.md):
+     postura con framing, hostilidad del lenguaje, conflictividad y
+     «nosotros contra ellos», y calcula métricas de polarización.
   5. Genera snapshot.json con el contrato v1 (CONTRACT.md) para el mapa,
      y el detalle interno en data/internal/.
 
@@ -19,8 +21,9 @@ Uso (la key se lee de .env en la raíz del proyecto; ver .env.example):
     # Solo cuenta titulares (sin gastar API):
     python3 pipeline_discover.py --countries ES --dry-run
 
-Coste típico por país: 1 llamada Sonnet (debates) + ~1 Haiku por cada
-50 titulares (asignación) + 1 Sonnet por cada 20 titulares asignados.
+Por defecto usa la Batch API (--api-mode batch: mitad de precio, una
+tanda por etapa para todos los países). El consumo real de tokens y su
+coste quedan en data/internal/<salida>_usage.json.
 """
 
 from __future__ import annotations
@@ -35,14 +38,16 @@ from pathlib import Path
 
 import numpy as np
 
-from analysis import contract
+from analysis import contract, runner
 from analysis.discover import (
-    fetch_country_headlines, discover_debates, assign_topics,
-    classify_stances, source_concentration, TransientAPIError,
+    fetch_country_headlines, build_discover_body, parse_debates,
+    build_assign_bodies, parse_assign, build_classify_bodies, parse_classify,
+    source_concentration, TransientAPIError,
     ASSIGN_FAILED, ASSIGN_NONE, MAX_DEBATES,
 )
 from analysis.metrics import polarization_profile
 from ingest.gkg_files import Article, gkg_timestamps
+from ingest.leads import fetch_leads
 
 logging.basicConfig(
     level=logging.INFO,
@@ -79,26 +84,48 @@ COUNTRY_META = {
 }
 
 
+def enrich_with_leads(headlines: dict[str, list[Article]],
+                      respect_tdm: bool = True) -> dict[str, list[Article]]:
+    """
+    Sustituye el titular de la URL por el real y añade la entradilla.
+    Con respect_tdm, los medios que declaran reserva de minería de textos
+    (TDMRep) se quedan fuera del análisis. Lo que no se pudo leer sigue
+    con el titular de la URL, marcado como title_source="url".
+    """
+    urls = [a.url for arts in headlines.values() for a in arts]
+    leads = fetch_leads(urls)
+    out = {}
+    for country, arts in headlines.items():
+        kept, n_page, n_tdm = [], 0, 0
+        for a in arts:
+            ld = leads.get(a.url) or {}
+            if respect_tdm and ld.get("tdm_reserved"):
+                n_tdm += 1
+                continue
+            if ld.get("status") == "ok" and ld.get("title"):
+                a.title, a.title_source = ld["title"], "page"
+                a.lead = ld.get("description", "")
+                n_page += 1
+            kept.append(a)
+        out[country] = kept
+        log.info("[%s] titular real + entradilla: %d de %d · fuera por "
+                 "reserva TDM: %d", country, n_page, len(arts), n_tdm)
+    return out
+
+
 def score_topic(country: str, arts: list[Article], axis: dict,
-                min_articles: int, api_key: str | None,
+                stance_results: list, min_articles: int,
                 records: dict[str, dict]) -> dict:
     """
-    Postura, hostilidad y métricas de UN debate con sus titulares ya
-    asignados. Devuelve el resultado por tema que consume contract y
-    anota la clasificación de cada titular en `records` (clave: URL).
+    Métricas de UN debate a partir de la clasificación de sus titulares
+    (una por titular, en orden). Devuelve el resultado por tema que consume
+    contract y anota la clasificación de cada titular en `records`.
     """
-    lang = COUNTRY_META.get(country, {}).get("lang", "eng")
-    titles = [a.title for a in arts]
-
-    # classify_stances devuelve un resultado por titular, en orden.
-    stance_results = classify_stances(
-        titles, axis["pole_a"], axis["pole_b"],
-        language=lang, api_key=api_key,
-    )
-
     for art, r in zip(arts, stance_results):
         records[art.url].update(
             stance=round(r.stance, 3), hostility=round(r.hostility, 3),
+            conflict=(round(r.conflict, 3) if np.isfinite(r.conflict) else None),
+            us_them=r.us_them,
             confidence=round(r.confidence, 3), off_topic=r.off_topic,
             stance_failed=r.failed)
 
@@ -115,10 +142,15 @@ def score_topic(country: str, arts: list[Article], axis: dict,
         }
 
     stances, hostilities, confidences, on_topic = [], [], [], []
+    conflicts, us_them = [], []
     for art, r in zip(arts, stance_results):
         if r.failed or r.off_topic or not np.isfinite(r.stance):
             continue
         on_topic.append(art)
+        if np.isfinite(r.conflict):
+            conflicts.append(r.conflict)
+        if r.us_them:
+            us_them.append(r.us_them)
         stances.append(r.stance)
         hostilities.append(r.hostility)
         confidences.append(r.confidence)
@@ -164,6 +196,15 @@ def score_topic(country: str, arts: list[Article], axis: dict,
         "source_quality": {
             k: conc[k] for k in ("n_domains", "hhi", "top_share", "reliable")
         },
+        # Descriptivos de las dimensiones afectiva y narrativa (v2). Aún
+        # no entran en el contrato público: se validan antes.
+        "descriptives": {
+            "hostility_mean": float(np.mean(hostilities)),
+            "conflict_mean": float(np.mean(conflicts)) if conflicts else None,
+            "us_them_share": (sum(u != "no" for u in us_them) / len(us_them)
+                              if us_them else None),
+            "center_share": float(np.mean(np.abs(stances) <= 0.2)),
+        },
     }
     result["trustworthy"] = contract.topic_is_trust(result)
     log.info("  [%s] ideológica=%.3f afectiva=%.3f compuesta=%.3f %s",
@@ -173,80 +214,118 @@ def score_topic(country: str, arts: list[Article], axis: dict,
     return result
 
 
-def analyze_country(country: str, arts: list[Article], min_articles: int,
-                    max_debates: int, api_key: str | None,
-                    axes_registry: dict[str, list[str]],
-                    ) -> tuple[list[dict], list[dict]]:
+def _run_grouped(groups: dict, stage: str, mode: str) -> dict:
     """
-    Debates del día de un país → asignación de titulares → métricas.
-    Devuelve (resultados por tema, un registro por titular). Los
-    registros permiten auditar qué fue a cada debate y a "ninguno".
+    Envía juntas las peticiones de varios países o debates (un solo lote
+    en modo batch) y devuelve las respuestas repartidas por grupo.
+    `groups`: {clave: [(body, meta), ...]} → {clave: [texto|None, ...]}
     """
-    name = COUNTRY_META.get(country, {}).get("name", country)
-    titles = [a.title for a in arts]
-    log.info("--- [%s] %s: %d titulares ---", country, name, len(titles))
-    if len(titles) < min_articles:
-        log.info("  [%s] muy pocos titulares → gris", country)
-        return [], []
+    flat = [(k, body) for k, items in groups.items() for body, _ in items]
+    texts = runner.run([body for _, body in flat], stage, mode)
+    out = {k: [] for k in groups}
+    for (k, _), t in zip(flat, texts):
+        out[k].append(t)
+    return out
 
-    try:
-        debates = discover_debates(titles, name, api_key=api_key,
-                                   max_debates=max_debates)
-    except TransientAPIError as e:
-        log.error("  [%s] la API falló al descubrir debates: %s", country, e)
-        return [{"status": "api_error", "stage": "debates",
-                 "n_articles": len(arts), "error": str(e)}], []
-    if not debates:
-        log.info("  [%s] sin debates identificables → gris", country)
-        return [], []
 
-    # Si un debate ya salió antes, reutilizar sus polos (orientación
-    # congelada por etiqueta normalizada).
-    debates = [contract.freeze_axis(d, axes_registry) for d in debates]
-    for k, d in enumerate(debates, 1):
-        log.info("  [%s] debate %d: '%s' | %s ↔ %s", country, k,
-                 d["label"], d["pole_a"][:45], d["pole_b"][:45])
+def analyze_all(headlines: dict[str, list[Article]], countries: list[str],
+                min_articles: int, max_debates: int,
+                axes_registry: dict[str, list[str]], mode: str,
+                ) -> tuple[dict[str, list[dict]], list[dict]]:
+    """
+    Tres etapas, cada una para TODOS los países a la vez (en modo batch,
+    un lote por etapa en vez de uno por país):
+      1. debates del día de cada país
+      2. asignación de cada titular a un debate o a ninguno
+      3. postura, hostilidad, conflictividad y nosotros/ellos por debate
+    Devuelve (resultados por tema de cada país, un registro por titular).
+    """
+    results = {c: [] for c in countries}
+    records: dict[str, dict] = {}
 
-    assigned = assign_topics(titles, debates, api_key=api_key)
-    records = {
-        a.url: {
-            "country": country, "domain": a.domain, "url": a.url,
-            "title": a.title,
-            "topic": (debates[t - 1]["label"] if t > 0 else
-                      None if t == ASSIGN_NONE else "__failed__"),
-        }
-        for a, t in zip(arts, assigned)
-    }
-    counts = Counter(assigned)
-    n_failed = counts[ASSIGN_FAILED]
-    log.info("  [%s] asignación: %s | ninguno %d | fallidos %d", country,
-             " · ".join(f"{k}:{counts[k]}" for k in range(1, len(debates) + 1)),
-             counts[ASSIGN_NONE], n_failed)
-    if n_failed > MAX_FAILED_SHARE * len(titles):
-        log.error("  [%s] %d de %d titulares SIN asignar → país descartado",
-                  country, n_failed, len(titles))
-        return [{"status": "classification_failed", "stage": "assignment",
-                 "n_articles": len(arts), "n_failed": n_failed}], \
-            list(records.values())
-
-    results = []
-    for k, debate in enumerate(debates, 1):
-        topic_arts = [a for a, t in zip(arts, assigned) if t == k]
-        if len(topic_arts) < min_articles:
-            log.info("  [%s] '%s': solo %d titulares asignados → sin "
-                     "métricas", country, debate["label"], len(topic_arts))
-            results.append({
-                "status": "insufficient_after_filtering",
-                "axis": debate,
-                "n_articles": len(topic_arts),
-                "n_classified": len(topic_arts),
-                "n_effective": float(len(topic_arts)),
-            })
+    # ── 1. Debates ──
+    eligible = []
+    for c in countries:
+        n = len(headlines.get(c, []))
+        log.info("--- [%s] %s: %d titulares ---", c,
+                 COUNTRY_META.get(c, {}).get("name", c), n)
+        if n < min_articles:
+            log.info("  [%s] muy pocos titulares → gris", c)
+        else:
+            eligible.append(c)
+    disc = _run_grouped({c: [(build_discover_body(
+        [a.title for a in headlines[c]], COUNTRY_META.get(c, {}).get("name", c),
+        max_debates), None)] for c in eligible}, "debates", mode)
+    debates = {}
+    for c in eligible:
+        try:
+            if disc[c][0] is None:
+                raise TransientAPIError("la API no devolvió los debates")
+            ds = parse_debates(disc[c][0], max_debates)
+        except TransientAPIError as e:
+            log.error("  [%s] la API falló al descubrir debates: %s", c, e)
+            results[c] = [{"status": "api_error", "stage": "debates",
+                           "n_articles": len(headlines[c]), "error": str(e)}]
             continue
-        log.info("  [%s] '%s': %d titulares", country, debate["label"],
-                 len(topic_arts))
-        results.append(score_topic(country, topic_arts, debate,
-                                   min_articles, api_key, records))
+        if not ds:
+            log.info("  [%s] sin debates identificables → gris", c)
+            continue
+        # Orientación de polos congelada por etiqueta normalizada.
+        debates[c] = [contract.freeze_axis(d, axes_registry) for d in ds]
+        for k, d in enumerate(debates[c], 1):
+            log.info("  [%s] debate %d: '%s' | %s ↔ %s", c, k,
+                     d["label"], d["pole_a"][:45], d["pole_b"][:45])
+
+    # ── 2. Asignación ──
+    assign_bodies = {c: build_assign_bodies([a.text() for a in headlines[c]], debates[c])
+                     for c in debates}
+    assign_texts = _run_grouped(assign_bodies, "asignacion", mode)
+    assigned = {}
+    for c in debates:
+        arts = headlines[c]
+        assigned[c] = parse_assign(assign_texts[c], assign_bodies[c], len(debates[c]))
+        for a, t in zip(arts, assigned[c]):
+            records[a.url] = {
+                "country": c, "domain": a.domain, "url": a.url,
+                "title": a.title, "lead": a.lead, "title_source": a.title_source,
+                "topic": (debates[c][t - 1]["label"] if t > 0 else
+                          None if t == ASSIGN_NONE else "__failed__"),
+            }
+        counts = Counter(assigned[c])
+        n_failed = counts[ASSIGN_FAILED]
+        log.info("  [%s] asignación: %s | ninguno %d | fallidos %d", c,
+                 " · ".join(f"{k}:{counts[k]}" for k in range(1, len(debates[c]) + 1)),
+                 counts[ASSIGN_NONE], n_failed)
+        if n_failed > MAX_FAILED_SHARE * len(arts):
+            log.error("  [%s] %d de %d titulares SIN asignar → país descartado",
+                      c, n_failed, len(arts))
+            results[c] = [{"status": "classification_failed", "stage": "assignment",
+                           "n_articles": len(arts), "n_failed": n_failed}]
+            del assigned[c]
+
+    # ── 3. Postura y demás dimensiones, por debate ──
+    to_score, classify_bodies = {}, {}
+    for c in assigned:
+        for k, d in enumerate(debates[c], 1):
+            topic_arts = [a for a, t in zip(headlines[c], assigned[c]) if t == k]
+            if len(topic_arts) < min_articles:
+                log.info("  [%s] '%s': solo %d titulares asignados → sin métricas",
+                         c, d["label"], len(topic_arts))
+                results[c].append({
+                    "status": "insufficient_after_filtering", "axis": d,
+                    "n_articles": len(topic_arts), "n_classified": len(topic_arts),
+                    "n_effective": float(len(topic_arts))})
+                continue
+            to_score[(c, k)] = (d, topic_arts)
+            classify_bodies[(c, k)] = build_classify_bodies(
+                [a.text() for a in topic_arts], d["pole_a"], d["pole_b"])
+    classify_texts = _run_grouped(classify_bodies, "postura", mode)
+    for key, (d, topic_arts) in to_score.items():
+        c = key[0]
+        log.info("  [%s] '%s': %d titulares", c, d["label"], len(topic_arts))
+        stance_results = parse_classify(classify_texts[key], classify_bodies[key])
+        results[c].append(score_topic(c, topic_arts, d, stance_results,
+                                      min_articles, records))
     return results, list(records.values())
 
 
@@ -395,6 +474,36 @@ def build_country_output(country: str, topic_results: list[dict],
     }
 
 
+def report_usage(path: Path, headlines: dict[str, list[Article]],
+                 countries: list[str], mode: str) -> dict:
+    """
+    Consumo REAL de la corrida (usage de cada respuesta de la API), por
+    etapa y modelo, con su coste. Lo guarda en `path` y lo resume en el log.
+    """
+    summary = runner.LEDGER.summary()
+    n_items = sum(len(headlines.get(c, [])) for c in countries)
+    summary.update({
+        "api_mode": mode, "countries": countries, "n_headlines": n_items,
+        "usd_per_country": summary["usd_total"] / max(1, len(countries)),
+        "usd_per_1000_headlines": summary["usd_total"] / max(1, n_items) * 1000,
+        "prices": runner.PRICES, "cache_write": runner.CACHE_WRITE,
+        "cache_read": runner.CACHE_READ, "batch_discount": runner.BATCH_DISCOUNT,
+    })
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(summary, indent=2, ensure_ascii=False))
+    log.info("")
+    log.info("CONSUMO REAL (%s):", mode)
+    for stage, u in summary["by_stage"].items():
+        log.info("  %-34s %3d llamadas · entrada %7d · caché escrita %6d · "
+                 "caché leída %7d · salida %6d · %.4f $", stage, u["calls"],
+                 u["input"], u["cache_write"], u["cache_read"], u["output"], u["usd"])
+    log.info("  TOTAL %.4f $ · %.4f $/país · %.4f $ por 1.000 titulares · "
+             "%.0f%% del prompt leído de caché", summary["usd_total"],
+             summary["usd_per_country"], summary["usd_per_1000_headlines"],
+             100 * summary["cache_hit_share"])
+    return summary
+
+
 def load_env(path: Path = ENV_PATH) -> None:
     """
     Carga KEY=valor desde .env (ignorado por git). Gana sobre lo que
@@ -440,6 +549,20 @@ def main():
         help="Mínimo de artículos para analizar un tema (default: 30). "
              "Suelo de análisis, no de trust: trust exige n>=80 "
              "(CONTRACT.md §3)",
+    )
+    ap.add_argument(
+        "--no-leads", action="store_true",
+        help="No leer titular real ni entradilla: solo el titular de la URL",
+    )
+    ap.add_argument(
+        "--tdm", choices=("respect", "ignore"), default="respect",
+        help="Medios con reserva de minería de textos: 'respect' los deja "
+             "fuera (default), 'ignore' los analiza igual",
+    )
+    ap.add_argument(
+        "--api-mode", choices=("batch", "sync"), default="batch",
+        help="'batch' (default): Batch API, mitad de precio, puede tardar; "
+             "'sync': al momento, precio completo",
     )
     ap.add_argument(
         "--dry-run", action="store_true",
@@ -496,6 +619,10 @@ def main():
     for country in countries:
         log.info("[%s] %d titulares analizables", country,
                  len(headlines.get(country, [])))
+    if not args.no_leads:
+        log.info("Leyendo titular real y entradilla de cada noticia…")
+        headlines = enrich_with_leads(headlines,
+                                      respect_tdm=args.tdm == "respect")
 
     if args.dry_run:
         log.info("--- DRY RUN: no se llama a la API de Claude ---")
@@ -511,17 +638,17 @@ def main():
 
     axes_registry = (json.loads(AXES_PATH.read_text())
                      if AXES_PATH.exists() else {})
-    all_topic_results: dict[str, list[dict]] = {}
-    headline_records: list[dict] = []
-    for country in countries:
-        all_topic_results[country], recs = analyze_country(
-            country, headlines.get(country, []),
-            min_articles=args.min_articles,
-            max_debates=args.max_debates,
-            api_key=None,  # usa ANTHROPIC_API_KEY del entorno
-            axes_registry=axes_registry,
+    usage_path = INTERNAL_DIR / f"{Path(args.out).stem}_usage.json"
+    runner.LEDGER.reset()
+    try:
+        all_topic_results, headline_records = analyze_all(
+            headlines, countries, min_articles=args.min_articles,
+            max_debates=args.max_debates, axes_registry=axes_registry,
+            mode=args.api_mode,
         )
-        headline_records.extend(recs)
+    finally:
+        # El consumo se guarda también si la corrida se corta (p. ej. sin saldo)
+        report_usage(usage_path, headlines, countries, args.api_mode)
 
     # ─────────────────────────────────────────────────────────────
     # CONSTRUIR SALIDA
