@@ -389,6 +389,92 @@ def test_classify_api_failure_is_not_off_topic():
     print("[OK] fallos de API se distinguen de off-topic y de sin debate")
 
 
+DEBATES = [{"label": "Vivienda", "pole_a": "A", "pole_b": "B"},
+           {"label": "Migración", "pole_a": "C", "pole_b": "D"}]
+
+
+def test_parse_assign_response():
+    """Asignación: ids ausentes, fuera de rango o no enteros son fallos."""
+    text = ('```json\n[{"id":1,"topic":2},{"id":2,"topic":0},'
+            '{"id":3,"topic":7},{"id":4,"topic":"1"},{"id":5,"topic":true}]```')
+    out = discover._parse_assign_response(text, 6, 2)
+    F = discover.ASSIGN_FAILED
+    assert out == [2, 0, F, F, F, F], out
+    assert discover._parse_assign_response("nada", 3, 2) == [F, F, F]
+
+    print("[OK] parseo de asignación con fallos explícitos")
+
+
+def test_assign_prompt_lists_includes():
+    """Los sucesos agrupados llegan al prompt de asignación."""
+    sent = {}
+
+    def fake_call(body, key, timeout):
+        sent["prompt"] = body["messages"][0]["content"]
+        return '[{"id":1,"topic":1}]'
+    orig = discover._call_api
+    discover._call_api = fake_call
+    try:
+        deb = [dict(DEBATES[0], includes=["desahucio de una vecina"])]
+        assert discover.assign_topics(["t"], deb, api_key="k") == [1]
+    finally:
+        discover._call_api = orig
+    assert "incluye, entre otros: desahucio de una vecina" in sent["prompt"]
+
+    print("[OK] la asignación ve los sucesos que agrupa cada asunto")
+
+
+def test_assign_api_failure():
+    """Un lote caído se marca como fallido, no como 'ninguno'."""
+    out, _ = _with_responses(
+        [_FakeResp(503)],
+        lambda: discover.assign_topics(["a", "b", "c"], DEBATES,
+                                       api_key="k"))
+    assert out == [discover.ASSIGN_FAILED] * 3
+
+    out, _ = _with_responses(
+        [_ok('[{"id":1,"topic":1},{"id":2,"topic":0}]')],
+        lambda: discover.assign_topics(["a", "b"], DEBATES, api_key="k"))
+    assert out == [1, 0]
+
+    print("[OK] asignación: fallo de API ≠ ninguno")
+
+
+def test_discover_debates():
+    """Parseo de debates: descarta incompletos y duplicados; ilegible = error."""
+    text = ('Aquí van: [{"label":"Vivienda","pole_a":"A","pole_b":"B"},'
+            '{"label":"vivienda ","pole_a":"X","pole_b":"Y"},'
+            '{"label":"Sin polos","pole_a":""},'
+            '{"label":"Migración","pole_a":"C","pole_b":"D"}]')
+    out, _ = _with_responses(
+        [_ok(text)],
+        lambda: discover.discover_debates(["t"] * 5, "España", api_key="k"))
+    assert [d["label"] for d in out] == ["Vivienda", "Migración"], out
+    assert all(d["includes"] == [] for d in out)
+
+    text = ('[{"label":"Vivienda","pole_a":"A","pole_b":"B",'
+            '"includes":["desahucio de una vecina", 3, "", "alquiler"]}]')
+    out, _ = _with_responses(
+        [_ok(text)],
+        lambda: discover.discover_debates(["t"], "España", api_key="k"))
+    assert out[0]["includes"] == ["desahucio de una vecina", "alquiler"]
+
+    out, _ = _with_responses(
+        [_ok("[]")],
+        lambda: discover.discover_debates(["t"], "España", api_key="k"))
+    assert out == []
+
+    try:
+        _with_responses([_ok("no sé")],
+                        lambda: discover.discover_debates(["t"], "España",
+                                                          api_key="k"))
+        assert False, "respuesta ilegible no es 'sin debates'"
+    except discover.TransientAPIError:
+        pass
+
+    print("[OK] debates: limpieza, lista vacía y respuesta ilegible")
+
+
 # ─────────────────────────────────────────────────────────────
 # Ejecutar todos los tests
 # ─────────────────────────────────────────────────────────────
@@ -406,6 +492,10 @@ if __name__ == "__main__":
     test_parse_response_missing_ids()
     test_theme_mentions()
     test_admit_filters()
+    test_parse_assign_response()
+    test_assign_api_failure()
+    test_assign_prompt_lists_includes()
+    test_discover_debates()
     test_api_retries_and_errors()
     test_classify_api_failure_is_not_off_topic()
     print()

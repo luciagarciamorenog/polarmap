@@ -584,6 +584,62 @@ def fetch_articles_for_group(tags: list[str], countries: list[str],
     return dict(by_country)
 
 
+def fetch_country_headlines(countries: list[str], hours_back: int = 24,
+                            every_n: int = 4, max_files: int = 60,
+                            cache_dir: Path = CACHE_DIR,
+                            ) -> tuple[dict[str, list[Article]], AdmitStats]:
+    """
+    Todos los titulares analizables de cada país en la ventana, sin
+    filtrar por etiqueta GKG: el tema lo decide después assign_topics
+    leyendo el titular. Solo aplica _admit (titular, sección, sindicación).
+    """
+    stamps = gkg_timestamps(hours_back, every_n)[:max_files]
+    cset = set(countries)
+    seen_keys: dict[str, set[str]] = defaultdict(set)
+    stats = AdmitStats()
+    by_country: dict[str, list[Article]] = defaultdict(list)
+    csv.field_size_limit(10 * 1024 * 1024)
+
+    for i, stamp in enumerate(stamps, 1):
+        for is_trans in (False, True):
+            raw = download_gkg(stamp, cache_dir, translation=is_trans)
+            if raw is None:
+                continue
+            try:
+                zf = zipfile.ZipFile(io.BytesIO(raw))
+                data = zf.read(zf.namelist()[0]).decode("utf-8",
+                                                        errors="replace")
+            except (zipfile.BadZipFile, IndexError, UnicodeDecodeError):
+                continue
+            reader = csv.reader(io.StringIO(data), delimiter="\t",
+                                quoting=csv.QUOTE_NONE)
+            for row in reader:
+                admitted = _admit(row, cset, seen_keys, stats)
+                if admitted is None:
+                    continue
+                country, title = admitted
+                tone = None
+                try:
+                    tone = float(row[COL_TONE].split(",")[0])
+                except (ValueError, IndexError):
+                    pass
+                by_country[country].append(Article(
+                    url=row[COL_DOC_ID], title=title,
+                    domain=row[COL_SOURCE_NAME], country=country,
+                    language="", seendate=row[COL_DATE], topic="",
+                    tone=tone,
+                ))
+        if i % 6 == 0 or i == len(stamps):
+            log.info("  titulares: %d/%d ficheros | %d admitidos",
+                     i, len(stamps), stats.admitted)
+
+    log.info("  titulares: %d de los países pedidos → %d admitidos "
+             "(sin titular %d, sección blanda %d, sindicados %d)",
+             stats.seen, stats.admitted, stats.no_title, stats.soft,
+             stats.duplicate)
+    return dict(by_country), stats
+
+
 # ===================================================================
 # DESCUBRIMIENTO DEL EJE DE DEBATE
 # ===================================================================
@@ -730,6 +786,202 @@ subyacente, aunque sea sutil, identifícalo."""
         return None
 
     return {"label": label, "pole_a": pole_a, "pole_b": pole_b}
+
+
+def _json_array(text: str):
+    """Primer array JSON de la respuesta (tolera ```json y texto extra)."""
+    cleaned = re.sub(r"```(json)?", "", text).strip()
+    match = re.search(r"\[.*\]", cleaned, re.DOTALL)
+    if not match:
+        return None
+    try:
+        items = json.loads(match.group(0))
+    except json.JSONDecodeError:
+        return None
+    return items if isinstance(items, list) else None
+
+
+# ===================================================================
+# DEBATES DEL DÍA Y ASIGNACIÓN DE TITULARES
+# ===================================================================
+# El tema se decide leyendo el titular, no por la etiqueta GKG: las
+# etiquetas se ponen aunque el tema salga una vez en el cuerpo, y los
+# grupos resultantes eran 65-88 % off-topic (ES, 23-sep-2026).
+#
+#   1. discover_debates: Claude lee TODOS los titulares del país y
+#      propone los debates públicos del día, cada uno con dos polos.
+#   2. assign_topics: un modelo barato asigna cada titular a un debate
+#      o a ninguno. Un titular cuenta como mucho en un debate.
+# ===================================================================
+
+ASSIGN_MODEL = "claude-haiku-4-5"
+ASSIGN_BATCH = 50
+MAX_DISCOVER_TITLES = 1200
+MAX_DEBATES = 6
+
+
+def discover_debates(titles: list[str], country_name: str,
+                     api_key: str | None = None,
+                     max_debates: int = MAX_DEBATES) -> list[dict]:
+    """
+    Debates públicos presentes en los titulares de un país.
+
+    Devuelve [{"label", "pole_a", "pole_b", "includes"}, ...] (puede
+    ser []). `includes` son los sucesos del día que caen en ese asunto;
+    se pasan a la asignación para que no se queden en "ninguno".
+    Un fallo de la API o una respuesta ilegible lanza TransientAPIError;
+    una key inválida, FatalAPIError. Nunca se confunde con "no hay debate".
+    """
+    key = api_key or os.environ.get("ANTHROPIC_API_KEY")
+    if not key:
+        raise RuntimeError("Falta ANTHROPIC_API_KEY")
+
+    sample = titles
+    if len(sample) > MAX_DISCOVER_TITLES:
+        # Muestra sistemática, no aleatoria: reproducible entre corridas.
+        step = len(sample) / MAX_DISCOVER_TITLES
+        sample = [sample[int(i * step)] for i in range(MAX_DISCOVER_TITLES)]
+    block = "\n".join(f"- {t}" for t in sample)
+
+    prompt = f"""Estos son {len(sample)} titulares de medios de {country_name} de las últimas 24 horas. Están reconstruidos desde la URL: sin tildes y a veces sin artículos.
+
+{block}
+
+Identifica entre 3 y {max_debates} ASUNTOS DE DEBATE PÚBLICO presentes en estos titulares. Un asunto de debate es una cuestión de fondo en la que actores reales del país (partidos, colectivos, medios, expertos) defienden posturas enfrentadas.
+
+ASUNTOS, NO SUCESOS. Los titulares hablan de hechos concretos del día; tu trabajo es agruparlos en el asunto de fondo que los conecta:
+- "Crisis en Ceuta", "llegada de pateras a Canarias" y "ley de nietos" → asunto "Política migratoria".
+- "Desahucio de una vecina", "precio del alquiler" y "ayudas a la compra" → asunto "Vivienda".
+- "Juicio a un cargo público", "amnistía" y "choque Gobierno-jueces" → asunto "Justicia e instituciones".
+Si dos asuntos candidatos comparten actores o se enmarcan igual, fúndelos en uno. Prefiere 4 asuntos que agrupen muchos titulares a 8 que agrupen pocos.
+
+Para cada asunto:
+- label: nombre corto (2-5 palabras) en el idioma principal del país. Debe servir igual otro día: sin nombres propios de personas ni fechas.
+- pole_a y pole_b: las dos posturas enfrentadas sobre QUÉ DEBE HACERSE o CÓMO VALORAR el asunto, cada una en una frase. Evita polos del tipo "el Gobierno lo hace bien / mal" salvo que el asunto sea precisamente la gestión de un actor.
+- includes: 3-6 sucesos o subtemas concretos de estos titulares que caen en el asunto.
+
+Criterios:
+- Cada asunto debe cubrir MUCHOS titulares (idealmente 40 o más). No inventes asuntos para llegar al máximo.
+- Que no se solapen: cada titular debería encajar como mucho en uno.
+- Los dos polos hablan del MISMO objeto que el label y son posiciones que alguien defiende de verdad. No metas en un polo un asunto distinto (por ejemplo, no conviertas un debate sanitario en uno migratorio).
+- Redacción neutral y simétrica: ninguno de los polos debe sonar como el razonable.
+- Excluye sucesos, deportes, cultura y noticias de servicio que no tengan controversia.
+
+Responde SOLO con un array JSON, ordenado de más a menos titulares:
+[{{"label": "...", "pole_a": "...", "pole_b": "...", "includes": ["...", "..."]}}]
+Si no hay ningún debate, responde []."""
+
+    body = {
+        "model": DISCOVER_MODEL,
+        "max_tokens": 2000,
+        "temperature": 0.2,
+        "messages": [{"role": "user", "content": prompt}],
+    }
+    text = _call_api(body, key, timeout=120)
+    items = _json_array(text)
+    if items is None:
+        raise TransientAPIError(
+            f"respuesta de debates ilegible: {text[:200]!r}")
+
+    debates, seen = [], set()
+    for it in items:
+        if not isinstance(it, dict):
+            continue
+        label = str(it.get("label", "")).strip()
+        pole_a = str(it.get("pole_a", "")).strip()
+        pole_b = str(it.get("pole_b", "")).strip()
+        includes = it.get("includes") or []
+        includes = [str(x).strip() for x in includes
+                    if isinstance(x, str) and x.strip()][:6]
+        norm = " ".join(label.lower().split())
+        if not (label and pole_a and pole_b) or norm in seen:
+            continue
+        seen.add(norm)
+        debates.append({"label": label, "pole_a": pole_a, "pole_b": pole_b,
+                        "includes": includes})
+    return debates[:max_debates]
+
+
+# Resultado de assign_topics por titular:
+ASSIGN_NONE = 0      # no pertenece a ningún debate
+ASSIGN_FAILED = -1   # no se pudo asignar (API o respuesta ilegible)
+
+
+def assign_topics(titles: list[str], debates: list[dict],
+                  api_key: str | None = None) -> list[int]:
+    """
+    Asigna cada titular a un debate (1..len(debates)), a ninguno
+    (ASSIGN_NONE) o marca que falló (ASSIGN_FAILED). Mismo orden que
+    `titles`. FatalAPIError corta la corrida.
+    """
+    key = api_key or os.environ.get("ANTHROPIC_API_KEY")
+    if not key:
+        raise RuntimeError("Falta ANTHROPIC_API_KEY")
+
+    out: list[int] = []
+    for i in range(0, len(titles), ASSIGN_BATCH):
+        out.extend(_assign_batch(titles[i:i + ASSIGN_BATCH], debates, key))
+        log.info("    asignados %d/%d titulares",
+                 min(i + ASSIGN_BATCH, len(titles)), len(titles))
+    return out
+
+
+def _assign_batch(titles: list[str], debates: list[dict],
+                  api_key: str) -> list[int]:
+    def describe(k, d):
+        line = f"{k}. {d['label']} (de «{d['pole_a']}» a «{d['pole_b']}»)"
+        if d.get("includes"):
+            line += "\n   incluye, entre otros: " + "; ".join(d["includes"])
+        return line
+    topics = "\n".join(describe(k, d) for k, d in enumerate(debates, 1))
+    numbered = "\n".join(f"{j}. {t}" for j, t in enumerate(titles, 1))
+    prompt = f"""Asigna cada titular al debate público del que trata.
+
+DEBATES:
+{topics}
+
+TITULARES (reconstruidos desde la URL, sin tildes):
+{numbered}
+
+Reglas:
+- topic = número del debate si el titular trata de su asunto, aunque sea de forma informativa y sin tomar postura. Cada debate es un asunto amplio: cuenta cualquier hecho del día que forme parte de él, no solo los ejemplos listados.
+- topic = 0 si no trata de ninguno. Ante la duda, 0: es mejor perder un titular que meter uno que no toca.
+- Si encaja en varios, el más central.
+
+Responde SOLO con un array JSON, un elemento por titular:
+[{{"id": 1, "topic": 0}}]"""
+
+    body = {
+        "model": ASSIGN_MODEL,
+        "max_tokens": 2000,
+        "temperature": 0,
+        "messages": [{"role": "user", "content": prompt}],
+    }
+    try:
+        text = _call_api(body, api_key, timeout=60)
+    except TransientAPIError as e:
+        log.error("lote de %d titulares SIN asignar: %s", len(titles), e)
+        return [ASSIGN_FAILED] * len(titles)
+    return _parse_assign_response(text, len(titles), len(debates))
+
+
+def _parse_assign_response(text: str, n_titles: int,
+                           n_debates: int) -> list[int]:
+    items = _json_array(text)
+    if items is None:
+        log.error("respuesta de asignación ilegible")
+        return [ASSIGN_FAILED] * n_titles
+    by_id = {it.get("id"): it.get("topic") for it in items
+             if isinstance(it, dict)}
+    out = []
+    for j in range(1, n_titles + 1):
+        topic = by_id.get(j)
+        if isinstance(topic, bool) or not isinstance(topic, int) \
+                or not 0 <= topic <= n_debates:
+            out.append(ASSIGN_FAILED)   # ausente o fuera de rango
+        else:
+            out.append(topic)
+    return out
 
 
 # ===================================================================

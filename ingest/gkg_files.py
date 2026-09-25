@@ -85,8 +85,8 @@ THEME_MAP = {
 # medios con dominio .com necesitan lista explícita.
 TLD_COUNTRY = {
     ".es": "ES", ".fr": "FR", ".de": "DE", ".it": "IT", ".nl": "NL",
-    ".pl": "PL", ".br": "BR", ".ar": "AR", ".mx": "MX", ".uk": "GB",
-    ".in": "IN",
+    ".pl": "PL", ".br": "BR", ".ar": "AR", ".mx": "MX", ".cl": "CL",
+    ".uk": "GB", ".in": "IN",
 }
 
 DOMAIN_COUNTRY = {

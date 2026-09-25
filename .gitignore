@@ -16,3 +16,5 @@ __pycache__/
 data/internal/*_full.json
 # Corridas parciales: no son el mapa publicado
 data/snapshot_partial.json
+# Clasificación por titular de cada corrida (URLs; para auditar)
+data/internal/*_headlines.jsonl

@@ -169,6 +169,12 @@ for url, esperado in blandas:
     checks.append((f"blanda={esperado}: {url[12:50]}", got == esperado))
     print(f"  [{'PASA' if got == esperado else 'FALLA'}] {got!s:<5} {url}")
 
+# Los 10 países v1 tienen que poder resolverse (CL faltaba: siempre gris)
+for dom, pais in [("latercera.cl", "CL"), ("emol.cl", "CL"),
+                  ("clarin.com.ar", "AR"), ("eluniversal.com.mx", "MX"),
+                  ("folha.uol.com.br", "BR"), ("bbc.co.uk", "GB")]:
+    checks.append((f"{dom} -> {pais}", domain_to_country(dom) == pais))
+
 fallos = [d for d, ok in checks if not ok]
 print()
 print("RESULTADO:", "TODO PASA" if not fallos else f"FALLOS: {fallos}")

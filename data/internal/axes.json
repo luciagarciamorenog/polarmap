@@ -1,7 +1,43 @@
 {
+  "amnistia y retorno de puigdemont": [
+    "El Tribunal Constitucional debe aplicar la amnistía a la malversación y despejar el camino para el regreso de Puigdemont.",
+    "Amnistiar la malversación supone una politización de la justicia y un agravio al Estado de derecho."
+  ],
   "coste de vida y poder adquisitivo": [
     "Los precios (alquiler, energía, combustible) son insostenibles y el Estado debe intervenir con ayudas y regulación",
     "Las subvenciones y controles de precios distorsionan el mercado y no resuelven el problema estructural"
+  ],
+  "crisis migratoria en ceuta": [
+    "El Gobierno gestiona adecuadamente la crisis migratoria y exige responsabilidades a Marruecos por el fallo en el control fronterizo.",
+    "El Gobierno es responsable de la inseguridad en Ceuta por su inacción ante Marruecos y la falta de medidas contundentes."
+  ],
+  "crisis migratoria y fronteras": [
+    "España debe exigir a Marruecos un control efectivo de la frontera y reforzar las devoluciones para frenar la llegada masiva de migrantes.",
+    "La respuesta debe priorizar la acogida humanitaria, el reparto solidario de menores y no externalizar la responsabilidad a terceros países."
+  ],
+  "desahucio de maricarmen": [
+    "Las administraciones (Ayuntamiento, Comunidad) ofrecen alternativas habitacionales y no son responsables directas del desahucio.",
+    "Las administraciones son responsables del desahucio de Maricarmen por no haber garantizado su derecho a la vivienda."
+  ],
+  "expulsion de diputada por spray de pimienta": [
+    "Armengol actuó correctamente al expulsar a la diputada del PP por exhibir un objeto prohibido en el hemiciclo.",
+    "La expulsión de Ana Vázquez fue un abuso de autoridad desproporcionado ante un objeto que no constituye un arma."
+  ],
+  "financiacion autonomica": [
+    "El modelo de financiación debe reformarse para garantizar la igualdad entre territorios, sin privilegios singulares para ninguna comunidad.",
+    "Cada comunidad debe poder negociar su propio modelo de financiación, incluso de forma bilateral, para ajustarlo a su realidad."
+  ],
+  "independencia judicial y ataques al poder judicial": [
+    "El Gobierno ataca sistemáticamente a los jueces que investigan casos de corrupción, socavando la independencia judicial.",
+    "El Gobierno denuncia el activismo político de ciertos jueces y defiende la legitimidad de supervisar el funcionamiento del CGPJ."
+  ],
+  "inteligencia artificial y regulacion": [
+    "La inteligencia artificial debe regularse con marcos éticos y de gobernanza que protejan a los ciudadanos, especialmente a los menores.",
+    "Una regulación excesiva de la inteligencia artificial frena la innovación y debe quedar en manos de actores privados y gobiernos fuertes."
+  ],
+  "justicia amnistia e instituciones": [
+    "La amnistía y las decisiones del Tribunal Constitucional son legítimas y necesarias para la normalización política y el retorno de los exiliados.",
+    "La amnistía y la presión sobre jueces socavan el Estado de derecho y suponen una politización inaceptable de la justicia."
   ],
   "justicia y derechos legales": [
     "El sistema judicial protege eficazmente los derechos individuales y actúa con independencia",
@@ -11,6 +47,14 @@
     "Es necesario reforzar el control fronterizo y los medios de seguridad para frenar la llegada de embarcaciones",
     "Hay que priorizar el rescate humanitario y la acogida de las personas que llegan por mar"
   ],
+  "politica de vivienda y alquiler": [
+    "Se necesitan medidas públicas urgentes como regulación del alquiler, más vivienda pública y freno a los fondos buitre para garantizar el acceso a la vivienda.",
+    "Las medidas intervencionistas sobre el mercado del alquiler desincentivan la oferta y no resuelven el problema de acceso a la vivienda."
+  ],
+  "reunion trump delcy rodriguez": [
+    "El encuentro entre Trump y Delcy Rodríguez es un avance diplomático que abre oportunidades para Venezuela.",
+    "Reunirse con Delcy Rodríguez legitima al régimen venezolano e ignora las denuncias de la oposición y la diáspora."
+  ],
   "sanidad publica y acceso a servicios": [
     "El sistema sanitario público debe garantizar cobertura universal sin discriminación por origen",
     "Los recursos sanitarios deben priorizarse para los ciudadanos españoles frente a otros colectivos"
@@ -18,5 +62,9 @@
   "transformacion urbana y calidad de vida": [
     "Las ciudades deben modernizarse con nuevas normas, zonas verdes y restricciones para mejorar la convivencia",
     "Los cambios urbanos (desahucios, ZBE, regulaciones) perjudican a vecinos vulnerables y limitan libertades cotidianas"
+  ],
+  "vivienda y desahucios": [
+    "Las administraciones deben intervenir activamente para garantizar el derecho a la vivienda, frenando desahucios y regulando el alquiler.",
+    "La solución pasa por aumentar la oferta de vivienda pública y privada, sin vulnerar los derechos de los propietarios ni el mercado."
   ]
 }
