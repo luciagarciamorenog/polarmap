@@ -175,6 +175,13 @@ for dom, pais in [("latercera.cl", "CL"), ("emol.cl", "CL"),
                   ("folha.uol.com.br", "BR"), ("bbc.co.uk", "GB")]:
     checks.append((f"{dom} -> {pais}", domain_to_country(dom) == pais))
 
+from ingest.gkg_files import Article  # noqa: E402
+a = Article(url="u", title="Titular", domain="d", country="ES", language="",
+            seendate="", topic="")
+checks.append(("texto sin entradilla = titular", a.text() == "Titular"))
+a.lead = "Entradilla."
+checks.append(("texto con entradilla", a.text() == "Titular. Entradilla."))
+
 fallos = [d for d, ok in checks if not ok]
 print()
 print("RESULTADO:", "TODO PASA" if not fallos else f"FALLOS: {fallos}")

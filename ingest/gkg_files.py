@@ -130,6 +130,12 @@ class Article:
     seendate: str
     topic: str
     tone: float | None = None
+    lead: str = ""              # entradilla (og:description), si se leyó
+    title_source: str = "url"   # "url" (slug) o "page" (og:title)
+
+    def text(self) -> str:
+        """Lo que lee el clasificador: titular y, si hay, entradilla."""
+        return f"{self.title}. {self.lead}" if self.lead else self.title
 
     def to_dict(self):
         return asdict(self)
