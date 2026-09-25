@@ -7,6 +7,10 @@
     "Los precios (alquiler, energía, combustible) son insostenibles y el Estado debe intervenir con ayudas y regulación",
     "Las subvenciones y controles de precios distorsionan el mercado y no resuelven el problema estructural"
   ],
+  "crisis de vivienda y desahucios": [
+    "El Estado debe intervenir urgentemente con medidas coercitivas —decretos antidesahucios, limitación de fondos buitre, alquiler asequible— para garantizar el derecho a la vivienda.",
+    "Las medidas intervencionistas agravan el problema; la solución pasa por aumentar la oferta y respetar el marco legal y contractual vigente."
+  ],
   "crisis migratoria en ceuta": [
     "El Gobierno gestiona adecuadamente la crisis migratoria y exige responsabilidades a Marruecos por el fallo en el control fronterizo.",
     "El Gobierno es responsable de la inseguridad en Ceuta por su inacción ante Marruecos y la falta de medidas contundentes."
@@ -31,9 +35,17 @@
     "El Gobierno ataca sistemáticamente a los jueces que investigan casos de corrupción, socavando la independencia judicial.",
     "El Gobierno denuncia el activismo político de ciertos jueces y defiende la legitimidad de supervisar el funcionamiento del CGPJ."
   ],
+  "independencia judicial y corrupcion politica": [
+    "Los jueces actúan con independencia legítima al investigar a cargos del Gobierno; las quejas del Ejecutivo son un intento de presionar a la justicia.",
+    "El poder judicial es utilizado políticamente por la oposición para hostigar al Gobierno mediante causas sin fundamento o con filtraciones interesadas."
+  ],
   "inteligencia artificial y regulacion": [
     "La inteligencia artificial debe regularse con marcos éticos y de gobernanza que protejan a los ciudadanos, especialmente a los menores.",
     "Una regulación excesiva de la inteligencia artificial frena la innovación y debe quedar en manos de actores privados y gobiernos fuertes."
+  ],
+  "inteligencia artificial y tecnologia": [
+    "El desarrollo acelerado de la IA exige regulación internacional urgente para prevenir riesgos sistémicos, desinformación y sustitución laboral.",
+    "Frenar la IA con regulación prematura lastra la innovación y la competitividad; los beneficios superan los riesgos si se gestiona con responsabilidad empresarial."
   ],
   "justicia amnistia e instituciones": [
     "La amnistía y las decisiones del Tribunal Constitucional son legítimas y necesarias para la normalización política y el retorno de los exiliados.",
@@ -50,6 +62,10 @@
   "politica de vivienda y alquiler": [
     "Se necesitan medidas públicas urgentes como regulación del alquiler, más vivienda pública y freno a los fondos buitre para garantizar el acceso a la vivienda.",
     "Las medidas intervencionistas sobre el mercado del alquiler desincentivan la oferta y no resuelven el problema de acceso a la vivienda."
+  ],
+  "politica migratoria": [
+    "España debe reforzar el control fronterizo, acelerar las devoluciones y exigir mayor colaboración a Marruecos para frenar la llegada irregular de migrantes.",
+    "La respuesta debe priorizar la acogida humanitaria, los derechos de los menores y la regularización, evitando criminalizar a los migrantes."
   ],
   "reunion trump delcy rodriguez": [
     "El encuentro entre Trump y Delcy Rodríguez es un avance diplomático que abre oportunidades para Venezuela.",
