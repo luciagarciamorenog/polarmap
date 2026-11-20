@@ -1,0 +1,87 @@
+2026-11-20 14:46:55,455 INFO ============================================================
+2026-11-20 14:46:55,455 INFO PASADA 1: TITULARES
+2026-11-20 14:46:55,455 INFO   Países: ES | Ventana: 24h | Muestreo: 1/2
+2026-11-20 14:46:55,455 INFO ============================================================
+2026-11-20 14:47:05,260 INFO   titulares: 6/48 ficheros | 318 admitidos
+2026-11-20 14:47:17,843 INFO   titulares: 12/48 ficheros | 678 admitidos
+2026-11-20 14:47:27,215 INFO   titulares: 18/48 ficheros | 984 admitidos
+2026-11-20 14:47:36,577 INFO   titulares: 24/48 ficheros | 1078 admitidos
+2026-11-20 14:47:45,893 INFO   titulares: 30/48 ficheros | 1279 admitidos
+2026-11-20 14:47:56,004 INFO   titulares: 36/48 ficheros | 1502 admitidos
+2026-11-20 14:48:05,980 INFO   titulares: 42/48 ficheros | 1942 admitidos
+2026-11-20 14:48:17,138 INFO   titulares: 48/48 ficheros | 2318 admitidos
+2026-11-20 14:48:17,138 INFO   titulares: 3676 de los países pedidos → 2318 admitidos (sin titular 714, sección blanda 416, sindicados 228)
+2026-11-20 14:48:17,138 INFO [ES] 2318 titulares analizables
+2026-11-20 14:48:17,138 INFO Leyendo titular real y entradilla de cada noticia…
+2026-11-20 14:53:40,602 INFO [ES] titular real + entradilla: 2084 de 2318 · fuera por reserva TDM: 227
+2026-11-20 14:53:40,602 INFO 
+2026-11-20 14:53:40,602 INFO ============================================================
+2026-11-20 14:53:40,602 INFO PASADA 2: ANÁLISIS DE POLARIZACIÓN
+2026-11-20 14:53:40,602 INFO ============================================================
+2026-11-20 14:53:40,603 INFO --- [ES] España: 2091 titulares ---
+2026-11-20 14:53:41,462 INFO   [debates] lote msgbatch_01AuHGRECDHuioEsCa3L2mEX con 1 peticiones enviado
+2026-11-20 14:54:11,720 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-11-20 14:54:42,120 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-11-20 14:55:12,445 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-11-20 14:55:42,946 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-11-20 14:56:13,218 INFO   [debates] lote: ended · 1 hechas, 0 en curso
+2026-11-20 14:56:13,664 INFO   [ES] debate 1: 'Debate electoral 29N' | El cara a cara demostró que Feijóo y el PP of ↔ Feijóo recurrió a la bronca y los bulos mient
+2026-11-20 14:56:13,664 INFO   [ES] debate 2: 'Política migratoria' | España debe reforzar el control fronterizo, a ↔ La respuesta debe priorizar la acogida humani
+2026-11-20 14:56:13,664 INFO   [ES] debate 3: 'Acceso a la vivienda' | El mercado de la vivienda necesita regulación ↔ La solución pasa por facilitar la construcció
+2026-11-20 14:56:13,664 INFO   [ES] debate 4: 'Energía, datos e IA' | El decreto de centros de datos y las restricc ↔ La regulación precipitada ahuyenta inversione
+2026-11-20 14:56:14,998 INFO   [asignacion] lote msgbatch_01GHexSULTGaUJuq9JiNucBM con 42 peticiones enviado
+2026-11-20 14:56:45,375 INFO   [asignacion] lote: in_progress · 0 hechas, 42 en curso
+2026-11-20 14:57:15,666 INFO   [asignacion] lote: in_progress · 0 hechas, 42 en curso
+2026-11-20 14:57:45,960 INFO   [asignacion] lote: in_progress · 0 hechas, 42 en curso
+2026-11-20 14:58:16,550 INFO   [asignacion] lote: ended · 42 hechas, 0 en curso
+2026-11-20 14:58:16,944 INFO   [ES] asignación: 1:365 · 2:45 · 3:56 · 4:54 | ninguno 1571 | fallidos 0
+2026-11-20 14:58:17,695 INFO   [postura] lote msgbatch_01MghfQBNMcxJf1pP7GjPimm con 28 peticiones enviado
+2026-11-20 14:58:48,087 INFO   [postura] lote: in_progress · 0 hechas, 28 en curso
+2026-11-20 14:59:18,500 INFO   [postura] lote: in_progress · 0 hechas, 28 en curso
+2026-11-20 14:59:48,899 INFO   [postura] lote: ended · 28 hechas, 0 en curso
+2026-11-20 14:59:49,260 INFO   [ES] 'Debate electoral 29N': 365 titulares
+2026-11-20 14:59:49,265 INFO   [ES] clasificación: 243 on-topic, 122 off-topic, 0 fallidos de 365
+2026-11-20 14:59:49,266 INFO   [ES] postura: media=-0.24 sd=0.51 | hostil: media=0.23 | confianza: media=0.73
+2026-11-20 14:59:49,315 INFO   [ES] ideológica=0.309 afectiva=0.338 compuesta=0.324 ✓
+2026-11-20 14:59:49,315 INFO   [ES] 'Política migratoria': 45 titulares
+2026-11-20 14:59:49,316 INFO   [ES] clasificación: 42 on-topic, 3 off-topic, 0 fallidos de 45
+2026-11-20 14:59:49,316 INFO   [ES] postura: media=-0.10 sd=0.54 | hostil: media=0.11 | confianza: media=0.74
+2026-11-20 14:59:49,316 INFO   [ES] ideológica=0.235 afectiva=0.145 compuesta=0.185 ⚠ no fiable
+2026-11-20 14:59:49,316 INFO   [ES] 'Acceso a la vivienda': 56 titulares
+2026-11-20 14:59:49,317 INFO   [ES] clasificación: 49 on-topic, 7 off-topic, 0 fallidos de 56
+2026-11-20 14:59:49,317 INFO   [ES] postura: media=-0.21 sd=0.51 | hostil: media=0.10 | confianza: media=0.68
+2026-11-20 14:59:49,317 INFO   [ES] ideológica=0.521 afectiva=0.044 compuesta=0.152 ⚠ no fiable
+2026-11-20 14:59:49,317 INFO   [ES] 'Energía, datos e IA': 54 titulares
+2026-11-20 14:59:49,318 INFO   [ES] clasificación: 13 on-topic, 41 off-topic, 0 fallidos de 54
+2026-11-20 14:59:49,318 INFO   [ES] postura: media=0.48 sd=0.41 | hostil: media=0.16 | confianza: media=0.73
+2026-11-20 14:59:49,318 INFO   [ES] solo 13 clasificaciones útiles → no fiable
+2026-11-20 14:59:49,319 INFO 
+2026-11-20 14:59:49,319 INFO CONSUMO REAL (batch):
+2026-11-20 14:59:49,319 INFO   debates · claude-sonnet-4-6          1 llamadas · entrada   39108 · caché escrita      0 · caché leída       0 · salida   1305 · 0.0684 $
+2026-11-20 14:59:49,319 INFO   asignacion · claude-haiku-4-5       42 llamadas · entrada  227088 · caché escrita      0 · caché leída       0 · salida  29736 · 0.1879 $
+2026-11-20 14:59:49,319 INFO   postura · claude-sonnet-4-6         28 llamadas · entrada   71024 · caché escrita      0 · caché leída       0 · salida  26001 · 0.3015 $
+2026-11-20 14:59:49,319 INFO   TOTAL 0.5579 $ · 0.5579 $/país · 0.2668 $ por 1.000 titulares · 0% del prompt leído de caché
+2026-11-20 14:59:49,319 INFO 
+2026-11-20 14:59:49,319 INFO ============================================================
+2026-11-20 14:59:49,319 INFO RESULTADOS
+2026-11-20 14:59:49,319 INFO ============================================================
+2026-11-20 14:59:49,319 INFO [ES] España:
+2026-11-20 14:59:49,319 INFO   Ideológica: 0.309 | Afectiva: 0.338 | Compuesta: 0.324 | Tipo dominante: mixed
+2026-11-20 14:59:49,319 INFO   #1 Debate electoral 29N       ideo=0.31  afec=0.34  comp=0.32  n=243  ✓
+2026-11-20 14:59:49,319 INFO   #2 Política migratoria        ideo=0.24  afec=0.14  comp=0.18  n= 42  ⚠
+2026-11-20 14:59:49,319 INFO   #3 Acceso a la vivienda       ideo=0.52  afec=0.04  comp=0.15  n= 49  ⚠
+2026-11-20 14:59:49,330 INFO 
+2026-11-20 14:59:49,330 INFO Snapshot v1 guardado en data/snapshot_ES_20261120.json (detalle en data/internal/snapshot_ES_20261120_full.json)
+
+país                color dom       n    ne temas  estado
+------------------------------------------------------------
+Estados Unidos         -- --        0     0  0/0   no pedido
+Reino Unido            -- --        0     0  0/0   no pedido
+España              0.324 mix     243   235  1/4   fiable
+México                 -- --        0     0  0/0   no pedido
+Argentina              -- --        0     0  0/0   no pedido
+Chile                  -- --        0     0  0/0   no pedido
+Francia                -- --        0     0  0/0   no pedido
+Alemania               -- --        0     0  0/0   no pedido
+Italia                 -- --        0     0  0/0   no pedido
+Brasil                 -- --        0     0  0/0   no pedido

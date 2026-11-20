@@ -23,7 +23,17 @@ The chart shows where each outlet's housing headlines sit on that axis:
 - **The order matches what any reader of the Spanish press would expect**, from Público and elDiario.es on one side to Libertad Digital on the other, even though the model was never told anything about the outlets.
 - The same story produced headlines on both sides. One side ran *"Las cinco medidas que propone el Sindicato de Inquilinas en su 'decreto Maricarmen'"*; the other ran *"Los falsos amigos de Maricarmen"*. This is exactly the kind of split PolarMap is built to detect.
 
-This is one day and one debate with enough data. On thinner debates (judicial independence, AI) the outlet signal is not distinguishable from chance yet. That is the next thing to fix (see [Roadmap](#roadmap)).
+### Does it replicate? Two months later, a different debate
+
+On 20 November 2026 the system ran again and found a different main debate: the televised face-to-face between Pedro Sánchez and Alberto Núñez Feijóo held the night before, ahead of the 29 November general election (243 headlines, 24 outlets). The model built that axis from scratch, with no memory of September. Outlets were again clearly positioned (outlet explains 27 % of stance variance, permutation p < 0.001).
+
+Then the real test: do outlets sit in the same place on two unrelated debates, two months apart?
+
+![Outlet positions on two days and two debates](docs/img/stability_en.png)
+
+**Yes: Spearman ρ = 0.89 across the 12 outlets present on both days (p < 0.001).** Each debate's axis is generated independently, so this consistency cannot come from a shared prompt or a fixed left–right label. It is the strongest evidence so far that per-outlet stance measures something real.
+
+On thinner debates (fewer than ~80 headlines) the outlet signal is still not distinguishable from chance on a single day. That is the next thing to fix (see [Roadmap](#roadmap)).
 
 ---
 
@@ -51,30 +61,30 @@ The output is a compact JSON snapshot defined by a frozen [data contract](CONTRA
 
 ## Evaluation
 
-All figures are from the 25 September 2026 run on Spain (1,728 headlines).
+Label-based figures are from the 25 September 2026 run on Spain (1,728 headlines); the replication uses the 20 November 2026 run (2,091 headlines).
 
 | What the model does | Result | Verdict |
 |---|---|---|
 | Assign a headline to the right debate (or none) | **97 % agreement, κ = 0.95** vs 29 human-labelled headlines · **95 %, κ = 0.93** vs a 150-headline reference set | Reliable |
 | Hostility of the language | Spearman ρ = 0.62 (human) · 0.63 (reference) | Usable |
 | Stance of a *single* headline | ρ = 0.33 (human, n = 12) · 0.46 (reference, n = 68); the model puts 32–42 % of headlines at the centre vs 12–17 % for human labels | **Weak** |
-| Stance of an *outlet* (mean of its headlines) | Outlet explains 33 % of stance variance on housing (p < 0.01) and outlets order as expected | Promising, one day only |
+| Stance of an *outlet* (mean of its headlines) | Outlet explains 27–33 % of stance variance on the main debate of each day (p < 0.01); outlet order replicates across two debates two months apart (ρ = 0.89) | Consistent |
 
 The reference set was labelled by a stronger model following the same codebook, so it is not independent of the model being evaluated; the human set is small. Both limits are stated on purpose.
 
-**Cost.** One full run for Spain costs **$0.43** (Claude Sonnet 4.6 + Haiku 4.5 through the Batch API), i.e. **$0.25 per 1,000 headlines**. Measured from real token usage, not estimated (`data/internal/snapshot_measure_usage.json`).
+**Cost.** One full run for Spain costs **$0.43–0.56** (Claude Sonnet 4.6 + Haiku 4.5 through the Batch API), i.e. **$0.25–0.27 per 1,000 headlines**. Measured from real token usage on both runs, not estimated (`data/internal/*_usage.json`).
 
 **Context worth knowing:** 81 % of the day's headlines belong to no debate at all (events, services, sport, data). Most news is not a fight.
 
 ## What did not work (yet)
 
 - **Per-headline stance is noisy**, and it pulls ambiguous headlines towards the centre. This is why the analysis is moving from single headlines to outlets.
-- **Two methods disagree.** The main index gives Spanish debates moderate ideological polarization (0.25–0.57). A second method tested in a pilot (comparative judgements → Bradley-Terry → groups by BIC, in `validate/pilot/`) finds a single group in all four debates on the same day. With one day of data neither is conclusive, so no country-level polarization number is published yet.
+- **Two methods disagree.** The main index gives Spanish debates moderate ideological polarization (0.25–0.57). A second method tested in a pilot (comparative judgements → Bradley-Terry → groups by BIC, in `validate/pilot/`) finds a single group in all four debates on the same day. Neither is conclusive yet, so no country-level polarization score is published; the outlet positions are.
 - **The bimodality test does not fit the scale.** Hartigan's dip test assumes continuous data; on a five-point stance scale it returns "significant" almost always. It is being replaced by group detection on outlet positions.
 
 ## Roadmap
 
-1. Run Spain for several consecutive days so each outlet has enough headlines per debate, and check that outlet positions are stable across days.
+1. Run Spain daily for a week so smaller debates also reach enough headlines per outlet (stability across days: first check passed, ρ = 0.89).
 2. Compute polarization **between outlets** (are they split into two groups?) with bootstrap intervals, instead of between single headlines.
 3. Expand the human-labelled set to 100+ headlines, with a second annotator to measure the human ceiling.
 4. Extend to the 10 countries in the data contract and validate against [V-Dem](https://www.v-dem.net/) (`validate/ground_truth.py`).

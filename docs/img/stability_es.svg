@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 440" role="img" font-family="DM Sans, system-ui, sans-serif">
+<title>Cada punto es la postura media de un medio cada día · medios con ≥ 3 titulares en ambos</title>
+<rect width="680" height="440" fill="#FAFAF8"/>
+<line x1="404.3" y1="40" x2="404.3" y2="380" stroke="#DDD8CE"/>
+<line x1="90" y1="223.1" x2="640" y2="223.1" stroke="#DDD8CE"/>
+<rect x="90" y="40" width="550" height="340" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+<text x="207.9" y="396" font-size="11" fill="#968A80" text-anchor="middle">-0.5</text>
+<text x="82" y="357.8" font-size="11" fill="#968A80" text-anchor="end">-0.5</text>
+<text x="404.3" y="396" font-size="11" fill="#968A80" text-anchor="middle">0</text>
+<text x="82" y="227.1" font-size="11" fill="#968A80" text-anchor="end">0</text>
+<text x="600.7" y="396" font-size="11" fill="#968A80" text-anchor="middle">+0.5</text>
+<text x="82" y="96.3" font-size="11" fill="#968A80" text-anchor="end">+0.5</text>
+<text x="365.0" y="416" font-size="12" fill="#5A5248" text-anchor="middle">Debate de vivienda · 25 sep  (← intervenir · más oferta →)</text>
+<text x="90" y="26" font-size="12" fill="#5A5248">↑ Debate electoral · 20 nov  (← Gobierno · PP →)</text>
+<g><title>ABC: -0.07 / +0.38</title><circle cx="377.1" cy="123.0" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="369.1" y="116.0" font-size="12" fill="#0E0C09" text-anchor="end">ABC</text></g>
+<g><title>El Confidencial: -0.05 / +0.36</title><circle cx="384.6" cy="128.9" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="392.6" y="140.9" font-size="12" fill="#0E0C09" text-anchor="start">El Confidencial</text></g>
+<g><title>elDiario.es: -0.55 / -0.03</title><circle cx="186.3" cy="231.1" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="178.3" y="235.1" font-size="12" fill="#0E0C09" text-anchor="end">elDiario.es</text></g>
+<g><title>El Norte de Castilla: -0.17 / -0.15</title><circle cx="338.8" cy="262.3" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="346.8" y="266.3" font-size="12" fill="#0E0C09" text-anchor="start">El Norte de Castilla</text></g>
+<g><title>El País: -0.10 / +0.26</title><circle cx="365.0" cy="154.1" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="357.0" y="166.1" font-size="12" fill="#0E0C09" text-anchor="end">El País</text></g>
+<g><title>Europa Press: -0.33 / +0.11</title><circle cx="275.2" cy="193.2" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="283.2" y="201.2" font-size="12" fill="#0E0C09" text-anchor="start">Europa Press</text></g>
+<g><title>infoLibre: -0.40 / -0.42</title><circle cx="247.1" cy="334.2" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="255.1" y="338.2" font-size="12" fill="#0E0C09" text-anchor="start">infoLibre</text></g>
+<g><title>La Razón: +0.11 / +0.49</title><circle cx="448.8" cy="94.6" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="456.8" y="98.6" font-size="12" fill="#0E0C09" text-anchor="start">La Razón</text></g>
+<g><title>La Región: -0.27 / +0.30</title><circle cx="299.5" cy="144.6" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="291.5" y="148.6" font-size="12" fill="#0E0C09" text-anchor="end">La Región</text></g>
+<g><title>La Vanguardia: -0.38 / +0.17</title><circle cx="255.0" cy="178.2" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="247.0" y="178.2" font-size="12" fill="#0E0C09" text-anchor="end">La Vanguardia</text></g>
+<g><title>Libertad Digital: +0.47 / +0.59</title><circle cx="587.6" cy="67.8" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="579.6" y="71.8" font-size="12" fill="#0E0C09" text-anchor="end">Libertad Digital</text></g>
+<g><title>Público: -0.64 / -0.50</title><circle cx="151.1" cy="353.8" r="5.5" fill="#A07038" stroke="#FAFAF8" stroke-width="2"/><text x="143.1" y="357.8" font-size="12" fill="#0E0C09" text-anchor="end">Público</text></g>
+<text x="340.0" y="434" font-size="10.5" fill="#968A80" text-anchor="middle">Cada punto es la postura media de un medio cada día · medios con ≥ 3 titulares en ambos</text>
+</svg>

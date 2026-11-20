@@ -1,4 +1,8 @@
 {
+  "acceso a la vivienda": [
+    "El mercado de la vivienda necesita regulación pública, control de alquileres y más vivienda protegida para frenar la especulación.",
+    "La solución pasa por facilitar la construcción privada, reducir la burocracia y evitar intervenciones que ahuyenten la inversión."
+  ],
   "amnistia y retorno de puigdemont": [
     "El Tribunal Constitucional debe aplicar la amnistía a la malversación y despejar el camino para el regreso de Puigdemont.",
     "Amnistiar la malversación supone una politización de la justicia y un agravio al Estado de derecho."
@@ -19,9 +23,17 @@
     "España debe exigir a Marruecos un control efectivo de la frontera y reforzar las devoluciones para frenar la llegada masiva de migrantes.",
     "La respuesta debe priorizar la acogida humanitaria, el reparto solidario de menores y no externalizar la responsabilidad a terceros países."
   ],
+  "debate electoral 29n": [
+    "El cara a cara demostró que Feijóo y el PP ofrecen un proyecto de cambio creíble frente a un Gobierno agotado y sin respuestas.",
+    "Feijóo recurrió a la bronca y los bulos mientras Sánchez defendió un balance económico sólido y un tono institucional."
+  ],
   "desahucio de maricarmen": [
     "Las administraciones (Ayuntamiento, Comunidad) ofrecen alternativas habitacionales y no son responsables directas del desahucio.",
     "Las administraciones son responsables del desahucio de Maricarmen por no haber garantizado su derecho a la vivienda."
+  ],
+  "energia datos e ia": [
+    "El decreto de centros de datos y las restricciones energéticas son necesarios para ordenar el sector y garantizar la sostenibilidad de la red.",
+    "La regulación precipitada ahuyenta inversiones estratégicas en tecnología e inteligencia artificial y perjudica la competitividad de España."
   ],
   "expulsion de diputada por spray de pimienta": [
     "Armengol actuó correctamente al expulsar a la diputada del PP por exhibir un objeto prohibido en el hemiciclo.",

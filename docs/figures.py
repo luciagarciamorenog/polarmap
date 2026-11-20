@@ -1,12 +1,13 @@
 """
 Figures for the README and the portfolio page (no API calls).
 
-    python3 docs/figures.py data/internal/snapshot_measure_headlines.jsonl
+    python3 docs/figures.py [day1_headlines.jsonl] [day2_headlines.jsonl]
 
 Writes to docs/img/ (SVG, plus PNG if rsvg-convert is installed):
   outlets_housing_{en,es}  each outlet's mean stance on the housing debate,
                            with its bootstrap 90 % interval
   pipeline_{en,es}         the six steps of the pipeline
+  stability_{en,es}        each outlet on day 1 (housing) vs day 2 (election debate)
 """
 
 from __future__ import annotations
@@ -191,6 +192,105 @@ def write_pipeline() -> None:
         print("→", path)
 
 
+
+
+# ─────────────────────────────────────────────────────────────
+# Stability: same outlets, two days, two different debates
+# ─────────────────────────────────────────────────────────────
+
+DAY2 = "data/internal/snapshot_ES_20261120_headlines.jsonl"
+TOPIC2 = "Debate electoral 29N"   # pole −1 = PP side, so it is flipped below
+
+SHORT = {"publico.es": "Público", "infolibre.es": "infoLibre",
+         "eldiario.es": "elDiario.es", "lavanguardia.com": "La Vanguardia",
+         "europapress.es": "Europa Press", "laregion.es": "La Región",
+         "elnortedecastilla.es": "El Norte de Castilla", "elpais.com": "El País",
+         "abc.es": "ABC", "elconfidencial.com": "El Confidencial",
+         "larazon.es": "La Razón", "libertaddigital.com": "Libertad Digital"}
+# label placement: (dx, dy, anchor)
+PLACE = {"abc.es": (-8, -7, "end"), "elconfidencial.com": (8, 12, "start"),
+         "elpais.com": (-8, 12, "end"), "laregion.es": (-8, 4, "end"),
+         "lavanguardia.com": (-8, 0, "end"), "europapress.es": (8, 8, "start"),
+         "elnortedecastilla.es": (8, 4, "start"), "eldiario.es": (-8, 4, "end"),
+         "infolibre.es": (8, 4, "start"), "publico.es": (-8, 4, "end"),
+         "larazon.es": (8, 4, "start"), "libertaddigital.com": (-8, 4, "end")}
+
+STAB_TEXT = {
+    "en": {"x": "Housing debate · 25 Sep  (← the state must step in · more supply →)",
+           "y": "Election debate · 20 Nov  (← government · PP →)",
+           "foot": "Each dot is an outlet's mean stance on each day · outlets with ≥ 3 headlines on both"},
+    "es": {"x": "Debate de vivienda · 25 sep  (← intervenir · más oferta →)",
+           "y": "Debate electoral · 20 nov  (← Gobierno · PP →)",
+           "foot": "Cada punto es la postura media de un medio cada día · medios con ≥ 3 titulares en ambos"},
+}
+
+
+def stability_points(day1: str, day2: str):
+    h = debate_outlets(load_headlines(day1), TOPIC, min_n=3, n_perm=200, n_boot=200)
+    e = debate_outlets(load_headlines(day2), TOPIC2, min_n=3, n_perm=200, n_boot=200)
+    H = {o.domain: o.mean for o in h.positions}
+    E = {o.domain: -o.mean for o in e.positions}      # flip: + = PP side
+    return [(d, H[d], E[d]) for d in sorted(set(H) & set(E))]
+
+
+def stability_svg(lang: str, pts) -> str:
+    t = STAB_TEXT[lang]
+    W, H = 680, 440
+    x0, x1, y0, y1 = 90, 640, 380, 40
+    xv0, xv1, yv0, yv1 = -0.8, 0.6, -0.6, 0.7
+    X = lambda v: x0 + (v - xv0) / (xv1 - xv0) * (x1 - x0)  # noqa: E731
+    Y = lambda v: y0 - (v - yv0) / (yv1 - yv0) * (y0 - y1)  # noqa: E731
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" '
+           f'font-family="DM Sans, system-ui, sans-serif">',
+           f'<title>{escape(t["foot"])}</title>',
+           f'<rect width="{W}" height="{H}" fill="#FAFAF8"/>',
+           f'<line x1="{X(0):.1f}" y1="{y1}" x2="{X(0):.1f}" y2="{y0}" stroke="{GRID}"/>',
+           f'<line x1="{x0}" y1="{Y(0):.1f}" x2="{x1}" y2="{Y(0):.1f}" stroke="{GRID}"/>',
+           f'<rect x="{x0}" y="{y1}" width="{x1 - x0}" height="{y0 - y1}" fill="none" '
+           f'stroke="{GRID}" stroke-width="0.5"/>']
+    for v in (-0.5, 0, 0.5):
+        out.append(f'<text x="{X(v):.1f}" y="{y0 + 16}" font-size="11" fill="{INK3}" '
+                   f'text-anchor="middle">{v:+g}</text>'.replace(">+0<", ">0<"))
+        out.append(f'<text x="{x0 - 8}" y="{Y(v) + 4:.1f}" font-size="11" fill="{INK3}" '
+                   f'text-anchor="end">{v:+g}</text>'.replace(">+0<", ">0<"))
+    out.append(f'<text x="{(x0 + x1) / 2}" y="{y0 + 36}" font-size="12" fill="{INK2}" '
+               f'text-anchor="middle">{escape(t["x"])}</text>')
+    out.append(f'<text x="{x0}" y="{y1 - 14}" font-size="12" fill="{INK2}">'
+               f'↑ {escape(t["y"])}</text>')
+    for d, hx, ey in pts:
+        dx, dy, anc = PLACE.get(d, (8, 4, "start"))
+        px, py = X(hx), Y(ey)
+        out.append(f'<g><title>{escape(SHORT.get(d, d))}: {hx:+.2f} / {ey:+.2f}</title>'
+                   f'<circle cx="{px:.1f}" cy="{py:.1f}" r="5.5" fill="{DOT}" '
+                   f'stroke="#FAFAF8" stroke-width="2"/>'
+                   f'<text x="{px + dx:.1f}" y="{py + dy:.1f}" font-size="12" fill="{INK}" '
+                   f'text-anchor="{anc}">{escape(SHORT.get(d, d))}</text></g>')
+    out.append(f'<text x="{W / 2}" y="{H - 6}" font-size="10.5" fill="{INK3}" '
+               f'text-anchor="middle">{escape(t["foot"])}</text>')
+    out.append("</svg>")
+    return "\n".join(out)
+
+
+def write_stability(day1: str, day2: str) -> None:
+    from scipy.stats import spearmanr
+    pts = stability_points(day1, day2)
+    rho = spearmanr([p[1] for p in pts], [p[2] for p in pts])
+    img = ROOT / "docs/img"
+    for lang in ("en", "es"):
+        path = img / f"stability_{lang}.svg"
+        path.write_text(stability_svg(lang, pts))
+        if shutil.which("rsvg-convert"):
+            subprocess.run(["rsvg-convert", "-z", "2", str(path), "-o",
+                            str(path.with_suffix(".png"))], check=True)
+        print("→", path)
+    print(f"{len(pts)} outlets on both days · Spearman ρ = {rho.statistic:.2f} "
+          f"(p = {rho.pvalue:.4f})")
+
+
 if __name__ == "__main__":
     main()
     write_pipeline()
+    day1 = sys.argv[1] if len(sys.argv) > 1 else str(ROOT / "data/internal/snapshot_measure_headlines.jsonl")
+    day2 = sys.argv[2] if len(sys.argv) > 2 else str(ROOT / DAY2)
+    if Path(day2).exists():
+        write_stability(day1, day2)
