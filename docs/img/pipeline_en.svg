@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 290" role="img" font-family="DM Sans, system-ui, sans-serif">
+<title>Gold = step done by an LLM (Claude) · grey = code and statistics</title>
+<defs><marker id="pm-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#5A5248" stroke-width="1.5"/></marker></defs>
+<rect width="680" height="290" fill="#FAFAF8"/>
+<rect x="20" y="16" width="196" height="92" rx="6" fill="#F3EFE6" stroke="#C8C2B4" stroke-width="1"/>
+<text x="34" y="42" font-size="14" font-weight="500" fill="#0E0C09">1 · Collect</text>
+<text x="34" y="66" font-size="11.5" fill="#5A5248">GDELT news files, every 15 min</text>
+<text x="34" y="86" font-size="11.5" fill="#5A5248">3,200 Spanish headlines / day</text>
+<rect x="242" y="16" width="196" height="92" rx="6" fill="#F3EFE6" stroke="#C8C2B4" stroke-width="1"/>
+<text x="256" y="42" font-size="14" font-weight="500" fill="#0E0C09">2 · Clean</text>
+<text x="256" y="66" font-size="11.5" fill="#5A5248">Real headline + lead</text>
+<text x="256" y="86" font-size="11.5" fill="#5A5248">1,728 kept · publisher opt-outs out</text>
+<rect x="464" y="16" width="196" height="92" rx="6" fill="#F5ECD8" stroke="#C4914A" stroke-width="1"/>
+<text x="478" y="42" font-size="14" font-weight="500" fill="#0E0C09">3 · Discover debates</text>
+<text x="478" y="66" font-size="11.5" fill="#5A5248">Claude Sonnet reads them all</text>
+<text x="478" y="86" font-size="11.5" fill="#5A5248">4 debates, 2 sides each</text>
+<rect x="20" y="152" width="196" height="92" rx="6" fill="#F5ECD8" stroke="#C4914A" stroke-width="1"/>
+<text x="34" y="178" font-size="14" font-weight="500" fill="#0E0C09">4 · Assign</text>
+<text x="34" y="202" font-size="11.5" fill="#5A5248">Claude Haiku, in batches</text>
+<text x="34" y="222" font-size="11.5" fill="#5A5248">329 on a debate · 95–97 % right</text>
+<rect x="242" y="152" width="196" height="92" rx="6" fill="#F5ECD8" stroke="#C4914A" stroke-width="1"/>
+<text x="256" y="178" font-size="14" font-weight="500" fill="#0E0C09">5 · Score</text>
+<text x="256" y="202" font-size="11.5" fill="#5A5248">Claude Sonnet, per headline</text>
+<text x="256" y="222" font-size="11.5" fill="#5A5248">side · hostility · framing</text>
+<rect x="464" y="152" width="196" height="92" rx="6" fill="#F3EFE6" stroke="#C8C2B4" stroke-width="1"/>
+<text x="478" y="178" font-size="14" font-weight="500" fill="#0E0C09">6 · Measure</text>
+<text x="478" y="202" font-size="11.5" fill="#5A5248">Outlet positions + indices</text>
+<text x="478" y="222" font-size="11.5" fill="#5A5248">shown only if data suffice</text>
+<line x1="219" y1="62.0" x2="238" y2="62.0" stroke="#5A5248" stroke-width="1.2" marker-end="url(#pm-arr)"/>
+<line x1="441" y1="62.0" x2="460" y2="62.0" stroke="#5A5248" stroke-width="1.2" marker-end="url(#pm-arr)"/>
+<line x1="219" y1="198.0" x2="238" y2="198.0" stroke="#5A5248" stroke-width="1.2" marker-end="url(#pm-arr)"/>
+<line x1="441" y1="198.0" x2="460" y2="198.0" stroke="#5A5248" stroke-width="1.2" marker-end="url(#pm-arr)"/>
+<path d="M562.0 111 V130.0 H118.0 V148" fill="none" stroke="#5A5248" stroke-width="1.2" marker-end="url(#pm-arr)"/>
+<text x="340.0" y="276" font-size="11" fill="#968A80" text-anchor="middle">Gold = step done by an LLM (Claude) · grey = code and statistics</text>
+</svg>

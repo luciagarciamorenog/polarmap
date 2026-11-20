@@ -1,120 +1,123 @@
-# polarmap — índice de polarización en tiempo casi real
+# PolarMap
 
-Pipeline para medir polarización del discurso público por país y tema, con
-métricas defendibles y validación contra fuentes establecidas.
+**An AI pipeline that reads a country's daily news, discovers what is being argued about, and measures how divided the press is on each debate.**
 
-## Puesta en marcha
+Every day the Spanish press publishes a few thousand headlines. PolarMap reads all of them, finds the debates of the day without a predefined topic list, works out the two sides of each debate, and places every headline and every outlet between those two sides. From there it measures two kinds of polarization: *ideological* (are outlets split into camps?) and *affective* (do they use hostile language against the other camp?).
+
+> Status: working prototype on Spain. The pipeline runs end to end; the evaluation below says which parts are reliable today and which are not.
+> Portfolio write-up: [luciagarciamorenog.netlify.app/polarmap](https://luciagarciamorenog.netlify.app/polarmap)
+
+![PolarMap pipeline](docs/img/pipeline_en.png)
+
+---
+
+## The headline result
+
+On 25 September 2026 the system found four debates in the Spanish press: housing and evictions, migration, judicial independence, and AI regulation. For housing it defined the two sides as *"the state must step in"* (anti-eviction decrees, limits on investment funds) versus *"more supply and respect for contracts"*.
+
+The chart shows where each outlet's housing headlines sit on that axis:
+
+![Outlet positions on the housing debate](docs/img/outlets_housing_en.png)
+
+- **The outlet a headline comes from explains about a third of its stance** (η² = 0.33, versus ≈ 0.1 when stances are shuffled at random; permutation p < 0.01).
+- **The order matches what any reader of the Spanish press would expect**, from Público and elDiario.es on one side to Libertad Digital on the other, even though the model was never told anything about the outlets.
+- The same story produced headlines on both sides. One side ran *"Las cinco medidas que propone el Sindicato de Inquilinas en su 'decreto Maricarmen'"*; the other ran *"Los falsos amigos de Maricarmen"*. This is exactly the kind of split PolarMap is built to detect.
+
+This is one day and one debate with enough data. On thinner debates (judicial independence, AI) the outlet signal is not distinguishable from chance yet. That is the next thing to fix (see [Roadmap](#roadmap)).
+
+---
+
+## How it works
+
+| Step | What happens | Where |
+|---|---|---|
+| 1. Collect | Downloads [GDELT](https://www.gdeltproject.org/) Global Knowledge Graph files (main + translated series, every 15 min) and keeps articles from the country's media domains | `ingest/gkg_files.py` |
+| 2. Clean | Drops articles without a headline, soft sections (sport, horoscopes…) and syndicated copies; reads the real headline and lead of each article; **skips publishers that reserve text-and-data-mining rights** | `analysis/discover.py`, `ingest/leads.py` |
+| 3. Discover debates | Claude Sonnet reads all the day's headlines and proposes the debates, each with two poles | `analysis/discover.py` |
+| 4. Assign | Claude Haiku assigns every headline to one debate or to none (Batch API, half price) | `analysis/discover.py` |
+| 5. Score | Claude Sonnet scores each on-debate headline following a written [codebook](validate/CODEBOOK.md): stance including framing (−1 … +1), hostility of the language (0–2), conflict, "us vs them" | `analysis/discover.py` |
+| 6. Measure | Polarization indices per debate (Esteban-Ray, affective index, composite) and outlet positions with bootstrap intervals; a debate is only shown if it has enough headlines, outlets and source diversity | `analysis/metrics.py`, `analysis/outlets.py`, `analysis/contract.py` |
+
+The output is a compact JSON snapshot defined by a frozen [data contract](CONTRACT.md) for a future map front end. Debate axes are stored in a registry so that the same debate keeps the same orientation across runs.
+
+## Design decisions
+
+1. **Stance, not sentiment.** A headline about an earthquake is very negative and not divisive at all. Sentiment measures tone; PolarMap measures *which side* a headline takes on a defined axis.
+2. **Disagreement is not polarization.** Opinions spread evenly across a scale are diverse, not polarized. Polarization means clustering into separate camps. That is why the index is Esteban-Ray (rewards separated groups) and not variance.
+3. **Ideological ≠ affective.** Two camps that disagree politely are different from two camps that attack each other. The two are measured separately and combined with a geometric mean, so the composite drops if either is near zero.
+4. **Debates are discovered, not predefined.** The system decides what is being argued about in each country each day, instead of searching for a fixed list of topics.
+5. **Grey beats a wrong colour.** A debate only gets a number if it has ≥ 80 on-topic headlines, ≥ 8 outlets and no outlet above 40 % of the volume (Kish effective sample size and HHI concentration checks). Otherwise it is reported as insufficient data.
+6. **Validate before believing.** Every model-produced field is checked against human labels or a reference set before it is used (below).
+
+## Evaluation
+
+All figures are from the 25 September 2026 run on Spain (1,728 headlines).
+
+| What the model does | Result | Verdict |
+|---|---|---|
+| Assign a headline to the right debate (or none) | **97 % agreement, κ = 0.95** vs 29 human-labelled headlines · **95 %, κ = 0.93** vs a 150-headline reference set | Reliable |
+| Hostility of the language | Spearman ρ = 0.62 (human) · 0.63 (reference) | Usable |
+| Stance of a *single* headline | ρ = 0.33 (human, n = 12) · 0.46 (reference, n = 68); the model puts 32–42 % of headlines at the centre vs 12–17 % for human labels | **Weak** |
+| Stance of an *outlet* (mean of its headlines) | Outlet explains 33 % of stance variance on housing (p < 0.01) and outlets order as expected | Promising, one day only |
+
+The reference set was labelled by a stronger model following the same codebook, so it is not independent of the model being evaluated; the human set is small. Both limits are stated on purpose.
+
+**Cost.** One full run for Spain costs **$0.43** (Claude Sonnet 4.6 + Haiku 4.5 through the Batch API), i.e. **$0.25 per 1,000 headlines**. Measured from real token usage, not estimated (`data/internal/snapshot_measure_usage.json`).
+
+**Context worth knowing:** 81 % of the day's headlines belong to no debate at all (events, services, sport, data). Most news is not a fight.
+
+## What did not work (yet)
+
+- **Per-headline stance is noisy**, and it pulls ambiguous headlines towards the centre. This is why the analysis is moving from single headlines to outlets.
+- **Two methods disagree.** The main index gives Spanish debates moderate ideological polarization (0.25–0.57). A second method tested in a pilot (comparative judgements → Bradley-Terry → groups by BIC, in `validate/pilot/`) finds a single group in all four debates on the same day. With one day of data neither is conclusive, so no country-level polarization number is published yet.
+- **The bimodality test does not fit the scale.** Hartigan's dip test assumes continuous data; on a five-point stance scale it returns "significant" almost always. It is being replaced by group detection on outlet positions.
+
+## Roadmap
+
+1. Run Spain for several consecutive days so each outlet has enough headlines per debate, and check that outlet positions are stable across days.
+2. Compute polarization **between outlets** (are they split into two groups?) with bootstrap intervals, instead of between single headlines.
+3. Expand the human-labelled set to 100+ headlines, with a second annotator to measure the human ceiling.
+4. Extend to the 10 countries in the data contract and validate against [V-Dem](https://www.v-dem.net/) (`validate/ground_truth.py`).
+5. Public map, then an agent that answers questions like *"what does each side argue about housing?"* with cited headlines.
+
+## Run it
 
 ```bash
-pip install numpy scipy pandas requests diptest
-cp .env.example .env   # y pega tu key completa en .env
+pip install -r requirements.txt
+cp .env.example .env            # add your Anthropic API key
 
-# Validar que las métricas funcionan (no necesita red ni API key)
-cd analysis && python test_metrics.py
+# tests (no network, no API key)
+cd analysis && python3 test_metrics.py && python3 test_outlets.py && cd ..
 
-# Ejecutar el pipeline sobre datos reales
-python pipeline.py --countries ES,US,FR,DE,IT --topics inmigracion --hours 168
+# count headlines for Spain without calling the API
+python3 pipeline_discover.py --countries ES --hours 24 --every 2 --dry-run
 
-# Validar contra V-Dem
-python -c "from validate.ground_truth import validate_snapshot; \
-           import json; print(json.dumps(validate_snapshot('data/snapshot.json'), indent=2))"
+# full run (~30 min, ~$0.45)
+python3 pipeline_discover.py --countries ES --hours 24 --every 2 --out snapshot_ES.json
+
+# outlet positions for a run (no API)
+python3 validate/outlet_positions.py data/internal/snapshot_ES_headlines.jsonl
 ```
 
-## Las tres decisiones que hacen que esto sea preciso
+## Repository map
 
-### 1. Mide postura, no sentimiento
+```
+ingest/      GDELT files, real headlines and leads
+analysis/    debate discovery, scoring, polarization metrics, outlet positions, data contract
+validate/    codebook, labelling tool, scoring against labels, pilot of the second method
+data/        snapshots, debate-axis registry, labels (press excerpts are not redistributed)
+docs/        figures and the original methodology notes (Spanish)
+```
 
-El error dominante en este tipo de proyectos es usar análisis de sentimiento.
-Un titular sobre un terremoto es muy negativo y cero polarizante. El pipeline
-clasifica **posición en un eje temático** (-1 a +1), que es lo único que
-permite ver si las opiniones se parten en bloques.
+## How it was built
 
-### 2. Distingue dispersión de polarización
+I designed the product and the methodology: what to measure, how to measure it, which checks a number has to pass before it is shown, and how to validate it. The code was written with AI coding assistants (Claude and Cursor), with me reviewing, running and testing every step. The project is as much about using AI to *build* as about using AI to *measure*.
 
-Verificado en `analysis/test_metrics.py`:
+## Data and ethics
 
-| escenario | dispersión | polarización ideológica |
-|---|---|---|
-| consenso total | 0.05 | **0.00** |
-| campana ancha | 0.35 | **0.06** |
-| distribución uniforme | 0.59 | **0.12** |
-| dos bloques enfrentados | 0.85 | **0.98** |
+- Source: the open [GDELT Project](https://www.gdeltproject.org/).
+- Publishers that reserve their rights to text and data mining are excluded (256 articles on 25 Sep).
+- Headlines' leads are used for analysis only and are not committed to this repository.
+- The poles of each debate are generated by the model and stored in `data/internal/axes.json`, so every editorial choice is visible and auditable.
 
-La distribución uniforme tiene dispersión altísima y polarización baja: hay
-pluralidad de opiniones, no dos bandos. Un índice basado en varianza los
-confundiría. Este usa **Esteban-Ray** (α=1.0), el índice canónico de la
-literatura económica, calibrado con dos anclas: 0 = consenso compacto,
-1 = dos bloques gaussianos en ±0.85.
-
-Se confirma con el **test de Hartigan** (H0: unimodalidad). Si p > 0.05 no
-hay dos bandos, por mucho tono negativo que haya.
-
-### 3. Separa las tres dimensiones
-
-- **Ideológica** — ¿hay dos bloques? (Esteban-Ray + dip test)
-- **Afectiva** — ¿se odian? (hostilidad condicionada a la posición)
-- **Compuesta** — media *geométrica* de ambas, no aritmética: dos bloques que
-  no se odian no son el mismo fenómeno que dos bloques que se odian, y la
-  media geométrica hace caer el compuesto cuando una dimensión es ~0.
-
-La polarización afectiva no es "cuánta toxicidad hay". Es cuánta toxicidad
-hay **específicamente en los extremos y dirigida al otro bloque**. Hostilidad
-plana en todo el espectro es crispación general, y el índice la puntúa más
-bajo (0.39 vs 0.67 en el test).
-
-## Controles anti-falso-positivo
-
-| control | qué evita |
-|---|---|
-| `effective_sample_size` (N de Kish) | Que 5 cuentas coordinadas disparen un país. 10.000 docs donde 5 cuentas generan el 90% → N efectivo = 5. |
-| `source_concentration` (HHI) | Que midas la línea editorial de dos periódicos y lo llames "el discurso de España". HHI > 0.25 → dato marcado como no fiable. |
-| `min_n` = 100 | Índices calculados sobre 12 artículos. |
-| `off_topic` en el clasificador | Titulares que salen en la búsqueda pero no tratan el eje. |
-| `language_bias_check` | Que países no anglófonos parezcan falsamente tranquilos por peor rendimiento del clasificador. |
-| `measure_reliability` | Que el mismo titular reciba 0.2 y 0.8 en dos pasadas. Umbral: sd < 0.15, r > 0.85. |
-
-**Regla de oro para el mapa: lo que no sea `trustworthy` se pinta en gris, no
-en color.** Mostrar un número poco fiable con color fuerte es peor que no
-mostrar nada — y es exactamente lo que destruiría tu credibilidad, que es tu
-único activo real en un proyecto sobre polarización.
-
-## Validación
-
-`validate/ground_truth.py` correlaciona tu índice contra V-Dem (descarga
-directa desde Our World in Data). Interpretación:
-
-- r > 0.7 → mides lo mismo, más a menudo. Ese es el argumento de venta.
-- r 0.3–0.5 → probablemente estás midiendo tono o volumen. Hay un problema.
-- r ≈ 1.0 → tampoco es buena noticia: no aportas nada nuevo.
-
-Lo valioso son las **divergencias explicables**: un país donde V-Dem va un año
-por detrás y tú detectas un pico tras un evento reciente.
-
-`temporal_sanity_check` comprueba que el índice reacciona a eventos conocidos
-(elecciones, sentencias). Si no reacciona a nada, no mide. Si reacciona a
-todo, mide volumen de noticias.
-
-## Limitaciones que hay que publicar en la web
-
-Ser explícita sobre esto no debilita el proyecto: lo blinda.
-
-1. **GDELT cubre medios, no conversación social.** Mides discurso publicado,
-   que es un proxy fuerte pero parcial de lo que piensa la gente. La capa de
-   redes es una extensión posterior, no está en v0.1.
-2. **Cobertura desigual.** Países con menos medios digitalizados tendrán N
-   bajo y saldrán en gris.
-3. **Sesgo idiomático residual.** Corregido parcialmente con
-   `language_bias_check`, no eliminado.
-4. **Los ejes son elecciones editoriales.** Definir el polo "-1" de
-   inmigración como restrictivo es una decisión tuya, documentada en
-   `AXES`. No cambies nunca la orientación de un eje: rompería toda la serie
-   histórica.
-5. **No mide causalidad.** Un pico no dice si la polarización causó el evento
-   o al revés.
-
-## Siguiente paso
-
-Ejecuta `pipeline.py` sobre 5 países y 1 tema (unos 15–20 min y ~2–3€ de API).
-Luego corre la validación contra V-Dem. Ese número de correlación decide si
-sigues con la arquitectura actual o hay que revisar la capa de stance antes
-de tocar el frontend.
+— Lucía García-Moreno · [LinkedIn](https://linkedin.com/in/luciagmg)
