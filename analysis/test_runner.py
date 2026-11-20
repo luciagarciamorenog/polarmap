@@ -38,6 +38,10 @@ L.record("asignacion", "claude-haiku-4-5",
          {"input_tokens": 1_000_000, "output_tokens": 0}, batch=True)
 check(f"lote: Haiku 1M entrada a mitad de precio = 0,50 $ (sale {L.cost(L.records[2]):.2f})",
       abs(L.cost(L.records[2]) - 0.50) < 1e-9)
+L2 = runner.Ledger()
+L2.record("x", "claude-haiku-4-5-20251001", {"input_tokens": 1_000_000}, batch=False)
+check("nombre de modelo fechado → mismo precio que el corto (1,00 $)",
+      abs(L2.cost(L2.records[0]) - 1.0) < 1e-9)
 s = L.summary()
 check(f"resumen: total {s['usd_total']:.2f} $ y lectura de caché "
       f"{s['cache_hit_share']:.0%} del prompt", abs(s["usd_total"] - 9.05) < 1e-9

@@ -61,7 +61,10 @@ class Ledger:
 
     @staticmethod
     def cost(r: dict) -> float:
-        p = PRICES.get(r["model"])
+        # La API responde con el nombre fechado (claude-haiku-4-5-20251001):
+        # se busca por prefijo para no perder el coste de esas llamadas.
+        p = PRICES.get(r["model"]) or next(
+            (v for k, v in PRICES.items() if r["model"].startswith(k)), None)
         if p is None:
             return float("nan")
         usd = (r["input"] * p["input"]
@@ -155,7 +158,8 @@ def _run_batch(bodies: list[dict], stage: str) -> list[str | None]:
         result = item.get("result", {})
         if result.get("type") == "succeeded":
             message = result["message"]
-            LEDGER.record(stage, message.get("model", ""), message.get("usage"), batch=True)
+            i = int(item["custom_id"].rsplit("-", 1)[1])
+            LEDGER.record(stage, bodies[i]["model"], message.get("usage"), batch=True)
             by_id[item["custom_id"]] = _text_of(message)
         else:
             log.error("  [%s] %s: %s", stage, item.get("custom_id"), result.get("type"))
