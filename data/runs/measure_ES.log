@@ -1,0 +1,94 @@
+2026-09-25 18:22:19,611 INFO ============================================================
+2026-09-25 18:22:19,611 INFO PASADA 1: TITULARES
+2026-09-25 18:22:19,611 INFO   Países: ES | Ventana: 24h | Muestreo: 1/2
+2026-09-25 18:22:19,611 INFO ============================================================
+2026-09-25 18:22:28,447 INFO   titulares: 6/48 ficheros | 292 admitidos
+2026-09-25 18:22:40,599 INFO   titulares: 12/48 ficheros | 749 admitidos
+2026-09-25 18:22:50,382 INFO   titulares: 18/48 ficheros | 1096 admitidos
+2026-09-25 18:22:59,797 INFO   titulares: 24/48 ficheros | 1302 admitidos
+2026-09-25 18:23:08,244 INFO   titulares: 30/48 ficheros | 1400 admitidos
+2026-09-25 18:23:16,766 INFO   titulares: 36/48 ficheros | 1527 admitidos
+2026-09-25 18:23:26,488 INFO   titulares: 42/48 ficheros | 1747 admitidos
+2026-09-25 18:23:36,140 INFO   titulares: 48/48 ficheros | 1984 admitidos
+2026-09-25 18:23:36,140 INFO   titulares: 3200 de los países pedidos → 1984 admitidos (sin titular 626, sección blanda 415, sindicados 175)
+2026-09-25 18:23:36,140 INFO [ES] 1984 titulares analizables
+2026-09-25 18:23:36,140 INFO Leyendo titular real y entradilla de cada noticia…
+2026-09-25 18:28:04,968 INFO [ES] titular real + entradilla: 1696 de 1984 · fuera por reserva TDM: 256
+2026-09-25 18:28:04,969 INFO 
+2026-09-25 18:28:04,969 INFO ============================================================
+2026-09-25 18:28:04,969 INFO PASADA 2: ANÁLISIS DE POLARIZACIÓN
+2026-09-25 18:28:04,969 INFO ============================================================
+2026-09-25 18:28:04,970 INFO --- [ES] España: 1728 titulares ---
+2026-09-25 18:28:05,586 INFO   [debates] lote msgbatch_0191g57pqUKd38wSCaHTyg2M con 1 peticiones enviado
+2026-09-25 18:28:35,994 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-09-25 18:29:06,403 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-09-25 18:29:36,680 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-09-25 18:30:07,080 INFO   [debates] lote: ended · 1 hechas, 0 en curso
+2026-09-25 18:30:07,586 INFO   [ES] debate 1: 'Crisis de vivienda y desahucios' | El Estado debe intervenir urgentemente con me ↔ Las medidas intervencionistas agravan el prob
+2026-09-25 18:30:07,587 INFO   [ES] debate 2: 'Política migratoria' | España debe reforzar el control fronterizo, a ↔ La respuesta debe priorizar la acogida humani
+2026-09-25 18:30:07,587 INFO   [ES] debate 3: 'Independencia judicial y corrupción política' | Los jueces actúan con independencia legítima  ↔ El poder judicial es utilizado políticamente 
+2026-09-25 18:30:07,587 INFO   [ES] debate 4: 'Regulación de la inteligencia artificial' | La inteligencia artificial debe regularse con ↔ Una regulación excesiva frenaría la innovació
+2026-09-25 18:30:08,249 INFO   [asignacion] lote msgbatch_01EqrKtPGo3Nn6d9muRCRD5G con 35 peticiones enviado
+2026-09-25 18:30:38,570 INFO   [asignacion] lote: in_progress · 0 hechas, 35 en curso
+2026-09-25 18:31:08,866 INFO   [asignacion] lote: in_progress · 0 hechas, 35 en curso
+2026-09-25 18:31:39,143 INFO   [asignacion] lote: in_progress · 0 hechas, 35 en curso
+2026-09-25 18:32:09,518 INFO   [asignacion] lote: in_progress · 0 hechas, 35 en curso
+2026-09-25 18:32:39,926 INFO   [asignacion] lote: in_progress · 0 hechas, 35 en curso
+2026-09-25 18:33:10,264 INFO   [asignacion] lote: in_progress · 0 hechas, 35 en curso
+2026-09-25 18:33:40,629 INFO   [asignacion] lote: ended · 35 hechas, 0 en curso
+2026-09-25 18:33:41,084 INFO   [ES] asignación: 1:138 · 2:81 · 3:71 · 4:39 | ninguno 1399 | fallidos 0
+2026-09-25 18:33:41,897 INFO   [postura] lote msgbatch_01BWRcZrBzdVpGQybm8ZjDDj con 18 peticiones enviado
+2026-09-25 18:34:12,228 INFO   [postura] lote: in_progress · 0 hechas, 18 en curso
+2026-09-25 18:34:43,429 INFO   [postura] lote: in_progress · 0 hechas, 18 en curso
+2026-09-25 18:35:13,827 INFO   [postura] lote: in_progress · 0 hechas, 18 en curso
+2026-09-25 18:35:44,120 INFO   [postura] lote: in_progress · 0 hechas, 18 en curso
+2026-09-25 18:36:14,435 INFO   [postura] lote: in_progress · 0 hechas, 18 en curso
+2026-09-25 18:36:44,739 INFO   [postura] lote: in_progress · 0 hechas, 18 en curso
+2026-09-25 18:37:15,935 INFO   [postura] lote: ended · 18 hechas, 0 en curso
+2026-09-25 18:37:16,356 INFO   [ES] 'Crisis de vivienda y desahucios': 138 titulares
+2026-09-25 18:37:16,357 INFO   [ES] clasificación: 137 on-topic, 1 off-topic, 0 fallidos de 138
+2026-09-25 18:37:16,357 INFO   [ES] postura: media=-0.25 sd=0.52 | hostil: media=0.21 | confianza: media=0.76
+2026-09-25 18:37:16,377 INFO   [ES] ideológica=0.246 afectiva=0.247 compuesta=0.247 ✓
+2026-09-25 18:37:16,377 INFO   [ES] 'Política migratoria': 81 titulares
+2026-09-25 18:37:16,378 INFO   [ES] clasificación: 75 on-topic, 6 off-topic, 0 fallidos de 81
+2026-09-25 18:37:16,378 INFO   [ES] postura: media=-0.17 sd=0.55 | hostil: media=0.19 | confianza: media=0.77
+2026-09-25 18:37:16,378 INFO   [ES] ideológica=0.271 afectiva=0.291 compuesta=0.281 ⚠ no fiable
+2026-09-25 18:37:16,378 INFO   [ES] 'Independencia judicial y corrupción política': 71 titulares
+2026-09-25 18:37:16,379 INFO   [ES] clasificación: 70 on-topic, 1 off-topic, 0 fallidos de 71
+2026-09-25 18:37:16,379 INFO   [ES] postura: media=0.28 sd=0.47 | hostil: media=0.22 | confianza: media=0.70
+2026-09-25 18:37:16,379 INFO   [ES] ideológica=0.574 afectiva=0.378 compuesta=0.466 ⚠ no fiable
+2026-09-25 18:37:16,379 INFO   [ES] 'Regulación de la inteligencia artificial': 39 titulares
+2026-09-25 18:37:16,379 INFO   [ES] clasificación: 34 on-topic, 5 off-topic, 0 fallidos de 39
+2026-09-25 18:37:16,379 INFO   [ES] postura: media=-0.05 sd=0.52 | hostil: media=0.10 | confianza: media=0.68
+2026-09-25 18:37:16,380 INFO   [ES] ideológica=0.429 afectiva=0.115 compuesta=0.222 ⚠ no fiable
+2026-09-25 18:37:16,380 INFO 
+2026-09-25 18:37:16,380 INFO CONSUMO REAL (batch):
+2026-09-25 18:37:16,381 INFO   debates · claude-sonnet-4-6          1 llamadas · entrada   38961 · caché escrita      0 · caché leída       0 · salida   1179 · 0.0673 $
+2026-09-25 18:37:16,381 INFO   asignacion · claude-haiku-4-5-20251001  35 llamadas · entrada  174531 · caché escrita      0 · caché leída       0 · salida  24577 · nan $
+2026-09-25 18:37:16,381 INFO   postura · claude-sonnet-4-6         18 llamadas · entrada   43246 · caché escrita      0 · caché leída       0 · salida  19757 · 0.2130 $
+2026-09-25 18:37:16,381 INFO   TOTAL nan $ · nan $/país · nan $ por 1.000 titulares · 0% del prompt leído de caché
+2026-09-25 18:37:16,381 INFO 
+2026-09-25 18:37:16,381 INFO ============================================================
+2026-09-25 18:37:16,381 INFO RESULTADOS
+2026-09-25 18:37:16,381 INFO ============================================================
+2026-09-25 18:37:16,381 INFO [ES] España:
+2026-09-25 18:37:16,381 INFO   Ideológica: 0.246 | Afectiva: 0.247 | Compuesta: 0.246 | Tipo dominante: mixed
+2026-09-25 18:37:16,381 INFO   #1 Independencia judicial y   ideo=0.57  afec=0.38  comp=0.47  n= 70  ⚠
+2026-09-25 18:37:16,381 INFO   #2 Política migratoria        ideo=0.27  afec=0.29  comp=0.28  n= 75  ⚠
+2026-09-25 18:37:16,381 INFO   #3 Crisis de vivienda y desa  ideo=0.25  afec=0.25  comp=0.25  n=137  ✓
+2026-09-25 18:37:16,381 INFO   #4 Regulación de la intelige  ideo=0.43  afec=0.11  comp=0.22  n= 34  ⚠
+2026-09-25 18:37:16,388 INFO 
+2026-09-25 18:37:16,388 INFO Snapshot v1 guardado en data/snapshot_measure.json (detalle en data/internal/snapshot_measure_full.json)
+
+país                color dom       n    ne temas  estado
+------------------------------------------------------------
+Estados Unidos         -- --        0     0  0/0   no pedido
+Reino Unido            -- --        0     0  0/0   no pedido
+España              0.247 mix     137   134  1/4   fiable
+México                 -- --        0     0  0/0   no pedido
+Argentina              -- --        0     0  0/0   no pedido
+Chile                  -- --        0     0  0/0   no pedido
+Francia                -- --        0     0  0/0   no pedido
+Alemania               -- --        0     0  0/0   no pedido
+Italia                 -- --        0     0  0/0   no pedido
+Brasil                 -- --        0     0  0/0   no pedido

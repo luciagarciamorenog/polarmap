@@ -1,0 +1,30 @@
+{
+  "by_stage": {
+    "piloto-ordenacion · claude-sonnet-4-6": {
+      "calls": 90,
+      "input": 311638,
+      "output": 44549,
+      "cache_write": 0,
+      "cache_read": 0,
+      "usd": 0.8015744999999999
+    },
+    "postura · claude-sonnet-4-6": {
+      "calls": 17,
+      "input": 39552,
+      "output": 18297,
+      "cache_write": 0,
+      "cache_read": 0,
+      "usd": 0.393111
+    },
+    "piloto-encuadres · claude-haiku-4-5-20251001": {
+      "calls": 48,
+      "input": 159916,
+      "output": 45001,
+      "cache_write": 0,
+      "cache_read": 0,
+      "usd": NaN
+    }
+  },
+  "usd_total": NaN,
+  "cache_hit_share": 0.0
+}
