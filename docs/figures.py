@@ -146,7 +146,7 @@ def pipeline_svg(lang: str) -> str:
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" role="img" '
            f'font-family="DM Sans, system-ui, sans-serif">',
            f'<title>{escape(LEGEND[lang])}</title>',
-           '<defs><marker id="pm-arr" viewBox="0 0 10 10" refX="8" refY="5" '
+           f'<defs><marker id="pm-arr-{lang}" viewBox="0 0 10 10" refX="8" refY="5" '
            'markerWidth="7" markerHeight="7" orient="auto-start-reverse">'
            f'<path d="M2 1L8 5L2 9" fill="none" stroke="{INK2}" stroke-width="1.5"/>'
            '</marker></defs>',
@@ -168,11 +168,11 @@ def pipeline_svg(lang: str) -> str:
         bx, by = boxes[i]
         out.append(f'<line x1="{bx + bw + 3}" y1="{by + bh / 2}" x2="{bx + bw + gap - 4}" '
                    f'y2="{by + bh / 2}" stroke="{INK2}" stroke-width="1.2" '
-                   f'marker-end="url(#pm-arr)"/>')
+                   f'marker-end="url(#pm-arr-{lang})"/>')
     (x3, y3), (x4, y4) = boxes[2], boxes[3]
     ym = y3 + bh + rowgap / 2
     out.append(f'<path d="M{x3 + bw / 2} {y3 + bh + 3} V{ym} H{x4 + bw / 2} V{y4 - 4}" '
-               f'fill="none" stroke="{INK2}" stroke-width="1.2" marker-end="url(#pm-arr)"/>')
+               f'fill="none" stroke="{INK2}" stroke-width="1.2" marker-end="url(#pm-arr-{lang})"/>')
     out.append(f'<text x="{W / 2}" y="{H - 14}" font-size="11" fill="{INK3}" '
                f'text-anchor="middle">{escape(LEGEND[lang])}</text>')
     out.append("</svg>")
