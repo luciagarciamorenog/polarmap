@@ -1,5 +1,6 @@
 #!/bin/bash
-# PolarMap · tirada semanal (opción A: foto de 24 h, un día fijo a la semana).
+# PolarMap · tirada semanal (opción A: foto de 24 h, cada lunes:
+# noticias y redes del domingo al lunes).
 # Prensa y, con sus mismos debates y ventana, Bluesky y YouTube.
 #   ./semanal.sh
 set -euo pipefail
