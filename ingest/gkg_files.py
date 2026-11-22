@@ -257,9 +257,9 @@ def slug_to_title(url: str) -> str:
     'https://elpais.com/espana/2026-08-05/el-gobierno-aprueba-la-reforma.html'
         -> 'el gobierno aprueba la reforma'
 
-    Devuelve cadena vacía si no hay slug utilizable (URLs con solo un id
-    numérico, por ejemplo). Esos artículos se descartan y se cuentan aparte:
-    inventarse un titular sería mucho peor que perder el dato.
+    Devuelve cadena vacía si no hay slug utilizable (URLs con solo un id,
+    como El Mundo). Nunca se inventa un titular: esas noticias esperan al
+    titular real de la página (ingest/leads.py) o se descartan.
     """
     try:
         path = urlparse(url).path
@@ -268,8 +268,20 @@ def slug_to_title(url: str) -> str:
     if not path:
         return ""
 
-    seg = path.rstrip("/").split("/")[-1]
-    # quitar extensión
+    # El slug suele ser el último tramo de la ruta, pero algunos medios
+    # ponen detrás un id (RTVE: /diario-campana.../17309191.shtml; La Voz
+    # de Galicia: /educadora-infantil.../0003_2026...htm). Se prueban los
+    # tres últimos tramos, del final hacia atrás.
+    for seg in path.rstrip("/").split("/")[::-1][:3]:
+        words = _slug_words(seg)
+        if len(words) >= 4:
+            # slugs demasiado largos suelen arrastrar ids: cortar
+            return " ".join(words[:20])
+    return ""
+
+
+def _slug_words(seg: str) -> list[str]:
+    """Palabras útiles de un tramo de URL (sin extensión, ids ni restos)."""
     for ext in (".html", ".htm", ".php", ".amp", ".shtml"):
         if seg.endswith(ext):
             seg = seg[: -len(ext)]
@@ -282,11 +294,7 @@ def slug_to_title(url: str) -> str:
         words.pop(0)
     while words and words[-1] in _SLUG_SUFFIXES:
         words.pop()
-    if len(words) < 4:
-        return ""
-    # slugs demasiado largos suelen arrastrar ids: cortar
-    words = words[:20]
-    return " ".join(words)
+    return words
 
 
 # Secciones que nunca son debate público. Se miran los segmentos de la

@@ -184,6 +184,16 @@ for dom, pais in [("ara.cat", "ES"), ("vilaweb.cat", "ES"), ("berria.eus", "ES")
                   ("noelpais.com", None)]:
     checks.append((f"{dom} -> {pais}", domain_to_country(dom) == pais))
 
+# Slug antes de un id final (RTVE, La Voz de Galicia); El Mundo no tiene slug
+checks.append(("La Voz: slug en el penúltimo tramo", slug_to_title(
+    "https://www.lavozdegalicia.es/noticia/vigo/2026/11/18/educadora-infantil-encadeno-67-contratos-14-anos-escuela-xunta/0003_202611V18C5995.htm"
+    ).startswith("educadora infantil")))
+checks.append(("El Mundo: id sin slug -> vacío", slug_to_title(
+    "https://www.elmundo.es/espana/2026/11/19/6afebc3b21efa0c7408b45a3.html") == ""))
+checks.append(("slug normal sigue igual", slug_to_title(
+    "https://elpais.com/espana/2026-08-05/el-gobierno-aprueba-la-reforma.html")
+    == "el gobierno aprueba la reforma"))
+
 from ingest.gkg_files import Article  # noqa: E402
 a = Article(url="u", title="Titular", domain="d", country="ES", language="",
             seendate="", topic="")

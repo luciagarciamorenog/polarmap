@@ -188,18 +188,26 @@ class AdmitStats:
     """Qué se descarta antes de analizar, para poder reportarlo."""
     seen: int = 0
     no_title: int = 0
+    untitled: int = 0   # sin titular en la URL, admitidos a la espera del de la página
     soft: int = 0
     duplicate: int = 0
     admitted: int = 0
 
 
 def _admit(row: list[str], cset: set[str],
-           seen_keys: dict[str, set[str]], stats: AdmitStats
+           seen_keys: dict[str, set[str]], stats: AdmitStats,
+           allow_untitled: bool = False,
            ) -> tuple[str, str] | None:
     """
     Filtro común a censo y extracción: país pedido, titular
     reconstruible, sección no blanda y pieza no sindicada ya vista.
     Devuelve (country, title) o None.
+
+    allow_untitled: si la URL no trae un titular legible (El Mundo usa un
+    id, RTVE y La Voz de Galicia ponen un número al final), se admite con
+    titular vacío para leer el real de la página después. Sin esto se
+    perdían medios enteros. Quien lo active debe tirar luego los que sigan
+    sin titular (pipeline_discover.enrich_with_leads lo hace).
     """
     if len(row) <= COL_TONE:
         return None
@@ -209,13 +217,15 @@ def _admit(row: list[str], cset: set[str],
     stats.seen += 1
     url = row[COL_DOC_ID]
     title = slug_to_title(url)
-    if not title:
+    if not title and not allow_untitled:
         stats.no_title += 1
         return None
     if is_soft_section(url):
         stats.soft += 1
         return None
-    key = title_key(title)
+    if not title:
+        stats.untitled += 1
+    key = title_key(title) if title else "url:" + url
     if key in seen_keys[country]:
         stats.duplicate += 1
         return None
@@ -585,13 +595,18 @@ def fetch_articles_for_group(tags: list[str], countries: list[str],
 
 
 def fetch_country_headlines(countries: list[str], hours_back: int = 24,
-                            every_n: int = 4, max_files: int = 60,
+                            every_n: int = 1, max_files: int | None = None,
                             cache_dir: Path = CACHE_DIR,
+                            allow_untitled: bool = False,
                             ) -> tuple[dict[str, list[Article]], AdmitStats]:
     """
     Todos los titulares analizables de cada país en la ventana, sin
     filtrar por etiqueta GKG: el tema lo decide después assign_topics
     leyendo el titular. Solo aplica _admit (titular, sección, sindicación).
+
+    max_files=None lee toda la ventana. (Antes el tope era 60 ficheros:
+    con every_n=1 y 24 h hay 96, y se habrían perdido 9 horas.)
+    allow_untitled: ver _admit.
     """
     stamps = gkg_timestamps(hours_back, every_n)[:max_files]
     cset = set(countries)
@@ -614,7 +629,8 @@ def fetch_country_headlines(countries: list[str], hours_back: int = 24,
             reader = csv.reader(io.StringIO(data), delimiter="\t",
                                 quoting=csv.QUOTE_NONE)
             for row in reader:
-                admitted = _admit(row, cset, seen_keys, stats)
+                admitted = _admit(row, cset, seen_keys, stats,
+                                  allow_untitled=allow_untitled)
                 if admitted is None:
                     continue
                 country, title = admitted
@@ -634,9 +650,10 @@ def fetch_country_headlines(countries: list[str], hours_back: int = 24,
                      i, len(stamps), stats.admitted)
 
     log.info("  titulares: %d de los países pedidos → %d admitidos "
-             "(sin titular %d, sección blanda %d, sindicados %d)",
+             "(sin titular %d, sección blanda %d, sindicados %d; "
+             "%d sin titular en la URL, pendientes del de la página)",
              stats.seen, stats.admitted, stats.no_title, stats.soft,
-             stats.duplicate)
+             stats.duplicate, stats.untitled)
     return dict(by_country), stats
 
 

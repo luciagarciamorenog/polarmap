@@ -48,6 +48,7 @@ from analysis.discover import (
 from analysis.metrics import polarization_profile
 from ingest.gkg_files import Article, gkg_timestamps
 from ingest.leads import fetch_leads
+from ingest.gkg_files import title_key
 
 logging.basicConfig(
     level=logging.INFO,
@@ -91,12 +92,17 @@ def enrich_with_leads(headlines: dict[str, list[Article]],
     Con respect_tdm, los medios que declaran reserva de minería de textos
     (TDMRep) se quedan fuera del análisis. Lo que no se pudo leer sigue
     con el titular de la URL, marcado como title_source="url".
+
+    Las noticias que llegaron sin titular en la URL (El Mundo, RTVE, La
+    Voz de Galicia...) se quedan solo si la página da su titular. Al final
+    se quitan las copias sindicadas que solo se ven con el titular real.
     """
     urls = [a.url for arts in headlines.values() for a in arts]
     leads = fetch_leads(urls)
     out = {}
     for country, arts in headlines.items():
-        kept, n_page, n_tdm = [], 0, 0
+        kept, n_page, n_tdm, n_untitled, n_dup = [], 0, 0, 0, 0
+        seen: set[str] = set()
         for a in arts:
             ld = leads.get(a.url) or {}
             if respect_tdm and ld.get("tdm_reserved"):
@@ -106,10 +112,20 @@ def enrich_with_leads(headlines: dict[str, list[Article]],
                 a.title, a.title_source = ld["title"], "page"
                 a.lead = ld.get("description", "")
                 n_page += 1
+            if not a.title:
+                n_untitled += 1
+                continue
+            key = title_key(a.title)
+            if key in seen:
+                n_dup += 1
+                continue
+            seen.add(key)
             kept.append(a)
         out[country] = kept
         log.info("[%s] titular real + entradilla: %d de %d · fuera por "
-                 "reserva TDM: %d", country, n_page, len(arts), n_tdm)
+                 "reserva TDM: %d · sin titular tampoco en la página: %d · "
+                 "sindicados (por titular real): %d",
+                 country, n_page, len(arts), n_tdm, n_untitled, n_dup)
     return out
 
 
@@ -617,6 +633,7 @@ def main():
 
     headlines, _ = fetch_country_headlines(
         countries, hours_back=args.hours, every_n=args.every,
+        allow_untitled=not args.no_leads,
     )
     for country in countries:
         log.info("[%s] %d titulares analizables", country,
