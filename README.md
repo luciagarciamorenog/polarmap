@@ -37,6 +37,31 @@ On thinner debates (fewer than ~80 headlines) the outlet signal is still not dis
 
 ---
 
+## Is the press split into camps? Measuring outlets, not headlines
+
+A single headline mostly informs: even partisan outlets publish wire copy, quotes from both sides and plain data. On both runs the outlet explains only about 30 % of a headline's stance; the rest varies within each outlet. So the per-headline index answers *"how much does the press editorialise?"*, not *"are outlets split into camps?"*. `analysis/ecosystem.py` answers the second question directly (no API calls):
+
+- **One outlet, one vote.** Every outlet weighs the same, however many headlines it publishes.
+- **Camps of outlets.** The best two-way split of outlet positions, the distance between the two camps on the −1…+1 scale, and how much distance chance alone would produce (stances shuffled across the same outlets). Only the excess over chance is editorial separation.
+- **Agenda polarization.** Whether outlets choose to cover different debates (Jensen–Shannon distance between their agendas vs. chance).
+- **Opinion vs. news**, from the URL, and whether the most extreme outlets are also the most hostile.
+- **A fixed government ↔ opposition axis** (`bloc`, codebook v3), the same for every debate and day. Issue axes deliberately ignore which party a headline hurts; in Spain much of the split is partisan, and without this axis it was invisible.
+
+| Run | Debate | Per headline | One outlet, one vote | Outlet explains | Distance between outlet camps (chance) |
+|---|---|---|---|---|---|
+| 20 Nov | Election debate (24 outlets) | 0.31 | 0.36 | 27 % (chance 10 %) | **0.58 (0.38), p = 0.04** |
+| 25 Sep | Housing (15 outlets) | 0.23 | 0.24 | 33 % (chance 12 %) | 0.52 (0.41), p = 0.11 |
+| 25 Sep | Judiciary (10 outlets) | 0.48 | 0.44 | 9 % (chance 19 %) | 0.28 (0.42), n.s. |
+
+- On the election debate the outlets form two camps clearly beyond chance, and the outlets at the extremes are the most hostile (ρ = 0.55 between extremity and hostility).
+- On the judiciary axis ("judges are legitimate" vs. "lawfare"), Público and Libertad Digital land on the same side: the issue axis cuts across the partisan divide. This is the case the government ↔ opposition axis is for.
+- Agendas differ beyond chance on both days (Jensen–Shannon 0.33 vs. 0.26 and 0.29 vs. 0.22): outlets disagree as much in what they cover as in how.
+- Grouping by BIC still finds one cluster of outlets, not two: with one day of data, outlets look like a spectrum rather than two blocs.
+
+```bash
+python3 validate/ecosystem_report.py data/internal/<run>_headlines.jsonl
+```
+
 ## How it works
 
 | Step | What happens | Where |
@@ -85,7 +110,7 @@ The reference set was labelled by a stronger model following the same codebook, 
 ## Roadmap
 
 1. Run Spain daily for a week so smaller debates also reach enough headlines per outlet (stability across days: first check passed, ρ = 0.89).
-2. Compute polarization **between outlets** (are they split into two groups?) with bootstrap intervals, instead of between single headlines.
+2. ~~Compute polarization between outlets~~ Done (22 Nov): camps of outlets vs. chance, one outlet one vote, agenda, opinion, government ↔ opposition axis. Next: the same measures over a week of runs.
 3. Expand the human-labelled set to 100+ headlines, with a second annotator to measure the human ceiling.
 4. Extend to the 10 countries in the data contract and validate against [V-Dem](https://www.v-dem.net/) (`validate/ground_truth.py`).
 5. Public map, then an agent that answers questions like *"what does each side argue about housing?"* with cited headlines.
@@ -106,15 +131,19 @@ python3 pipeline_discover.py --countries ES --hours 24 --dry-run
 # earlier runs, which used --every 2); roughly 40-60 min and ~$1
 python3 pipeline_discover.py --countries ES --hours 24 --out snapshot_ES.json
 
-# outlet positions for a run (no API)
+# outlet positions and the media-ecosystem report for a run (no API)
 python3 validate/outlet_positions.py data/internal/snapshot_ES_headlines.jsonl
+python3 validate/ecosystem_report.py data/internal/snapshot_ES_headlines.jsonl
+
+# more precise stance: every headline read 3 times and averaged (stance step x3)
+python3 pipeline_discover.py --countries ES --hours 24 --stance-passes 3 --out snapshot_ES.json
 ```
 
 ## Repository map
 
 ```
 ingest/      GDELT files, real headlines and leads
-analysis/    debate discovery, scoring, polarization metrics, outlet positions, data contract
+analysis/    debate discovery, scoring, polarization metrics, outlet positions, media ecosystem, data contract
 validate/    codebook, labelling tool, scoring against labels, pilot of the second method
 data/        snapshots, debate-axis registry, labels (press excerpts are not redistributed)
 docs/        figures and the original methodology notes (Spanish)

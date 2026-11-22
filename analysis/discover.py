@@ -1047,9 +1047,12 @@ class StanceResult:
                           # No es off-topic: es un dato perdido.
     conflict: float = float("nan")  # 0 a 1: conflictividad de la historia
     us_them: str | None = None      # uno de US_THEM
+    bloc: float = float("nan")      # -1 favorable al Gobierno ... +1 a la oposición
+    why: str = ""                   # motivo breve que da el modelo antes de puntuar
+    stance_sd: float = float("nan") # desviación entre pasadas (si hay varias)
 
 
-CLASSIFY_SYSTEM = """Eres un analista de medios. Codificas noticias para medir polarización en tres dimensiones distintas. No las mezcles.
+CLASSIFY_SYSTEM = """Eres un analista de medios. Codificas noticias para medir polarización en varias dimensiones distintas. No las mezcles.
 
 EJE DEL DEBATE:
   Polo A (-1): {pole_a}
@@ -1057,13 +1060,15 @@ EJE DEL DEBATE:
 
 Cada noticia viene como «titular. entradilla» (a veces solo el titular).
 
+0. why (máx. 15 palabras), ANTES de puntuar: qué hecho, cita o ángulo elige el medio y a qué polo favorece esa elección. Si de verdad no favorece a ninguno, dilo.
+
 1. stance (-1.0 a +1.0): dónde queda la noticia entre el polo A y el polo B.
    Cuenta la postura EXPLÍCITA y también la IMPLÍCITA por framing: qué hecho elige contar el medio, desde qué ángulo y con qué palabras.
    - ±1.0: defiende un polo, o framing muy cargado (términos de un bando, una consigna como titular).
    - ±0.5: el ángulo o la selección del hecho favorecen un polo sin afirmarlo.
-   - 0.0: dato o trámite sin ángulo, o noticia equilibrada que recoge a ambos bandos.
-   Ejemplos (eje «intervenir en vivienda» vs «mercado»): «Valladolid contabiliza un desahucio cada dos días» → -0.5; «"Maricarmen somos todas": Tenerife alza la voz contra los desahucios» → -1.0; «La compraventa cae un 5,1 % en julio» → 0.0.
-   Sitúa la noticia por lo que dice del asunto del eje, no por a qué partido perjudica.
+   - 0.0: SOLO para un dato o trámite sin ángulo, o una noticia que recoge a ambos bandos por igual. Que el tono sea sobrio no la hace neutral: un titular informativo que elige un hecho que solo le conviene a un bando no es 0.
+   Ejemplos (eje «intervenir en vivienda» vs «mercado»): «"Maricarmen somos todas": Tenerife alza la voz contra los desahucios» → -1.0; «Valladolid contabiliza un desahucio cada dos días» → -0.5 (elige el drama de los desahucios); «Los propietarios tardan 20 meses en recuperar una vivienda okupada» → +0.5 (elige el problema del propietario); «La compraventa cae un 5,1 % en julio» → 0.0.
+   Sitúa la noticia por lo que dice del asunto del eje, no por a qué partido perjudica (eso va en bloc).
 
 2. hostility (0.0 a 1.0): SOLO la agresividad del lenguaje (titular, entradilla y citas que el medio destaca). No la gravedad del hecho.
    1.0 insulto, burla, deshumanización («a gorrazos», «invasión», «cloacas»); 0.5 léxico combativo («choque», «maniobra», «fondo buitre», «acoso»); 0.0 lenguaje neutro aunque el hecho sea grave.
@@ -1074,15 +1079,19 @@ Cada noticia viene como «titular. entradilla» (a veces solo el titular).
 4. us_them: si la noticia presenta DOS partes identificables enfrentadas.
    "political" (partidos, Gobierno, oposición, instituciones), "social_groups" (colectivos sociales), "nonpolitical_rivals" (clubes, empresas frente a clientes, asociaciones) o "no". No basta con una víctima o un culpable sin el otro bando.
 
-5. confidence (0.0 a 1.0): tu confianza en stance.
+5. bloc (-1.0 a +1.0, o null): a qué bloque político nacional deja mejor o peor la noticia, sea cual sea el debate.
+   -1.0 favorece claramente al Gobierno del país o daña a la oposición; +1.0 favorece claramente a la oposición o daña al Gobierno; ±0.5 de forma leve; 0.0 equilibrada. null si la noticia no implica a actores políticos nacionales.
 
-6. off_topic: true SOLO si la noticia trata de algo completamente distinto del debate. Si trata del asunto aunque sea informativa, off_topic=false.
+6. confidence (0.0 a 1.0): tu confianza en stance.
 
-Responde SOLO con un array JSON, un objeto por noticia:
-[{{"id":1,"stance":-0.5,"hostility":0.0,"conflict":0.5,"us_them":"no","confidence":0.8,"off_topic":false}}]"""
+7. off_topic: true SOLO si la noticia trata de algo completamente distinto del debate. Si trata del asunto aunque sea informativa, off_topic=false.
+
+Responde SOLO con un array JSON, un objeto por noticia, con why en primer lugar:
+[{{"id":1,"why":"elige el drama de un desahucio: favorece intervenir","stance":-0.5,"hostility":0.0,"conflict":0.5,"us_them":"no","bloc":null,"confidence":0.8,"off_topic":false}}]"""
 
 
-def build_classify_bodies(texts: list[str], pole_a: str, pole_b: str
+def build_classify_bodies(texts: list[str], pole_a: str, pole_b: str,
+                          temperature: float = 0.1,
                           ) -> list[tuple[dict, list[str]]]:
     """Una petición por cada BATCH_SIZE textos. El libro de códigos y el
     eje van en el bloque de sistema cacheable: iguales en todo el debate."""
@@ -1093,8 +1102,8 @@ def build_classify_bodies(texts: list[str], pole_a: str, pole_b: str
         numbered = "\n".join(f"{j+1}. {t}" for j, t in enumerate(chunk))
         bodies.append(({
             "model": CLASSIFY_MODEL,
-            "max_tokens": 3000,
-            "temperature": 0.1,
+            "max_tokens": 4500,
+            "temperature": temperature,
             "system": _cached_system(system),
             "messages": [{"role": "user", "content": f"NOTICIAS:\n{numbered}"}],
         }, chunk))
@@ -1205,6 +1214,13 @@ def _parse_classify_response(text: str, titles: list[str]
             conflict = float("nan")
         us_them = item.get("us_them")
         us_them = us_them if us_them in US_THEM else None
+        try:
+            bloc = item.get("bloc")
+            bloc = float(bloc) if bloc is not None else float("nan")
+            bloc = max(-1.0, min(1.0, bloc)) if np.isfinite(bloc) else float("nan")
+        except (TypeError, ValueError):
+            bloc = float("nan")
+        why = str(item.get("why") or "")[:200]
 
         results.append(StanceResult(
             title=title,
@@ -1214,6 +1230,43 @@ def _parse_classify_response(text: str, titles: list[str]
             off_topic=off_topic,
             conflict=conflict,
             us_them=us_them,
+            bloc=bloc,
+            why=why,
         ))
 
     return results
+
+
+def combine_passes(passes: list[list[StanceResult]]) -> list[StanceResult]:
+    """
+    Junta varias pasadas de clasificación del mismo titular (mismo orden).
+    Postura, hostilidad, conflicto, bloc y confianza: media de las pasadas
+    válidas. off_topic: mayoría. stance_sd: desviación de la postura entre
+    pasadas, que mide la consistencia del modelo. Un titular solo cuenta
+    como fallido si fallan todas las pasadas.
+    """
+    if len(passes) == 1:
+        return passes[0]
+    out = []
+    for rs in zip(*passes):
+        ok = [r for r in rs if not r.failed]
+        if not ok:
+            out.append(rs[0])
+            continue
+        on = [r for r in ok if not r.off_topic]
+        off_topic = len(on) * 2 < len(ok)
+        use = on or ok
+
+        def avg(attr):
+            v = np.array([getattr(r, attr) for r in use], dtype=float)
+            v = v[np.isfinite(v)]
+            return float(v.mean()) if v.size else float("nan")
+        st = np.array([r.stance for r in use], dtype=float)
+        us = Counter(r.us_them for r in use if r.us_them).most_common(1)
+        out.append(StanceResult(
+            title=use[0].title, stance=avg("stance"), hostility=avg("hostility"),
+            confidence=avg("confidence"), off_topic=off_topic,
+            conflict=avg("conflict"), us_them=us[0][0] if us else None,
+            bloc=avg("bloc"), why=use[0].why,
+            stance_sd=float(st.std()) if st.size > 1 else float("nan")))
+    return out

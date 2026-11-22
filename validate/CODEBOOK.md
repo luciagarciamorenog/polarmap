@@ -1,4 +1,4 @@
-# Libro de códigos PolarMap · v2
+# Libro de códigos PolarMap · v3
 
 Unidad de análisis: **titular + entradilla** de una noticia (lo que lee el
 modelo). Se abre la noticia solo si con eso no se entiende.
@@ -13,6 +13,18 @@ PolarMap mide tres dimensiones por separado y no las combina todavía:
 
 Cambios frente a v1: `stance` incluye framing; `hostility` queda solo para el
 lenguaje; `conflict` es nuevo; `us_them` tiene una regla explícita.
+
+Cambios v3 (22 nov 2026):
+- `why`: antes de puntuar, el modelo escribe en ≤ 15 palabras qué hecho o
+  ángulo elige el medio y a qué polo favorece. Razonar primero reduce los
+  ceros por prudencia.
+- `stance = 0` queda solo para datos sin ángulo o noticias que recogen a los
+  dos bandos por igual. Un titular sobrio que elige un hecho que conviene a
+  un bando no es 0 (nuevo ejemplo del polo B en vivienda).
+- `bloc`: eje fijo Gobierno ↔ oposición, el mismo en todos los debates y
+  días. `stance` sigue sin mirar a qué partido perjudica; eso va aquí.
+- Varias pasadas (`--stance-passes 3`): cada titular se lee 3 veces en otro
+  orden y se promedia; `stance_sd` mide cuánto duda el modelo.
 
 ---
 
@@ -40,8 +52,8 @@ palabras.
 | Valor | Regla | Ejemplo (vivienda: A intervenir ↔ B mercado) |
 |---|---|---|
 | ±1 | Defensa explícita de un polo, o framing muy cargado (términos del bando, consigna como titular) | «"Maricarmen somos todas": Tenerife alza la voz contra los desahucios» → −1 |
-| ±0.5 | El ángulo o la selección del hecho favorecen un polo sin afirmarlo | «Valladolid contabiliza un desahucio cada dos días» → −0.5 |
-| 0 | Dato o trámite sin ángulo, o equilibrado (recoge a ambos bandos) | «La compraventa de viviendas cae un 5,1 % en julio» → 0 |
+| ±0.5 | El ángulo o la selección del hecho favorecen un polo sin afirmarlo | «Valladolid contabiliza un desahucio cada dos días» → −0.5 · «Los propietarios tardan 20 meses en recuperar una vivienda okupada» → +0.5 |
+| 0 | Solo dato o trámite sin ángulo, o equilibrado (recoge a ambos bandos). El tono sobrio no basta | «La compraventa de viviendas cae un 5,1 % en julio» → 0 |
 
 Señales de framing por polo (se definen con cada debate). Ejemplos del
 25-sep-2026:
@@ -85,3 +97,24 @@ víctima o un culpable sin el otro bando.
 - `nonpolitical_rivals` — rivales fuera de la política: clubes, empresas
   frente a clientes, asociaciones.
 - `no`.
+
+
+## `bloc` — Gobierno ↔ oposición (v3)
+
+Eje fijo, igual en todos los debates, días y países: a qué bloque político
+nacional deja mejor o peor la noticia.
+
+- `-1` favorece claramente al Gobierno o daña a la oposición.
+- `+1` favorece claramente a la oposición o daña al Gobierno.
+- `±0.5` de forma leve; `0` equilibrada.
+- `null` si no implica a actores políticos nacionales.
+
+Por qué existe: en España la fractura de la prensa es sobre todo de bloques.
+`stance` mide el asunto (vivienda, migración) y, a propósito, no mira a qué
+partido perjudica; sin `bloc` esa fractura no se veía. Al ser fijo, permite
+comparar días y países.
+
+## `why` — motivo antes de puntuar (v3)
+
+Una frase de ≤ 15 palabras: qué hecho, cita o ángulo elige el medio y a qué
+polo favorece. Se guarda con cada titular para poder auditar la puntuación.

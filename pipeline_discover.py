@@ -42,6 +42,7 @@ from analysis import contract, runner
 from analysis.discover import (
     fetch_country_headlines, build_discover_body, parse_debates,
     build_assign_bodies, parse_assign, build_classify_bodies, parse_classify,
+    combine_passes,
     source_concentration, TransientAPIError,
     ASSIGN_FAILED, ASSIGN_NONE, MAX_DEBATES,
 )
@@ -49,6 +50,7 @@ from analysis.metrics import polarization_profile
 from ingest.gkg_files import Article, gkg_timestamps
 from ingest.leads import fetch_leads
 from ingest.gkg_files import title_key
+from analysis.ecosystem import ecosystem_report, genre_from_url, summary_lines
 
 logging.basicConfig(
     level=logging.INFO,
@@ -142,6 +144,9 @@ def score_topic(country: str, arts: list[Article], axis: dict,
             stance=round(r.stance, 3), hostility=round(r.hostility, 3),
             conflict=(round(r.conflict, 3) if np.isfinite(r.conflict) else None),
             us_them=r.us_them,
+            bloc=(round(r.bloc, 3) if np.isfinite(r.bloc) else None),
+            why=r.why or None,
+            stance_sd=(round(r.stance_sd, 3) if np.isfinite(r.stance_sd) else None),
             confidence=round(r.confidence, 3), off_topic=r.off_topic,
             stance_failed=r.failed)
 
@@ -247,13 +252,17 @@ def _run_grouped(groups: dict, stage: str, mode: str) -> dict:
 def analyze_all(headlines: dict[str, list[Article]], countries: list[str],
                 min_articles: int, max_debates: int,
                 axes_registry: dict[str, list[str]], mode: str,
+                stance_passes: int = 1,
                 ) -> tuple[dict[str, list[dict]], list[dict]]:
     """
     Tres etapas, cada una para TODOS los países a la vez (en modo batch,
     un lote por etapa en vez de uno por país):
       1. debates del día de cada país
       2. asignación de cada titular a un debate o a ninguno
-      3. postura, hostilidad, conflictividad y nosotros/ellos por debate
+      3. postura, hostilidad, conflictividad, nosotros/ellos y bloque
+         Gobierno ↔ oposición por debate. Con stance_passes > 1, cada
+         titular se puntúa varias veces (orden barajado, temperatura 0,5)
+         y se promedia; la desviación entre pasadas queda como stance_sd.
     Devuelve (resultados por tema de cada país, un registro por titular).
     """
     results = {c: [] for c in countries}
@@ -304,6 +313,7 @@ def analyze_all(headlines: dict[str, list[Article]], countries: list[str],
             records[a.url] = {
                 "country": c, "domain": a.domain, "url": a.url,
                 "title": a.title, "lead": a.lead, "title_source": a.title_source,
+                "genre": genre_from_url(a.url),
                 "topic": (debates[c][t - 1]["label"] if t > 0 else
                           None if t == ASSIGN_NONE else "__failed__"),
             }
@@ -320,7 +330,8 @@ def analyze_all(headlines: dict[str, list[Article]], countries: list[str],
             del assigned[c]
 
     # ── 3. Postura y demás dimensiones, por debate ──
-    to_score, classify_bodies = {}, {}
+    to_score, classify_bodies, perms = {}, {}, {}
+    temperature = 0.1 if stance_passes == 1 else 0.5
     for c in assigned:
         for k, d in enumerate(debates[c], 1):
             topic_arts = [a for a, t in zip(headlines[c], assigned[c]) if t == k]
@@ -333,13 +344,34 @@ def analyze_all(headlines: dict[str, list[Article]], countries: list[str],
                     "n_effective": float(len(topic_arts))})
                 continue
             to_score[(c, k)] = (d, topic_arts)
-            classify_bodies[(c, k)] = build_classify_bodies(
-                [a.text() for a in topic_arts], d["pole_a"], d["pole_b"])
+            texts = [a.text() for a in topic_arts]
+            for p in range(stance_passes):
+                # Cada pasada con otro orden: el contexto del lote cambia y
+                # la media no depende de qué titulares vinieron juntos.
+                order = (list(range(len(texts))) if p == 0 else
+                         list(np.random.default_rng(p).permutation(len(texts))))
+                perms[(c, k, p)] = order
+                classify_bodies[(c, k, p)] = build_classify_bodies(
+                    [texts[i] for i in order], d["pole_a"], d["pole_b"],
+                    temperature=temperature)
     classify_texts = _run_grouped(classify_bodies, "postura", mode)
     for key, (d, topic_arts) in to_score.items():
         c = key[0]
         log.info("  [%s] '%s': %d titulares", c, d["label"], len(topic_arts))
-        stance_results = parse_classify(classify_texts[key], classify_bodies[key])
+        passes = []
+        for p in range(stance_passes):
+            kp = (*key, p)
+            res = parse_classify(classify_texts[kp], classify_bodies[kp])
+            back = [None] * len(res)
+            for pos, i in enumerate(perms[kp]):
+                back[i] = res[pos]
+            passes.append(back)
+        stance_results = combine_passes(passes)
+        if stance_passes > 1:
+            sds = [r.stance_sd for r in stance_results if np.isfinite(r.stance_sd)]
+            if sds:
+                log.info("  [%s] consistencia entre %d pasadas: desviación media "
+                         "de la postura %.2f", c, stance_passes, float(np.mean(sds)))
         results[c].append(score_topic(c, topic_arts, d, stance_results,
                                       min_articles, records))
     return results, list(records.values())
@@ -569,6 +601,12 @@ def main():
              "(CONTRACT.md §3)",
     )
     ap.add_argument(
+        "--stance-passes", type=int, default=1,
+        help="Pasadas de puntuación por titular (default 1). Con 3, la "
+             "postura es la media de 3 lecturas y se mide la consistencia "
+             "del modelo; la etapa de postura cuesta el triple",
+    )
+    ap.add_argument(
         "--no-leads", action="store_true",
         help="No leer titular real ni entradilla: solo el titular de la URL",
     )
@@ -663,7 +701,7 @@ def main():
         all_topic_results, headline_records = analyze_all(
             headlines, countries, min_articles=args.min_articles,
             max_debates=args.max_debates, axes_registry=axes_registry,
-            mode=args.api_mode,
+            mode=args.api_mode, stance_passes=args.stance_passes,
         )
     finally:
         # El consumo se guarda también si la corrida se corta (p. ej. sin saldo)
@@ -725,6 +763,19 @@ def main():
     headlines_path = INTERNAL_DIR / f"{Path(args.out).stem}_headlines.jsonl"
     headlines_path.write_text("".join(
         json.dumps(r, ensure_ascii=False) + "\n" for r in headline_records))
+
+    # Ecosistema de medios: bandos de periódicos, un medio un voto, agenda,
+    # opinión y eje Gobierno ↔ oposición (analysis/ecosystem.py). Sin API.
+    eco = {c: ecosystem_report(headline_records, country=c) for c in countries
+           if any(r.get("country") == c for r in headline_records)}
+    eco_path = INTERNAL_DIR / f"{Path(args.out).stem}_ecosystem.json"
+    eco_path.write_text(json.dumps(eco, indent=2, ensure_ascii=False, default=str))
+    for c, rep in eco.items():
+        log.info("")
+        log.info("ECOSISTEMA DE MEDIOS [%s]", c)
+        for line in summary_lines(rep):
+            for part in line.split("\n"):
+                log.info("%s", part)
 
     # Si la API falló en algún tema, el gris del mapa no significaría
     # "pocos datos" sino "no pudimos medir". No se publica.
