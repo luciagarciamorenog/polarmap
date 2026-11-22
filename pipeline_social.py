@@ -116,7 +116,7 @@ def collect(accounts: dict, start: datetime, end: datetime, sources: set[str],
         for c in accounts["youtube"]:
             if n >= max_comments:
                 break
-            info = youtube.resolve_channel(c["handle"])
+            info = youtube.resolve_channel(c["handle"]) if c.get("handle") else None
             if not info:
                 log.info("  youtube: canal no encontrado %s", c["handle"])
                 continue
@@ -191,11 +191,13 @@ def run_check(accounts: dict) -> None:
     log.info("")
     for a in bs:
         if a["found"]:
-            log.info("  ✓ %-28s %-30s %7s seguidores", a["name"][:28], a["handle"], a.get("followers"))
+            log.info("  ✓ %-26s %-30s %7s seg. · %s%s", a["name"][:26], a["handle"], a.get("followers"),
+                     (a.get("display") or "")[:30], " · VERIFICADA" if a.get("verified") else "")
     for a in bs:
         if not a["found"]:
-            cands = ", ".join(f"{c['handle']} ({c.get('followers')})" for c in a.get("candidates", []))
-            log.info("  ✗ %-28s candidatas: %s", a["name"][:28], cands or "ninguna")
+            cands = " | ".join(f"{c['handle']} «{(c.get('display') or '')[:25]}» {c.get('followers')} seg."
+                               f"{' ✔' if c.get('verified') else ''}" for c in a.get("candidates", []))
+            log.info("  ✗ %-26s %s", a["name"][:26], cands or "ninguna candidata")
     log.info("")
     log.info("Comprobando %d webs oficiales (Gobierno y partidos)…", len(accounts.get("oficial", [])))
     of = official.check_sources(accounts.get("oficial", []))
@@ -209,8 +211,12 @@ def run_check(accounts: dict) -> None:
         log.info("")
         log.info("YOUTUBE: %d de %d canales encontrados", sum(c["found"] for c in yt), len(yt))
         for c in yt:
-            log.info("  %s %-28s %s", "✓" if c["found"] else "✗", c["name"][:28],
-                     c.get("title", c["handle"]))
+            if c["found"]:
+                log.info("  ✓ %-28s %s", c["name"][:28], c.get("title"))
+            else:
+                cands = " | ".join(f"{x['handle']} «{x['title'][:25]}» {x['subscribers']:,} subs."
+                                   for x in c.get("candidates", []))
+                log.info("  ✗ %-28s %s", c["name"][:28], cands or "ninguna candidata")
     except youtube.YouTubeKeyError as e:
         log.info("YOUTUBE: %s", e)
     out = INTERNAL_DIR / "social_accounts_check.json"

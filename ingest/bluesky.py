@@ -161,6 +161,13 @@ def post_replies(post: dict, parent: str, max_n: int = 20) -> list[SocialText]:
     return rows[:max_n]
 
 
+def _profile_summary(prof: dict) -> dict:
+    ver = (prof.get("verification") or {}).get("verifiedStatus")
+    return {"display": prof.get("displayName"), "followers": prof.get("followersCount"),
+            "posts": prof.get("postsCount"), "verified": ver == "valid",
+            "description": (prof.get("description") or "")[:120].replace("\n", " ")}
+
+
 def check_accounts(accounts: list[dict]) -> list[dict]:
     """
     Comprueba cada cuenta de la lista: si existe, cuántos seguidores y
@@ -172,13 +179,14 @@ def check_accounts(accounts: list[dict]) -> list[dict]:
         prof = get_profile(a["handle"]) if a.get("handle") else None
         row = {**a, "found": bool(prof)}
         if prof:
-            row.update(followers=prof.get("followersCount"),
-                       posts=prof.get("postsCount"),
-                       display=prof.get("displayName"))
+            row.update(_profile_summary(prof))
         else:
-            row["candidates"] = [
-                {"handle": x.get("handle"), "display": x.get("displayName"),
-                 "followers": x.get("followersCount")}
-                for x in search_actors(a["name"], limit=3)]
+            cands = []
+            for x in search_actors(a["name"], limit=3):
+                if ".web.brid.gy" in (x.get("handle") or ""):
+                    continue            # puente de una web, no es una cuenta
+                full = get_profile(x["handle"]) or x
+                cands.append({"handle": x.get("handle"), **_profile_summary(full)})
+            row["candidates"] = cands
         out.append(row)
     return out

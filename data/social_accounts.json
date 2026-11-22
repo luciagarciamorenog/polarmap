@@ -1,5 +1,5 @@
 {
- "_nota": "Lista semilla. Los handles marcados como null o no encontrados se buscan por nombre con `python3 pipeline_social.py --check`, y las candidatas se revisan a mano antes de usarlas. No se etiqueta la ideología de nadie: la postura sale de lo que publica. «oficial» son las webs del Gobierno y de los partidos: se busca su canal RSS automáticamente; si se conoce, ponlo en «feed». Grupo «gobierno» = cuentas institucionales (La Moncloa, ministerios), no personas.",
+ "_nota": "Lista semilla. Los handles marcados como null o no encontrados se buscan por nombre con `python3 pipeline_social.py --check`, y las candidatas se revisan a mano antes de usarlas. No se etiqueta la ideología de nadie: la postura sale de lo que publica. «oficial» son las webs del Gobierno y de los partidos: se busca su canal RSS automáticamente; si se conoce, ponlo en «feed». Grupo «gobierno» = cuentas institucionales (La Moncloa, ministerios), no personas. «to_verify»: candidata pendiente de confirmar con --check (seguidores, nombre visible, verificación).",
  "bluesky": [
   {
    "name": "elpais.com",
@@ -28,8 +28,9 @@
   },
   {
    "name": "elconfidencial.com",
-   "handle": "elconfidencial.com",
-   "group": "medio"
+   "handle": "elconfidencial.bsky.social",
+   "group": "medio",
+   "to_verify": true
   },
   {
    "name": "cadenaser.com",
@@ -38,8 +39,9 @@
   },
   {
    "name": "rtve.es",
-   "handle": "rtve.es",
-   "group": "medio"
+   "handle": "rtvenoticias.rtve.es",
+   "group": "medio",
+   "to_verify": true
   },
   {
    "name": "newtral.es",
@@ -63,8 +65,9 @@
   },
   {
    "name": "larazon.es",
-   "handle": "larazon.es",
-   "group": "medio"
+   "handle": "larazonlr.bsky.social",
+   "group": "medio",
+   "to_verify": true
   },
   {
    "name": "elespanol.com",
@@ -123,8 +126,9 @@
   },
   {
    "name": "theobjective.com",
-   "handle": "theobjective.com",
-   "group": "medio"
+   "handle": "theobjective-es.bsky.social",
+   "group": "medio",
+   "to_verify": true
   },
   {
    "name": "libertaddigital.com",
@@ -143,8 +147,9 @@
   },
   {
    "name": "vozpopuli.com",
-   "handle": "vozpopuli.com",
-   "group": "medio"
+   "handle": "voz-populi.bsky.social",
+   "group": "medio",
+   "to_verify": true
   },
   {
    "name": "cope.es",
@@ -168,13 +173,15 @@
   },
   {
    "name": "PSOE",
-   "handle": "psoe.es",
-   "group": "partido"
+   "handle": "psoe-cef.bsky.social",
+   "group": "partido",
+   "to_verify": true
   },
   {
    "name": "Partido Popular",
-   "handle": "pp.es",
-   "group": "partido"
+   "handle": "partidopopularesp.bsky.social",
+   "group": "partido",
+   "to_verify": true
   },
   {
    "name": "Vox",
@@ -183,13 +190,15 @@
   },
   {
    "name": "Sumar",
-   "handle": "sumar.info",
-   "group": "partido"
+   "handle": "movimientosumar.es",
+   "group": "partido",
+   "to_verify": true
   },
   {
    "name": "Podemos",
-   "handle": "podemos.info",
-   "group": "partido"
+   "handle": "ahorapodemos.bsky.social",
+   "group": "partido",
+   "to_verify": true
   },
   {
    "name": "ERC",
@@ -198,18 +207,21 @@
   },
   {
    "name": "Junts",
-   "handle": "junts.cat",
-   "group": "partido"
+   "handle": "juntsxcat.bsky.social",
+   "group": "partido",
+   "to_verify": true
   },
   {
    "name": "PNV",
-   "handle": "eaj-pnv.eus",
-   "group": "partido"
+   "handle": "eajpnv.bsky.social",
+   "group": "partido",
+   "to_verify": true
   },
   {
    "name": "EH Bildu",
-   "handle": "ehbildu.eus",
-   "group": "partido"
+   "handle": "ehbildu.bsky.social",
+   "group": "partido",
+   "to_verify": true
   },
   {
    "name": "Más Madrid",
@@ -218,8 +230,9 @@
   },
   {
    "name": "BNG",
-   "handle": "bng.gal",
-   "group": "partido"
+   "handle": "obloque.gal",
+   "group": "partido",
+   "to_verify": true
   },
   {
    "name": "Compromís",
@@ -233,8 +246,9 @@
   },
   {
    "name": "Yolanda Díaz",
-   "handle": null,
-   "group": "politico"
+   "handle": "yolandadiaz.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "María Jesús Montero",
@@ -243,28 +257,33 @@
   },
   {
    "name": "Óscar Puente",
-   "handle": null,
-   "group": "politico"
+   "handle": "oscarpuente.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Félix Bolaños",
-   "handle": null,
-   "group": "politico"
+   "handle": "felixbolanosg.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "José Manuel Albares",
-   "handle": null,
-   "group": "politico"
+   "handle": "jmalbares.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Ernest Urtasun",
-   "handle": null,
-   "group": "politico"
+   "handle": "ernesturtasun.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Mónica García",
-   "handle": null,
-   "group": "politico"
+   "handle": "monicagarciag.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Pablo Bustinduy",
@@ -273,28 +292,33 @@
   },
   {
    "name": "Ione Belarra",
-   "handle": null,
-   "group": "politico"
+   "handle": "ionebelarra.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Irene Montero",
-   "handle": null,
-   "group": "politico"
+   "handle": "irenemontero.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Gabriel Rufián",
-   "handle": null,
-   "group": "politico"
+   "handle": "grufian.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Aitor Esteban",
-   "handle": null,
-   "group": "politico"
+   "handle": "aitoresteban.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Mertxe Aizpurua",
-   "handle": null,
-   "group": "politico"
+   "handle": "mertxeaizpurua.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Míriam Nogueras",
@@ -303,13 +327,15 @@
   },
   {
    "name": "Rita Maestre",
-   "handle": null,
-   "group": "politico"
+   "handle": "ritamaestre.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Ada Colau",
-   "handle": null,
-   "group": "politico"
+   "handle": "adacolau.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Alberto Núñez Feijóo",
@@ -323,8 +349,9 @@
   },
   {
    "name": "Cuca Gamarra",
-   "handle": null,
-   "group": "politico"
+   "handle": "cucagamarra.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Ester Muñoz",
@@ -338,13 +365,15 @@
   },
   {
    "name": "Santiago Abascal",
-   "handle": null,
-   "group": "politico"
+   "handle": "santiagoabascal.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Ignacio Garriga",
-   "handle": null,
-   "group": "politico"
+   "handle": "ignaciogarriga.bsky.social",
+   "group": "politico",
+   "to_verify": true
   },
   {
    "name": "Pepa Millán",
@@ -358,13 +387,15 @@
   },
   {
    "name": "Ignacio Escolar",
-   "handle": null,
-   "group": "periodista"
+   "handle": "iescolar.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Antonio Maestre",
-   "handle": null,
-   "group": "periodista"
+   "handle": "antoniomaestre.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Jesús Maraña",
@@ -373,8 +404,9 @@
   },
   {
    "name": "Ana Pardo de Vera",
-   "handle": null,
-   "group": "periodista"
+   "handle": "pardodevera.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Rosa María Artal",
@@ -388,13 +420,15 @@
   },
   {
    "name": "Javier Gallego",
-   "handle": null,
-   "group": "periodista"
+   "handle": "carnecrudaradio.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Íñigo Sáenz de Ugarte",
-   "handle": null,
-   "group": "periodista"
+   "handle": "iugarte.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Àngels Barceló",
@@ -403,18 +437,21 @@
   },
   {
    "name": "Ana Pastor",
-   "handle": null,
-   "group": "periodista"
+   "handle": "ana-pastor.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Jordi Évole",
-   "handle": null,
-   "group": "periodista"
+   "handle": "jordievole.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Javier Ruiz",
-   "handle": null,
-   "group": "periodista"
+   "handle": "javierruiz.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Carlos Alsina",
@@ -423,8 +460,9 @@
   },
   {
    "name": "Vicente Vallés",
-   "handle": null,
-   "group": "periodista"
+   "handle": "vicentevalles.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Pedro J. Ramírez",
@@ -453,18 +491,21 @@
   },
   {
    "name": "Jorge Bustos",
-   "handle": null,
-   "group": "periodista"
+   "handle": "jorgebustosgo.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Lucía Méndez",
-   "handle": null,
-   "group": "periodista"
+   "handle": "luciamendezof.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Hermann Tertsch",
-   "handle": null,
-   "group": "periodista"
+   "handle": "hermanntertsch.bsky.social",
+   "group": "periodista",
+   "to_verify": true
   },
   {
    "name": "Rubén Amón",
@@ -473,8 +514,9 @@
   },
   {
    "name": "La Moncloa",
-   "handle": null,
-   "group": "gobierno"
+   "handle": "lamoncloa.gob.es",
+   "group": "gobierno",
+   "to_verify": true
   },
   {
    "name": "Ministerio de Asuntos Exteriores",
@@ -483,18 +525,51 @@
   },
   {
    "name": "Ministerio de Trabajo y Economía Social",
-   "handle": null,
-   "group": "gobierno"
+   "handle": "trabajogob.bsky.social",
+   "group": "gobierno",
+   "to_verify": true
   },
   {
    "name": "Ministerio de Derechos Sociales, Consumo y Agenda 2030",
-   "handle": null,
-   "group": "gobierno"
+   "handle": "msocialgob.bsky.social",
+   "group": "gobierno",
+   "to_verify": true
   },
   {
    "name": "Sira Rego",
-   "handle": null,
-   "group": "politico"
+   "handle": "sirarego.bsky.social",
+   "group": "politico",
+   "to_verify": true
+  },
+  {
+   "name": "Grupo Socialista en el Congreso",
+   "handle": "gpscongreso.bsky.social",
+   "group": "partido",
+   "to_verify": true
+  },
+  {
+   "name": "Partido Popular (2)",
+   "handle": "pp-es.bsky.social",
+   "group": "partido",
+   "to_verify": true
+  },
+  {
+   "name": "Irene Montero (2)",
+   "handle": "irenemonterog.bsky.social",
+   "group": "politico",
+   "to_verify": true
+  },
+  {
+   "name": "Antonio Maestre (2)",
+   "handle": "antoniomaestreh.bsky.social",
+   "group": "periodista",
+   "to_verify": true
+  },
+  {
+   "name": "Santiago Abascal (2)",
+   "handle": "santiago-abascal.bsky.social",
+   "group": "politico",
+   "to_verify": true
   }
  ],
  "youtube": [
@@ -590,7 +665,7 @@
   },
   {
    "name": "Vozpópuli",
-   "handle": "@vozpopuli",
+   "handle": null,
    "group": "medio"
   },
   {

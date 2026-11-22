@@ -109,10 +109,28 @@ def top_comments(video: dict, channel: str, max_n: int = 100) -> list[SocialText
     return rows[:max_n]
 
 
+def search_channels(query: str, n: int = 3) -> list[dict]:
+    """Canales candidatos por nombre (search.list: 100 unidades por búsqueda)."""
+    d = _get("search", {"part": "snippet", "q": query, "type": "channel",
+                        "maxResults": n, "regionCode": "ES", "relevanceLanguage": "es"})
+    ids = [it["snippet"]["channelId"] for it in (d or {}).get("items", [])]
+    if not ids:
+        return []
+    d2 = _get("channels", {"part": "snippet,statistics", "id": ",".join(ids)})
+    return [{"handle": it["snippet"].get("customUrl"), "title": it["snippet"]["title"],
+             "subscribers": int(it.get("statistics", {}).get("subscriberCount") or 0)}
+            for it in (d2 or {}).get("items", [])]
+
+
 def check_channels(channels: list[dict]) -> list[dict]:
     out = []
     for c in channels:
-        info = resolve_channel(c["handle"])
-        out.append({**c, "found": bool(info), **({"title": info["title"]} if info else {})})
+        info = resolve_channel(c["handle"]) if c.get("handle") else None
+        row = {**c, "found": bool(info)}
+        if info:
+            row["title"] = info["title"]
+        else:
+            row["candidates"] = search_channels(c["name"])
+        out.append(row)
         time.sleep(0.1)
     return out

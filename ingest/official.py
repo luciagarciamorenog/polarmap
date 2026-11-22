@@ -82,10 +82,31 @@ def discover_feed(url: str) -> str | None:
             if attrs.get("rel", "").lower() == "alternate" and \
                     attrs.get("type", "").lower() in ("application/rss+xml", "application/atom+xml"):
                 return urljoin(url, html.unescape(attrs.get("href", "")))
-    wp = url.rstrip("/") + "/feed/"
-    r2 = _get(wp)
-    if r2 is not None and _is_feed(r2.text):
-        return wp
+    # Enlaces de la página que parezcan un canal («rss», «feed», «.xml»)
+    tried = set()
+    if r is not None:
+        for m in re.finditer(r'href=["\']([^"\']+)["\']', r.text[:300_000]):
+            href = html.unescape(m.group(1))
+            low = href.lower()
+            if any(k in low for k in ("rss", "/feed", "atom", ".xml")) and \
+                    not any(k in low for k in ("sitemap", "comments", "wp-json")):
+                cand = urljoin(url, href)
+                if cand in tried or len(tried) >= 8:
+                    continue
+                tried.add(cand)
+                r3 = _get(cand)
+                if r3 is not None and _is_feed(r3.text):
+                    return cand
+    # Rutas habituales (WordPress, Drupal y otros)
+    base = url.rstrip("/")
+    for path in ("/feed/", "/rss", "/rss.xml", "/feed.xml", "/atom.xml", "/index.xml",
+                 "/?feed=rss2", "/noticias/feed/", "/actualidad/feed/", "/es/rss.xml"):
+        cand = base + path
+        if cand in tried:
+            continue
+        r2 = _get(cand)
+        if r2 is not None and _is_feed(r2.text):
+            return cand
     return None
 
 
