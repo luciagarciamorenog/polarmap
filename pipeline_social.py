@@ -11,6 +11,7 @@ Primero, una vez, comprobar la lista de cuentas y canales (gratis, sin Claude):
     python3 pipeline_social.py --check
 
 Capas:
+  politica_oficial     notas de prensa del Gobierno (La Moncloa) y de los partidos
   bluesky_cuentas      lo que publican partidos, políticos, periodistas y medios
   bluesky_respuestas   lo que les responde el público (seudónimos, solo agregado)
   youtube_comentarios  comentarios en vídeos de medios y partidos (seudónimos)
@@ -42,7 +43,7 @@ from analysis.discover import (  # noqa: E402
     parse_classify,
 )
 from analysis.ecosystem import layers_report, layers_summary_lines  # noqa: E402
-from ingest import bluesky, youtube  # noqa: E402
+from ingest import bluesky, official, youtube  # noqa: E402
 from pipeline_discover import (  # noqa: E402
     INTERNAL_DIR, OUT_DIR, _run_grouped, load_env,
 )
@@ -102,6 +103,13 @@ def collect(accounts: dict, start: datetime, end: datetime, sources: set[str],
                 texts += rs[:max_replies - n]
                 n += len(rs[:max_replies - n])
             log.info("  bluesky: %d respuestas", n)
+
+    if "oficial" in sources:
+        for src in accounts.get("oficial", []):
+            rows, feed = official.read_source(src, start, end)
+            texts += rows
+            log.info("  oficial: %-24s %3d notas%s", src["name"][:24], len(rows),
+                     "" if feed else " (sin canal RSS encontrado)")
 
     if "youtube" in sources:
         n = 0
@@ -188,6 +196,13 @@ def run_check(accounts: dict) -> None:
         if not a["found"]:
             cands = ", ".join(f"{c['handle']} ({c.get('followers')})" for c in a.get("candidates", []))
             log.info("  ✗ %-28s candidatas: %s", a["name"][:28], cands or "ninguna")
+    log.info("")
+    log.info("Comprobando %d webs oficiales (Gobierno y partidos)…", len(accounts.get("oficial", [])))
+    of = official.check_sources(accounts.get("oficial", []))
+    log.info("OFICIAL: %d de %d con canal RSS", sum(bool(o["feed_found"]) for o in of), len(of))
+    for o in of:
+        log.info("  %s %-24s %s · %d notas · última %s", "✓" if o["feed_found"] else "✗",
+                 o["name"][:24], o["feed_found"] or o["url"], o["items"], o["last"])
     yt = []
     try:
         yt = youtube.check_channels(accounts["youtube"])
@@ -199,7 +214,8 @@ def run_check(accounts: dict) -> None:
     except youtube.YouTubeKeyError as e:
         log.info("YOUTUBE: %s", e)
     out = INTERNAL_DIR / "social_accounts_check.json"
-    out.write_text(json.dumps({"bluesky": bs, "youtube": yt}, ensure_ascii=False, indent=1))
+    out.write_text(json.dumps({"bluesky": bs, "youtube": yt, "oficial": of},
+                              ensure_ascii=False, indent=1, default=str))
     log.info("")
     log.info("Detalle en %s. Revisa las candidatas antes de añadirlas a %s.", out, ACCOUNTS_PATH)
 
@@ -210,8 +226,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="PolarMap · capa social")
     ap.add_argument("--press-run", help="corrida de prensa, p. ej. snapshot_ES_20261126")
     ap.add_argument("--country", default="ES")
-    ap.add_argument("--sources", default="bluesky,replies,youtube",
-                    help="bluesky (cuentas), replies (respuestas), youtube")
+    ap.add_argument("--sources", default="oficial,bluesky,replies,youtube",
+                    help="oficial (Gobierno y partidos), bluesky (cuentas), replies (respuestas), youtube")
     ap.add_argument("--max-replies-per-post", type=int, default=20)
     ap.add_argument("--max-replies", type=int, default=3000)
     ap.add_argument("--max-comments-per-video", type=int, default=100)

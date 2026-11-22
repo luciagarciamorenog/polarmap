@@ -388,7 +388,7 @@ def summary_lines(rep: dict) -> list[str]:
 # Capa social: prensa frente a redes (pipeline_social.py)
 # ─────────────────────────────────────────────────────────────
 
-LAYERS = ("prensa", "bluesky_cuentas", "bluesky_respuestas", "youtube_comentarios")
+LAYERS = ("prensa", "politica_oficial", "bluesky_cuentas", "bluesky_respuestas", "youtube_comentarios")
 
 
 def _layer_stats(rows: list[dict]) -> dict:
@@ -445,6 +445,7 @@ def layers_report(press: list[dict], social: list[dict], accounts: dict | None =
             "share_on_debates": _r(len([r for r in rows if r.get("topic") not in (None, "__failed__")]) / len(rows)),
             **{k: v for k, v in _layer_stats(on).items() if k.startswith("bloc") or k == "mean_hostility"},
         }
+    rep["actors"] = actors_report(press, social, accounts or {})
     if accounts:
         posted = Counter()
         for r in social:
@@ -454,12 +455,61 @@ def layers_report(press: list[dict], social: list[dict], accounts: dict | None =
             g: {"listed": sum(1 for a in accounts.get("bluesky", []) if a["group"] == g and a.get("handle")),
                 "posted": len({a["handle"] for a in accounts.get("bluesky", [])
                                if a["group"] == g and posted.get(a.get("handle"))})}
-            for g in ("medio", "partido", "politico", "periodista")}
+            for g in ("medio", "partido", "politico", "periodista", "gobierno")}
     return rep
 
 
+def actors_report(press: list[dict], social: list[dict], accounts: dict) -> dict:
+    """
+    Gobierno y partidos como emisores, igual que un medio: sus notas de
+    prensa y sus cuentas oficiales de Bluesky. Para cada actor:
+      - cuánto ataca: hostilidad media y «nosotros contra ellos»;
+      - dónde se sitúa en cada debate (postura media);
+      - qué agenda empuja: qué parte de lo que publica cae en cada debate,
+        frente al peso de ese debate en la prensa (>1 = lo empuja más que
+        la prensa).
+    El eje Gobierno ↔ oposición no se usa aquí: cada actor cae en su lado
+    por definición.
+    """
+    name_of = {a["handle"]: a["name"] for a in accounts.get("bluesky", []) if a.get("handle")}
+    rows = []
+    for r in social:
+        if r.get("layer") == "politica_oficial":
+            rows.append(dict(r, actor=r["source"], channel="notas"))
+        elif r.get("layer") == "bluesky_cuentas" and r.get("group") in ("gobierno", "partido"):
+            rows.append(dict(r, actor=name_of.get(r["source"], r["source"]), channel="bluesky"))
+    if not rows:
+        return {"note": "sin textos de Gobierno ni partidos en esta corrida"}
+    press_scored = scored(press)
+    press_debates = [r["topic"] for r in press if r.get("topic") not in (None, "__failed__")]
+    press_share = {t: n / max(1, len(press)) for t, n in Counter(press_debates).items()}
+    out = {}
+    for actor in sorted({r["actor"] for r in rows}):
+        sel = [r for r in rows if r["actor"] == actor]
+        sc = scored(sel)
+        ut = [r.get("us_them") for r in sc if r.get("us_them")]
+        per_debate = {}
+        for t in sorted({r["topic"] for r in sc}):
+            v = np.array([r["stance"] for r in sc if r["topic"] == t], dtype=float)
+            per_debate[t] = {"n": len(v), "stance": _r(float(v.mean()))}
+        topics = Counter(r.get("topic") for r in sel if r.get("topic") not in (None, "__failed__"))
+        out[actor] = {
+            "group": sel[0].get("group"),
+            "n_texts": len(sel),
+            "channels": dict(Counter(r["channel"] for r in sel)),
+            "share_on_debates": _r(sum(topics.values()) / len(sel)),
+            "mean_hostility": _r(float(np.mean([r["hostility"] for r in sc]))) if sc else None,
+            "us_them_share": _r(sum(u != "no" for u in ut) / len(ut)) if ut else None,
+            "stance_by_debate": per_debate,
+            "agenda_vs_press": {t: _r((n / len(sel)) / press_share[t], 2)
+                                for t, n in topics.items() if press_share.get(t)},
+        }
+    press_h = [r["hostility"] for r in press_scored if isinstance(r.get("hostility"), (int, float))]
+    return {"actors": out, "press_mean_hostility": _r(float(np.mean(press_h))) if press_h else None}
+
+
 def layers_summary_lines(rep: dict) -> list[str]:
-    names = {"prensa": "Prensa", "bluesky_cuentas": "Bluesky cuentas",
+    names = {"prensa": "Prensa", "politica_oficial": "Gobierno y partidos", "bluesky_cuentas": "Bluesky cuentas",
              "bluesky_respuestas": "Bluesky respuestas", "youtube_comentarios": "YouTube comentarios"}
     L = ["Composición de cada capa:"]
     for k, v in rep["layers"].items():
@@ -469,6 +519,13 @@ def layers_summary_lines(rep: dict) -> list[str]:
     if "bluesky_coverage" in rep:
         L.append("  Cuentas de Bluesky que publicaron: " + ", ".join(
             f"{g} {c['posted']}/{c['listed']}" for g, c in rep["bluesky_coverage"].items()))
+    A = rep.get("actors", {})
+    if "actors" in A:
+        L.append(f"\nGobierno y partidos como emisores (hostilidad media de la prensa: {A['press_mean_hostility']})")
+        L.append(f"  {'actor':24s} {'textos':>6} {'hostil.':>8} {'nos/ellos':>9}  agenda frente a la prensa")
+        for a, v in sorted(A["actors"].items(), key=lambda kv: -(kv[1]["mean_hostility"] or 0)):
+            ag = ", ".join(f"{t[:22]} ×{x}" for t, x in sorted(v["agenda_vs_press"].items(), key=lambda kv: -kv[1])[:2])
+            L.append(f"  {a[:24]:24s} {v['n_texts']:>6} {str(v['mean_hostility']):>8} {str(v['us_them_share']):>9}  {ag}")
     for t, layers in rep["debates"].items():
         L.append(f"\n{t}")
         L.append(f"  {'capa':20s} {'n':>5} {'índice':>7} {'|postura|':>9} {'centro':>7} {'hostil.':>8} {'nos/ellos':>9}")

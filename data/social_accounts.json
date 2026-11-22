@@ -1,5 +1,5 @@
 {
- "_nota": "Lista semilla. Los handles marcados como null o no encontrados se buscan por nombre con `python3 pipeline_social.py --check`, y las candidatas se revisan a mano antes de usarlas. No se etiqueta la ideología de nadie: la postura sale de lo que publica.",
+ "_nota": "Lista semilla. Los handles marcados como null o no encontrados se buscan por nombre con `python3 pipeline_social.py --check`, y las candidatas se revisan a mano antes de usarlas. No se etiqueta la ideología de nadie: la postura sale de lo que publica. «oficial» son las webs del Gobierno y de los partidos: se busca su canal RSS automáticamente; si se conoce, ponlo en «feed». Grupo «gobierno» = cuentas institucionales (La Moncloa, ministerios), no personas.",
  "bluesky": [
   {
    "name": "elpais.com",
@@ -470,6 +470,31 @@
    "name": "Rubén Amón",
    "handle": null,
    "group": "periodista"
+  },
+  {
+   "name": "La Moncloa",
+   "handle": null,
+   "group": "gobierno"
+  },
+  {
+   "name": "Ministerio de Asuntos Exteriores",
+   "handle": null,
+   "group": "gobierno"
+  },
+  {
+   "name": "Ministerio de Trabajo y Economía Social",
+   "handle": null,
+   "group": "gobierno"
+  },
+  {
+   "name": "Ministerio de Derechos Sociales, Consumo y Agenda 2030",
+   "handle": null,
+   "group": "gobierno"
+  },
+  {
+   "name": "Sira Rego",
+   "handle": null,
+   "group": "politico"
   }
  ],
  "youtube": [
@@ -622,6 +647,85 @@
    "name": "Podemos",
    "handle": "@podemos",
    "group": "partido"
+  },
+  {
+   "name": "La Moncloa",
+   "handle": "@lamoncloa",
+   "group": "gobierno"
+  }
+ ],
+ "oficial": [
+  {
+   "name": "Gobierno (La Moncloa)",
+   "group": "gobierno",
+   "url": "https://www.lamoncloa.gob.es/",
+   "feed": null
+  },
+  {
+   "name": "PSOE",
+   "group": "partido",
+   "url": "https://www.psoe.es/",
+   "feed": null
+  },
+  {
+   "name": "Partido Popular",
+   "group": "partido",
+   "url": "https://www.pp.es/",
+   "feed": null
+  },
+  {
+   "name": "Vox",
+   "group": "partido",
+   "url": "https://www.voxespana.es/",
+   "feed": null
+  },
+  {
+   "name": "Sumar",
+   "group": "partido",
+   "url": "https://movimientosumar.es/",
+   "feed": null
+  },
+  {
+   "name": "Podemos",
+   "group": "partido",
+   "url": "https://podemos.info/",
+   "feed": null
+  },
+  {
+   "name": "ERC",
+   "group": "partido",
+   "url": "https://www.esquerra.cat/",
+   "feed": null
+  },
+  {
+   "name": "Junts",
+   "group": "partido",
+   "url": "https://junts.cat/",
+   "feed": null
+  },
+  {
+   "name": "PNV",
+   "group": "partido",
+   "url": "https://www.eaj-pnv.eus/",
+   "feed": null
+  },
+  {
+   "name": "EH Bildu",
+   "group": "partido",
+   "url": "https://ehbildu.eus/",
+   "feed": null
+  },
+  {
+   "name": "BNG",
+   "group": "partido",
+   "url": "https://www.bng.gal/",
+   "feed": null
+  },
+  {
+   "name": "Coalición Canaria",
+   "group": "partido",
+   "url": "https://coalicioncanaria.org/",
+   "feed": null
   }
  ]
 }

@@ -66,7 +66,8 @@ python3 validate/ecosystem_report.py data/internal/<run>_headlines.jsonl
 
 `pipeline_social.py` runs after a press run and reuses its debates, poles and 24-hour window, so press and social media are measured with the same ruler:
 
-- **Bluesky accounts:** what parties, politicians, journalists and outlets post (public API, no key).
+- **Official political communication:** press releases from the Government (La Moncloa) and the parties, read from their RSS feeds (found automatically on each site). Government and parties are treated as senders, like outlets: how hostile their language is, how often they frame "us vs. them", where they stand on each debate and which debates they push compared with the press. Government and opposition are measured together so the layer is not aimed at one side. Source for La Moncloa: "Origen de los datos: sitio web de lamoncloa.gob.es. Ministerio de la Presidencia."
+- **Bluesky accounts:** what parties, politicians, journalists, outlets and government institutions post (public API, no key).
 - **Bluesky replies:** how the public answers them. Authors are pseudonymised (salted hash) and only used in aggregate.
 - **YouTube comments** on videos from outlets and parties (free YouTube Data API key).
 
