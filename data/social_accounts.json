@@ -1,0 +1,627 @@
+{
+ "_nota": "Lista semilla. Los handles marcados como null o no encontrados se buscan por nombre con `python3 pipeline_social.py --check`, y las candidatas se revisan a mano antes de usarlas. No se etiqueta la ideología de nadie: la postura sale de lo que publica.",
+ "bluesky": [
+  {
+   "name": "elpais.com",
+   "handle": "elpais.com",
+   "group": "medio"
+  },
+  {
+   "name": "eldiario.es",
+   "handle": "eldiario.es",
+   "group": "medio"
+  },
+  {
+   "name": "lavanguardia.com",
+   "handle": "lavanguardia.com",
+   "group": "medio"
+  },
+  {
+   "name": "publico.es",
+   "handle": "publico.es",
+   "group": "medio"
+  },
+  {
+   "name": "infolibre.es",
+   "handle": "infolibre.es",
+   "group": "medio"
+  },
+  {
+   "name": "elconfidencial.com",
+   "handle": "elconfidencial.com",
+   "group": "medio"
+  },
+  {
+   "name": "cadenaser.com",
+   "handle": "cadenaser.com",
+   "group": "medio"
+  },
+  {
+   "name": "rtve.es",
+   "handle": "rtve.es",
+   "group": "medio"
+  },
+  {
+   "name": "newtral.es",
+   "handle": "newtral.es",
+   "group": "medio"
+  },
+  {
+   "name": "maldita.es",
+   "handle": "maldita.es",
+   "group": "medio"
+  },
+  {
+   "name": "elmundo.es",
+   "handle": "elmundo.es",
+   "group": "medio"
+  },
+  {
+   "name": "abc.es",
+   "handle": "abc.es",
+   "group": "medio"
+  },
+  {
+   "name": "larazon.es",
+   "handle": "larazon.es",
+   "group": "medio"
+  },
+  {
+   "name": "elespanol.com",
+   "handle": "elespanol.com",
+   "group": "medio"
+  },
+  {
+   "name": "20minutos.es",
+   "handle": "20minutos.es",
+   "group": "medio"
+  },
+  {
+   "name": "europapress.es",
+   "handle": "europapress.es",
+   "group": "medio"
+  },
+  {
+   "name": "efe.com",
+   "handle": "efe.com",
+   "group": "medio"
+  },
+  {
+   "name": "elperiodico.com",
+   "handle": "elperiodico.com",
+   "group": "medio"
+  },
+  {
+   "name": "ara.cat",
+   "handle": "ara.cat",
+   "group": "medio"
+  },
+  {
+   "name": "vilaweb.cat",
+   "handle": "vilaweb.cat",
+   "group": "medio"
+  },
+  {
+   "name": "naiz.eus",
+   "handle": "naiz.eus",
+   "group": "medio"
+  },
+  {
+   "name": "lamarea.com",
+   "handle": "lamarea.com",
+   "group": "medio"
+  },
+  {
+   "name": "elsaltodiario.com",
+   "handle": "elsaltodiario.com",
+   "group": "medio"
+  },
+  {
+   "name": "ctxt.es",
+   "handle": "ctxt.es",
+   "group": "medio"
+  },
+  {
+   "name": "theobjective.com",
+   "handle": "theobjective.com",
+   "group": "medio"
+  },
+  {
+   "name": "libertaddigital.com",
+   "handle": "libertaddigital.com",
+   "group": "medio"
+  },
+  {
+   "name": "okdiario.com",
+   "handle": "okdiario.com",
+   "group": "medio"
+  },
+  {
+   "name": "eldebate.com",
+   "handle": "eldebate.com",
+   "group": "medio"
+  },
+  {
+   "name": "vozpopuli.com",
+   "handle": "vozpopuli.com",
+   "group": "medio"
+  },
+  {
+   "name": "cope.es",
+   "handle": "cope.es",
+   "group": "medio"
+  },
+  {
+   "name": "ondacero.es",
+   "handle": "ondacero.es",
+   "group": "medio"
+  },
+  {
+   "name": "lasexta.com",
+   "handle": "lasexta.com",
+   "group": "medio"
+  },
+  {
+   "name": "antena3.com",
+   "handle": "antena3.com",
+   "group": "medio"
+  },
+  {
+   "name": "PSOE",
+   "handle": "psoe.es",
+   "group": "partido"
+  },
+  {
+   "name": "Partido Popular",
+   "handle": "pp.es",
+   "group": "partido"
+  },
+  {
+   "name": "Vox",
+   "handle": "voxespana.es",
+   "group": "partido"
+  },
+  {
+   "name": "Sumar",
+   "handle": "sumar.info",
+   "group": "partido"
+  },
+  {
+   "name": "Podemos",
+   "handle": "podemos.info",
+   "group": "partido"
+  },
+  {
+   "name": "ERC",
+   "handle": "esquerra.cat",
+   "group": "partido"
+  },
+  {
+   "name": "Junts",
+   "handle": "junts.cat",
+   "group": "partido"
+  },
+  {
+   "name": "PNV",
+   "handle": "eaj-pnv.eus",
+   "group": "partido"
+  },
+  {
+   "name": "EH Bildu",
+   "handle": "ehbildu.eus",
+   "group": "partido"
+  },
+  {
+   "name": "Más Madrid",
+   "handle": "masmadrid.org",
+   "group": "partido"
+  },
+  {
+   "name": "BNG",
+   "handle": "bng.gal",
+   "group": "partido"
+  },
+  {
+   "name": "Compromís",
+   "handle": "compromis.net",
+   "group": "partido"
+  },
+  {
+   "name": "Pedro Sánchez",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Yolanda Díaz",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "María Jesús Montero",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Óscar Puente",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Félix Bolaños",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "José Manuel Albares",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Ernest Urtasun",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Mónica García",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Pablo Bustinduy",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Ione Belarra",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Irene Montero",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Gabriel Rufián",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Aitor Esteban",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Mertxe Aizpurua",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Míriam Nogueras",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Rita Maestre",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Ada Colau",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Alberto Núñez Feijóo",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Isabel Díaz Ayuso",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Cuca Gamarra",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Ester Muñoz",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Miguel Tellado",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Santiago Abascal",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Ignacio Garriga",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Pepa Millán",
+   "handle": null,
+   "group": "politico"
+  },
+  {
+   "name": "Irene Lozano",
+   "handle": "irenelozano.bsky.social",
+   "group": "periodista"
+  },
+  {
+   "name": "Ignacio Escolar",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Antonio Maestre",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Jesús Maraña",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Ana Pardo de Vera",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Rosa María Artal",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Isaac Rosa",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Javier Gallego",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Íñigo Sáenz de Ugarte",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Àngels Barceló",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Ana Pastor",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Jordi Évole",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Javier Ruiz",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Carlos Alsina",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Vicente Vallés",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Pedro J. Ramírez",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Federico Jiménez Losantos",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Eduardo Inda",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Isabel San Sebastián",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Arcadi Espada",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Jorge Bustos",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Lucía Méndez",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Hermann Tertsch",
+   "handle": null,
+   "group": "periodista"
+  },
+  {
+   "name": "Rubén Amón",
+   "handle": null,
+   "group": "periodista"
+  }
+ ],
+ "youtube": [
+  {
+   "name": "El País",
+   "handle": "@elpais",
+   "group": "medio"
+  },
+  {
+   "name": "elDiario.es",
+   "handle": "@eldiarioes",
+   "group": "medio"
+  },
+  {
+   "name": "laSexta",
+   "handle": "@laSextaNoticias",
+   "group": "medio"
+  },
+  {
+   "name": "RTVE Noticias",
+   "handle": "@rtvenoticias",
+   "group": "medio"
+  },
+  {
+   "name": "Antena 3 Noticias",
+   "handle": "@antena3noticias",
+   "group": "medio"
+  },
+  {
+   "name": "Telecinco Informativos",
+   "handle": "@informativostelecinco",
+   "group": "medio"
+  },
+  {
+   "name": "El Mundo",
+   "handle": "@elmundo",
+   "group": "medio"
+  },
+  {
+   "name": "ABC",
+   "handle": "@abc_es",
+   "group": "medio"
+  },
+  {
+   "name": "La Razón",
+   "handle": "@larazon",
+   "group": "medio"
+  },
+  {
+   "name": "El Español",
+   "handle": "@elespanol",
+   "group": "medio"
+  },
+  {
+   "name": "esRadio / Libertad Digital",
+   "handle": "@esradio",
+   "group": "medio"
+  },
+  {
+   "name": "OKDIARIO",
+   "handle": "@okdiario",
+   "group": "medio"
+  },
+  {
+   "name": "El Debate",
+   "handle": "@eldebate",
+   "group": "medio"
+  },
+  {
+   "name": "The Objective",
+   "handle": "@theobjective",
+   "group": "medio"
+  },
+  {
+   "name": "Público",
+   "handle": "@publico",
+   "group": "medio"
+  },
+  {
+   "name": "Cadena SER",
+   "handle": "@cadenaser",
+   "group": "medio"
+  },
+  {
+   "name": "COPE",
+   "handle": "@cope",
+   "group": "medio"
+  },
+  {
+   "name": "Onda Cero",
+   "handle": "@ondacero",
+   "group": "medio"
+  },
+  {
+   "name": "Vozpópuli",
+   "handle": "@vozpopuli",
+   "group": "medio"
+  },
+  {
+   "name": "Newtral",
+   "handle": "@newtral",
+   "group": "medio"
+  },
+  {
+   "name": "El Confidencial",
+   "handle": "@elconfidencial",
+   "group": "medio"
+  },
+  {
+   "name": "La Vanguardia",
+   "handle": "@lavanguardia",
+   "group": "medio"
+  },
+  {
+   "name": "20minutos",
+   "handle": "@20minutos",
+   "group": "medio"
+  },
+  {
+   "name": "EFE",
+   "handle": "@efenoticias",
+   "group": "medio"
+  },
+  {
+   "name": "Europa Press",
+   "handle": "@europapress",
+   "group": "medio"
+  },
+  {
+   "name": "PSOE",
+   "handle": "@psoe",
+   "group": "partido"
+  },
+  {
+   "name": "Partido Popular",
+   "handle": "@partidopopular",
+   "group": "partido"
+  },
+  {
+   "name": "Vox",
+   "handle": "@voxespana",
+   "group": "partido"
+  },
+  {
+   "name": "Sumar",
+   "handle": "@sumar",
+   "group": "partido"
+  },
+  {
+   "name": "Podemos",
+   "handle": "@podemos",
+   "group": "partido"
+  }
+ ]
+}

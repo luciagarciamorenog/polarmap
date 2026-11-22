@@ -22,3 +22,6 @@ data/internal/*_headlines.jsonl
 data/gold/leads_*.json
 # Simulaciones del piloto (jueces falsos): no se versionan
 data/pilot/MOCK_*/
+
+# Capa social: textos de redes (respuestas y comentarios de particulares)
+data/social/

@@ -382,3 +382,103 @@ def summary_lines(rep: dict) -> list[str]:
     else:
         L.append(f"  {a.get('note')}")
     return L
+
+
+# ─────────────────────────────────────────────────────────────
+# Capa social: prensa frente a redes (pipeline_social.py)
+# ─────────────────────────────────────────────────────────────
+
+LAYERS = ("prensa", "bluesky_cuentas", "bluesky_respuestas", "youtube_comentarios")
+
+
+def _layer_stats(rows: list[dict]) -> dict:
+    """Medidas comparables entre capas para un conjunto de textos puntuados."""
+    if not rows:
+        return {"n": 0}
+    v = np.array([r["stance"] for r in rows], dtype=float)
+    hos = np.array([r.get("hostility", np.nan) for r in rows], dtype=float)
+    ut = [r.get("us_them") for r in rows if r.get("us_them")]
+    bloc = np.array([r["bloc"] for r in rows if isinstance(r.get("bloc"), (int, float))], dtype=float)
+    return {
+        "n": len(rows),
+        "er": _r(esteban_ray(v)) if len(v) >= 10 else None,
+        "mean_abs_stance": _r(float(np.abs(v).mean())),
+        "center_share": _r(float(np.mean(np.abs(v) < 0.15))),
+        "mean_hostility": _r(float(np.nanmean(hos))) if np.isfinite(hos).any() else None,
+        "us_them_share": _r(sum(u != "no" for u in ut) / len(ut)) if ut else None,
+        "bloc_n": int(len(bloc)),
+        "bloc_mean": _r(float(bloc.mean())) if len(bloc) else None,
+        "bloc_pro_gov": _r(float(np.mean(bloc <= -0.5))) if len(bloc) else None,
+        "bloc_pro_opp": _r(float(np.mean(bloc >= 0.5))) if len(bloc) else None,
+    }
+
+
+def layers_report(press: list[dict], social: list[dict], accounts: dict | None = None) -> dict:
+    """
+    Prensa y redes, con los mismos debates y el mismo codebook. Por debate y
+    capa: índice, |postura| media, centro, hostilidad, «nosotros/ellos» y
+    eje Gobierno ↔ oposición. Más la composición de cada capa (cuánto del
+    total trata de algún debate, hacia qué bloque se inclina) y, para las
+    cuentas de Bluesky, qué grupos de la lista publicaron de verdad: si
+    faltan casi todos los de un lado, la capa no es comparable sin más.
+    """
+    press = [dict(r, layer="prensa") for r in press]
+    allrec = press + social
+    debates = [t for t, _ in Counter(r["topic"] for r in scored(press)).most_common()]
+    rep: dict = {"debates": {}, "layers": {}}
+    for t in debates:
+        rep["debates"][t] = {}
+        for L in LAYERS:
+            sel = [r for r in scored(allrec) if r["layer"] == L and r["topic"] == t]
+            st = _layer_stats(sel)
+            if L == "bluesky_cuentas" and len({r["source"] for r in sel}) >= 4:
+                st["accounts"] = axis_report(
+                    [dict(r, domain=r["source"]) for r in sel], "stance", min_n=2, n_perm=500)
+            rep["debates"][t][L] = st
+    for L in LAYERS:
+        rows = [r for r in allrec if r.get("layer") == L]
+        if not rows:
+            continue
+        on = scored(rows)
+        rep["layers"][L] = {
+            "n_texts": len(rows),
+            "share_on_debates": _r(len([r for r in rows if r.get("topic") not in (None, "__failed__")]) / len(rows)),
+            **{k: v for k, v in _layer_stats(on).items() if k.startswith("bloc") or k == "mean_hostility"},
+        }
+    if accounts:
+        posted = Counter()
+        for r in social:
+            if r.get("layer") == "bluesky_cuentas":
+                posted[r["source"]] += 1
+        rep["bluesky_coverage"] = {
+            g: {"listed": sum(1 for a in accounts.get("bluesky", []) if a["group"] == g and a.get("handle")),
+                "posted": len({a["handle"] for a in accounts.get("bluesky", [])
+                               if a["group"] == g and posted.get(a.get("handle"))})}
+            for g in ("medio", "partido", "politico", "periodista")}
+    return rep
+
+
+def layers_summary_lines(rep: dict) -> list[str]:
+    names = {"prensa": "Prensa", "bluesky_cuentas": "Bluesky cuentas",
+             "bluesky_respuestas": "Bluesky respuestas", "youtube_comentarios": "YouTube comentarios"}
+    L = ["Composición de cada capa:"]
+    for k, v in rep["layers"].items():
+        L.append(f"  {names[k]:20s} {v['n_texts']:5d} textos · {v['share_on_debates']:.0%} en debates · "
+                 f"bloque: pro-Gobierno {v.get('bloc_pro_gov')} / pro-oposición {v.get('bloc_pro_opp')} "
+                 f"· hostilidad {v.get('mean_hostility')}")
+    if "bluesky_coverage" in rep:
+        L.append("  Cuentas de Bluesky que publicaron: " + ", ".join(
+            f"{g} {c['posted']}/{c['listed']}" for g, c in rep["bluesky_coverage"].items()))
+    for t, layers in rep["debates"].items():
+        L.append(f"\n{t}")
+        L.append(f"  {'capa':20s} {'n':>5} {'índice':>7} {'|postura|':>9} {'centro':>7} {'hostil.':>8} {'nos/ellos':>9}")
+        for k, s in layers.items():
+            if not s.get("n"):
+                L.append(f"  {names[k]:20s} {0:>5}")
+                continue
+            L.append(f"  {names[k]:20s} {s['n']:>5} {str(s['er']):>7} {str(s['mean_abs_stance']):>9} "
+                     f"{str(s['center_share']):>7} {str(s['mean_hostility']):>8} {str(s['us_them_share']):>9}")
+            if "accounts" in s and "camps" in s["accounts"]:
+                c = s["accounts"]["camps"]
+                L.append(f"  {'':20s} cuentas en dos bandos: distancia {c['distance']} (azar {c['distance_chance']}, p={c['p']})")
+    return L
