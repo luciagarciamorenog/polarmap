@@ -7,6 +7,11 @@ Ventana: **24 h UTC**. Ingestión: GKG **Main + Translation**.
 Muestreo v1: `every_n=4` (un fichero por hora). Los umbrales de
 `n` de abajo están calibrados a ese muestreo.
 
+> Nota (22 nov 2026): el pipeline lee ahora **todos** los ficheros por
+> defecto (`every_n=1`). Cada fichero de GDELT trae noticias nuevas, así
+> que muestrear perdía titulares. Los umbrales se mantienen como mínimos:
+> con más datos, más debates los superan, pero ninguno se rebaja.
+
 ---
 
 ## 1. Países v1 (10)

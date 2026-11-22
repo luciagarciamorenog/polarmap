@@ -84,7 +84,9 @@ THEME_MAP = {
 # Dominio -> país. Los TLD nacionales resuelven la mayoría de casos; los
 # medios con dominio .com necesitan lista explícita.
 TLD_COUNTRY = {
-    ".es": "ES", ".fr": "FR", ".de": "DE", ".it": "IT", ".nl": "NL",
+    # España: además de .es, los dominios de las lenguas cooficiales
+    # (prensa en catalán, euskera y gallego: Ara, VilaWeb, Berria, Nós...)
+    ".es": "ES", ".cat": "ES", ".eus": "ES", ".gal": "ES", ".fr": "FR", ".de": "DE", ".it": "IT", ".nl": "NL",
     ".pl": "PL", ".br": "BR", ".ar": "AR", ".mx": "MX", ".cl": "CL",
     ".uk": "GB", ".in": "IN",
 }
@@ -98,6 +100,21 @@ DOMAIN_COUNTRY = {
     "elespanol.com": "ES", "vozpopuli.com": "ES", "elperiodico.com": "ES",
     "rtve.es": "ES", "cadenaser.com": "ES", "ondacero.es": "ES",
     "eldebate.com": "ES", "huffingtonpost.es": "ES", "niusdiario.es": "ES",
+    # España, .com que antes se perdían (los .es entran solos por el TLD)
+    # Vocento
+    "elcorreo.com": "ES", "diariovasco.com": "ES", "larioja.com": "ES",
+    "leonoticias.com": "ES",
+    # Prensa Ibérica
+    "elperiodicodearagon.com": "ES", "levante-emv.com": "ES",
+    "elperiodicoextremadura.com": "ES", "elperiodicomediterraneo.com": "ES",
+    # Economía
+    "expansion.com": "ES", "lainformacion.com": "ES", "bolsamania.com": "ES",
+    # Televisión
+    "lasexta.com": "ES", "antena3.com": "ES", "cuatro.com": "ES",
+    # Digitales
+    "elplural.com": "ES", "theobjective.com": "ES", "elindependiente.com": "ES",
+    "elsaltodiario.com": "ES", "lamarea.com": "ES", "esdiario.com": "ES",
+    "periodistadigital.com": "ES", "elconfidencialdigital.com": "ES",
     # Estados Unidos
     "nytimes.com": "US", "washingtonpost.com": "US", "cnn.com": "US",
     "foxnews.com": "US", "nbcnews.com": "US", "usatoday.com": "US",
@@ -211,6 +228,10 @@ def domain_to_country(domain: str) -> str | None:
         d = d[4:]
     if d in DOMAIN_COUNTRY:
         return DOMAIN_COUNTRY[d]
+    # Subdominios de un medio de la lista (cincodias.elpais.com -> ES)
+    for known, country in DOMAIN_COUNTRY.items():
+        if d.endswith("." + known):
+            return country
     for tld, country in TLD_COUNTRY.items():
         if d.endswith(tld):
             return country

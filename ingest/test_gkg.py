@@ -175,6 +175,15 @@ for dom, pais in [("latercera.cl", "CL"), ("emol.cl", "CL"),
                   ("folha.uol.com.br", "BR"), ("bbc.co.uk", "GB")]:
     checks.append((f"{dom} -> {pais}", domain_to_country(dom) == pais))
 
+# Cobertura España: lenguas cooficiales, .com que faltaban y subdominios
+for dom, pais in [("ara.cat", "ES"), ("vilaweb.cat", "ES"), ("berria.eus", "ES"),
+                  ("www.naiz.eus", "ES"), ("nosdiario.gal", "ES"),
+                  ("elcorreo.com", "ES"), ("lasexta.com", "ES"),
+                  ("expansion.com", "ES"), ("cincodias.elpais.com", "ES"),
+                  ("elpais.com", "ES"), ("nytimes.com", "US"),
+                  ("noelpais.com", None)]:
+    checks.append((f"{dom} -> {pais}", domain_to_country(dom) == pais))
+
 from ingest.gkg_files import Article  # noqa: E402
 a = Article(url="u", title="Titular", domain="d", country="ES", language="",
             seendate="", topic="")

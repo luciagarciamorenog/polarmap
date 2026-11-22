@@ -536,8 +536,10 @@ def main():
         help="Ventana temporal en horas (default: 24)",
     )
     ap.add_argument(
-        "--every", type=int, default=4,
-        help="Muestreo: 1=todos los ficheros, 4=uno por hora (default: 4)",
+        "--every", type=int, default=1,
+        help="Muestreo: 1=todos los ficheros (default), 2=uno cada 30 min, "
+             "4=uno por hora. GDELT publica cada 15 min y cada fichero "
+             "trae noticias nuevas: saltarse ficheros es perder noticias",
     )
     ap.add_argument(
         "--max-debates", type=int, default=MAX_DEBATES,
