@@ -181,7 +181,7 @@ for dom, pais in [("ara.cat", "ES"), ("vilaweb.cat", "ES"), ("berria.eus", "ES")
                   ("elcorreo.com", "ES"), ("lasexta.com", "ES"),
                   ("expansion.com", "ES"), ("cincodias.elpais.com", "ES"),
                   ("elpais.com", "ES"), ("nytimes.com", "US"),
-                  ("noelpais.com", None)]:
+                  ("noelpais.com", None), ("defensa.gob.es", None)]:
     checks.append((f"{dom} -> {pais}", domain_to_country(dom) == pais))
 
 # Slug antes de un id final (RTVE, La Voz de Galicia); El Mundo no tiene slug

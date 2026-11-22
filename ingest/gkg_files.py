@@ -226,6 +226,8 @@ def domain_to_country(domain: str) -> str | None:
     d = domain.lower().strip()
     if d.startswith("www."):
         d = d[4:]
+    if d.endswith(".gob.es"):
+        return None          # webs del Gobierno: no son prensa
     if d in DOMAIN_COUNTRY:
         return DOMAIN_COUNTRY[d]
     # Subdominios de un medio de la lista (cincodias.elpais.com -> ES)
