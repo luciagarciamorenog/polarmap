@@ -1,0 +1,2008 @@
+{
+ "bluesky": [
+  {
+   "name": "elpais.com",
+   "handle": "elpais.com",
+   "group": "medio",
+   "found": true,
+   "display": "EL PAÍS",
+   "followers": 167428,
+   "posts": 45771,
+   "verified": true,
+   "description": "La mejor información en español. Con nuestra mirada puesta en España, Europa y América. Suscríbete: https://tinyurl.com/"
+  },
+  {
+   "name": "eldiario.es",
+   "handle": "eldiario.es",
+   "group": "medio",
+   "found": true,
+   "display": "elDiario.es",
+   "followers": 150513,
+   "posts": 36827,
+   "verified": true,
+   "description": "Periodismo a pesar de todo. Hazte socio, hazte socia http://usuarios.eldiario.es/hazte_socio"
+  },
+  {
+   "name": "lavanguardia.com",
+   "handle": "lavanguardia.com",
+   "group": "medio",
+   "found": true,
+   "display": "La Vanguardia",
+   "followers": 38019,
+   "posts": 4971,
+   "verified": true,
+   "description": "Rigor, calidad, compromiso. Suscríbete al periodismo responsable: http://bit.ly/3unbQrY"
+  },
+  {
+   "name": "publico.es",
+   "handle": "publico.es",
+   "group": "medio",
+   "found": true,
+   "display": "Diario Público",
+   "followers": 51310,
+   "posts": 39197,
+   "verified": true,
+   "description": "🔴 Periodismo crítico para un público exigente 👉¡Hazte socio/a! Súmate a nuestra comunidad: https://publico.es/unete?tpcc"
+  },
+  {
+   "name": "infolibre.es",
+   "handle": "infolibre.es",
+   "group": "medio",
+   "found": true,
+   "display": "infoLibre",
+   "followers": 31365,
+   "posts": 20946,
+   "verified": true,
+   "description": "[ Somos resistencia ] Apuesta por el periodismo de calidad. ¡Hazte socia y actúa! 👉 https://usuarios.infolibre.es/hazte_"
+  },
+  {
+   "name": "elconfidencial.com",
+   "handle": "elconfidencial.bsky.social",
+   "group": "medio",
+   "to_verify": true,
+   "found": true,
+   "display": "El Confidencial",
+   "followers": 7595,
+   "posts": 36565,
+   "verified": false,
+   "description": "Somos independientes. ¿Y tú?  http://elconfidencial.com/suscribete/ #SoyConfi"
+  },
+  {
+   "name": "cadenaser.com",
+   "handle": "cadenaser.com",
+   "group": "medio",
+   "found": true,
+   "display": "Cadena SER",
+   "followers": 76057,
+   "posts": 23951,
+   "verified": true,
+   "description": "Somos la radio más escuchada en España 📻 👋 https://cadenaser.com/ "
+  },
+  {
+   "name": "rtve.es",
+   "handle": "rtvenoticias.rtve.es",
+   "group": "medio",
+   "to_verify": true,
+   "found": true,
+   "display": "RTVE Noticias",
+   "followers": 35773,
+   "posts": 48030,
+   "verified": true,
+   "description": "La actualidad al minuto en RTVE   ▪ rtve.es/noticias ▪ IG: http://instagram.com/rtvenoticias ▪ Facebook: http://facebook"
+  },
+  {
+   "name": "newtral.es",
+   "handle": "newtral.es",
+   "group": "medio",
+   "found": true,
+   "display": "Newtral",
+   "followers": 5187,
+   "posts": 8117,
+   "verified": true,
+   "description": "Combatimos la desinformación. Con vosotros. Únete a los hechos. 📩 Suscríbete: https://newtral.es/suscribete/"
+  },
+  {
+   "name": "maldita.es",
+   "handle": "maldita.es",
+   "group": "medio",
+   "found": true,
+   "display": "Malditaes",
+   "followers": 665,
+   "posts": 890,
+   "verified": false,
+   "description": "Fundación de periodismo para que no te la cuelen. "
+  },
+  {
+   "name": "elmundo.es",
+   "handle": "elmundo.es",
+   "group": "medio",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "sindolafuente.bsky.social",
+     "display": "Gumersindo Lafuente",
+     "followers": 4195,
+     "posts": 583,
+     "verified": false,
+     "description": "Periodista. elDiario.es. porCausa.org. elpais.com. soitu.es. elmundo.es..."
+    },
+    {
+     "handle": "pablogil72.bsky.social",
+     "display": "Pablo Gil",
+     "followers": 1026,
+     "posts": 327,
+     "verified": false,
+     "description": "Periodista cultural de elmundo.es"
+    }
+   ]
+  },
+  {
+   "name": "abc.es",
+   "handle": "abc.es",
+   "group": "medio",
+   "found": true,
+   "display": "ABC.es",
+   "followers": 1016,
+   "posts": 106324,
+   "verified": false,
+   "description": "Somos ABC, tu periódico 📰 📸 http://instagram.com/abc_diario ⬛ http://Tiktok.com/@abc.es  ➡ LinkedIn http://ver.abc.es/gz"
+  },
+  {
+   "name": "larazon.es",
+   "handle": "larazonlr.bsky.social",
+   "group": "medio",
+   "to_verify": true,
+   "found": true,
+   "display": "La Razón",
+   "followers": 2387,
+   "posts": 95879,
+   "verified": false,
+   "description": "📰 Noticias de actualidad, información de calidad, últimas horas y exclusivas 📲 Síguenos en nuestro canal de WhatsApp ➡️ "
+  },
+  {
+   "name": "elespanol.com",
+   "handle": "elespanol.com",
+   "group": "medio",
+   "found": true,
+   "display": "EL ESPAÑOL",
+   "followers": 3648,
+   "posts": 28999,
+   "verified": false,
+   "description": "Diario digital, plural, libre, indomable, tuyo."
+  },
+  {
+   "name": "20minutos.es",
+   "handle": "20minutos.es",
+   "group": "medio",
+   "found": true,
+   "display": "20minutos",
+   "followers": 17575,
+   "posts": 40175,
+   "verified": true,
+   "description": "Cuenta oficial del periódico 20minutos, el medio social y ciudadano. Información, análisis y contacto personal con los l"
+  },
+  {
+   "name": "europapress.es",
+   "handle": "europapress.es",
+   "group": "medio",
+   "found": true,
+   "display": "Europa Press",
+   "followers": 9293,
+   "posts": 37324,
+   "verified": true,
+   "description": "Perfil oficial de la agencia de noticias privada líder en España  Encuéntranos en nuestras redes sociales: linkin.bio/eu"
+  },
+  {
+   "name": "efe.com",
+   "handle": "efe.com",
+   "group": "medio",
+   "found": true,
+   "display": "EFE Noticias",
+   "followers": 17364,
+   "posts": 57495,
+   "verified": true,
+   "description": "Agencia EFE, la primera agencia de noticias en español | #EFEsiempreestá | Síguenos en otras redes: https://i.mtrbio.com"
+  },
+  {
+   "name": "elperiodico.com",
+   "handle": "elperiodico.com",
+   "group": "medio",
+   "found": true,
+   "display": "El Periódico",
+   "followers": 8237,
+   "posts": 50214,
+   "verified": false,
+   "description": "Entender + | 🔗 elperiodico.com"
+  },
+  {
+   "name": "ara.cat",
+   "handle": "ara.cat",
+   "group": "medio",
+   "found": true,
+   "display": "Diari ARA",
+   "followers": 8596,
+   "posts": 26074,
+   "verified": false,
+   "description": "El diari líder en català amb l'última hora i totes les notícies.  Subscriu-te al periodisme lliure i compromès 👉🏽 http:/"
+  },
+  {
+   "name": "vilaweb.cat",
+   "handle": "vilaweb.cat",
+   "group": "medio",
+   "found": true,
+   "display": "VilaWeb",
+   "followers": 3816,
+   "posts": 13038,
+   "verified": false,
+   "description": "Tota la informació dels Països Catalans i del món, les 24 hores del dia"
+  },
+  {
+   "name": "naiz.eus",
+   "handle": "naiz.eus",
+   "group": "medio",
+   "found": false,
+   "candidates": []
+  },
+  {
+   "name": "lamarea.com",
+   "handle": "lamarea.com",
+   "group": "medio",
+   "found": true,
+   "display": "La Marea",
+   "followers": 23552,
+   "posts": 11363,
+   "verified": true,
+   "description": "Reporterismo, investigación, análisis y cultura desde 2012. Léenos en lamarea.com y en nuestra revista trimestral.   Tú "
+  },
+  {
+   "name": "elsaltodiario.com",
+   "handle": "elsaltodiario.com",
+   "group": "medio",
+   "found": true,
+   "display": "El Salto",
+   "followers": 42072,
+   "posts": 14263,
+   "verified": true,
+   "description": "Somos un medio de comunicación autogestionado, horizontal y asambleario. Apóyanos con tu suscripción http://elsaltodiari"
+  },
+  {
+   "name": "ctxt.es",
+   "handle": "ctxt.es",
+   "group": "medio",
+   "found": true,
+   "display": "CTXT.es",
+   "followers": 52560,
+   "posts": 12291,
+   "verified": true,
+   "description": "Revista Contexto y Acción, editada por la Fundación Contexto y Acción.   Periodismo en libertad. Nos encontrarás en ctxt"
+  },
+  {
+   "name": "theobjective.com",
+   "handle": "theobjective-es.bsky.social",
+   "group": "medio",
+   "to_verify": true,
+   "found": true,
+   "display": "THE OBJECTIVE",
+   "followers": 610,
+   "posts": 44038,
+   "verified": false,
+   "description": "Noticias exclusivas y opiniones libres en abierto. Contáctenos: info@theobjective.com WhatsApp: https://lc.cx/dS5fSy Tel"
+  },
+  {
+   "name": "libertaddigital.com",
+   "handle": "libertaddigital.com",
+   "group": "medio",
+   "found": false,
+   "candidates": []
+  },
+  {
+   "name": "okdiario.com",
+   "handle": "okdiario.com",
+   "group": "medio",
+   "found": false,
+   "candidates": []
+  },
+  {
+   "name": "eldebate.com",
+   "handle": "eldebate.com",
+   "group": "medio",
+   "found": false,
+   "candidates": []
+  },
+  {
+   "name": "vozpopuli.com",
+   "handle": "voz-populi.bsky.social",
+   "group": "medio",
+   "to_verify": true,
+   "found": true,
+   "display": "Vozpópuli",
+   "followers": 168,
+   "posts": 34,
+   "verified": false,
+   "description": "Periódico digital en español. Información de calidad, grandes exclusivas y el mejor plantel de columnistas. En abierto. "
+  },
+  {
+   "name": "cope.es",
+   "handle": "cope.es",
+   "group": "medio",
+   "found": false,
+   "candidates": []
+  },
+  {
+   "name": "ondacero.es",
+   "handle": "ondacero.es",
+   "group": "medio",
+   "found": true,
+   "display": "Onda Cero",
+   "followers": 3699,
+   "posts": 20322,
+   "verified": true,
+   "description": "📻 Onda Cero, 24 horas de información y entretenimiento. Te mereces esta radio. Tu #radio.  https://www.ondacero.es/"
+  },
+  {
+   "name": "lasexta.com",
+   "handle": "lasexta.com",
+   "group": "medio",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "lluisvico.bsky.social",
+     "display": "Lluís Vilà",
+     "followers": 273,
+     "posts": 2,
+     "verified": false,
+     "description": "Periodista. Humanidades. Política y economía en la @SextaNoticias lluis.vila@lasexta.com Dubto casi sempre de tot perquè"
+    },
+    {
+     "handle": "beatrizgp26.bsky.social",
+     "display": "Beatriz G. Portalatín",
+     "followers": 15,
+     "posts": 0,
+     "verified": false,
+     "description": "Cuento cosas en laSexta.com  “Yo soñaba cada día poder alcanzar la playa” 💫"
+    }
+   ]
+  },
+  {
+   "name": "antena3.com",
+   "handle": "antena3.com",
+   "group": "medio",
+   "found": true,
+   "display": "Antena 3",
+   "followers": 1061,
+   "posts": 0,
+   "verified": false,
+   "description": "Perfil oficial de Antena 3. ➡️ antena3.com "
+  },
+  {
+   "name": "PSOE",
+   "handle": "psoe-cef.bsky.social",
+   "group": "partido",
+   "to_verify": true,
+   "found": true,
+   "display": "PSOE",
+   "followers": 18765,
+   "posts": 3641,
+   "verified": true,
+   "description": "Somos nuevos aquí pero tenemos 145 años de historia 🌹"
+  },
+  {
+   "name": "Partido Popular",
+   "handle": "partidopopularesp.bsky.social",
+   "group": "partido",
+   "to_verify": true,
+   "found": true,
+   "display": "Partido Popular",
+   "followers": 401,
+   "posts": 3,
+   "verified": false,
+   "description": ""
+  },
+  {
+   "name": "Vox",
+   "handle": "voxespana.es",
+   "group": "partido",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "vox.com",
+     "display": "Vox",
+     "followers": 254655,
+     "posts": 3285,
+     "verified": true,
+     "description": "Making sense of it all. Become a member today. 👇 https://voxdotcom.visitlink.me/z3EPda"
+    },
+    {
+     "handle": "thediegovoxxx.bsky.social",
+     "display": "Diego Vox",
+     "followers": 37052,
+     "posts": 1812,
+     "verified": false,
+     "description": "🔞 18+ ONLY  🇧🇷 Molho original 🎥 Co-owner of @angelsunleashed.bsky.social 📧 All DMs answered on OF 📍 Salt Lake City, UT  "
+    },
+    {
+     "handle": "voxytwitch.bsky.social",
+     "display": "Voxy",
+     "followers": 12797,
+     "posts": 145,
+     "verified": false,
+     "description": "i like mtg and posting my intrusive thoughts "
+    }
+   ]
+  },
+  {
+   "name": "Sumar",
+   "handle": "movimientosumar.es",
+   "group": "partido",
+   "to_verify": true,
+   "found": true,
+   "display": "Sumar",
+   "followers": 15071,
+   "posts": 2528,
+   "verified": true,
+   "description": "Escuchar. Sumar. Construir.  Vamos a más 🩷"
+  },
+  {
+   "name": "Podemos",
+   "handle": "ahorapodemos.bsky.social",
+   "group": "partido",
+   "to_verify": true,
+   "found": true,
+   "display": "Podemos",
+   "followers": 23845,
+   "posts": 1698,
+   "verified": true,
+   "description": "Por la paz, el feminismo y la justicia social."
+  },
+  {
+   "name": "ERC",
+   "handle": "esquerra.cat",
+   "group": "partido",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "erc.europa.eu",
+     "display": "European Research Council (ERC)",
+     "followers": 22746,
+     "posts": 862,
+     "verified": true,
+     "description": "European Research Council, set up by the EU, funds top researchers of any nationality, helping them pursue great ideas a"
+    },
+    {
+     "handle": "ercandalkilic.bsky.social",
+     "display": "Ercan Dalkılıç",
+     "followers": 1837,
+     "posts": 2326,
+     "verified": false,
+     "description": " zeytin yetiştiricisi & @ulysseszeytinyagi.bsky.social founder  Yurtiçi sitemiz: www.ulysseszeytinyagi.com  Yurtdışı sit"
+    },
+    {
+     "handle": "ercboxoffice.bsky.social",
+     "display": "Exhibitor Relations Co.",
+     "followers": 1462,
+     "posts": 2652,
+     "verified": false,
+     "description": "The Box Office Autonomy Since 1974. Tweets by Jeff Bock, Senior Media Analyst. Although, sometimes, this red ape named R"
+    }
+   ]
+  },
+  {
+   "name": "Junts",
+   "handle": "juntsxcat.bsky.social",
+   "group": "partido",
+   "to_verify": true,
+   "found": true,
+   "display": "Junts per Catalunya🎗️",
+   "followers": 1148,
+   "posts": 0,
+   "verified": false,
+   "description": ""
+  },
+  {
+   "name": "PNV",
+   "handle": "eajpnv.bsky.social",
+   "group": "partido",
+   "to_verify": true,
+   "found": true,
+   "display": "EAJ-PNV",
+   "followers": 447,
+   "posts": 0,
+   "verified": false,
+   "description": "💚🤍❤️ Jeltzaleak. Abertzaleak. Demokratak. Euskal alderdi liderra. Construimos contigo una Euskadi mejor. Les démocrates "
+  },
+  {
+   "name": "EH Bildu",
+   "handle": "ehbildu.bsky.social",
+   "group": "partido",
+   "to_verify": true,
+   "found": true,
+   "display": "EH Bildu",
+   "followers": 6482,
+   "posts": 2120,
+   "verified": true,
+   "description": "Euskal ezkerreko independentiston mugimendu politikoa • Primera fuerza municipalista del país • Building the Basque Repu"
+  },
+  {
+   "name": "Más Madrid",
+   "handle": "masmadrid.org",
+   "group": "partido",
+   "found": true,
+   "display": "Más Madrid",
+   "followers": 3643,
+   "posts": 469,
+   "verified": false,
+   "description": "La alternativa verde, feminista y de justicia social para Madrid."
+  },
+  {
+   "name": "BNG",
+   "handle": "obloque.gal",
+   "group": "partido",
+   "to_verify": true,
+   "found": true,
+   "display": "BNG - Bloque Nacionalista Galego",
+   "followers": 4006,
+   "posts": 2609,
+   "verified": true,
+   "description": "Bluesky oficial do Bloque Nacionalista Galego. Para que coñezas o que facemos por Galiza e por ti.   Nós nas redes: http"
+  },
+  {
+   "name": "Compromís",
+   "handle": "compromis.net",
+   "group": "partido",
+   "found": true,
+   "display": "Compromís",
+   "followers": 2684,
+   "posts": 173,
+   "verified": false,
+   "description": "Fem valencianisme des de l’esquerra ecologista. El nostre compromís és treballar per tot el que importa."
+  },
+  {
+   "name": "Pedro Sánchez",
+   "handle": null,
+   "group": "politico",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "pedro-sanchez-archivo.braxuss.eu",
+     "display": "Pedro Sánchez (Archivo) (NOT PEDRO SÁNCHEZ)",
+     "followers": 3638,
+     "posts": 9907,
+     "verified": false,
+     "description": "Perfil no oficial dedicado a archivar tuits antiguos (2009-2018) de Pedro Sánchez Castejón.  Este archivo es un trabajo "
+    },
+    {
+     "handle": "pedroangelsanch.bsky.social",
+     "display": "Pedro Ángel Sánchez | Escritor | Comunicador",
+     "followers": 312,
+     "posts": 255,
+     "verified": false,
+     "description": "📚 Nada es eterno salvo la Carrà | Las chicas de oro | Esto no es un libro de OT (Dos Bigotes) 🎙️ La Tarde Suena Bien (RC"
+    }
+   ]
+  },
+  {
+   "name": "Yolanda Díaz",
+   "handle": "yolandadiaz.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Yolanda Díaz",
+   "followers": 39613,
+   "posts": 1588,
+   "verified": true,
+   "description": "Abogada. Galega. Vicepresidenta Segunda del Gobierno de España y Ministra de Trabajo y Economía Social. Un proyecto de p"
+  },
+  {
+   "name": "María Jesús Montero",
+   "handle": null,
+   "group": "politico",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "mjesusespinosa.bsky.social",
+     "display": "María Jesús Espinosa de los Monteros García",
+     "followers": 2367,
+     "posts": 86,
+     "verified": false,
+     "description": "Directora de LACOproductora (PRISA Media) / Miembro del Consejo Rector de Fundación Gabo 📩 https://substack.com/@alegria"
+    },
+    {
+     "handle": "cadizconmontero.bsky.social",
+     "display": "Socialistas de Cádiz con María Jesús Montero",
+     "followers": 66,
+     "posts": 20,
+     "verified": false,
+     "description": "Cuenta de apoyo de militantes del PSOE de Cádiz que apoya la candidatura de María Jesús Montero a las primarias de la Se"
+    },
+    {
+     "handle": "charlotteclymer.bsky.social",
+     "display": "Charlotte Clymer",
+     "followers": 261655,
+     "posts": 7481,
+     "verified": true,
+     "description": "Writer. Lesbian. Texan. Veteran. Hoya. Jesus Fan. She. | cmclymer@gmail.com | I write about politics, religion, and cult"
+    }
+   ]
+  },
+  {
+   "name": "Óscar Puente",
+   "handle": "oscarpuente.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Oscar Puente",
+   "followers": 63911,
+   "posts": 344,
+   "verified": true,
+   "description": "Ministro de Transportes y Movilidad Sostenible del Gobierno de España."
+  },
+  {
+   "name": "Félix Bolaños",
+   "handle": "felixbolanosg.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Félix Bolaños",
+   "followers": 14910,
+   "posts": 861,
+   "verified": true,
+   "description": "Ministro de la Presidencia, Justicia y Relaciones con las Cortes. Diputado socialista por Madrid. Haciendo política útil"
+  },
+  {
+   "name": "José Manuel Albares",
+   "handle": "jmalbares.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "José Manuel Albares",
+   "followers": 4271,
+   "posts": 1496,
+   "verified": true,
+   "description": "Ministro de Asuntos Exteriores, Unión Europea y Cooperación. Gobierno de España. Padre de 4. Socialista. Trabajo por los"
+  },
+  {
+   "name": "Ernest Urtasun",
+   "handle": "ernesturtasun.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Ernest Urtasun",
+   "followers": 13801,
+   "posts": 1175,
+   "verified": true,
+   "description": "Ministro de Cultura del Gobierno de España | Economista & Diplomático | El 29N, Comuns-Front Ampli 📷 https://instagram.c"
+  },
+  {
+   "name": "Mónica García",
+   "handle": "monicagarciag.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Mónica García",
+   "followers": 18319,
+   "posts": 1384,
+   "verified": true,
+   "description": "Ministra de Sanidad. Portavoz de Más Madrid. Médica y madre de tres hijos. Con la mirada puesta en la sanidad pública y "
+  },
+  {
+   "name": "Pablo Bustinduy",
+   "handle": null,
+   "group": "politico",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "pablo.show",
+     "display": "Pablo Torre",
+     "followers": 151784,
+     "posts": 711,
+     "verified": true,
+     "description": "🎥 https://www.youtube.com/@pablotorrefindsout 🎧 https://podcasts.apple.com/us/podcast/pablo-torre-finds-out/id1685093486"
+    },
+    {
+     "handle": "pabloiglesias78.bsky.social",
+     "display": "Pablo Iglesias 🔻{R}",
+     "followers": 47404,
+     "posts": 334,
+     "verified": false,
+     "description": "Director de Canal Red y profesor de Ciencia Política en la Complutense"
+    },
+    {
+     "handle": "infinata.bsky.social",
+     "display": "Pablo Hidalgo",
+     "followers": 17514,
+     "posts": 12695,
+     "verified": false,
+     "description": "Author. Scribbler. LFL old-timer. Lore-wallah/historian on The Acolyte, Andor, Obi-Wan Kenobi, Light & Magic. San Franci"
+    }
+   ]
+  },
+  {
+   "name": "Ione Belarra",
+   "handle": "ionebelarra.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Ione Belarra",
+   "followers": 24332,
+   "posts": 849,
+   "verified": true,
+   "description": "𝑃𝑎𝑟𝑎 𝑡𝑜𝑑𝑎𝑠, 𝑡𝑜𝑑𝑜. Secretaria general de Podemos y diputada. Psicóloga, mamá de 2, ecofeminista."
+  },
+  {
+   "name": "Irene Montero",
+   "handle": "irenemontero.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Turryox v2",
+   "followers": 371,
+   "posts": 39,
+   "verified": false,
+   "description": " soy irene montero  cuenta principal @turryox.bsky.social"
+  },
+  {
+   "name": "Gabriel Rufián",
+   "handle": "grufian.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Gabriel Rufián",
+   "followers": 47802,
+   "posts": 128,
+   "verified": false,
+   "description": "Uno más.  Portavoz de Esquerra en el Congreso.  Para todos todo, para nosotros nada."
+  },
+  {
+   "name": "Aitor Esteban",
+   "handle": "aitoresteban.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Aitor Esteban",
+   "followers": 10,
+   "posts": 4,
+   "verified": false,
+   "description": ""
+  },
+  {
+   "name": "Mertxe Aizpurua",
+   "handle": "mertxeaizpurua.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Mertxe Aizpurua",
+   "followers": 3148,
+   "posts": 161,
+   "verified": true,
+   "description": "EH Bilduren Kongresuko bozeramailea | Portavoz de EH Bildu en el Congreso | Kazetaria. https://www.facebook.com/aizpurua"
+  },
+  {
+   "name": "Míriam Nogueras",
+   "handle": null,
+   "group": "politico",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "miriam.blacksky.app",
+     "display": "Miriam IRL",
+     "followers": 38945,
+     "posts": 7059,
+     "verified": false,
+     "description": "We will be ok or we won’t.  Irish & Sudanese 🇮🇪🇸🇩  https://linktr.ee/MiriamBoosh"
+    },
+    {
+     "handle": "miriamposner.com",
+     "display": "Miriam Posner",
+     "followers": 17055,
+     "posts": 8732,
+     "verified": true,
+     "description": "Tired person, fighter. Labor, data, DH, obsolete software, database history, etc. Seeing Like a Supply Chain out Oct 202"
+    },
+    {
+     "handle": "getmoresmarter.com",
+     "display": "The Get More Smarter Podcast",
+     "followers": 71245,
+     "posts": 3812,
+     "verified": false,
+     "description": "Unapologetically pro-Colorado podcast. Recommended by 5280, 9News, City Cast Denver, The Denver Post, and Miriam Webster"
+    }
+   ]
+  },
+  {
+   "name": "Rita Maestre",
+   "handle": "ritamaestre.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Rita Maestre",
+   "followers": 13253,
+   "posts": 1821,
+   "verified": false,
+   "description": "Portavoz de Más Madrid en el Ayuntamiento de Madrid. Porque la mejor ciudad del mundo no es perfecta. Todavía. https://m"
+  },
+  {
+   "name": "Ada Colau",
+   "handle": "adacolau.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Ada Colau",
+   "followers": 3796,
+   "posts": 3,
+   "verified": false,
+   "description": "Former Mayor of Barcelona (2015-2023) Avui a @fundaciosentitcomu @barcelonaencomu  La humanitat està en joc a Gaza #free"
+  },
+  {
+   "name": "Alberto Núñez Feijóo",
+   "handle": null,
+   "group": "politico",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "socio-steve.bsky.social",
+     "display": "Stephen Nuñez",
+     "followers": 19435,
+     "posts": 34985,
+     "verified": false,
+     "description": "Director, Stratification Economics at The Roosevelt Institute/Roosevelt Forward  @rooseveltinstitute.org   Sociologist, "
+    },
+    {
+     "handle": "albertonardelli.bsky.social",
+     "display": "Alberto Nardelli",
+     "followers": 13718,
+     "posts": 249,
+     "verified": false,
+     "description": "Reporter at Bloomberg. In Europe, mostly. I have strong opinions about food and football. DM for Signal."
+    },
+    {
+     "handle": "agarzon.substack.com",
+     "display": "Alberto Garzón",
+     "followers": 21867,
+     "posts": 430,
+     "verified": false,
+     "description": "Economista trabajando en el campo de la economía biofísica. Ecosocialista. Investigando en el Instituto de Ciencia y Tec"
+    }
+   ]
+  },
+  {
+   "name": "Isabel Díaz Ayuso",
+   "handle": null,
+   "group": "politico",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "idiazaquso.bsky.social",
+     "display": "Isabel Díaz Ayuso, cuqui fake",
+     "followers": 21216,
+     "posts": 331,
+     "verified": false,
+     "description": "Presidenta de la Comunidad de Madrid, fake (o puede que no).  Estoy aquí para privatizar todo esto."
+    },
+    {
+     "handle": "idiazayus0.bsky.social",
+     "display": "Isabel Díaz Ayuso",
+     "followers": 1444,
+     "posts": 75,
+     "verified": false,
+     "description": "Presidenta de la Comunidad de Madrid"
+    },
+    {
+     "handle": "isa-diazayuso.bsky.social",
+     "display": "Isabel Díaz Ayuso",
+     "followers": 373,
+     "posts": 40,
+     "verified": false,
+     "description": "Presidenta de la Comunidad de Madrid, la región más libre y casa de todos los españoles. Presidenta del PP de Madrid. Li"
+    }
+   ]
+  },
+  {
+   "name": "Cuca Gamarra",
+   "handle": "cucagamarra.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Cuca Gamarra",
+   "followers": 34,
+   "posts": 0,
+   "verified": false,
+   "description": ""
+  },
+  {
+   "name": "Ester Muñoz",
+   "handle": null,
+   "group": "politico",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "maxulichney.bsky.social",
+     "display": "Max Ulichney Muñoz | MaxPacks",
+     "followers": 16095,
+     "posts": 251,
+     "verified": false,
+     "description": "Character Designer, Illustrator & Brushmancer of #MaxPacks brushes for Procreate. Lorcana, Netflix, Dreamworks"
+    },
+    {
+     "handle": "ceciliamunoz.bsky.social",
+     "display": "Cecilia Muñoz",
+     "followers": 5328,
+     "posts": 111,
+     "verified": false,
+     "description": "Serial policy nerd: led President Obama's Domestic Policy Council after 20 years at Unidos US; now growing new NGOs. On "
+    },
+    {
+     "handle": "miguelmunozort.bsky.social",
+     "display": "Miguel Muñoz Ortega",
+     "followers": 4099,
+     "posts": 1204,
+     "verified": false,
+     "description": "Periodista en la sección de Política de Público. Antes en Cuartopoder y más sitios. Padre. Albaceteño de ida y vuelta. A"
+    }
+   ]
+  },
+  {
+   "name": "Miguel Tellado",
+   "handle": null,
+   "group": "politico",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "migueldelaney.bsky.social",
+     "display": "Miguel Delaney",
+     "followers": 39426,
+     "posts": 7050,
+     "verified": true,
+     "description": "Chief football writer at the Independent. Author of 'States of Play'"
+    },
+    {
+     "handle": "aka.dad",
+     "display": "dad (aka miguel)",
+     "followers": 1497,
+     "posts": 6816,
+     "verified": true,
+     "description": "designer && atprotobro — views are my own (duh) building: @offprint.app, @protobase.at, @pds.rip, and @unthread.at maint"
+    },
+    {
+     "handle": "elbarroquista.bsky.social",
+     "display": "El Barroquista",
+     "followers": 28021,
+     "posts": 7112,
+     "verified": true,
+     "description": "Miguel Ángel Cajigal Vera Historiador del Arte · Músico · Patrimonio Cultural y Museos  https://linktr.ee/elbarroquista"
+    }
+   ]
+  },
+  {
+   "name": "Santiago Abascal",
+   "handle": "santiagoabascal.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Santiago Abascal",
+   "followers": 165,
+   "posts": 7,
+   "verified": false,
+   "description": "Presidente de VOX. Diputado Nazional  https://youtu.be/zDOvL1CDZeo?si=mgxj4t_WkPpn0vD0  "
+  },
+  {
+   "name": "Ignacio Garriga",
+   "handle": "ignaciogarriga.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Ignacio Garriga",
+   "followers": 24,
+   "posts": 1,
+   "verified": false,
+   "description": "Negro, catalán y de VOX. La verdad que no doy una igual que @rociomonasterio.bsky.social"
+  },
+  {
+   "name": "Pepa Millán",
+   "handle": null,
+   "group": "politico",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "lauramillan.bsky.social",
+     "display": "Laura Millan",
+     "followers": 10565,
+     "posts": 112,
+     "verified": false,
+     "description": "Writing about 🔥💧and all things climate at Bloomberg"
+    },
+    {
+     "handle": "pepablanes.bsky.social",
+     "display": "Pepa Blanes",
+     "followers": 7927,
+     "posts": 16,
+     "verified": false,
+     "description": "Jefa de Cultura de la SER Hablando de Cine y las Series en  @elcineenlaser y autora de ‘Abre los ojos’"
+    },
+    {
+     "handle": "cmillanr.bsky.social",
+     "display": "Carolina Millán",
+     "followers": 700,
+     "posts": 32,
+     "verified": false,
+     "description": "Mexico Bureau Chief for Bloomberg News. Nómada. Views mine"
+    }
+   ]
+  },
+  {
+   "name": "Irene Lozano",
+   "handle": "irenelozano.bsky.social",
+   "group": "periodista",
+   "found": true,
+   "display": "",
+   "followers": 4,
+   "posts": 0,
+   "verified": false,
+   "description": ""
+  },
+  {
+   "name": "Ignacio Escolar",
+   "handle": "iescolar.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Ignacio Escolar",
+   "followers": 46574,
+   "posts": 176,
+   "verified": false,
+   "description": "Director de elDiario.es"
+  },
+  {
+   "name": "Antonio Maestre",
+   "handle": "antoniomaestre.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Antonio J. Maestre Gómez",
+   "followers": 1073,
+   "posts": 6,
+   "verified": false,
+   "description": "Me gusta comentar noticias de actualidad de ámbito nacional e internacional, siempre con respeto y empatía. Por una Espa"
+  },
+  {
+   "name": "Jesús Maraña",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "charlotteclymer.bsky.social",
+     "display": "Charlotte Clymer",
+     "followers": 261655,
+     "posts": 7481,
+     "verified": true,
+     "description": "Writer. Lesbian. Texan. Veteran. Hoya. Jesus Fan. She. | cmclymer@gmail.com | I write about politics, religion, and cult"
+    },
+    {
+     "handle": "nicholaskole.bsky.social",
+     "display": "Nicholas Kole",
+     "followers": 58594,
+     "posts": 3106,
+     "verified": false,
+     "description": "Character Designer & Illustrator, Jesus-follower, married to Erkshnrt 🎨: Spyro Reignited, Crash Bandicoot 4, Disney Lorc"
+    },
+    {
+     "handle": "thrulles.bsky.social",
+     "display": "leo !! 🐺",
+     "followers": 56049,
+     "posts": 1497,
+     "verified": false,
+     "description": "daí qnd ele aceitar Jesus vc dá a marmit..."
+    }
+   ]
+  },
+  {
+   "name": "Ana Pardo de Vera",
+   "handle": "pardodevera.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Ana Pardo de Vera P.",
+   "followers": 37338,
+   "posts": 2878,
+   "verified": false,
+   "description": "Periodista. Filóloga. Sin tregua. 📸 IG: www.instagram/anapardodevera"
+  },
+  {
+   "name": "Rosa María Artal",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "lazarorosa.bsky.social",
+     "display": "Lázaro Rosa 🇧🇷",
+     "followers": 82430,
+     "posts": 2566,
+     "verified": false,
+     "description": "🇧🇷 Consultor em comunicação e marketing digital. Progressista e ativista pela democracia."
+    },
+    {
+     "handle": "heidireports.bsky.social",
+     "display": "Heidi Przybyla 🎤✍️",
+     "followers": 110790,
+     "posts": 257,
+     "verified": false,
+     "description": "Award-winning print, digital and TV investigative journalist Pls sign up on my site: www.heidireports.com \"If you can ma"
+    },
+    {
+     "handle": "mariabamford.bsky.social",
+     "display": "Maria Bamford",
+     "followers": 47891,
+     "posts": 297,
+     "verified": true,
+     "description": "✈️ I'M COMING TO SEE YOU! Want to come to a show but no $? Email me ➡️ Ariamaamfordba@gmail.com"
+    }
+   ]
+  },
+  {
+   "name": "Isaac Rosa",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "isaacmrg.bsky.social",
+     "display": "Isaac Rosanes",
+     "followers": 16,
+     "posts": 1,
+     "verified": false,
+     "description": "✍️ Periodista en el sector humanitario 🗓️ Millenial de la primera camada 🍩 Cocinillas 🏳️‍🌈 LGT(B) 🎒 Viajando"
+    },
+    {
+     "handle": "isaacrosado.bsky.social",
+     "display": "",
+     "followers": 2,
+     "posts": 2,
+     "verified": false,
+     "description": ""
+    },
+    {
+     "handle": "lidb-17041999-qrmx.bsky.social",
+     "display": "Luis Isaac De La Rosa Beltrán",
+     "followers": 1,
+     "posts": 0,
+     "verified": false,
+     "description": ""
+    }
+   ]
+  },
+  {
+   "name": "Javier Gallego",
+   "handle": "carnecrudaradio.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Javier Gallego Crudo",
+   "followers": 21541,
+   "posts": 811,
+   "verified": false,
+   "description": "Cuenta del programa de radio y su director. Periodista, músico, escritor. Publico la novela 'La caída del imperio'. Cola"
+  },
+  {
+   "name": "Íñigo Sáenz de Ugarte",
+   "handle": "iugarte.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Iñigo Sáenz de Ugarte",
+   "followers": 12046,
+   "posts": 2974,
+   "verified": false,
+   "description": "Periodista. Escribo sobre política española, lo que está contraindicado para la salud."
+  },
+  {
+   "name": "Àngels Barceló",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "beatritm.bsky.social",
+     "display": "Angels Barcelo",
+     "followers": 133,
+     "posts": 1,
+     "verified": false,
+     "description": "De todo se de nada entiendo.."
+    },
+    {
+     "handle": "charlieangus104.bsky.social",
+     "display": "Charlie Angus",
+     "followers": 101386,
+     "posts": 4427,
+     "verified": true,
+     "description": "Politics, author of Dangerous Memory: Coming of Age in the Decade of Greed. Meidas Canada/ The Resistance Lead singer wi"
+    },
+    {
+     "handle": "chescaleigh.bsky.social",
+     "display": "Franchesca Ramsey",
+     "followers": 40677,
+     "posts": 598,
+     "verified": false,
+     "description": "writer, comedian, social strategist, living in the city of angels, occasionally singing about leopards. shop.franchesca."
+    }
+   ]
+  },
+  {
+   "name": "Ana Pastor",
+   "handle": "ana-pastor.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Ana Pastor (Pastorcita de la parodia) FaKe",
+   "followers": 24,
+   "posts": 2,
+   "verified": false,
+   "description": "Soy más roja que... ¿Habéis visto los monos del zoo? Ese ano para fuera rojo, morado... "
+  },
+  {
+   "name": "Jordi Évole",
+   "handle": "jordievole.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Jordi Évole",
+   "followers": 1258,
+   "posts": 0,
+   "verified": false,
+   "description": "De Menorca y del Atlético de Madrid."
+  },
+  {
+   "name": "Javier Ruiz",
+   "handle": "javierruiz.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Javier Ruiz",
+   "followers": 24589,
+   "posts": 114,
+   "verified": false,
+   "description": "Periodista… pese a todo  YouTube.com/@ruiz_noticias"
+  },
+  {
+   "name": "Carlos Alsina",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "carlosminc.bsky.social",
+     "display": "Carlos Minc",
+     "followers": 18401,
+     "posts": 7788,
+     "verified": false,
+     "description": "Carlos Minc  📍Deputado Estadual (PSB/RJ)  🏆 Ecolibertário com mais de 300 leis aprovadas! ⭐️ Ex-Ministro do Meio Ambient"
+    },
+    {
+     "handle": "carlosmaza.bsky.social",
+     "display": "Carlos Maza",
+     "followers": 9059,
+     "posts": 37,
+     "verified": false,
+     "description": "Marxist Pig. Queer Scum. youtube.com/CarlosMazaTube"
+    }
+   ]
+  },
+  {
+   "name": "Vicente Vallés",
+   "handle": "vicentevalles.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Vicente Vallés",
+   "followers": 122,
+   "posts": 0,
+   "verified": false,
+   "description": "Cuenta oficial. Periodista y escritor"
+  },
+  {
+   "name": "Pedro J. Ramírez",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "handle.invalid",
+     "display": null,
+     "followers": 1,
+     "posts": 0,
+     "verified": false,
+     "description": ""
+    },
+    {
+     "handle": "joshuajfriedman.com",
+     "display": "Joshua J. Friedman",
+     "followers": 218327,
+     "posts": 69820,
+     "verified": true,
+     "description": "Welcoming media and government (and everyone else!) to Bluesky.   \"A nice gentleman\" —Eric Idle"
+    },
+    {
+     "handle": "mjfree.bsky.social",
+     "display": "Morgan J Freeman",
+     "followers": 378559,
+     "posts": 14857,
+     "verified": true,
+     "description": "Proud Girl Dad, TV Producer, Filmmaker, Vedic Meditation Practitioner, Kitesurfer, Human Rights & Racial Justice Advocat"
+    }
+   ]
+  },
+  {
+   "name": "Federico Jiménez Losantos",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "alvarojimenez.bsky.social",
+     "display": "Álvaro Jiménez",
+     "followers": 11309,
+     "posts": 1825,
+     "verified": false,
+     "description": "Illustrator, concept art: Sideshow, Games Workshop, Cubicle7, Bandai/Namco, Eternal, FromSoftware, Bethesda…  Contact:  "
+    },
+    {
+     "handle": "chrispps.bsky.social",
+     "display": "[Christopher M. Federico]",
+     "followers": 8585,
+     "posts": 7342,
+     "verified": false,
+     "description": "midwest academic, political science + psychology / inveterate fan of The Fall / cat enthusiast / boring social democrat "
+    },
+    {
+     "handle": "viticci.macstories.net",
+     "display": "Federico Viticci",
+     "followers": 11520,
+     "posts": 985,
+     "verified": false,
+     "description": "Founder and Editor-in-Chief @macstories.net. I write about iPad, iOS, indie apps, and making computers more fun.  I also"
+    }
+   ]
+  },
+  {
+   "name": "Eduardo Inda",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "eduardomoreira.bsky.social",
+     "display": "Eduardo Moreira",
+     "followers": 38727,
+     "posts": 32,
+     "verified": false,
+     "description": "🎙 Fundador ICL e @iclnoticias.bsky.social 📈 iBest #1 do Brasil em Economia e Negócios 📚 12 livros (5 #1 entre os mais ve"
+    },
+    {
+     "handle": "valdevia.art",
+     "display": "Eduardo Valdés-Hevia 👁️",
+     "followers": 30399,
+     "posts": 3508,
+     "verified": true,
+     "description": "Everything you see on the internet is real. Making spooky images on Photoshop. He/Him."
+    }
+   ]
+  },
+  {
+   "name": "Isabel San Sebastián",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "gavinnewsom.bsky.social",
+     "display": "Gavin Newsom",
+     "followers": 259273,
+     "posts": 2,
+     "verified": true,
+     "description": "Husband and father. 40th Governor of California. Former Lt. Governor of California. Former San Francisco Mayor. Personal"
+    },
+    {
+     "handle": "harrylitman.bsky.social",
+     "display": "Harry Litman",
+     "followers": 304082,
+     "posts": 2833,
+     "verified": false,
+     "description": "Host & exec prod, \"Talking Feds Pod\" and \"Talking San Diego.\" FCA Lawyer. Teach con law at UCSD & UCLA. Senior Fellow US"
+    },
+    {
+     "handle": "joaquincastrotx.bsky.social",
+     "display": "Joaquin Castro",
+     "followers": 103345,
+     "posts": 1330,
+     "verified": true,
+     "description": "Texas Congressman. Democrat. Born, raised and represent San Antonio.   Intelligence Committee (HPSCI) + Foreign Affairs "
+    }
+   ]
+  },
+  {
+   "name": "Arcadi Espada",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "seanjbates.bsky.social",
+     "display": "Sean Bates",
+     "followers": 4421,
+     "posts": 1101,
+     "verified": false,
+     "description": "writer/poet/educator   https://substack.com/@seanjbates  https://linktr.ee/seanbateswrites  poems in: vlad mag Paddler P"
+    },
+    {
+     "handle": "carlostq.bsky.social",
+     "display": "Carlos Ferrer",
+     "followers": 1458,
+     "posts": 1643,
+     "verified": false,
+     "description": "Autor del juego de rol Tierras Quebradas y otros materiales roleros. Debut literario con La Espada Blanca. www.carlosfer"
+    },
+    {
+     "handle": "ferranespada.bsky.social",
+     "display": "Ferran Espada",
+     "followers": 608,
+     "posts": 3,
+     "verified": false,
+     "description": "Periodista. Feinejant a Públic i Público. Faig anàlisi i comentaris a Catalunya Ràdio, TV3 i TVECatalunya."
+    }
+   ]
+  },
+  {
+   "name": "Jorge Bustos",
+   "handle": "jorgebustosgo.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Jorge Bustos Go",
+   "followers": 258,
+   "posts": 12,
+   "verified": false,
+   "description": "Politólogo 🏛️🗣️- Utadeo 💙 Ex-Consejero de juventudes  Ex-Consejero de Paz Municipal  Un Codacense con Cabeza y Corazón! "
+  },
+  {
+   "name": "Lucía Méndez",
+   "handle": "luciamendezof.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Lucía Méndez",
+   "followers": 8,
+   "posts": 1,
+   "verified": false,
+   "description": "Página para fans de la Reina de las Telenovelas Lucía Méndez!  #DivaDeMexico"
+  },
+  {
+   "name": "Hermann Tertsch",
+   "handle": "hermanntertsch.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Hermann Terstch Parody",
+   "followers": 45,
+   "posts": 16,
+   "verified": false,
+   "description": "PERIODISSSSSTAAAA, HÉROEEE DEL TOOOONY 2, HICS, BARRRRBARIDADESSSSS POR INTERRRNÉ. PUTOSS ROJOSS, HICS, ME E KEDADO GON "
+  },
+  {
+   "name": "Rubén Amón",
+   "handle": null,
+   "group": "periodista",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "rubensanchez.tw",
+     "display": "Rubén Sánchez",
+     "followers": 69275,
+     "posts": 4241,
+     "verified": false,
+     "description": "Tu amigo y vecino.  rubensanchez.tw"
+    },
+    {
+     "handle": "gallego.senate.gov",
+     "display": "Senator Ruben Gallego",
+     "followers": 33766,
+     "posts": 941,
+     "verified": true,
+     "description": "U.S. Senator for Arizona. Husband. Dad. Veteran."
+    },
+    {
+     "handle": "joshruben.bsky.social",
+     "display": "Josh Ruben",
+     "followers": 31010,
+     "posts": 798,
+     "verified": false,
+     "description": "horror making noise boy"
+    }
+   ]
+  },
+  {
+   "name": "La Moncloa",
+   "handle": "lamoncloa.gob.es",
+   "group": "gobierno",
+   "to_verify": true,
+   "found": true,
+   "display": "La Moncloa",
+   "followers": 11105,
+   "posts": 5851,
+   "verified": true,
+   "description": "Bienvenidos a la cuenta oficial del Gobierno de España. #PlanDeRecuperación #AcciónDeGobierno"
+  },
+  {
+   "name": "Ministerio de Asuntos Exteriores",
+   "handle": null,
+   "group": "gobierno",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "traductorjurado.bsky.social",
+     "display": "Traductor Jurado Online",
+     "followers": 8,
+     "posts": 0,
+     "verified": false,
+     "description": "Traducciones Juradas de todo tipo de documentos oficiales. Traductores Oficiales nombrados por el Ministerio de Asuntos "
+    },
+    {
+     "handle": "poptimebra.bsky.social",
+     "display": "POPTime",
+     "followers": 411216,
+     "posts": 1398,
+     "verified": false,
+     "description": "⚡ Curiosidades, cinema, tv, música, séries e celebridades acompanhado de muito humor. 📬 Publis: poptimeportal@gmail.com "
+    },
+    {
+     "handle": "shitpostverdade2.bsky.social",
+     "display": "Shitpost só que de verdade",
+     "followers": 316279,
+     "posts": 5118,
+     "verified": false,
+     "description": "Memes de qualidade totalmente duvidosa PAGINA OFICIAL"
+    }
+   ]
+  },
+  {
+   "name": "Ministerio de Trabajo y Economía Social",
+   "handle": "trabajogob.bsky.social",
+   "group": "gobierno",
+   "to_verify": true,
+   "found": true,
+   "display": "Ministerio de Trabajo y Economía Social",
+   "followers": 2989,
+   "posts": 262,
+   "verified": true,
+   "description": "Vicepresidencia segunda del Gobierno de España - Ministerio de Trabajo y Economía Social. Gabinete de Comunicación."
+  },
+  {
+   "name": "Ministerio de Derechos Sociales, Consumo y Agenda 2030",
+   "handle": "msocialgob.bsky.social",
+   "group": "gobierno",
+   "to_verify": true,
+   "found": true,
+   "display": "Ministerio de Derechos Sociales, Consumo y A2030",
+   "followers": 3565,
+   "posts": 1835,
+   "verified": true,
+   "description": "Bluesky Oficial del Ministerio de Derechos Sociales, Consumo y Agenda 2030. Gobierno de España.  🔗 https://www.dsca.gob."
+  },
+  {
+   "name": "Sira Rego",
+   "handle": "sirarego.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Sira Rego",
+   "followers": 9658,
+   "posts": 1422,
+   "verified": true,
+   "description": "▫️Ministra de Juventud e Infancia del Gobierno de España ▫️"
+  },
+  {
+   "name": "Grupo Socialista en el Congreso",
+   "handle": "gpscongreso.bsky.social",
+   "group": "partido",
+   "to_verify": true,
+   "found": true,
+   "display": "PSOE Congreso",
+   "followers": 4606,
+   "posts": 2887,
+   "verified": true,
+   "description": "🌹🏛️ Grupo Parlamentario Socialista en el Congreso de los Diputados.  Aquí legislamos para mejorar la calidad de vida de "
+  },
+  {
+   "name": "Partido Popular (2)",
+   "handle": "pp-es.bsky.social",
+   "group": "partido",
+   "to_verify": true,
+   "found": true,
+   "display": "Partido Popular 🇪🇸🇪🇺🏳️‍🌈",
+   "followers": 375,
+   "posts": 96,
+   "verified": false,
+   "description": "Somos la alternativa por una España plural defendiendo la igualdad y la dignidad."
+  },
+  {
+   "name": "Irene Montero (2)",
+   "handle": "irenemonterog.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Irene Montero",
+   "followers": 38932,
+   "posts": 40,
+   "verified": false,
+   "description": "Psicóloga. Feminista. Madre de 3. Eurodiputada de @PODEMOS. Yo por ellas, madre, y ellas por mí 💜🏳️‍🌈🏳️‍⚧️"
+  },
+  {
+   "name": "Antonio Maestre (2)",
+   "handle": "antoniomaestreh.bsky.social",
+   "group": "periodista",
+   "to_verify": true,
+   "found": true,
+   "display": "Antonio Maestre",
+   "followers": 29259,
+   "posts": 284,
+   "verified": false,
+   "description": "Periodista y escritor | Eldiario, La Sexta, RNE, El País y La Marea | Publiqué en Jacobin y Le Monde Diplomatique | Libr"
+  },
+  {
+   "name": "Santiago Abascal (2)",
+   "handle": "santiago-abascal.bsky.social",
+   "group": "politico",
+   "to_verify": true,
+   "found": true,
+   "display": "Santiago Abascal 🇪🇸",
+   "followers": 521,
+   "posts": 5,
+   "verified": false,
+   "description": "Presidente de VOX. Diputado nacional "
+  }
+ ],
+ "youtube": [
+  {
+   "name": "El País",
+   "handle": "@elpais",
+   "group": "medio",
+   "found": true,
+   "title": "EL PAÍS"
+  },
+  {
+   "name": "elDiario.es",
+   "handle": "@eldiarioes",
+   "group": "medio",
+   "found": true,
+   "title": "elDiarioes"
+  },
+  {
+   "name": "laSexta",
+   "handle": "@laSextaNoticias",
+   "group": "medio",
+   "found": true,
+   "title": "laSexta Noticias"
+  },
+  {
+   "name": "RTVE Noticias",
+   "handle": "@rtvenoticias",
+   "group": "medio",
+   "found": true,
+   "title": "RTVE Noticias"
+  },
+  {
+   "name": "Antena 3 Noticias",
+   "handle": "@antena3noticias",
+   "group": "medio",
+   "found": true,
+   "title": "Antena 3 Noticias"
+  },
+  {
+   "name": "Telecinco Informativos",
+   "handle": "@informativostelecinco",
+   "group": "medio",
+   "found": false,
+   "candidates": [
+    {
+     "handle": "@noticiastelecinco7011",
+     "title": "Noticias Telecinco (NTelecinco)",
+     "subscribers": 16
+    },
+    {
+     "handle": "@telecinco_es",
+     "title": "Informativos Telecinco",
+     "subscribers": 3710
+    },
+    {
+     "handle": "@rtvenoticias",
+     "title": "RTVE Noticias",
+     "subscribers": 2700000
+    }
+   ]
+  },
+  {
+   "name": "El Mundo",
+   "handle": "@elmundo",
+   "group": "medio",
+   "found": true,
+   "title": "El Mundo"
+  },
+  {
+   "name": "ABC",
+   "handle": "@abc_es",
+   "group": "medio",
+   "found": true,
+   "title": "Diario ABC"
+  },
+  {
+   "name": "La Razón",
+   "handle": "@larazon",
+   "group": "medio",
+   "found": true,
+   "title": "La Razón"
+  },
+  {
+   "name": "El Español",
+   "handle": "@elespanolcom",
+   "group": "medio",
+   "found": true,
+   "title": "EL ESPAÑOL"
+  },
+  {
+   "name": "esRadio / Libertad Digital",
+   "handle": "@esradio",
+   "group": "medio",
+   "found": true,
+   "title": "esRadio"
+  },
+  {
+   "name": "OKDIARIO",
+   "handle": "@okdiariovideos",
+   "group": "medio",
+   "found": true,
+   "title": "OKDIARIO"
+  },
+  {
+   "name": "El Debate",
+   "handle": "@eldebate_com",
+   "group": "medio",
+   "found": true,
+   "title": "El Debate"
+  },
+  {
+   "name": "The Objective",
+   "handle": "@theobjective",
+   "group": "medio",
+   "found": true,
+   "title": "The Objective"
+  },
+  {
+   "name": "Público",
+   "handle": "@publico",
+   "group": "medio",
+   "found": true,
+   "title": "publico"
+  },
+  {
+   "name": "Cadena SER",
+   "handle": "@cadenaser",
+   "group": "medio",
+   "found": true,
+   "title": "Cadena SER"
+  },
+  {
+   "name": "COPE",
+   "handle": "@cope",
+   "group": "medio",
+   "found": true,
+   "title": "COPE"
+  },
+  {
+   "name": "Onda Cero",
+   "handle": "@ondacero",
+   "group": "medio",
+   "found": true,
+   "title": "Onda Cero"
+  },
+  {
+   "name": "Vozpópuli",
+   "handle": "@vozpopuli-r8n",
+   "group": "medio",
+   "found": true,
+   "title": "Vozpópuli"
+  },
+  {
+   "name": "Newtral",
+   "handle": "@newtral_",
+   "group": "medio",
+   "found": true,
+   "title": "Newtral"
+  },
+  {
+   "name": "El Confidencial",
+   "handle": "@elconfidencialtv",
+   "group": "medio",
+   "found": true,
+   "title": "ElConfidencial"
+  },
+  {
+   "name": "La Vanguardia",
+   "handle": "@lavanguardia",
+   "group": "medio",
+   "found": true,
+   "title": "La Vanguardia"
+  },
+  {
+   "name": "20minutos",
+   "handle": "@20m",
+   "group": "medio",
+   "found": true,
+   "title": "20minutos"
+  },
+  {
+   "name": "EFE",
+   "handle": "@efeagenciaefe",
+   "group": "medio",
+   "found": true,
+   "title": "AGENCIA EFE"
+  },
+  {
+   "name": "Europa Press",
+   "handle": "@europapress",
+   "group": "medio",
+   "found": true,
+   "title": "Europa Press"
+  },
+  {
+   "name": "PSOE",
+   "handle": "@psoe",
+   "group": "partido",
+   "found": true,
+   "title": "PSOE"
+  },
+  {
+   "name": "Partido Popular",
+   "handle": "@partidopopular",
+   "group": "partido",
+   "found": true,
+   "title": "Partido Popular"
+  },
+  {
+   "name": "Vox",
+   "handle": "@vox_espana",
+   "group": "partido",
+   "found": true,
+   "title": "VOX España"
+  },
+  {
+   "name": "Sumar",
+   "handle": "@sumar_oficial",
+   "group": "partido",
+   "found": true,
+   "title": "Sumar"
+  },
+  {
+   "name": "Podemos",
+   "handle": "@ahora_podemos",
+   "group": "partido",
+   "found": true,
+   "title": "Podemos"
+  },
+  {
+   "name": "La Moncloa",
+   "handle": "@lamoncloa",
+   "group": "gobierno",
+   "found": true,
+   "title": "La Moncloa"
+  }
+ ],
+ "oficial": [
+  {
+   "name": "Gobierno (La Moncloa)",
+   "group": "gobierno",
+   "url": "https://www.lamoncloa.gob.es/",
+   "feed": "https://www.lamoncloa.gob.es/Paginas/rss.aspx",
+   "feed_found": "https://www.lamoncloa.gob.es/Paginas/rss.aspx",
+   "items": 0,
+   "last": null
+  },
+  {
+   "name": "PSOE",
+   "group": "partido",
+   "url": "https://www.psoe.es/",
+   "feed": null,
+   "feed_found": null,
+   "items": 0,
+   "last": null
+  },
+  {
+   "name": "Partido Popular",
+   "group": "partido",
+   "url": "https://www.pp.es/",
+   "feed": null,
+   "feed_found": null,
+   "items": 0,
+   "last": null
+  },
+  {
+   "name": "Vox",
+   "group": "partido",
+   "url": "https://www.voxespana.es/",
+   "feed": null,
+   "feed_found": null,
+   "items": 0,
+   "last": null
+  },
+  {
+   "name": "Sumar",
+   "group": "partido",
+   "url": "https://movimientosumar.es/",
+   "feed": null,
+   "feed_found": "https://movimientosumar.es/feed/",
+   "items": 67,
+   "last": "2026-11-24T11:11:56+00:00"
+  },
+  {
+   "name": "Podemos",
+   "group": "partido",
+   "url": "https://podemos.info/",
+   "feed": null,
+   "feed_found": "https://podemos.info/feed/",
+   "items": 12,
+   "last": "2026-10-16T13:23:32+00:00"
+  },
+  {
+   "name": "ERC",
+   "group": "partido",
+   "url": "https://www.esquerra.cat/",
+   "feed": null,
+   "feed_found": "https://www.esquerra.cat/feed/",
+   "items": 12,
+   "last": "2026-11-24T12:52:10+00:00"
+  },
+  {
+   "name": "Junts",
+   "group": "partido",
+   "url": "https://junts.cat/",
+   "feed": null,
+   "feed_found": "https://junts.cat/feed/",
+   "items": 10,
+   "last": "2026-11-24T11:11:05+00:00"
+  },
+  {
+   "name": "PNV",
+   "group": "partido",
+   "url": "https://www.eaj-pnv.eus/",
+   "feed": null,
+   "feed_found": null,
+   "items": 0,
+   "last": null
+  },
+  {
+   "name": "EH Bildu",
+   "group": "partido",
+   "url": "https://ehbildu.eus/",
+   "feed": null,
+   "feed_found": "https://posibleegin.ehbildu.eus/feed/",
+   "items": 10,
+   "last": "2026-11-24T15:21:16+00:00"
+  },
+  {
+   "name": "BNG",
+   "group": "partido",
+   "url": "https://www.bng.gal/",
+   "feed": null,
+   "feed_found": "https://www.bng.gal/rss/",
+   "items": 10,
+   "last": "2026-11-24T14:51:14+01:00"
+  },
+  {
+   "name": "Coalición Canaria",
+   "group": "partido",
+   "url": "https://coalicioncanaria.org/",
+   "feed": null,
+   "feed_found": "https://coalicioncanaria.org/feed/",
+   "items": 10,
+   "last": "2026-11-24T14:08:09+00:00"
+  }
+ ]
+}

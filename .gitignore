@@ -25,3 +25,4 @@ data/pilot/MOCK_*/
 
 # Capa social: textos de redes (respuestas y comentarios de particulares)
 data/social/
+.sync_tmp/

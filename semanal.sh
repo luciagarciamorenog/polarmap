@@ -14,7 +14,10 @@ caffeinate -i python3 pipeline_discover.py --countries ES --hours 24 \
   --out "${RUN}.json" 2>&1 | tee "data/runs/measure_ES_${FECHA}.log"
 
 echo "== Redes sociales =="
+# Sin la capa «oficial» de momento: PSOE, PP y Vox no publican canal RSS y
+# la capa mediría solo a una parte del arco político (24-nov-2026).
 caffeinate -i python3 pipeline_social.py --press-run "${RUN}" \
+  --sources bluesky,replies,youtube \
   2>&1 | tee "data/runs/social_ES_${FECHA}.log"
 
 echo "Listo. Informes en data/internal/${RUN}_ecosystem.json y ${RUN}_social_report.json"

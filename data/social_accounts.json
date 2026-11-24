@@ -620,7 +620,7 @@
   },
   {
    "name": "El Español",
-   "handle": "@elespanol",
+   "handle": "@elespanolcom",
    "group": "medio"
   },
   {
@@ -630,12 +630,12 @@
   },
   {
    "name": "OKDIARIO",
-   "handle": "@okdiario",
+   "handle": "@okdiariovideos",
    "group": "medio"
   },
   {
    "name": "El Debate",
-   "handle": "@eldebate",
+   "handle": "@eldebate_com",
    "group": "medio"
   },
   {
@@ -665,17 +665,17 @@
   },
   {
    "name": "Vozpópuli",
-   "handle": null,
+   "handle": "@vozpopuli-r8n",
    "group": "medio"
   },
   {
    "name": "Newtral",
-   "handle": "@newtral",
+   "handle": "@newtral_",
    "group": "medio"
   },
   {
    "name": "El Confidencial",
-   "handle": "@elconfidencial",
+   "handle": "@elconfidencialtv",
    "group": "medio"
   },
   {
@@ -685,12 +685,12 @@
   },
   {
    "name": "20minutos",
-   "handle": "@20minutos",
+   "handle": "@20m",
    "group": "medio"
   },
   {
    "name": "EFE",
-   "handle": "@efenoticias",
+   "handle": "@efeagenciaefe",
    "group": "medio"
   },
   {
@@ -710,17 +710,17 @@
   },
   {
    "name": "Vox",
-   "handle": "@voxespana",
+   "handle": "@vox_espana",
    "group": "partido"
   },
   {
    "name": "Sumar",
-   "handle": "@sumar",
+   "handle": "@sumar_oficial",
    "group": "partido"
   },
   {
    "name": "Podemos",
-   "handle": "@podemos",
+   "handle": "@ahora_podemos",
    "group": "partido"
   },
   {
@@ -734,7 +734,7 @@
    "name": "Gobierno (La Moncloa)",
    "group": "gobierno",
    "url": "https://www.lamoncloa.gob.es/",
-   "feed": null
+   "feed": "https://www.lamoncloa.gob.es/Paginas/rss.aspx"
   },
   {
    "name": "PSOE",

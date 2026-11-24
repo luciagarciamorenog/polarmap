@@ -1,0 +1,75 @@
+2026-09-25 18:22:21,845 INFO   [piloto-ordenacion] lote msgbatch_01B4i1VGDkQYro2fVaVVdtEH con 20 peticiones enviado
+2026-09-25 18:22:52,195 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 20 en curso
+2026-09-25 18:23:22,678 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 20 en curso
+2026-09-25 18:23:53,066 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 20 en curso
+2026-09-25 18:24:23,551 INFO   [piloto-ordenacion] lote: ended · 20 hechas, 0 en curso
+2026-09-25 18:24:24,563 INFO   [piloto-ordenacion] lote msgbatch_014qNfcCXM2D92CRFKNCGz6x con 20 peticiones enviado
+2026-09-25 18:24:54,886 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 20 en curso
+2026-09-25 18:25:25,244 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 20 en curso
+2026-09-25 18:25:55,561 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 20 en curso
+2026-09-25 18:26:25,974 INFO   [piloto-ordenacion] lote: ended · 20 hechas, 0 en curso
+2026-09-25 18:28:37,593 INFO   [piloto-ordenacion] lote msgbatch_011c3n543BAhW3kxdwwfQRtb con 10 peticiones enviado
+2026-09-25 18:29:07,977 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:29:38,530 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:30:08,923 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:30:39,260 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:31:09,552 INFO   [piloto-ordenacion] lote: ended · 10 hechas, 0 en curso
+2026-09-25 18:31:10,576 INFO   [piloto-ordenacion] lote msgbatch_01VXLRcpsucSLvAiPDyS89L8 con 10 peticiones enviado
+2026-09-25 18:31:40,883 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:32:11,207 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:32:41,517 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:33:11,891 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:33:42,199 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:34:12,530 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:34:42,883 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:35:13,241 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:35:43,537 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:36:13,850 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:36:44,197 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 10 en curso
+2026-09-25 18:37:14,498 INFO   [piloto-ordenacion] lote: ended · 10 hechas, 0 en curso
+2026-09-25 18:38:12,790 INFO   [piloto-ordenacion] lote msgbatch_012jUce33MDHbAm6QbVqY5in con 9 peticiones enviado
+2026-09-25 18:38:43,105 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 9 en curso
+2026-09-25 18:39:13,382 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 9 en curso
+2026-09-25 18:39:43,940 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 9 en curso
+2026-09-25 18:40:14,270 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 9 en curso
+2026-09-25 18:40:44,638 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 9 en curso
+2026-09-25 18:41:14,968 INFO   [piloto-ordenacion] lote: ended · 9 hechas, 0 en curso
+2026-09-25 18:41:15,850 INFO   [piloto-ordenacion] lote msgbatch_019svTDQEgtqsV2BWWrYzoK8 con 9 peticiones enviado
+2026-09-25 18:41:46,170 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 9 en curso
+2026-09-25 18:42:16,497 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 9 en curso
+2026-09-25 18:42:46,913 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 9 en curso
+2026-09-25 18:43:17,348 INFO   [piloto-ordenacion] lote: ended · 9 hechas, 0 en curso
+2026-09-25 18:44:09,216 INFO   [piloto-ordenacion] lote msgbatch_01TE8oTdn3EKbe4idhqDqRZZ con 6 peticiones enviado
+2026-09-25 18:44:39,634 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:45:09,917 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:45:40,240 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:46:10,664 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:46:41,000 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:47:11,358 INFO   [piloto-ordenacion] lote: ended · 6 hechas, 0 en curso
+2026-09-25 18:47:12,329 INFO   [piloto-ordenacion] lote msgbatch_01M31o1AXkTXgpvxPWdKB6Ch con 6 peticiones enviado
+2026-09-25 18:47:42,647 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:48:12,954 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:48:43,267 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:49:13,731 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:49:44,047 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:50:14,340 INFO   [piloto-ordenacion] lote: in_progress · 0 hechas, 6 en curso
+2026-09-25 18:50:44,667 INFO   [piloto-ordenacion] lote: ended · 6 hechas, 0 en curso
+/Users/luciagarciamoreno/dev/polarmap/validate/pilot/run_pilot.py:266: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  rho = spearmanr(a, b).statistic
+2026-09-25 18:51:24,008 INFO   [piloto-encuadres] lote msgbatch_014eeRwv2YcMDTKQs2xjBw17 con 48 peticiones enviado
+2026-09-25 18:51:54,303 INFO   [piloto-encuadres] lote: in_progress · 0 hechas, 48 en curso
+2026-09-25 18:52:24,649 INFO   [piloto-encuadres] lote: in_progress · 0 hechas, 48 en curso
+2026-09-25 18:52:55,029 INFO   [piloto-encuadres] lote: in_progress · 0 hechas, 48 en curso
+2026-09-25 18:53:25,345 INFO   [piloto-encuadres] lote: in_progress · 0 hechas, 48 en curso
+2026-09-25 19:09:12,004 INFO   [piloto-encuadres] lote: ended · 48 hechas, 0 en curso
+[ideológica] Crisis de vivienda y desahucios: 132 noticias
+[afectiva]   Crisis de vivienda y desahucios
+[ideológica] Política migratoria: 64 noticias
+[afectiva]   Política migratoria
+[ideológica] Independencia judicial y corrupción política: 55 noticias
+[afectiva]   Independencia judicial y corrupción política
+[ideológica] Inteligencia artificial y tecnología: 42 noticias
+[afectiva]   Inteligencia artificial y tecnología
+[narrativa]  1897 noticias
+consumo real de esta corrida: nan $ (las respuestas ya cacheadas en disco no vuelven a pagar)
+→ /Users/luciagarciamoreno/dev/polarmap/data/pilot/ES_20260925/report.md
