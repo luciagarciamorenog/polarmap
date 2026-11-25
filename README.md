@@ -104,6 +104,8 @@ python3 pipeline_discover.py --countries ES --hours 24 --dry-run
 python3 web/build_data.py            # writes web/index.html
 ```
 
+To publish any change (code, prompts, web or README), `./publicar.sh "what changed"` runs the tests, rebuilds the web, checks that no key is included and pushes to GitHub; Netlify then deploys the live demo. Workflow in Spanish: [`docs/COMO_CAMBIAR_POLARMAP.md`](docs/COMO_CAMBIAR_POLARMAP.md).
+
 To see the output without running anything, open [`examples/ES_2026-11-24.json`](examples/ES_2026-11-24.json) (trimmed real run, with a [field guide](examples/README.md)) or `web/index.html`.
 
 ## Roadmap
