@@ -1,0 +1,1688 @@
+{
+  "ES": {
+    "n_headlines": 5810,
+    "n_scored": 1584,
+    "debates": {
+      "Continuidad o cambio de Gobierno": {
+        "n_headlines": 848,
+        "er_headline": 0.426,
+        "center_share": 0.258,
+        "er_outlet_weighted": 0.475,
+        "outlet_eta2": 0.257,
+        "outlet_eta2_chance": 0.077,
+        "outlet_p": 0.0005,
+        "n_outlets": 65,
+        "few_outlets": false,
+        "camps": {
+          "distance": 0.432,
+          "distance_chance": 0.324,
+          "excess_over_chance": 0.108,
+          "p": 0.014,
+          "left": [
+            [
+              "tercerainformacion.es",
+              -0.5,
+              4
+            ],
+            [
+              "infolibre.es",
+              -0.41,
+              10
+            ],
+            [
+              "diariodesevilla.es",
+              -0.4,
+              3
+            ],
+            [
+              "praza.gal",
+              -0.325,
+              4
+            ],
+            [
+              "estrelladigital.es",
+              -0.225,
+              4
+            ],
+            [
+              "publico.es",
+              -0.219,
+              21
+            ],
+            [
+              "eldiario.es",
+              -0.212,
+              40
+            ],
+            [
+              "malagahoy.es",
+              -0.167,
+              3
+            ],
+            [
+              "elpais.com",
+              -0.137,
+              24
+            ],
+            [
+              "lavozdegalicia.es",
+              -0.136,
+              22
+            ],
+            [
+              "eldiadecordoba.es",
+              -0.117,
+              6
+            ],
+            [
+              "elplural.com",
+              -0.114,
+              21
+            ],
+            [
+              "eldiariomontanes.es",
+              -0.1,
+              5
+            ],
+            [
+              "hoy.es",
+              -0.067,
+              3
+            ],
+            [
+              "lavozdeasturias.es",
+              -0.06,
+              5
+            ],
+            [
+              "ondacero.es",
+              -0.06,
+              10
+            ],
+            [
+              "elcomercio.es",
+              -0.057,
+              7
+            ],
+            [
+              "diariodejerez.es",
+              -0.043,
+              7
+            ],
+            [
+              "andaluciainformacion.es",
+              -0.04,
+              30
+            ],
+            [
+              "elprogreso.es",
+              -0.02,
+              5
+            ],
+            [
+              "lasexta.com",
+              -0.005,
+              19
+            ],
+            [
+              "cope.es",
+              -0.0,
+              13
+            ],
+            [
+              "canalsur.es",
+              0.0,
+              7
+            ],
+            [
+              "canarias7.es",
+              0.0,
+              14
+            ],
+            [
+              "elperiodico.cat",
+              0.0,
+              3
+            ],
+            [
+              "lavanguardia.com",
+              0.004,
+              26
+            ],
+            [
+              "diariovasco.com",
+              0.014,
+              7
+            ],
+            [
+              "huelvainformacion.es",
+              0.02,
+              5
+            ],
+            [
+              "europapress.es",
+              0.031,
+              49
+            ],
+            [
+              "vilaweb.cat",
+              0.036,
+              11
+            ],
+            [
+              "elespanol.com",
+              0.06,
+              5
+            ]
+          ],
+          "right": [
+            [
+              "diariodeavila.es",
+              0.12,
+              5
+            ],
+            [
+              "ara.cat",
+              0.136,
+              11
+            ],
+            [
+              "antena3.com",
+              0.143,
+              7
+            ],
+            [
+              "diariopalentino.es",
+              0.16,
+              5
+            ],
+            [
+              "latribunadealbacete.es",
+              0.163,
+              8
+            ],
+            [
+              "3cat.cat",
+              0.167,
+              6
+            ],
+            [
+              "rtve.es",
+              0.167,
+              9
+            ],
+            [
+              "elpueblodeceuta.es",
+              0.175,
+              4
+            ],
+            [
+              "diariojaen.es",
+              0.18,
+              5
+            ],
+            [
+              "laregion.es",
+              0.19,
+              10
+            ],
+            [
+              "laverdad.es",
+              0.2,
+              8
+            ],
+            [
+              "elcorreo.com",
+              0.244,
+              9
+            ],
+            [
+              "diariodepontevedra.es",
+              0.25,
+              6
+            ],
+            [
+              "diariosur.es",
+              0.267,
+              3
+            ],
+            [
+              "latribunadetoledo.es",
+              0.3,
+              4
+            ],
+            [
+              "lasprovincias.es",
+              0.314,
+              14
+            ],
+            [
+              "diariodeleon.es",
+              0.314,
+              7
+            ],
+            [
+              "elconfidencial.com",
+              0.319,
+              21
+            ],
+            [
+              "elnortedecastilla.es",
+              0.325,
+              4
+            ],
+            [
+              "elmundo.es",
+              0.327,
+              30
+            ],
+            [
+              "abc.es",
+              0.33,
+              57
+            ],
+            [
+              "larioja.com",
+              0.333,
+              3
+            ],
+            [
+              "larazon.es",
+              0.334,
+              61
+            ],
+            [
+              "ideal.es",
+              0.38,
+              10
+            ],
+            [
+              "lagacetadesalamanca.es",
+              0.4,
+              4
+            ],
+            [
+              "lavozdigital.es",
+              0.4,
+              4
+            ],
+            [
+              "diariodeburgos.es",
+              0.457,
+              7
+            ],
+            [
+              "expansion.com",
+              0.49,
+              10
+            ],
+            [
+              "diariodecadiz.es",
+              0.5,
+              3
+            ],
+            [
+              "diariodenavarra.es",
+              0.52,
+              5
+            ],
+            [
+              "libertaddigital.com",
+              0.524,
+              45
+            ],
+            [
+              "vozpopuli.com",
+              0.533,
+              12
+            ],
+            [
+              "esdiario.com",
+              0.671,
+              31
+            ],
+            [
+              "periodistadigital.com",
+              0.8,
+              11
+            ]
+          ],
+          "groups": {
+            "k": 1,
+            "sizes": [
+              1.0
+            ],
+            "bic": {
+              "1": 192.8,
+              "3": 212.3
+            }
+          }
+        },
+        "affective": {
+          "mean_hostility": 0.21,
+          "rho_extremity_hostility": 0.359,
+          "most_hostile": [
+            [
+              "periodistadigital.com",
+              0.682
+            ],
+            [
+              "diariodecadiz.es",
+              0.467
+            ],
+            [
+              "esdiario.com",
+              0.435
+            ]
+          ]
+        },
+        "genre": {
+          "news": {
+            "n": 763,
+            "mean_abs_stance": 0.43,
+            "er_headline": 0.431,
+            "mean_hostility": 0.193
+          },
+          "opinion": {
+            "n": 85,
+            "mean_abs_stance": 0.534,
+            "er_headline": 0.5,
+            "mean_hostility": 0.348
+          }
+        }
+      },
+      "Violencia de género": {
+        "n_headlines": 473,
+        "er_headline": 0.166,
+        "center_share": 0.042,
+        "er_outlet_weighted": 0.187,
+        "outlet_eta2": 0.154,
+        "outlet_eta2_chance": 0.105,
+        "outlet_p": 0.0225,
+        "n_outlets": 47,
+        "few_outlets": false,
+        "camps": {
+          "distance": 0.312,
+          "distance_chance": 0.307,
+          "excess_over_chance": 0.005,
+          "p": 0.3558,
+          "left": [
+            [
+              "tercerainformacion.es",
+              -0.783,
+              6
+            ],
+            [
+              "vilaweb.cat",
+              -0.75,
+              4
+            ],
+            [
+              "eldiadecordoba.es",
+              -0.683,
+              6
+            ],
+            [
+              "lavozdeasturias.es",
+              -0.625,
+              4
+            ],
+            [
+              "publico.es",
+              -0.622,
+              9
+            ],
+            [
+              "diariovasco.com",
+              -0.6,
+              6
+            ],
+            [
+              "eldiario.es",
+              -0.55,
+              14
+            ],
+            [
+              "diariosur.es",
+              -0.544,
+              9
+            ],
+            [
+              "diariojaen.es",
+              -0.54,
+              5
+            ],
+            [
+              "hoy.es",
+              -0.54,
+              5
+            ],
+            [
+              "ara.cat",
+              -0.5,
+              4
+            ],
+            [
+              "elcomercio.es",
+              -0.483,
+              6
+            ],
+            [
+              "3cat.cat",
+              -0.475,
+              4
+            ],
+            [
+              "huelvainformacion.es",
+              -0.471,
+              7
+            ],
+            [
+              "diariodecadiz.es",
+              -0.433,
+              6
+            ],
+            [
+              "andaluciainformacion.es",
+              -0.423,
+              30
+            ],
+            [
+              "diariopalentino.es",
+              -0.42,
+              5
+            ],
+            [
+              "elcorreo.com",
+              -0.412,
+              8
+            ],
+            [
+              "eldiariomontanes.es",
+              -0.4,
+              5
+            ],
+            [
+              "lavozdigital.es",
+              -0.4,
+              4
+            ],
+            [
+              "abc.es",
+              -0.391,
+              22
+            ],
+            [
+              "larioja.com",
+              -0.385,
+              13
+            ]
+          ],
+          "right": [
+            [
+              "lavozdegalicia.es",
+              -0.342,
+              26
+            ],
+            [
+              "canarias7.es",
+              -0.34,
+              5
+            ],
+            [
+              "latribunadetoledo.es",
+              -0.34,
+              15
+            ],
+            [
+              "ideal.es",
+              -0.336,
+              14
+            ],
+            [
+              "elperiodico.cat",
+              -0.333,
+              3
+            ],
+            [
+              "laregion.es",
+              -0.325,
+              8
+            ],
+            [
+              "diariodesevilla.es",
+              -0.32,
+              5
+            ],
+            [
+              "rtve.es",
+              -0.309,
+              11
+            ],
+            [
+              "diariodeavila.es",
+              -0.3,
+              3
+            ],
+            [
+              "elpais.com",
+              -0.289,
+              9
+            ],
+            [
+              "diariodepontevedra.es",
+              -0.286,
+              7
+            ],
+            [
+              "europapress.es",
+              -0.284,
+              51
+            ],
+            [
+              "latribunadealbacete.es",
+              -0.271,
+              7
+            ],
+            [
+              "lavanguardia.com",
+              -0.269,
+              13
+            ],
+            [
+              "elconfidencial.com",
+              -0.25,
+              4
+            ],
+            [
+              "elmundo.es",
+              -0.237,
+              8
+            ],
+            [
+              "elnortedecastilla.es",
+              -0.237,
+              8
+            ],
+            [
+              "elplural.com",
+              -0.2,
+              8
+            ],
+            [
+              "lasexta.com",
+              -0.175,
+              4
+            ],
+            [
+              "antena3.com",
+              -0.167,
+              3
+            ],
+            [
+              "laverdad.es",
+              -0.1,
+              10
+            ],
+            [
+              "lasprovincias.es",
+              -0.04,
+              5
+            ],
+            [
+              "larazon.es",
+              -0.005,
+              20
+            ],
+            [
+              "libertaddigital.com",
+              0.16,
+              5
+            ],
+            [
+              "esdiario.com",
+              0.4,
+              3
+            ]
+          ],
+          "groups": {
+            "k": 1,
+            "sizes": [
+              1.0
+            ],
+            "bic": {
+              "1": 141.1
+            }
+          }
+        },
+        "affective": {
+          "mean_hostility": 0.092,
+          "rho_extremity_hostility": 0.453,
+          "most_hostile": [
+            [
+              "esdiario.com",
+              0.667
+            ],
+            [
+              "libertaddigital.com",
+              0.36
+            ],
+            [
+              "elplural.com",
+              0.263
+            ]
+          ]
+        },
+        "genre": {
+          "news": {
+            "n": 444,
+            "mean_abs_stance": 0.512,
+            "er_headline": 0.166,
+            "mean_hostility": 0.088
+          },
+          "opinion": {
+            "n": 29,
+            "mean_abs_stance": 0.572,
+            "er_headline": 0.251,
+            "mean_hostility": 0.093
+          }
+        }
+      },
+      "Política migratoria": {
+        "n_headlines": 139,
+        "er_headline": 0.301,
+        "center_share": 0.072,
+        "er_outlet_weighted": 0.36,
+        "outlet_eta2": 0.226,
+        "outlet_eta2_chance": 0.183,
+        "outlet_p": 0.2024,
+        "n_outlets": 21,
+        "few_outlets": false,
+        "camps": {
+          "distance": 0.445,
+          "distance_chance": 0.42,
+          "excess_over_chance": 0.025,
+          "p": 0.3398,
+          "left": [
+            [
+              "lavozdegalicia.es",
+              -0.233,
+              3
+            ],
+            [
+              "abc.es",
+              -0.163,
+              8
+            ],
+            [
+              "europapress.es",
+              -0.14,
+              10
+            ],
+            [
+              "libertaddigital.com",
+              -0.138,
+              8
+            ],
+            [
+              "larazon.es",
+              -0.092,
+              12
+            ],
+            [
+              "diariodeleon.es",
+              -0.05,
+              4
+            ],
+            [
+              "canarias7.es",
+              0.025,
+              4
+            ],
+            [
+              "elconfidencial.com",
+              0.06,
+              5
+            ],
+            [
+              "rtve.es",
+              0.067,
+              3
+            ],
+            [
+              "elmundo.es",
+              0.1,
+              4
+            ],
+            [
+              "antena3.com",
+              0.16,
+              5
+            ],
+            [
+              "elespanol.com",
+              0.18,
+              5
+            ],
+            [
+              "elpais.com",
+              0.183,
+              6
+            ],
+            [
+              "ondacero.es",
+              0.2,
+              3
+            ],
+            [
+              "eldiario.es",
+              0.233,
+              6
+            ]
+          ],
+          "right": [
+            [
+              "diariovasco.com",
+              0.3,
+              3
+            ],
+            [
+              "ara.cat",
+              0.35,
+              4
+            ],
+            [
+              "vilaweb.cat",
+              0.4,
+              3
+            ],
+            [
+              "publico.es",
+              0.567,
+              3
+            ],
+            [
+              "lasexta.com",
+              0.575,
+              8
+            ],
+            [
+              "lavanguardia.com",
+              0.633,
+              3
+            ]
+          ],
+          "groups": {
+            "k": 1,
+            "sizes": [
+              1.0
+            ],
+            "bic": {
+              "1": 65.7
+            }
+          }
+        },
+        "affective": {
+          "mean_hostility": 0.114,
+          "rho_extremity_hostility": 0.423,
+          "most_hostile": [
+            [
+              "libertaddigital.com",
+              0.3
+            ],
+            [
+              "publico.es",
+              0.267
+            ],
+            [
+              "vilaweb.cat",
+              0.267
+            ]
+          ]
+        },
+        "genre": {
+          "news": {
+            "n": 137,
+            "mean_abs_stance": 0.475,
+            "er_headline": 0.305,
+            "mean_hostility": 0.114
+          },
+          "opinion": {
+            "n": 2,
+            "mean_abs_stance": 0.8,
+            "er_headline": null,
+            "mean_hostility": 0.7
+          }
+        }
+      },
+      "Justicia e independencia judicial": {
+        "n_headlines": 62,
+        "er_headline": 0.344,
+        "center_share": 0.048,
+        "er_outlet_weighted": 0.377,
+        "outlet_eta2": 0.284,
+        "outlet_eta2_chance": 0.211,
+        "outlet_p": 0.1974,
+        "n_outlets": 9,
+        "few_outlets": false,
+        "camps": {
+          "distance": 0.495,
+          "distance_chance": 0.477,
+          "excess_over_chance": 0.017,
+          "p": 0.3863,
+          "left": [
+            [
+              "publico.es",
+              -0.533,
+              3
+            ],
+            [
+              "elpais.com",
+              -0.067,
+              3
+            ],
+            [
+              "eldiario.es",
+              -0.05,
+              6
+            ],
+            [
+              "elplural.com",
+              -0.025,
+              8
+            ],
+            [
+              "europapress.es",
+              0.075,
+              4
+            ]
+          ],
+          "right": [
+            [
+              "abc.es",
+              0.233,
+              3
+            ],
+            [
+              "libertaddigital.com",
+              0.325,
+              4
+            ],
+            [
+              "vozpopuli.com",
+              0.4,
+              3
+            ],
+            [
+              "esdiario.com",
+              0.54,
+              5
+            ]
+          ],
+          "groups": {
+            "k": null,
+            "note": "menos de 10 medios"
+          }
+        },
+        "affective": {
+          "mean_hostility": 0.259,
+          "rho_extremity_hostility": -0.067,
+          "most_hostile": [
+            [
+              "elplural.com",
+              0.375
+            ],
+            [
+              "eldiario.es",
+              0.333
+            ],
+            [
+              "libertaddigital.com",
+              0.325
+            ]
+          ]
+        },
+        "genre": {
+          "news": {
+            "n": 57,
+            "mean_abs_stance": 0.435,
+            "er_headline": 0.345,
+            "mean_hostility": 0.214
+          },
+          "opinion": {
+            "n": 5,
+            "mean_abs_stance": 0.78,
+            "er_headline": null,
+            "mean_hostility": 0.54
+          }
+        }
+      },
+      "Amnistía y Cataluña": {
+        "n_headlines": 62,
+        "er_headline": 0.337,
+        "center_share": 0.226,
+        "er_outlet_weighted": 0.424,
+        "outlet_eta2": 0.233,
+        "outlet_eta2_chance": 0.202,
+        "outlet_p": 0.3333,
+        "n_outlets": 7,
+        "few_outlets": true,
+        "camps": {
+          "distance": 0.387,
+          "distance_chance": 0.429,
+          "excess_over_chance": -0.042,
+          "p": 0.5737,
+          "left": [
+            [
+              "vilaweb.cat",
+              -0.43,
+              10
+            ],
+            [
+              "europapress.es",
+              -0.42,
+              5
+            ],
+            [
+              "ara.cat",
+              -0.2,
+              3
+            ],
+            [
+              "elperiodico.cat",
+              -0.167,
+              3
+            ],
+            [
+              "publico.es",
+              -0.133,
+              3
+            ]
+          ],
+          "right": [
+            [
+              "larazon.es",
+              0.067,
+              3
+            ],
+            [
+              "abc.es",
+              0.167,
+              3
+            ]
+          ],
+          "groups": {
+            "k": null,
+            "note": "menos de 10 medios"
+          }
+        },
+        "affective": {
+          "mean_hostility": 0.093,
+          "rho_extremity_hostility": 0.571,
+          "most_hostile": [
+            [
+              "larazon.es",
+              0.333
+            ],
+            [
+              "abc.es",
+              0.267
+            ],
+            [
+              "ara.cat",
+              0.067
+            ]
+          ]
+        },
+        "genre": {
+          "news": {
+            "n": 62,
+            "mean_abs_stance": 0.389,
+            "er_headline": 0.337,
+            "mean_hostility": 0.113
+          },
+          "opinion": {
+            "n": 0,
+            "mean_abs_stance": null,
+            "er_headline": null,
+            "mean_hostility": null
+          }
+        }
+      }
+    },
+    "bloc": {
+      "n_headlines": 951,
+      "er_headline": 1.022,
+      "center_share": 0.066,
+      "er_outlet_weighted": 0.938,
+      "outlet_eta2": 0.201,
+      "outlet_eta2_chance": 0.067,
+      "outlet_p": 0.0005,
+      "n_outlets": 64,
+      "few_outlets": false,
+      "camps": {
+        "distance": 0.522,
+        "distance_chance": 0.41,
+        "excess_over_chance": 0.112,
+        "p": 0.0315,
+        "left": [
+          [
+            "diaripublic.cat",
+            -0.525,
+            4
+          ],
+          [
+            "madridiario.es",
+            -0.433,
+            3
+          ],
+          [
+            "eldiariomontanes.es",
+            -0.333,
+            3
+          ],
+          [
+            "publico.es",
+            -0.265,
+            26
+          ],
+          [
+            "infolibre.es",
+            -0.245,
+            11
+          ],
+          [
+            "lavozdeasturias.es",
+            -0.2,
+            5
+          ],
+          [
+            "eldiadecordoba.es",
+            -0.189,
+            9
+          ],
+          [
+            "canalsur.es",
+            -0.186,
+            7
+          ],
+          [
+            "eldiario.es",
+            -0.152,
+            52
+          ],
+          [
+            "tercerainformacion.es",
+            -0.14,
+            5
+          ],
+          [
+            "hoy.es",
+            -0.133,
+            3
+          ],
+          [
+            "diariodesevilla.es",
+            -0.1,
+            6
+          ],
+          [
+            "diariodejerez.es",
+            -0.067,
+            6
+          ],
+          [
+            "vilaweb.cat",
+            -0.067,
+            18
+          ],
+          [
+            "cope.es",
+            -0.056,
+            9
+          ],
+          [
+            "elcomercio.es",
+            -0.056,
+            9
+          ],
+          [
+            "elespanol.com",
+            -0.05,
+            4
+          ],
+          [
+            "andaluciainformacion.es",
+            -0.047,
+            30
+          ],
+          [
+            "lavozdegalicia.es",
+            -0.022,
+            18
+          ],
+          [
+            "elprogreso.es",
+            -0.02,
+            5
+          ],
+          [
+            "ondacero.es",
+            -0.0,
+            10
+          ],
+          [
+            "lagacetadesalamanca.es",
+            -0.0,
+            6
+          ],
+          [
+            "estrelladigital.es",
+            0.0,
+            4
+          ],
+          [
+            "malagahoy.es",
+            0.0,
+            3
+          ],
+          [
+            "elpais.com",
+            0.007,
+            29
+          ],
+          [
+            "lasexta.com",
+            0.057,
+            23
+          ],
+          [
+            "diariovasco.com",
+            0.071,
+            7
+          ],
+          [
+            "lavanguardia.com",
+            0.087,
+            23
+          ],
+          [
+            "huelvainformacion.es",
+            0.1,
+            6
+          ],
+          [
+            "elplural.com",
+            0.117,
+            29
+          ],
+          [
+            "europapress.es",
+            0.128,
+            74
+          ],
+          [
+            "ara.cat",
+            0.147,
+            15
+          ],
+          [
+            "latribunadetoledo.es",
+            0.175,
+            4
+          ]
+        ],
+        "right": [
+          [
+            "diariosur.es",
+            0.229,
+            7
+          ],
+          [
+            "latribunadealbacete.es",
+            0.243,
+            7
+          ],
+          [
+            "3cat.cat",
+            0.25,
+            4
+          ],
+          [
+            "diariodeavila.es",
+            0.25,
+            4
+          ],
+          [
+            "diariojaen.es",
+            0.25,
+            4
+          ],
+          [
+            "antena3.com",
+            0.26,
+            10
+          ],
+          [
+            "diariodepontevedra.es",
+            0.26,
+            5
+          ],
+          [
+            "canarias7.es",
+            0.286,
+            7
+          ],
+          [
+            "larioja.com",
+            0.333,
+            6
+          ],
+          [
+            "elnortedecastilla.es",
+            0.35,
+            6
+          ],
+          [
+            "elmundo.es",
+            0.361,
+            33
+          ],
+          [
+            "diariopalentino.es",
+            0.375,
+            8
+          ],
+          [
+            "laregion.es",
+            0.382,
+            11
+          ],
+          [
+            "ideal.es",
+            0.412,
+            8
+          ],
+          [
+            "diariodecadiz.es",
+            0.425,
+            4
+          ],
+          [
+            "diariodeleon.es",
+            0.425,
+            8
+          ],
+          [
+            "laverdad.es",
+            0.443,
+            7
+          ],
+          [
+            "elconfidencial.com",
+            0.452,
+            27
+          ],
+          [
+            "abc.es",
+            0.463,
+            65
+          ],
+          [
+            "diariodeburgos.es",
+            0.5,
+            7
+          ],
+          [
+            "elcorreo.com",
+            0.5,
+            6
+          ],
+          [
+            "larazon.es",
+            0.514,
+            65
+          ],
+          [
+            "diariodenavarra.es",
+            0.514,
+            7
+          ],
+          [
+            "expansion.com",
+            0.6,
+            9
+          ],
+          [
+            "rtve.es",
+            0.6,
+            5
+          ],
+          [
+            "lasprovincias.es",
+            0.615,
+            13
+          ],
+          [
+            "vozpopuli.com",
+            0.624,
+            17
+          ],
+          [
+            "libertaddigital.com",
+            0.654,
+            54
+          ],
+          [
+            "lavozdigital.es",
+            0.733,
+            3
+          ],
+          [
+            "esdiario.com",
+            0.787,
+            40
+          ],
+          [
+            "periodistadigital.com",
+            0.855,
+            11
+          ]
+        ],
+        "groups": {
+          "k": 1,
+          "sizes": [
+            1.0
+          ],
+          "bic": {
+            "1": 189.9,
+            "2": 199.1
+          }
+        }
+      }
+    },
+    "agenda": {
+      "n_outlets": 53,
+      "n_debates": 5,
+      "mean_js": 0.365,
+      "mean_js_chance": 0.279,
+      "excess_over_chance": 0.086,
+      "p": 0.001,
+      "share_by_debate": {
+        "Amnistía y Cataluña": 0.04,
+        "Continuidad o cambio de Gobierno": 0.534,
+        "Justicia e independencia judicial": 0.057,
+        "Política migratoria": 0.088,
+        "Violencia de género": 0.281
+      },
+      "most_overrepresented": {
+        "3cat.cat": [
+          "Amnistía y Cataluña",
+          3.53,
+          14
+        ],
+        "abc.es": [
+          "Continuidad o cambio de Gobierno",
+          1.16,
+          100
+        ],
+        "andaluciainformacion.es": [
+          "Violencia de género",
+          1.7,
+          63
+        ],
+        "antena3.com": [
+          "Política migratoria",
+          3.17,
+          18
+        ],
+        "ara.cat": [
+          "Amnistía y Cataluña",
+          4.94,
+          25
+        ],
+        "canalsur.es": [
+          "Amnistía y Cataluña",
+          2.24,
+          11
+        ],
+        "canarias7.es": [
+          "Política migratoria",
+          1.83,
+          25
+        ],
+        "cope.es": [
+          "Amnistía y Cataluña",
+          1.45,
+          17
+        ],
+        "diariodeleon.es": [
+          "Política migratoria",
+          3.52,
+          13
+        ],
+        "diariodenavarra.es": [
+          "Amnistía y Cataluña",
+          2.24,
+          11
+        ],
+        "diariodepontevedra.es": [
+          "Violencia de género",
+          1.66,
+          15
+        ],
+        "diariodesevilla.es": [
+          "Violencia de género",
+          1.78,
+          10
+        ],
+        "diariojaen.es": [
+          "Amnistía y Cataluña",
+          2.06,
+          12
+        ],
+        "diariopalentino.es": [
+          "Justicia e independencia judicial",
+          2.68,
+          13
+        ],
+        "diariosur.es": [
+          "Violencia de género",
+          2.46,
+          13
+        ],
+        "diariovasco.com": [
+          "Política migratoria",
+          2.02,
+          17
+        ],
+        "elcomercio.es": [
+          "Violencia de género",
+          1.53,
+          14
+        ],
+        "elconfidencial.com": [
+          "Política migratoria",
+          1.63,
+          35
+        ],
+        "elcorreo.com": [
+          "Violencia de género",
+          1.6,
+          20
+        ],
+        "eldiadecordoba.es": [
+          "Violencia de género",
+          1.78,
+          12
+        ],
+        "eldiario.es": [
+          "Justicia e independencia judicial",
+          1.79,
+          68
+        ],
+        "eldiariomontanes.es": [
+          "Violencia de género",
+          1.78,
+          10
+        ],
+        "elespanol.com": [
+          "Política migratoria",
+          5.19,
+          11
+        ],
+        "elmundo.es": [
+          "Justicia e independencia judicial",
+          1.42,
+          49
+        ],
+        "elnortedecastilla.es": [
+          "Violencia de género",
+          2.19,
+          13
+        ],
+        "elpais.com": [
+          "Justicia e independencia judicial",
+          1.85,
+          47
+        ],
+        "elperiodico.cat": [
+          "Amnistía y Cataluña",
+          7.41,
+          10
+        ],
+        "elplural.com": [
+          "Justicia e independencia judicial",
+          3.57,
+          39
+        ],
+        "esdiario.com": [
+          "Justicia e independencia judicial",
+          2.12,
+          41
+        ],
+        "europapress.es": [
+          "Violencia de género",
+          1.49,
+          122
+        ],
+        "expansion.com": [
+          "Continuidad o cambio de Gobierno",
+          1.87,
+          11
+        ],
+        "huelvainformacion.es": [
+          "Violencia de género",
+          1.92,
+          13
+        ],
+        "ideal.es": [
+          "Violencia de género",
+          1.92,
+          26
+        ],
+        "infolibre.es": [
+          "Justicia e independencia judicial",
+          2.32,
+          15
+        ],
+        "lagacetadesalamanca.es": [
+          "Amnistía y Cataluña",
+          2.47,
+          10
+        ],
+        "larazon.es": [
+          "Política migratoria",
+          1.36,
+          101
+        ],
+        "laregion.es": [
+          "Violencia de género",
+          1.42,
+          20
+        ],
+        "larioja.com": [
+          "Violencia de género",
+          2.57,
+          18
+        ],
+        "lasexta.com": [
+          "Política migratoria",
+          2.34,
+          39
+        ],
+        "lasprovincias.es": [
+          "Justicia e independencia judicial",
+          1.51,
+          23
+        ],
+        "latribunadealbacete.es": [
+          "Violencia de género",
+          1.66,
+          15
+        ],
+        "latribunadetoledo.es": [
+          "Violencia de género",
+          2.67,
+          20
+        ],
+        "lavanguardia.com": [
+          "Continuidad o cambio de Gobierno",
+          1.1,
+          46
+        ],
+        "laverdad.es": [
+          "Violencia de género",
+          1.78,
+          20
+        ],
+        "lavozdegalicia.es": [
+          "Violencia de género",
+          1.68,
+          55
+        ],
+        "libertaddigital.com": [
+          "Justicia e independencia judicial",
+          1.76,
+          69
+        ],
+        "ondacero.es": [
+          "Política migratoria",
+          2.14,
+          16
+        ],
+        "periodistadigital.com": [
+          "Continuidad o cambio de Gobierno",
+          1.87,
+          11
+        ],
+        "publico.es": [
+          "Justicia e independencia judicial",
+          2.43,
+          43
+        ],
+        "rtve.es": [
+          "Justicia e independencia judicial",
+          1.86,
+          28
+        ],
+        "tercerainformacion.es": [
+          "Violencia de género",
+          2.14,
+          10
+        ],
+        "vilaweb.cat": [
+          "Amnistía y Cataluña",
+          8.72,
+          34
+        ],
+        "vozpopuli.com": [
+          "Justicia e independencia judicial",
+          2.61,
+          20
+        ]
+      }
+    },
+    "opinion_share": 0.042
+  }
+}

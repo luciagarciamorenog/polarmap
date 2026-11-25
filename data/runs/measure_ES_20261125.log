@@ -1,0 +1,177 @@
+2026-11-25 16:16:55,474 INFO ============================================================
+2026-11-25 16:16:55,474 INFO PASADA 1: TITULARES
+2026-11-25 16:16:55,474 INFO   Países: ES | Ventana: 24h | Muestreo: 1/1
+2026-11-25 16:16:55,474 INFO ============================================================
+2026-11-25 16:17:02,232 INFO   titulares: 6/96 ficheros | 538 admitidos
+2026-11-25 16:17:12,070 INFO   titulares: 12/96 ficheros | 1217 admitidos
+2026-11-25 16:17:23,762 INFO   titulares: 18/96 ficheros | 1848 admitidos
+2026-11-25 16:17:37,126 INFO   titulares: 24/96 ficheros | 2428 admitidos
+2026-11-25 16:17:48,487 INFO   titulares: 30/96 ficheros | 2763 admitidos
+2026-11-25 16:17:56,561 INFO   titulares: 36/96 ficheros | 3190 admitidos
+2026-11-25 16:18:05,423 INFO   titulares: 42/96 ficheros | 3642 admitidos
+2026-11-25 16:18:13,106 INFO   titulares: 48/96 ficheros | 3758 admitidos
+2026-11-25 16:18:21,146 INFO   titulares: 54/96 ficheros | 3906 admitidos
+2026-11-25 16:18:29,502 INFO   titulares: 60/96 ficheros | 4150 admitidos
+2026-11-25 16:18:38,477 INFO   titulares: 66/96 ficheros | 4395 admitidos
+2026-11-25 16:18:47,609 INFO   titulares: 72/96 ficheros | 4655 admitidos
+2026-11-25 16:18:58,195 INFO   titulares: 78/96 ficheros | 5024 admitidos
+2026-11-25 16:19:10,321 INFO   titulares: 84/96 ficheros | 5495 admitidos
+2026-11-25 16:19:21,509 INFO   titulares: 90/96 ficheros | 6039 admitidos
+2026-11-25 16:19:23,254 INFO   titulares: 96/96 ficheros | 6581 admitidos
+2026-11-25 16:19:23,254 INFO   titulares: 8494 de los países pedidos → 6581 admitidos (sin titular 0, sección blanda 1221, sindicados 692; 488 sin titular en la URL, pendientes del de la página)
+2026-11-25 16:19:23,255 INFO [ES] 6581 titulares analizables
+2026-11-25 16:19:23,255 INFO Leyendo titular real y entradilla de cada noticia…
+2026-11-25 16:33:36,064 INFO [ES] titular real + entradilla: 5753 de 6581 · fuera por reserva TDM: 640 · sin titular tampoco en la página: 16 · sindicados (por titular real): 115
+2026-11-25 16:33:36,066 INFO 
+2026-11-25 16:33:36,066 INFO ============================================================
+2026-11-25 16:33:36,066 INFO PASADA 2: ANÁLISIS DE POLARIZACIÓN
+2026-11-25 16:33:36,066 INFO ============================================================
+2026-11-25 16:33:36,066 INFO --- [ES] España: 5810 titulares ---
+2026-11-25 16:33:36,628 INFO   [debates] lote msgbatch_018A1mPurTXf8jcmMShGoBqo con 1 peticiones enviado
+2026-11-25 16:34:07,051 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-11-25 16:34:37,450 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-11-25 16:35:07,858 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-11-25 16:35:38,267 INFO   [debates] lote: in_progress · 0 hechas, 1 en curso
+2026-11-25 16:36:08,675 INFO   [debates] lote: ended · 1 hechas, 0 en curso
+2026-11-25 16:36:09,234 INFO   [ES] debate 1: 'Continuidad o cambio de Gobierno' | El Gobierno actual debe continuar. ↔ Hace falta un cambio de Gobierno.
+2026-11-25 16:36:09,235 INFO   [ES] debate 2: 'Violencia de género' | Reforzar las políticas públicas, recursos y r ↔ Reformar o sustituir el modelo actual de prot
+2026-11-25 16:36:09,235 INFO   [ES] debate 3: 'Política migratoria' | Hay que reforzar el control de fronteras, las ↔ Hay que priorizar la acogida, los derechos de
+2026-11-25 16:36:09,235 INFO   [ES] debate 4: 'Amnistía y Cataluña' | La amnistía y el diálogo con el independentis ↔ La amnistía es un privilegio que vulnera la i
+2026-11-25 16:36:09,235 INFO   [ES] debate 5: 'Justicia e independencia judicial' | Los jueces actúan con independencia y las crí ↔ Parte de la judicatura actúa con motivación p
+2026-11-25 16:36:10,139 INFO   [asignacion] lote msgbatch_01MW82YqbGi8SyX26wmHXSWh con 117 peticiones enviado
+2026-11-25 16:36:40,549 INFO   [asignacion] lote: in_progress · 0 hechas, 117 en curso
+2026-11-25 16:37:10,963 INFO   [asignacion] lote: in_progress · 0 hechas, 117 en curso
+2026-11-25 16:37:41,273 INFO   [asignacion] lote: in_progress · 0 hechas, 117 en curso
+2026-11-25 16:38:11,633 INFO   [asignacion] lote: ended · 117 hechas, 0 en curso
+2026-11-25 16:38:12,084 INFO   [ES] asignación: 1:887 · 2:475 · 3:139 · 4:67 · 5:88 | ninguno 4150 | fallidos 4
+2026-11-25 16:38:12,617 INFO   [postura] lote msgbatch_01W7esssvbC4R9kv61pWvqdM con 85 peticiones enviado
+2026-11-25 16:38:42,937 INFO   [postura] lote: in_progress · 0 hechas, 85 en curso
+2026-11-25 16:39:13,256 INFO   [postura] lote: in_progress · 0 hechas, 85 en curso
+2026-11-25 16:39:43,635 INFO   [postura] lote: in_progress · 0 hechas, 85 en curso
+2026-11-25 16:40:14,060 INFO   [postura] lote: ended · 85 hechas, 0 en curso
+2026-11-25 16:40:14,704 INFO   [ES] 'Continuidad o cambio de Gobierno': 887 titulares
+2026-11-25 16:40:14,730 INFO   [ES] clasificación: 848 on-topic, 39 off-topic, 0 fallidos de 887
+2026-11-25 16:40:14,733 INFO   [ES] postura: media=0.15 sd=0.52 | hostil: media=0.21 | confianza: media=0.73
+2026-11-25 16:40:14,769 INFO   [ES] ideológica=0.447 afectiva=0.311 compuesta=0.373 ✓
+2026-11-25 16:40:14,769 INFO   [ES] 'Violencia de género': 475 titulares
+2026-11-25 16:40:14,773 INFO   [ES] clasificación: 473 on-topic, 2 off-topic, 0 fallidos de 475
+2026-11-25 16:40:14,773 INFO   [ES] postura: media=-0.35 sd=0.43 | hostil: media=0.09 | confianza: media=0.75
+2026-11-25 16:40:14,774 INFO   [ES] ideológica=0.180 afectiva=0.112 compuesta=0.142 ✓
+2026-11-25 16:40:14,774 INFO   [ES] 'Política migratoria': 139 titulares
+2026-11-25 16:40:14,775 INFO   [ES] clasificación: 139 on-topic, 0 off-topic, 0 fallidos de 139
+2026-11-25 16:40:14,775 INFO   [ES] postura: media=0.10 sd=0.52 | hostil: media=0.12 | confianza: media=0.71
+2026-11-25 16:40:14,775 INFO   [ES] ideológica=0.315 afectiva=0.164 compuesta=0.227 ✓
+2026-11-25 16:40:14,775 INFO   [ES] 'Amnistía y Cataluña': 67 titulares
+2026-11-25 16:40:14,776 INFO   [ES] clasificación: 62 on-topic, 5 off-topic, 0 fallidos de 67
+2026-11-25 16:40:14,776 INFO   [ES] postura: media=-0.18 sd=0.44 | hostil: media=0.11 | confianza: media=0.69
+2026-11-25 16:40:14,776 INFO   [ES] ideológica=0.350 afectiva=0.161 compuesta=0.237 ⚠ no fiable
+2026-11-25 16:40:14,776 INFO   [ES] 'Justicia e independencia judicial': 88 titulares
+2026-11-25 16:40:14,777 INFO   [ES] clasificación: 62 on-topic, 26 off-topic, 0 fallidos de 88
+2026-11-25 16:40:14,777 INFO   [ES] postura: media=0.15 sd=0.48 | hostil: media=0.24 | confianza: media=0.70
+2026-11-25 16:40:14,778 INFO   [ES] ideológica=0.361 afectiva=0.358 compuesta=0.359 ⚠ no fiable
+2026-11-25 16:40:15,240 INFO   [terreno_comun] lote msgbatch_01DAjGH3D8KYyXoimY8ZacAm con 6 peticiones enviado
+2026-11-25 16:40:45,521 INFO   [terreno_comun] lote: in_progress · 0 hechas, 6 en curso
+2026-11-25 16:41:15,915 INFO   [terreno_comun] lote: in_progress · 0 hechas, 6 en curso
+2026-11-25 16:41:46,225 INFO   [terreno_comun] lote: in_progress · 0 hechas, 6 en curso
+2026-11-25 16:42:16,636 INFO   [terreno_comun] lote: ended · 0 hechas, 0 en curso
+2026-11-25 16:42:17,146 ERROR   [terreno_comun] terreno_comun-2: errored
+2026-11-25 16:42:17,146 ERROR   [terreno_comun] terreno_comun-3: errored
+2026-11-25 16:42:17,146 ERROR   [terreno_comun] terreno_comun-1: errored
+2026-11-25 16:42:17,146 ERROR   [terreno_comun] terreno_comun-4: errored
+2026-11-25 16:42:17,146 ERROR   [terreno_comun] terreno_comun-5: errored
+2026-11-25 16:42:17,146 ERROR   [terreno_comun] terreno_comun-0: errored
+2026-11-25 16:42:17,150 INFO   [terreno común] Continuidad o cambio de Gobierno: unstable
+2026-11-25 16:42:17,150 INFO   [terreno común] Violencia de género: unstable
+2026-11-25 16:42:17,150 INFO   [terreno común] Política migratoria: unstable
+2026-11-25 16:42:17,154 INFO 
+2026-11-25 16:42:17,154 INFO CONSUMO REAL (batch):
+2026-11-25 16:42:17,154 INFO   debates · claude-sonnet-4-6          1 llamadas · entrada   38667 · caché escrita      0 · caché leída       0 · salida   1311 · 0.0678 $
+2026-11-25 16:42:17,154 INFO   asignacion · claude-haiku-4-5      117 llamadas · entrada  617661 · caché escrita      0 · caché leída       0 · salida  82627 · 0.5154 $
+2026-11-25 16:42:17,154 INFO   postura · claude-sonnet-4-6         85 llamadas · entrada  142216 · caché escrita   8375 · caché leída  132848 · salida 234395 · 2.0069 $
+2026-11-25 16:42:17,154 INFO   TOTAL 2.5901 $ · 2.5901 $/país · 0.4458 $ por 1.000 titulares · 14% del prompt leído de caché
+2026-11-25 16:42:17,154 INFO 
+2026-11-25 16:42:17,154 INFO ============================================================
+2026-11-25 16:42:17,154 INFO RESULTADOS
+2026-11-25 16:42:17,155 INFO ============================================================
+2026-11-25 16:42:17,155 INFO [ES] España:
+2026-11-25 16:42:17,155 INFO   Ideológica: 0.348 | Afectiva: 0.232 | Compuesta: 0.284 | Tipo dominante: ideological
+2026-11-25 16:42:17,155 INFO   #1 Continuidad o cambio de G  ideo=0.45  afec=0.31  comp=0.37  n=848  ✓
+2026-11-25 16:42:17,155 INFO   #2 Justicia e independencia   ideo=0.36  afec=0.36  comp=0.36  n= 62  ⚠
+2026-11-25 16:42:17,155 INFO   #3 Amnistía y Cataluña        ideo=0.35  afec=0.16  comp=0.24  n= 62  ⚠
+2026-11-25 16:42:17,155 INFO   #4 Política migratoria        ideo=0.31  afec=0.16  comp=0.23  n=139  ✓
+2026-11-25 16:42:17,155 INFO   #5 Violencia de género        ideo=0.18  afec=0.11  comp=0.14  n=473  ✓
+2026-11-25 16:42:27,709 INFO 
+2026-11-25 16:42:27,709 INFO ECOSISTEMA DE MEDIOS [ES]
+2026-11-25 16:42:27,709 INFO 1584 titulares puntuados de 5810 · opinión 4% del total
+2026-11-25 16:42:27,709 INFO 
+2026-11-25 16:42:27,709 INFO Continuidad o cambio de Gobierno  (848 titulares, 65 medios)
+2026-11-25 16:42:27,709 INFO   índice por titular 0.426 · un medio, un voto 0.475
+2026-11-25 16:42:27,709 INFO   el medio explica 26% de la postura (azar 8%, p=0.0005)
+2026-11-25 16:42:27,709 INFO   distancia entre bandos de medios 0.432 · por azar 0.324 · exceso 0.108 · p=0.014 · grupos (BIC): 1
+2026-11-25 16:42:27,709 INFO   bando A: tercerainformacion.es -0.50, infolibre.es -0.41, diariodesevilla.es -0.40, praza.gal -0.33, estrelladigital.es -0.23, publico.es -0.22, eldiario.es -0.21, malagahoy.es -0.17, elpais.com -0.14, lavozdegalicia.es -0.14, eldiadecordoba.es -0.12, elplural.com -0.11, eldiariomontanes.es -0.10, hoy.es -0.07, lavozdeasturias.es -0.06, ondacero.es -0.06, elcomercio.es -0.06, diariodejerez.es -0.04, andaluciainformacion.es -0.04, elprogreso.es -0.02, lasexta.com -0.01, cope.es -0.00, canalsur.es +0.00, canarias7.es +0.00, elperiodico.cat +0.00, lavanguardia.com +0.00, diariovasco.com +0.01, huelvainformacion.es +0.02, europapress.es +0.03, vilaweb.cat +0.04, elespanol.com +0.06
+2026-11-25 16:42:27,709 INFO   bando B: diariodeavila.es +0.12, ara.cat +0.14, antena3.com +0.14, diariopalentino.es +0.16, latribunadealbacete.es +0.16, 3cat.cat +0.17, rtve.es +0.17, elpueblodeceuta.es +0.17, diariojaen.es +0.18, laregion.es +0.19, laverdad.es +0.20, elcorreo.com +0.24, diariodepontevedra.es +0.25, diariosur.es +0.27, latribunadetoledo.es +0.30, lasprovincias.es +0.31, diariodeleon.es +0.31, elconfidencial.com +0.32, elnortedecastilla.es +0.33, elmundo.es +0.33, abc.es +0.33, larioja.com +0.33, larazon.es +0.33, ideal.es +0.38, lagacetadesalamanca.es +0.40, lavozdigital.es +0.40, diariodeburgos.es +0.46, expansion.com +0.49, diariodecadiz.es +0.50, diariodenavarra.es +0.52, libertaddigital.com +0.52, vozpopuli.com +0.53, esdiario.com +0.67, periodistadigital.com +0.80
+2026-11-25 16:42:27,709 INFO   hostilidad media 0.21 · extremos más hostiles (ρ) 0.359
+2026-11-25 16:42:27,709 INFO   noticia n=763 |postura| 0.43 · opinión n=85 |postura| 0.534
+2026-11-25 16:42:27,709 INFO 
+2026-11-25 16:42:27,709 INFO Violencia de género  (473 titulares, 47 medios)
+2026-11-25 16:42:27,709 INFO   índice por titular 0.166 · un medio, un voto 0.187
+2026-11-25 16:42:27,709 INFO   el medio explica 15% de la postura (azar 10%, p=0.0225)
+2026-11-25 16:42:27,709 INFO   distancia entre bandos de medios 0.312 · por azar 0.307 · exceso 0.005 · p=0.3558 · grupos (BIC): 1
+2026-11-25 16:42:27,709 INFO   bando A: tercerainformacion.es -0.78, vilaweb.cat -0.75, eldiadecordoba.es -0.68, lavozdeasturias.es -0.62, publico.es -0.62, diariovasco.com -0.60, eldiario.es -0.55, diariosur.es -0.54, diariojaen.es -0.54, hoy.es -0.54, ara.cat -0.50, elcomercio.es -0.48, 3cat.cat -0.47, huelvainformacion.es -0.47, diariodecadiz.es -0.43, andaluciainformacion.es -0.42, diariopalentino.es -0.42, elcorreo.com -0.41, eldiariomontanes.es -0.40, lavozdigital.es -0.40, abc.es -0.39, larioja.com -0.39
+2026-11-25 16:42:27,709 INFO   bando B: lavozdegalicia.es -0.34, canarias7.es -0.34, latribunadetoledo.es -0.34, ideal.es -0.34, elperiodico.cat -0.33, laregion.es -0.33, diariodesevilla.es -0.32, rtve.es -0.31, diariodeavila.es -0.30, elpais.com -0.29, diariodepontevedra.es -0.29, europapress.es -0.28, latribunadealbacete.es -0.27, lavanguardia.com -0.27, elconfidencial.com -0.25, elmundo.es -0.24, elnortedecastilla.es -0.24, elplural.com -0.20, lasexta.com -0.17, antena3.com -0.17, laverdad.es -0.10, lasprovincias.es -0.04, larazon.es -0.01, libertaddigital.com +0.16, esdiario.com +0.40
+2026-11-25 16:42:27,709 INFO   hostilidad media 0.092 · extremos más hostiles (ρ) 0.453
+2026-11-25 16:42:27,709 INFO   noticia n=444 |postura| 0.512 · opinión n=29 |postura| 0.572
+2026-11-25 16:42:27,709 INFO 
+2026-11-25 16:42:27,709 INFO Política migratoria  (139 titulares, 21 medios)
+2026-11-25 16:42:27,709 INFO   índice por titular 0.301 · un medio, un voto 0.36
+2026-11-25 16:42:27,709 INFO   el medio explica 23% de la postura (azar 18%, p=0.2024)
+2026-11-25 16:42:27,709 INFO   distancia entre bandos de medios 0.445 · por azar 0.42 · exceso 0.025 · p=0.3398 · grupos (BIC): 1
+2026-11-25 16:42:27,709 INFO   bando A: lavozdegalicia.es -0.23, abc.es -0.16, europapress.es -0.14, libertaddigital.com -0.14, larazon.es -0.09, diariodeleon.es -0.05, canarias7.es +0.03, elconfidencial.com +0.06, rtve.es +0.07, elmundo.es +0.10, antena3.com +0.16, elespanol.com +0.18, elpais.com +0.18, ondacero.es +0.20, eldiario.es +0.23
+2026-11-25 16:42:27,709 INFO   bando B: diariovasco.com +0.30, ara.cat +0.35, vilaweb.cat +0.40, publico.es +0.57, lasexta.com +0.57, lavanguardia.com +0.63
+2026-11-25 16:42:27,709 INFO   hostilidad media 0.114 · extremos más hostiles (ρ) 0.423
+2026-11-25 16:42:27,709 INFO   noticia n=137 |postura| 0.475 · opinión n=2 |postura| 0.8
+2026-11-25 16:42:27,709 INFO 
+2026-11-25 16:42:27,709 INFO Justicia e independencia judicial  (62 titulares, 9 medios)
+2026-11-25 16:42:27,709 INFO   índice por titular 0.344 · un medio, un voto 0.377
+2026-11-25 16:42:27,709 INFO   el medio explica 28% de la postura (azar 21%, p=0.1974)
+2026-11-25 16:42:27,709 INFO   distancia entre bandos de medios 0.495 · por azar 0.477 · exceso 0.017 · p=0.3863 · grupos (BIC): None
+2026-11-25 16:42:27,709 INFO   bando A: publico.es -0.53, elpais.com -0.07, eldiario.es -0.05, elplural.com -0.03, europapress.es +0.07
+2026-11-25 16:42:27,709 INFO   bando B: abc.es +0.23, libertaddigital.com +0.33, vozpopuli.com +0.40, esdiario.com +0.54
+2026-11-25 16:42:27,709 INFO   hostilidad media 0.259 · extremos más hostiles (ρ) -0.067
+2026-11-25 16:42:27,709 INFO   noticia n=57 |postura| 0.435 · opinión n=5 |postura| 0.78
+2026-11-25 16:42:27,709 INFO 
+2026-11-25 16:42:27,709 INFO Amnistía y Cataluña  (62 titulares, 7 medios)  · pocos medios: orientativo
+2026-11-25 16:42:27,709 INFO   índice por titular 0.337 · un medio, un voto 0.424
+2026-11-25 16:42:27,709 INFO   el medio explica 23% de la postura (azar 20%, p=0.3333)
+2026-11-25 16:42:27,709 INFO   distancia entre bandos de medios 0.387 · por azar 0.429 · exceso -0.042 · p=0.5737 · grupos (BIC): None
+2026-11-25 16:42:27,709 INFO   bando A: vilaweb.cat -0.43, europapress.es -0.42, ara.cat -0.20, elperiodico.cat -0.17, publico.es -0.13
+2026-11-25 16:42:27,709 INFO   bando B: larazon.es +0.07, abc.es +0.17
+2026-11-25 16:42:27,709 INFO   hostilidad media 0.093 · extremos más hostiles (ρ) 0.571
+2026-11-25 16:42:27,709 INFO   noticia n=62 |postura| 0.389 · opinión n=0 |postura| None
+2026-11-25 16:42:27,709 INFO 
+2026-11-25 16:42:27,709 INFO Eje Gobierno ↔ oposición
+2026-11-25 16:42:27,709 INFO   951 titulares · medio explica 20% (p=0.0005) · distancia entre bandos 0.522 (azar 0.41)
+2026-11-25 16:42:27,709 INFO 
+2026-11-25 16:42:27,709 INFO Agenda
+2026-11-25 16:42:27,709 INFO   distancia media entre agendas 0.365 (azar 0.279, p=0.001) · 53 medios
+2026-11-25 16:42:27,709 INFO   vilaweb.cat: Amnistía y Cataluña ×8.72
+2026-11-25 16:42:27,709 INFO   elperiodico.cat: Amnistía y Cataluña ×7.41
+2026-11-25 16:42:27,709 INFO   elespanol.com: Política migratoria ×5.19
+2026-11-25 16:42:27,709 INFO   ara.cat: Amnistía y Cataluña ×4.94
+2026-11-25 16:42:27,709 INFO   elplural.com: Justicia e independencia judicial ×3.57
+2026-11-25 16:42:27,709 INFO   3cat.cat: Amnistía y Cataluña ×3.53
+2026-11-25 16:42:27,710 INFO 
+2026-11-25 16:42:27,710 INFO Snapshot v1 guardado en data/snapshot_ES_20261125.json (detalle en data/internal/snapshot_ES_20261125_full.json)
+
+país                color dom       n    ne temas  estado
+------------------------------------------------------------
+Estados Unidos         -- --        0     0  0/0   no pedido
+Reino Unido            -- --        0     0  0/0   no pedido
+España              0.284 ideo   1460  1423  3/5   fiable
+México                 -- --        0     0  0/0   no pedido
+Argentina              -- --        0     0  0/0   no pedido
+Chile                  -- --        0     0  0/0   no pedido
+Francia                -- --        0     0  0/0   no pedido
+Alemania               -- --        0     0  0/0   no pedido
+Italia                 -- --        0     0  0/0   no pedido
+Brasil                 -- --        0     0  0/0   no pedido
