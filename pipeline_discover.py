@@ -51,6 +51,7 @@ from ingest.gkg_files import Article, gkg_timestamps
 from ingest.leads import fetch_leads
 from ingest.gkg_files import title_key
 from analysis.ecosystem import ecosystem_report, genre_from_url, summary_lines
+from analysis.common_ground import add_common_ground
 
 logging.basicConfig(
     level=logging.INFO,
@@ -720,6 +721,9 @@ def main():
             max_debates=args.max_debates, axes_registry=axes_registry,
             mode=args.api_mode, stance_passes=args.stance_passes,
         )
+        # Qué comparten los dos lados y dónde está la diferencia de verdad,
+        # con titulares de ambos lados como prueba (analysis/common_ground.py).
+        add_common_ground(all_topic_results, headline_records, mode=args.api_mode)
     finally:
         # El consumo se guarda también si la corrida se corta (p. ej. sin saldo)
         report_usage(usage_path, headlines, countries, args.api_mode)

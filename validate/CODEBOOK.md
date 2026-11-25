@@ -159,3 +159,23 @@ Solo si `hostility` > 0; si no, `null`.
 - `personas` — descalifica, ridiculiza o insulta a personas concretas.
 - `grupo` — descalifica a un colectivo entero (migrantes, jueces, okupas,
   los votantes de un partido).
+
+## Terreno común y diferencia de fondo (por debate)
+
+Paso final de cada corrida (`analysis/common_ground.py`), solo en debates con
+datos suficientes y al menos 5 titulares claramente inclinados (|postura| ≥ 0,5)
+a cada lado. El modelo recibe hasta 20 titulares con entradilla por lado,
+repartidos entre medios, y responde:
+
+- **Comparten**: un objetivo, un hecho o un valor que aparece en titulares de
+  ambos lados. Nada genérico ("ambos quieren lo mejor"). Si no lo hay: null.
+- **Se diferencian**: el núcleo del desacuerdo y su tipo:
+  - *objetivos*: quieren cosas distintas o priorizan valores distintos;
+  - *medios*: mismo objetivo, distinto camino;
+  - *hechos*: no coinciden en qué pasa o por qué;
+  - *confianza*: discuten si un actor es de fiar más que la política.
+
+Comprobación automática antes de publicar: los titulares citados existen, hay
+al menos uno de cada lado y de al menos dos medios. Se pide dos veces; solo se
+publica si coinciden en si hay terreno común y en el tipo de diferencia. En la
+web se presenta como síntesis del modelo, no como medición validada.

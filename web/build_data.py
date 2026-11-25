@@ -169,6 +169,17 @@ def build_run(stem: str) -> dict | None:
                 "hot": examples([r for r in press if (r.get("hostility") or 0) >= 0.6],
                                 lambda r: -(r.get("hostility") or 0)),
             }
+        cg = t.get("common_ground") or {}
+        if cg.get("status") == "ok" and deb["trust"]:
+            ev = {i: {"t": e["title"], "o": name(e["domain"]), "u": e["url"], "s": e["side"]}
+                  for i, e in cg["evidence"].items()}
+            pick = lambda ids: [dict(ev[i], id=i) for i in ids if i in ev]
+            sh, df = cg.get("shared"), cg["differ"]
+            deb["cg"] = {
+                "n": cg["n_a"] + cg["n_b"],
+                "shared": {"es": sh["es"], "en": sh["en"], "ev": pick(sh["ids"])} if sh else None,
+                "differ": {"es": df["es"], "en": df["en"], "type": df["type"], "ev": pick(df["ids"])},
+            }
         run["debates"].append(deb)
     run["debates"].sort(key=lambda d: (not d["trust"], -d["n"]))
     add_english(run)

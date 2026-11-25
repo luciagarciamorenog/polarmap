@@ -163,6 +163,23 @@ footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:13px;color
 .lang button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 nav.top{align-items:center}
 html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none}
+.cg{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 2px;margin:-4px 0 18px;font-size:14px;line-height:1.45}
+.cg-row{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:baseline}
+.cg-row+.cg-row{margin-top:8px}
+.cg-k{font-size:12px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+.cg-none{color:var(--mute)}
+.cg-tag{display:inline-block;font-size:11.5px;font-weight:600;padding:1px 8px;border-radius:999px;background:#eef3fb;color:#1d4f8f;margin-right:6px;vertical-align:1px;cursor:help}
+.cg-foot{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:9px;font-size:12px;color:var(--mute)}
+.cg-foot button{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.cg-foot button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cg-ev{margin:10px 0 0;font-size:13px}
+.cg-ev h4{font-size:11.5px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);margin:8px 0 4px}
+.cg-ev ul{list-style:none;margin:0;padding:0}
+.cg-ev li{margin:0 0 6px;line-height:1.35}
+.cg-ev li b{font-size:11px;font-weight:650;color:var(--mute);margin-right:6px}
+.cg-ev li a{text-decoration:none}.cg-ev li a:hover{text-decoration:underline}
+.cg-ev li small{color:var(--mute);margin-left:4px}
+@media(max-width:560px){.cg-row{grid-template-columns:1fr;gap:2px}.cg-foot{flex-direction:column;gap:6px}}
 </style>
 </head>
 <body>
@@ -227,6 +244,7 @@ html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none}
       <li><b>Leans to one side</b> (per outlet): out of every 10 headlines in the day's debates, how many more clearly lean to one side than to the other. An outlet that publishes both sides equally scores close to 0%.</li>
       <li><b>Hostile headlines</b> (per outlet): share of its headlines with language that attacks or belittles the other side.</li>
       <li><b>Stance, not sentiment</b>: an earthquake is negative news but not divisive. The model scores which side a headline takes.</li>
+      <li><b>Common ground and where they differ</b> (per debate): the model reads clearly one-sided headlines from both sides and states what both share and where the real disagreement lies: goals, means, facts or trust in an actor. It must cite headlines from both sides and at least two outlets; it is asked twice and only shown if both answers agree. It is a model synthesis, not a validated measurement.</li>
       <li>Labels such as "high conflict" use provisional thresholds (0.15 and 0.30).</li>
     </ul></div>
     <div class="card"><h3>Evaluation</h3><table class="ev">
@@ -270,6 +288,7 @@ html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none}
       <li><b>Se inclina a un lado</b> (por medio): de cada 10 titulares en los debates del día, cuántos más se inclinan claramente a un lado que al otro. Un medio que publica los dos lados por igual queda cerca del 0 %.</li>
       <li><b>Titulares hostiles</b> (por medio): porcentaje de sus titulares con lenguaje que ataca o desprecia al otro lado.</li>
       <li><b>Postura, no sentimiento</b>: un terremoto es una mala noticia, pero no divide. El modelo puntúa hacia qué lado se inclina un titular.</li>
+      <li><b>Qué comparten y en qué se diferencian</b> (por debate): el modelo lee titulares claramente inclinados de los dos lados y dice qué comparten y dónde está el desacuerdo de verdad: objetivos, medios, hechos o confianza en un actor. Tiene que citar titulares de los dos lados y de al menos dos medios; se le pregunta dos veces y solo se muestra si las dos respuestas coinciden. Es una síntesis del modelo, no una medición validada.</li>
       <li>Etiquetas como «conflicto alto» usan umbrales provisionales (0,15 y 0,30).</li>
     </ul></div>
     <div class="card"><h3>Evaluación</h3><table class="ev">
@@ -338,6 +357,10 @@ const T={
   add:'Add an outlet…',pick:'Pick an outlet to compare.',remove:'Remove',
   tableTitle:d=>`All outlets · ${d}`,colOut:'Outlet',colN:'Headlines',colSide:'Leans to one side',colHost:'Hostile',more:n=>`Show all ${n} outlets`,fewer:'Show fewer',
   tipDay:'headlines in debates',foot:d=>`PolarMap · designed and built by Lucía García-Moreno · Data: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> · Headlines link to their original source · Last run: ${d}.`,
+  cgShared:'Common ground',cgDiffer:'Where they differ',cgNone:"No clear common ground in today's headlines.",
+  cgFoot:n=>`Model synthesis from ${n} headlines on both sides · not a validated measurement`,cgShow:'See headlines ▾',cgHide:'Hide headlines ▴',
+  cgTypes:{objetivos:['Goals','They want different things or put different values first'],medios:['Means','Same goal, different way to get there'],hechos:['Facts','They disagree on what is happening or why'],confianza:['Trust','They disagree on whether an actor can be trusted, more than on the policy']},
+  cgSide:{A:'Side A',B:'Side B'},
   months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],locale:'en-US'},
  es:{navDebates:'Debates',navOutlets:'Medios',navMethod:'Metodología',
   debTitle:'Los debates del día',debSub:'Nadie le da al modelo una lista de temas. Lee los titulares del día, encuentra de qué discute la prensa y define los dos lados enfrentados de cada debate. Elige un debate para ver dónde se sitúa cada medio.',
@@ -366,6 +389,10 @@ const T={
   add:'Añadir un medio…',pick:'Elige un medio para comparar.',remove:'Quitar',
   tableTitle:d=>`Todos los medios · ${d}`,colOut:'Medio',colN:'Titulares',colSide:'Se inclina a un lado',colHost:'Hostiles',more:n=>`Ver los ${n} medios`,fewer:'Ver menos',
   tipDay:'titulares en debates',foot:d=>`PolarMap · diseñado y construido por Lucía García-Moreno · Datos: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> · Los titulares enlazan a su fuente original · Última corrida: ${d}.`,
+  cgShared:'Comparten',cgDiffer:'Se diferencian',cgNone:'No hay terreno común claro en los titulares de hoy.',
+  cgFoot:n=>`Síntesis del modelo a partir de ${n} titulares de ambos lados · no es una medición validada`,cgShow:'Ver titulares ▾',cgHide:'Ocultar titulares ▴',
+  cgTypes:{objetivos:['Objetivos','Quieren cosas distintas o priorizan valores distintos'],medios:['Medios','Mismo objetivo, distinto camino para llegar'],hechos:['Hechos','No coinciden en qué está pasando o por qué'],confianza:['Confianza','Discuten si un actor es de fiar, más que la política en sí']},
+  cgSide:{A:'Lado A',B:'Lado B'},
   months:['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'],locale:'es-ES'}
 };
 let lang='en';
@@ -430,6 +457,15 @@ function renderDetail(){
   const d=R.debates[state.deb],v=verdict(d),O=d.outlets;
   let h=`<h3 class="big">${esc(L(d))}</h3><p class="verdict"><span class="tag ${v.cls}" style="margin:0 8px 0 0">${esc(v.tag)}</span>${esc(v.line)}</p>`;
   h+=`<div class="poles"><div class="pole"><b>${t('sideA')}</b>${esc(A(d))}</div><div class="pole b"><b>${t('sideB')}</b>${esc(B(d))}</div></div>`;
+  if(d.cg){
+    const c=d.cg,ty=t('cgTypes')[c.differ.type]||[c.differ.type,''];
+    const txt=o=>o?esc(lang==='es'?o.es:o.en):'';
+    const evl=arr=>`<ul>${(arr||[]).map(e=>`<li><b>${t('cgSide')[e.s]}</b><a href="${esc(e.u)}" target="_blank" rel="noopener">${esc(e.t)}</a><small>${esc(e.o)}</small></li>`).join('')}</ul>`;
+    h+=`<div class="cg"><div class="cg-row"><div class="cg-k">${t('cgShared')}</div><div class="${c.shared?'':'cg-none'}">${c.shared?txt(c.shared):t('cgNone')}</div></div>`+
+      `<div class="cg-row"><div class="cg-k">${t('cgDiffer')}</div><div><span class="cg-tag" title="${esc(ty[1])}">${esc(ty[0])}</span>${txt(c.differ)}</div></div>`+
+      `<div class="cg-foot"><span>${t('cgFoot')(c.n)}</span><button type="button" id="cgBtn" aria-expanded="${state.cg?'true':'false'}">${state.cg?t('cgHide'):t('cgShow')}</button></div>`+
+      (state.cg?`<div class="cg-ev">${c.shared?`<h4>${t('cgShared')}</h4>${evl(c.shared.ev)}`:''}<h4>${t('cgDiffer')}</h4>${evl(c.differ.ev)}</div>`:'')+`</div>`;
+  }
   const meter=(lab,val,help,col)=>`<div class="meter"><div class="lab">${lab}<span>${dec(val)}</span></div><div class="mbar"><span style="width:${val==null?0:Math.min(100,val/MAXM*100)}%;background:${col}"></span></div><p>${help}</p></div>`;
   h+=`<div class="meters">${meter(t('ideoL'),d.ideo,t('ideoH'),'var(--ink)')}${meter(t('affL'),d.aff,t('affH'),'var(--hot)')}</div>`;
   if(O&&O.list.length){
@@ -448,6 +484,7 @@ function renderDetail(){
   h+=`<div class="ex"><div><h3>${t('exA')}</h3>${list(ex.a)}</div><div><h3>${t('exB')}</h3>${list(ex.b)}</div><div><h3>${t('exHot')}</h3>${list(ex.hot)}</div></div><p class="note">${t('exNote')}</p>`;
   const el=document.getElementById('detail');el.innerHTML=h;
   el.querySelector('#allOut')?.addEventListener('change',e=>{state.all=e.target.checked;renderDetail()});
+  el.querySelector('#cgBtn')?.addEventListener('click',()=>{state.cg=!state.cg;renderDetail()});
   const byD=Object.fromEntries((O?.list||[]).map(o=>[o.d,o]));
   const rowsEl=el.querySelector('#rows');
   if(rowsEl){
@@ -458,7 +495,7 @@ function renderDetail(){
     rowsEl.addEventListener('mouseleave',()=>{hideTip();rowsEl.querySelectorAll('.row.on').forEach(x=>x.classList.remove('on'))});
   }
 }
-document.getElementById('debList').addEventListener('click',e=>{const b=e.target.closest('.deb');if(!b)return;state.deb=+b.dataset.i;state.all=false;renderList();renderDetail();
+document.getElementById('debList').addEventListener('click',e=>{const b=e.target.closest('.deb');if(!b)return;state.deb=+b.dataset.i;state.all=false;state.cg=false;renderList();renderDetail();
   if(innerWidth<=860)document.getElementById('detail').scrollIntoView({behavior:'smooth',block:'start'})});
 document.getElementById('debList').addEventListener('keydown',e=>{if(!['ArrowDown','ArrowUp','ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();const n=R.debates.length;state.deb=(state.deb+((e.key==='ArrowDown'||e.key==='ArrowRight')?1:n-1))%n;renderList();renderDetail();document.querySelector(`.deb[data-i="${state.deb}"]`).focus()});
 

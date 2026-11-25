@@ -17,7 +17,8 @@ fi
 echo "== 1/4 Tests =="
 TESTS="analysis/test_metrics.py analysis/test_outlets.py analysis/test_discover.py
 analysis/test_contract.py analysis/test_runner.py analysis/test_ecosystem.py
-ingest/test_gkg.py ingest/test_leads.py validate/pilot/test_stats.py"
+ingest/test_gkg.py ingest/test_leads.py validate/pilot/test_stats.py
+analysis/test_common_ground.py"
 for t in $TESTS; do
   if ! python3 "$t" > /tmp/polarmap_test.log 2>&1; then
     echo "   Falla $t:"; tail -15 /tmp/polarmap_test.log
