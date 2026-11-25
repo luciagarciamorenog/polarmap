@@ -102,6 +102,14 @@ def examples(rows: list[dict], key, n: int = 3) -> list[dict]:
     return out
 
 
+def hist(rows: list[dict]) -> list[int]:
+    """Cuántos titulares caen en cada tramo de postura (-1, -0.9 … 0.9, 1)."""
+    h = [0] * 21
+    for r in rows:
+        h[int(round((max(-1.0, min(1.0, r["stance"])) + 1) * 10))] += 1
+    return h
+
+
 def build_run(stem: str) -> dict | None:
     full_p, head_p = INTERNAL / f"{stem}_full.json", INTERNAL / f"{stem}_headlines.jsonl"
     if not (full_p.exists() and head_p.exists()):
@@ -135,6 +143,10 @@ def build_run(stem: str) -> dict | None:
             "ideo": round(m["ideological"], 3) if m.get("ideological") is not None else None,
             "aff": round(m["affective_index"], 3) if m.get("affective_index") is not None else None,
             "hostile_share": round(sum(h >= HOSTILE for h in hs) / len(hs), 3) if hs else None,
+            "n_hostile": sum(h >= HOSTILE for h in hs),
+            # reparto de la postura de los titulares en 21 tramos de -1 a 1
+            # (el del medio, 0, son los titulares que no toman partido)
+            "hist": hist(sel),
             "neutral_share": round(sum(h == 0 for h in hs) / len(hs), 3) if hs else None,
             "us_them": round((t.get("descriptives") or {}).get("us_them_share", 0), 3),
             "outlets": None, "examples": {}}

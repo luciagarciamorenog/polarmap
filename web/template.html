@@ -38,11 +38,21 @@ nav.top a{text-decoration:none;color:var(--ink-2)}nav.top a:hover{color:var(--in
 .cta p{margin:0;color:var(--ink-2)}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1.1;letter-spacing:-.015em;margin:10px 0 14px;max-width:820px}
 .lede{font-size:18px;color:var(--ink-2);max-width:720px;margin:0}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:28px}
+.stats{display:grid;grid-template-columns:1fr 2fr 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:28px}
 .stat{background:var(--surface);padding:16px 18px}
 .stat .n{font-size:28px;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
 .stat .l{font-size:13px;color:var(--mute);line-height:1.35;margin-top:2px}
-@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.stats{grid-template-columns:repeat(3,1fr)}.stat.wide{grid-column:1/-1;order:9}}
+@media(max-width:520px){.stat .n{font-size:22px}}
+.brk{display:grid;gap:10px}
+.brk .r{display:grid;grid-template-columns:auto 1fr;gap:0 12px;align-items:baseline}
+.brk .r .n{min-width:66px}
+.brk .r.sub2{padding-left:18px;position:relative}
+.brk .r.sub2::before{content:"↳";position:absolute;left:0;top:4px;color:var(--mute);font-size:15px}
+.brk .r.sub2 .n{font-size:22px}
+.brk .bar{grid-column:2;height:6px;border-radius:3px;background:var(--track);position:relative;overflow:hidden;margin-top:6px}
+.brk .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.brk small{color:var(--mute)}
 
 section.block{padding:40px 0;border-top:1px solid var(--line)}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3vw,30px);letter-spacing:-.01em;margin:0 0 6px}
@@ -78,8 +88,35 @@ h3{font-size:15px;margin:0 0 10px;font-weight:650}
 .pole b{display:block;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);margin-bottom:4px}
 .pole.b{text-align:right}
 @media(max-width:560px){.poles{grid-template-columns:1fr}.pole.b{text-align:left}}
-.meters{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-@media(max-width:560px){.meters{grid-template-columns:1fr}}
+.dist{display:grid;grid-template-columns:3fr 2fr;gap:22px;margin:4px 0 18px;padding:16px 0 0;border-top:1px solid var(--line)}
+@media(max-width:640px){.dist{grid-template-columns:1fr}}
+.dist h4{margin:0 0 2px;font-size:14px}
+.dist .cap{font-size:13px;color:var(--mute);margin:0}
+.dist svg{display:block;width:100%;height:auto;margin:6px 0 2px}
+.dist .shares{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.att .num{font-size:26px;font-weight:650;letter-spacing:-.01em;margin-top:4px}
+.att .num small{font-size:14px;font-weight:500;color:var(--ink-2)}
+.hbar{height:8px;border-radius:4px;background:var(--track);margin:8px 0 6px;position:relative;overflow:hidden}
+.hbar span{position:absolute;left:0;top:0;bottom:0;background:var(--hot);border-radius:4px}
+.hscale{display:flex;justify-content:space-between;font-size:11px;color:var(--mute);margin-top:-2px}
+.rel{display:grid;grid-template-columns:auto minmax(120px,220px) auto 1fr;gap:8px 12px;align-items:center;background:var(--line-2);border-radius:10px;padding:10px 14px;margin:0 0 16px;font-size:13.5px}
+@media(max-width:560px){.rel{grid-template-columns:auto 1fr auto}}
+.rel .k{font-weight:650}
+.rel .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.rel .seg i{height:8px;border-radius:4px;background:#ddd8ce}
+.rel .lv{font-weight:650}
+.rel ul{grid-column:1/-1;list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 14px;color:var(--ink-2);font-size:12.5px}
+.rel li.no{color:#8a5a12}
+.spark{display:block;margin-top:8px}
+.mini2{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-2);margin-top:6px}
+.mini2 b{font-weight:650}
+.chart-sub{font-size:13px;color:var(--mute);margin:0 0 10px}
+.howto{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.howto{grid-template-columns:1fr}}
+.howto li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:14.5px;color:var(--ink-2)}
+.howto li b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+.howto .ex2{display:block;font-size:13px;color:var(--mute);margin-top:6px}
+#outSub{max-width:none}
 .meter .lab{display:flex;justify-content:space-between;font-size:14px;font-weight:600}
 .meter .lab span{font-weight:500;color:var(--ink-2)}
 .meter .mbar{height:8px;margin:6px 0 4px}
@@ -202,7 +239,7 @@ html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none}
 
 <section class="block" id="debates"><div class="wrap">
   <h2 data-t="debTitle">The day's debates</h2>
-  <p class="sub" data-t="debSub">Nobody gives the model a list of topics. It reads the day's headlines, finds what the press is arguing about and defines the two opposing sides of each debate. Pick a debate to see where each outlet stands.</p>
+  <p class="sub" data-t="debSub"></p>
   <div class="deb-grid">
     <div class="deb-list" id="debList" role="tablist" aria-label="Debates"></div>
     <div class="detail" id="detail" role="tabpanel"></div>
@@ -211,8 +248,7 @@ html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none}
 
 <section class="block" id="outlets"><div class="wrap">
   <h2 data-t="outTitle">Outlets over time</h2>
-  <p class="sub" data-t="outSub" data-html="1"></p>
-  <div id="trackBanner"></div>
+  <div class="sub" id="outSub" data-t="outSub" data-html="1"></div>
   <div class="picker"><label for="addOutlet" style="font-size:14px;color:var(--ink-2)" data-t="compare">Compare up to 3 outlets:</label><select id="addOutlet"></select></div>
   <div class="chips" id="chips"></div>
   <p class="note" style="margin:-6px 0 14px" data-t="chipsNote">Starts with the three outlets with most headlines in the day's debates.</p>
@@ -241,29 +277,28 @@ html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none}
 (()=>{
 const T={
  en:{navDebates:'Debates',navOutlets:'Outlets',navAbout:'About',
-  debTitle:"The day's debates",debSub:"Nobody gives the model a list of topics. It reads the day's headlines, finds what the press is arguing about and defines the two opposing sides of each debate. Pick a debate to see where each outlet stands.",
-  outTitle:'Outlets over time',outSub:"Two daily scores per outlet, from its headlines in the day's debates. <b>Leans to one side</b>: out of every 10 headlines, how many more fall on one side than on the other (0% = balanced coverage, 100% = every headline on the same side). <b>Hostile headlines</b>: how many attack or belittle the other side.",
+  debTitle:"The day's debates",debSub:"The topics that set the press against each other today, detected automatically, with no predefined topic list. Pick one to see what each side argues and where each outlet stands.",
+  outTitle:'Outlets over time',outSub:'How each outlet covers the day\'s debates. Every time PolarMap updates, each line gets a new point.<ul class="howto"><li><b>Leans to one side</b>Does it spread its headlines across both sides, or do nearly all of them push the same way? 0% = balanced; 100% = all towards the same side.<span class="ex2">Example: out of 10 headlines, 6 lean one way, 1 the other way and 3 are neutral → it leans 50%.</span></li><li><b>Hostile headlines</b>Out of every 100 of the outlet\'s headlines in the debates, how many attack, mock or belittle the other side.<span class="ex2">Example: 30% = 3 in every 10 headlines are an attack.</span></li></ul>',
   compare:'Compare up to 3 outlets:',chipsNote:"Starts with the three outlets with most headlines in the day's debates.",
   sideTitle:'Leans to one side',sideNote:'0% = balanced · 100% = every headline on the same side',hostTitle:'Hostile headlines',hostNote:'% of its headlines that attack or belittle the other side',
   tableNote:"Outlets with at least 5 headlines in the day's debates. Click a column to sort, or a row to add it to the comparison.",
   
   title:'PolarMap · What divides the Spanish press?',
   chip:d=>`Data from ${d} · news from the last 24 hours`,h1:'What divides the Spanish press?',ctaText:'<b>How is it measured?</b> What polarization is, what unites and what divides, and how we calculate it.',ctaBtn:'About PolarMap →',
-  lede:'Every day, PolarMap reads thousands of headlines, finds the debates the press is arguing about and places each outlet between the two sides. It also shows what they share.',
-  sRead:'headlines read in 24 hours',sScored:p=>`inside a debate (${p}); the rest of the news is not a fight`,sDeb:t=>`debates found, ${t} with enough data`,sOut:'outlets placed on the debates',
-  nHead:'headlines',nOut:'outlets',ideo:'Ideological',aff:'Affective',
-  ideoL:'Ideological polarization',affL:'Affective polarization',ideoH:'Do outlets form separate camps?',affH:'Is there hostility at the extremes, aimed at the other side?',
+  lede:'Every day, PolarMap reads thousands of headlines, finds the debates that set the press against each other and measures their polarization: how far outlets split into two camps and how much they attack each other. It also shows what they share.',
+  sRead:'headlines read in 24 hours',sDebPct:'of headlines are about a topic that sets the press against each other',sHost:'of them attack or belittle the other side',sOf:(a,b)=>`${a} of ${b}`,sDeb:t=>`debates found, ${t} with enough data`,sOut:'outlets placed on the debates',
+  nHead:'headlines',nOut:'outlets',cAtt:'Headlines that attack',
+  dTitle:'How are the headlines spread?',dCap:'Two hills at the edges and a valley in the middle = the press is split into two camps.',dA:'← Side A',dN:'take no side',dB:'Side B →',dShares:(a,n,b)=>[`${a} towards side A`,`${n} neutral`,`${b} towards side B`],rank1:n=>`The most divided of today\'s ${n} debates.`,rankN:(r,n)=>`Number ${r} of today\'s ${n} debates for division (1 = most divided).`,
+  aTitle:'Do they attack each other?',aUnit:'of headlines',aCap:'attack, mock or belittle the other side.',
+  rTitle:'Data reliability',rLv:['Low','Medium','High'],rN:(n,ok)=>`${n} headlines`+(ok?'':' (few: under 300)'),rO:(n,c,ok)=>`${n} outlets with ${c}+ headlines`+(ok?'':' (under 10)'),rP:ok=>ok?'differences between outlets are not chance':'differences between outlets could be chance',rT:'too few headlines or sources to measure this debate well',
   sideA:'← Side A',sideB:'Side B →',sideAs:'← Side A',sideBs:'Side B →',centre:'centre',hostile:'hostile',outletCol:'Outlet · headlines',
-  sig:(e,n,p)=>`Outlets take sides: the outlet explains <b>${e}</b> of where a headline falls on this debate (${n} expected by chance, p ${p}).`,
-  weak:p=>`Today, outlet positions on this debate cannot be told apart from chance (p = ${p}). Read the chart as indicative.`,
   none:'Too few headlines per outlet on this debate to place outlets today.',
-  where:'Where each outlet stands',showAll:(n,c)=>`Show all ${n} outlets`+(c?` (now: ${c}+ headlines)`:''),
+  where:'Where each outlet stands',chartSub:(n,c)=>`The ${n} outlets with at least ${c} headlines on this debate today.`,
   chartNote:"Each dot is the average stance of an outlet's headlines on this debate; the grey bar is its 90% interval. Few headlines means a wide bar.",
   exA:'Leaning to side A',exB:'Leaning to side B',exHot:'Most heated',exNone:'No clear examples today.',exNote:'Headlines in their original Spanish. A single headline can be misclassified; outlet averages are more reliable.',
   vLim:['Limited data','Few headlines or outlets: the numbers are only indicative.'],vHot1:['High conflict','Outlets split into camps and turn hostile toward the other side.'],vHot2:['High conflict','More hostility than disagreement on substance.'],
   vTense:['Tense','Real disagreement, with some hostility toward the other side.'],vHealthy:['Healthy disagreement','Outlets disagree, but rarely attack each other.'],vLow:['Low conflict','Little disagreement and little hostility.'],
   tipSide:{a:'leans to side A',b:'leans to side B',c:'near the centre'},tipAvg:'Average stance',tipHost:'hostile headlines',tipSideS:'net lean to one side',
-  banner:d=>`Daily tracking started on ${d}. Each daily run adds one point per outlet, so these lines grow from here.`,
   add:'Add an outlet…',pick:'Pick an outlet to compare.',remove:'Remove',
   tableTitle:d=>`All outlets · ${d}`,colOut:'Outlet',colN:'Headlines',colSide:'Leans to one side',colHost:'Hostile',more:n=>`Show all ${n} outlets`,fewer:'Show fewer',
   tipDay:'headlines in debates',foot:d=>`PolarMap · independent project · Data: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> · Headlines link to their original source · Open source on <a href="https://github.com/luciagarciamorenog/polarmap" target="_blank" rel="noopener">GitHub</a> · Last run: ${d}.`,
@@ -273,29 +308,28 @@ const T={
   cgSide:{A:'Side A',B:'Side B'},
   months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],locale:'en-US'},
  es:{navDebates:'Debates',navOutlets:'Medios',navAbout:'Sobre PolarMap',
-  debTitle:'Los debates del día',debSub:'Nadie le da al modelo una lista de temas. Lee los titulares del día, encuentra de qué discute la prensa y define los dos lados enfrentados de cada debate. Elige un debate para ver dónde se sitúa cada medio.',
-  outTitle:'Los medios en el tiempo',outSub:'Dos indicadores diarios por medio, a partir de sus titulares en los debates del día. <b>Se inclina a un lado</b>: de cada 10 titulares, cuántos más caen de un lado que del otro (0 % = cobertura equilibrada, 100 % = todos los titulares del mismo lado). <b>Titulares hostiles</b>: cuántos atacan o desprecian al otro lado.',
+  debTitle:'Los debates del día',debSub:'Los temas que hoy enfrentan a la prensa, detectados automáticamente, sin una lista de temas previa. Elige uno para ver qué defiende cada lado y dónde se sitúa cada medio.',
+  outTitle:'Los medios en el tiempo',outSub:'Cómo cubre cada medio los debates del día. Cada vez que PolarMap se actualiza, se añade un punto nuevo a cada línea.<ul class="howto"><li><b>Se inclina a un lado</b>¿Reparte sus titulares entre los dos lados o casi todos empujan hacia el mismo? 0 % = equilibrado; 100 % = todos hacia el mismo lado.<span class="ex2">Ejemplo: de 10 titulares, 6 van hacia un lado, 1 hacia el otro y 3 son neutros → se inclina un 50 %.</span></li><li><b>Titulares hostiles</b>De cada 100 titulares del medio en los debates, cuántos atacan, ridiculizan o desprecian al otro lado.<span class="ex2">Ejemplo: 30 % = 3 de cada 10 titulares son un ataque.</span></li></ul>',
   compare:'Compara hasta 3 medios:',chipsNote:'Empieza con los tres medios con más titulares en los debates del día.',
   sideTitle:'Se inclina a un lado',sideNote:'0 % = equilibrado · 100 % = todos los titulares del mismo lado',hostTitle:'Titulares hostiles',hostNote:'% de sus titulares que atacan o desprecian al otro lado',
   tableNote:'Medios con al menos 5 titulares en los debates del día. Pulsa una columna para ordenar, o una fila para añadirla a la comparación.',
   
   title:'PolarMap · ¿Qué divide a la prensa española?',
   chip:d=>`Datos del ${d} · noticias de las últimas 24 horas`,h1:'¿Qué divide a la prensa española?',ctaText:'<b>¿Cómo se mide?</b> Qué es la polarización, qué une y qué divide, y cómo lo calculamos.',ctaBtn:'Sobre PolarMap →',
-  lede:'Cada día, PolarMap lee miles de titulares, encuentra los debates en los que discute la prensa y sitúa a cada medio entre los dos lados. También muestra lo que comparten.',
-  sRead:'titulares leídos en 24 horas',sScored:p=>`dentro de un debate (${p}); el resto de noticias no son una pelea`,sDeb:t=>`debates encontrados, ${t} con datos suficientes`,sOut:'medios situados en los debates',
-  nHead:'titulares',nOut:'medios',ideo:'Ideológica',aff:'Afectiva',
-  ideoL:'Polarización ideológica',affL:'Polarización afectiva',ideoH:'¿Forman los medios bandos separados?',affH:'¿Hay hostilidad en los extremos, dirigida al otro lado?',
+  lede:'Cada día, PolarMap lee miles de titulares, encuentra los debates que enfrentan a la prensa y mide su polarización: cuánto se separan los medios en dos bandos y cuánto se atacan entre ellos. También muestra lo que comparten.',
+  sRead:'titulares leídos en 24 horas',sDebPct:'de los titulares tratan un tema que enfrenta a la prensa',sHost:'de ellos atacan o desprecian al otro lado',sOf:(a,b)=>`${a} de ${b}`,sDeb:t=>`debates encontrados, ${t} con datos suficientes`,sOut:'medios situados en los debates',
+  nHead:'titulares',nOut:'medios',cAtt:'Titulares que atacan',
+  dTitle:'¿Cómo se reparten los titulares?',dCap:'Dos montañas en los extremos y un valle en el medio = la prensa está partida en dos bandos.',dA:'← Lado A',dN:'no toman partido',dB:'Lado B →',dShares:(a,n,b)=>[`${a} hacia el lado A`,`${n} neutros`,`${b} hacia el lado B`],rank1:n=>`Es el debate más dividido de los ${n} de hoy.`,rankN:(r,n)=>`Puesto ${r} de ${n} debates de hoy en división (1 = el más dividido).`,
+  aTitle:'¿Se atacan?',aUnit:'de los titulares',aCap:'atacan, ridiculizan o desprecian al otro lado.',
+  rTitle:'Fiabilidad de los datos',rLv:['Baja','Media','Alta'],rN:(n,ok)=>`${n} titulares`+(ok?'':' (pocos: menos de 300)'),rO:(n,c,ok)=>`${n} medios con ${c}+ titulares`+(ok?'':' (menos de 10)'),rP:ok=>ok?'las diferencias entre medios no son casualidad':'las diferencias entre medios podrían ser casualidad',rT:'pocos titulares o fuentes para medir bien este debate',
   sideA:'← Lado A',sideB:'Lado B →',sideAs:'← Lado A',sideBs:'Lado B →',centre:'centro',hostile:'hostiles',outletCol:'Medio · titulares',
-  sig:(e,n,p)=>`Los medios toman partido: el medio explica el <b>${e}</b> de dónde cae un titular en este debate (el azar daría ${n}, p ${p}).`,
-  weak:p=>`Hoy, la posición de los medios en este debate no se distingue del azar (p = ${p}). Lee el gráfico como orientativo.`,
   none:'Hoy hay muy pocos titulares por medio en este debate para situar a los medios.',
-  where:'Dónde se sitúa cada medio',showAll:(n,c)=>`Ver los ${n} medios`+(c?` (ahora: ${c} titulares o más)`:''),
+  where:'Dónde se sitúa cada medio',chartSub:(n,c)=>`Los ${n} medios con al menos ${c} titulares sobre este debate hoy.`,
   chartNote:'Cada punto es la postura media de los titulares de un medio en este debate; la barra gris es su intervalo del 90 %. Con pocos titulares, la barra es más ancha.',
   exA:'Inclinados al lado A',exB:'Inclinados al lado B',exHot:'Los más encendidos',exNone:'Hoy no hay ejemplos claros.',exNote:'Un titular suelto puede estar mal clasificado; la media de cada medio es más fiable.',
   vLim:['Datos limitados','Pocos titulares o pocos medios: las cifras son solo orientativas.'],vHot1:['Conflicto alto','Los medios se separan en bandos y se vuelven hostiles con el otro lado.'],vHot2:['Conflicto alto','Hay más hostilidad que desacuerdo de fondo.'],
   vTense:['En tensión','Desacuerdo real, con algo de hostilidad hacia el otro lado.'],vHealthy:['Desacuerdo sano','Los medios discrepan, pero casi no se atacan.'],vLow:['Poco conflicto','Poco desacuerdo y poca hostilidad.'],
   tipSide:{a:'se inclina al lado A',b:'se inclina al lado B',c:'cerca del centro'},tipAvg:'Postura media',tipHost:'titulares hostiles',tipSideS:'de inclinación neta a un lado',
-  banner:d=>`El seguimiento diario empezó el ${d}. Cada corrida diaria añade un punto por medio, así que estas líneas crecen a partir de aquí.`,
   add:'Añadir un medio…',pick:'Elige un medio para comparar.',remove:'Quitar',
   tableTitle:d=>`Todos los medios · ${d}`,colOut:'Medio',colN:'Titulares',colSide:'Se inclina a un lado',colHost:'Hostiles',more:n=>`Ver los ${n} medios`,fewer:'Ver menos',
   tipDay:'titulares en debates',foot:d=>`PolarMap · proyecto independiente · Datos: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> · Los titulares enlazan a su fuente original · Código abierto en <a href="https://github.com/luciagarciamorenog/polarmap" target="_blank" rel="noopener">GitHub</a> · Última corrida: ${d}.`,
@@ -343,8 +377,13 @@ function renderHero(){
   document.getElementById('chipDate').textContent=t('chip')(day);
   document.getElementById('h1').textContent=t('h1');
   document.getElementById('lede').textContent=t('lede');
-  const stats=[[fmt(R.n_headlines),t('sRead')],[fmt(scored),t('sScored')(pct(scored/R.n_headlines))],[String(R.debates.length),t('sDeb')(trusted)],[String(outletSet.size),t('sOut')]];
-  document.getElementById('stats').innerHTML=stats.map(s=>`<div class="stat"><div class="n">${esc(s[0])}</div><div class="l">${esc(s[1])}</div></div>`).join('');
+  const hostN=R.debates.reduce((s,d)=>s+(d.n_hostile||0),0);
+  const one=(n,l)=>`<div class="stat"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div></div>`;
+  const brk=`<div class="stat wide"><div class="brk">`+
+    `<div class="r"><div class="n">${pct(scored/R.n_headlines)}</div><div class="l">${esc(t('sDebPct'))} <small>(${esc(t('sOf')(fmt(scored),fmt(R.n_headlines)))})</small></div><div class="bar"><i style="width:${(scored/R.n_headlines*100).toFixed(1)}%;background:var(--ink)"></i></div></div>`+
+    `<div class="r sub2"><div class="n">${pct(scored?hostN/scored:0)}</div><div class="l">${esc(t('sHost'))} <small>(${esc(t('sOf')(fmt(hostN),fmt(scored)))})</small></div><div class="bar"><i style="width:${(scored?hostN/scored*100:0).toFixed(1)}%;background:var(--hot)"></i></div></div>`+
+    `</div></div>`;
+  document.getElementById('stats').innerHTML=one(fmt(R.n_headlines),t('sRead'))+brk+one(String(R.debates.length),t('sDeb')(trusted))+one(String(outletSet.size),t('sOut'));
 }
 
 /* ---------- debates ---------- */
@@ -356,13 +395,37 @@ function verdict(d){
   if(a>=0.15) return {...v('vTense'),cls:''};
   return {...v(i>=0.15?'vHealthy':'vLow'),cls:''};
 }
-const state={deb:0,all:false};
+const state={deb:0};
 const minN=O=>O.list.length>25?10:5;
-const MAXM=0.6;
-function mini(label,val,col){const w=val==null?0:Math.min(100,val/MAXM*100);return `<span class="mini"><span>${label}</span><span class="mbar"><span style="width:${w}%;background:${col}"></span></span><b>${dec(val)}</b></span>`}
+/* reparto de la postura de los titulares: curva suavizada de los que toman partido + barra gris de los neutros */
+function smooth(h){const g=h.slice();g[10]=0;return g.map((_,i)=>{let a=0,w=0;g.forEach((v,j)=>{const k=Math.exp(-((i-j)**2)/(2*1.1*1.1));a+=v*k;w+=k});return a/w*2.6})}
+function distSVG(h,W,H,mini){
+  if(!h)return '';
+  const sm=smooth(h),mx=Math.max(...sm,h[10]*0.9,1),pad=mini?2:6,iw=W-pad*2,ih=H-(mini?2:24);
+  const X=i=>pad+i*iw/20,Y=v=>ih-(v/mx)*(ih-4);
+  let s=`<svg viewBox="0 0 ${W} ${H}" ${mini?`width="${W}" height="${H}"`:''} aria-hidden="true">`;
+  if(!mini)s+=`<line x1="${pad}" x2="${W-pad}" y1="${ih}" y2="${ih}" stroke="#d8d4cb"/>`;
+  const nb=Math.min(h[10]/mx*(ih-4),ih-2);
+  s+=`<rect x="${X(10)-(mini?2:5)}" y="${(ih-nb).toFixed(1)}" width="${mini?4:10}" height="${nb.toFixed(1)}" fill="#d3cec4" rx="2"/>`;
+  s+=`<path d="M${X(0)},${ih} ${sm.map((v,i)=>`L${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ')} L${X(20)},${ih} Z" fill="rgba(25,25,25,.10)" stroke="#191919" stroke-width="${mini?1.4:2}" stroke-linejoin="round"/>`;
+  if(!mini)s+=`<text x="${pad}" y="${H-3}" font-size="15" fill="#6b6b6b">${esc(t('dA'))}</text><text x="${W/2}" y="${H-3}" font-size="15" fill="#6b6b6b" text-anchor="middle">${esc(t('dN'))}</text><text x="${W-pad}" y="${H-3}" font-size="15" fill="#6b6b6b" text-anchor="end">${esc(t('dB'))}</text>`;
+  return s+'</svg>';
+}
+/* fiabilidad: 3 comprobaciones (≥300 titulares, ≥10 medios con datos suficientes, diferencias entre medios no casuales) */
+function relOf(d){
+  const O=d.outlets;if(!O)return {l:0,c:[[false,t('rN')(fmt(d.n),d.n>=300)]]};
+  const cut=minN(O),no=O.list.filter(o=>o.n>=cut).length,okN=d.n>=300,okO=no>=10,okP=O.p<0.05;
+  const c=[[okN,t('rN')(fmt(d.n),okN)],[okO,t('rO')(no,cut,okO)],[okP,t('rP')(okP)]];
+  const sc=c.filter(x=>x[0]).length;
+  return {l:!d.trust?0:sc===3?2:sc>=1?1:0,c};
+}
+function relHTML(d){
+  const r=relOf(d),cols=['#e08a2c','#c99700','#2e8b57'];
+  return `<div class="rel"><span class="k">${t('rTitle')}</span><span class="seg">${[0,1,2].map(k=>`<i style="${k<=r.l?'background:'+cols[r.l]:''}"></i>`).join('')}</span><span class="lv" style="color:${cols[r.l]}">${t('rLv')[r.l]}</span><ul>${r.c.map(x=>`<li class="${x[0]?'':'no'}">${x[0]?'✓':'✗'} ${esc(x[1])}</li>`).join('')}${d.trust?'':`<li class="no">✗ ${esc(t('rT'))}</li>`}</ul></div>`;
+}
 function renderList(){
   document.getElementById('debList').innerHTML=R.debates.map((d,i)=>{const v=verdict(d);const no=d.outlets?.list?.length||0;
-    return `<button class="deb" role="tab" data-i="${i}" aria-selected="${i===state.deb}"><span class="t">${esc(L(d))}</span><span class="m">${fmt(d.n)} ${t('nHead')} · ${no} ${t('nOut')}</span>${mini(t('ideo'),d.ideo,'var(--ink)')}${mini(t('aff'),d.aff,'var(--hot)')}<span class="tag ${v.cls}">${esc(v.tag)}</span></button>`}).join('');
+    return `<button class="deb" role="tab" data-i="${i}" aria-selected="${i===state.deb}"><span class="t">${esc(L(d))}</span><span class="m">${fmt(d.n)} ${t('nHead')} · ${no} ${t('nOut')}</span><span class="spark">${distSVG(d.hist,150,28,true)}</span><span class="mini2"><span>${t('cAtt')}</span><b>${pct(d.hostile_share)}</b></span><span class="tag ${v.cls}">${esc(v.tag)}</span></button>`}).join('');
 }
 function renderDetail(){
   const d=R.debates[state.deb],v=verdict(d),O=d.outlets;
@@ -377,15 +440,19 @@ function renderDetail(){
       `<div class="cg-foot"><span>${t('cgFoot')(c.n)}</span><button type="button" id="cgBtn" aria-expanded="${state.cg?'true':'false'}">${state.cg?t('cgHide'):t('cgShow')}</button></div>`+
       (state.cg?`<div class="cg-ev">${c.shared?`<h4>${t('cgShared')}</h4>${evl(c.shared.ev)}`:''}<h4>${t('cgDiffer')}</h4>${evl(c.differ.ev)}</div>`:'')+`</div>`;
   }
-  const meter=(lab,val,help,col)=>`<div class="meter"><div class="lab">${lab}<span>${dec(val)}</span></div><div class="mbar"><span style="width:${val==null?0:Math.min(100,val/MAXM*100)}%;background:${col}"></span></div><p>${help}</p></div>`;
-  h+=`<div class="meters">${meter(t('ideoL'),d.ideo,t('ideoH'),'var(--ink)')}${meter(t('affL'),d.aff,t('affH'),'var(--hot)')}</div>`;
+  if(d.hist){
+    const hh=d.hist,tt=hh.reduce((a,b)=>a+b,0)||1,na=hh.slice(0,10).reduce((a,b)=>a+b,0),nb=hh.slice(11).reduce((a,b)=>a+b,0);
+    const ranked=R.debates.filter(x=>x.ideo!=null).sort((a,b)=>b.ideo-a.ideo),rank=ranked.indexOf(d)+1,nd=ranked.length;
+    const sh=t('dShares')(pct(na/tt),pct(hh[10]/tt),pct(nb/tt));
+    h+=`<div class="dist"><div><h4>${t('dTitle')}</h4><p class="cap">${t('dCap')}</p>${distSVG(hh,520,150,false)}<div class="shares">${sh.map(x=>`<span>${x}</span>`).join('')}</div>${rank?`<p class="cap" style="margin-top:6px">${rank===1?t('rank1')(nd):t('rankN')(rank,nd)}</p>`:''}</div>`+
+      `<div class="att"><h4>${t('aTitle')}</h4><div class="num">${pct(d.hostile_share)} <small>${t('aUnit')}</small></div><div class="hbar"><span style="width:${((d.hostile_share||0)*100).toFixed(1)}%"></span></div><div class="hscale"><span>${pct(0)}</span><span>${pct(1)}</span></div><p class="cap" style="margin-top:6px">${t('aCap')}</p></div></div>`;
+  }
   if(O&&O.list.length){
-    h+=O.p<0.05?`<p class="signal">${t('sig')(pct(O.eta2),pct(O.eta2_null),pval(O.p))}</p>`:`<p class="signal weak">${t('weak')(dec(O.p))}</p>`;
-    const cut=minN(O);const rows=O.list.filter(o=>state.all||o.n>=cut).sort((x,y)=>x.m-y.m);
+    h+=relHTML(d);
+    const cut=minN(O);const rows=O.list.filter(o=>o.n>=cut).sort((x,y)=>x.m-y.m);
     const X=val=>((val+1)/2*100).toFixed(2)+'%';
     const maxhs=Math.max(0.25,...O.list.map(o=>o.hs));
-    const showCut=rows.length<O.list.length?cut:0;
-    h+=`<div class="chart-head"><h3 style="margin:0">${t('where')}</h3>${rows.length<O.list.length||state.all?`<label class="toggle"><input type="checkbox" id="allOut" ${state.all?'checked':''}> ${t('showAll')(O.list.length,state.all?0:showCut)}</label>`:''}</div>`;
+    h+=`<div class="chart-head"><h3 style="margin:0">${t('where')}</h3></div><p class="chart-sub">${t('chartSub')(rows.length,cut)}</p>`;
     h+=`<div class="axis-row"><div>${t('outletCol')}</div><div class="ends"><span>${t('sideAs')}</span><span>${t('centre')}</span><span>${t('sideBs')}</span></div><div class="r">${t('hostile')}</div></div>`;
     h+=`<div class="rows" id="rows">`+rows.map(o=>`<div class="row" data-d="${esc(o.d)}"><div class="o">${esc(o.o)}<small>${o.n}</small></div><div class="trk"><span class="mid"></span><span class="ci" style="left:${X(o.lo)};width:${((o.hi-o.lo)/2*100).toFixed(2)}%"></span><span class="dot" style="left:${X(o.m)}"></span></div><div class="v"><i style="width:${Math.round(o.hs/maxhs*22)}px"></i>${pct(o.hs)}</div></div>`).join('')+`</div>`;
     h+=`<p class="note">${t('chartNote')}</p>`;
@@ -394,7 +461,6 @@ function renderDetail(){
   const list=arr=>arr&&arr.length?`<ul>${arr.map(e=>`<li><a href="${esc(e.u)}" target="_blank" rel="noopener">${esc(e.t)}</a><small>${esc(e.o)}</small></li>`).join('')}</ul>`:`<p class="note">${t('exNone')}</p>`;
   h+=`<div class="ex"><div><h3>${t('exA')}</h3>${list(ex.a)}</div><div><h3>${t('exB')}</h3>${list(ex.b)}</div><div><h3>${t('exHot')}</h3>${list(ex.hot)}</div></div><p class="note">${t('exNote')}</p>`;
   const el=document.getElementById('detail');el.innerHTML=h;
-  el.querySelector('#allOut')?.addEventListener('change',e=>{state.all=e.target.checked;renderDetail()});
   el.querySelector('#cgBtn')?.addEventListener('click',()=>{state.cg=!state.cg;renderDetail()});
   const byD=Object.fromEntries((O?.list||[]).map(o=>[o.d,o]));
   const rowsEl=el.querySelector('#rows');
@@ -406,7 +472,7 @@ function renderDetail(){
     rowsEl.addEventListener('mouseleave',()=>{hideTip();rowsEl.querySelectorAll('.row.on').forEach(x=>x.classList.remove('on'))});
   }
 }
-document.getElementById('debList').addEventListener('click',e=>{const b=e.target.closest('.deb');if(!b)return;state.deb=+b.dataset.i;state.all=false;state.cg=false;renderList();renderDetail();
+document.getElementById('debList').addEventListener('click',e=>{const b=e.target.closest('.deb');if(!b)return;state.deb=+b.dataset.i;state.cg=false;renderList();renderDetail();
   if(innerWidth<=860)document.getElementById('detail').scrollIntoView({behavior:'smooth',block:'start'})});
 document.getElementById('debList').addEventListener('keydown',e=>{if(!['ArrowDown','ArrowUp','ArrowLeft','ArrowRight'].includes(e.key))return;e.preventDefault();const n=R.debates.length;state.deb=(state.deb+((e.key==='ArrowDown'||e.key==='ArrowRight')?1:n-1))%n;renderList();renderDetail();document.querySelector(`.deb[data-i="${state.deb}"]`).focus()});
 
@@ -426,7 +492,6 @@ function renderPicker(){
   const s=document.getElementById('addOutlet');
   s.innerHTML=`<option value="">${t('add')}</option>`+Object.keys(series).sort((a,b)=>series[a].name.localeCompare(series[b].name)).map(d=>`<option value="${esc(d)}" ${sel.includes(d)?'disabled':''}>${esc(series[d].name)}</option>`).join('');
   document.getElementById('chips').innerHTML=sel.map((d,i)=>`<button class="chip" type="button" aria-pressed="true" data-d="${esc(d)}" title="${t('remove')}"><span class="sw" style="background:${COLORS[i]};border-color:${COLORS[i]}"></span>${esc(series[d].name)} <span aria-hidden="true" style="color:var(--mute)">×</span></button>`).join('')+(sel.length?'':`<span class="note">${t('pick')}</span>`);
-  document.getElementById('trackBanner').innerHTML=days.length<2?`<div class="banner">${t('banner')(esc(dlabel(days[0].id,true)))}</div>`:'';
 }
 function lineChart(el,key,label){
   const W=Math.max(300,el.clientWidth||460),H=220,m={l:42,r:96,t:12,b:28},ymax=1;
