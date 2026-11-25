@@ -1,0 +1,582 @@
+{
+ "_about": "Small sample of one PolarMap run (Spain, 24-hour window to 24 Nov 2026), trimmed for reading. Full data: web/data.json and data/snapshot_ES_20261124.json. Field guide: examples/README.md.",
+ "run": {
+  "date": "2026-11-24",
+  "country": "ES",
+  "headlines_read": 5931,
+  "share_in_no_debate": 0.759,
+  "api_cost_usd": 2.34
+ },
+ "debates": [
+  {
+   "label_es": "Continuidad o cambio de Gobierno",
+   "label_en": "Keep or change the government",
+   "side_a": {
+    "es": "El Gobierno actual debe continuar.",
+    "en": "The current government should stay."
+   },
+   "side_b": {
+    "es": "Hace falta un cambio de Gobierno.",
+    "en": "Spain needs a change of government."
+   },
+   "headlines_scored": 909,
+   "enough_data": true,
+   "ideological_polarization": 0.414,
+   "affective_polarization": 0.317,
+   "hostile_share": 0.317,
+   "outlet_effect": {
+    "outlet_explains_share_of_stance": 0.23,
+    "expected_by_chance": 0.068,
+    "p_value": 0.0003
+   },
+   "outlets_sample": [
+    {
+     "outlet": "elDiario.es",
+     "headlines": 40,
+     "mean_stance": -0.26,
+     "ci90": [
+      -0.372,
+      -0.148
+     ],
+     "hostile_share": 0.325
+    },
+    {
+     "outlet": "El País",
+     "headlines": 33,
+     "mean_stance": -0.227,
+     "ci90": [
+      -0.339,
+      -0.112
+     ],
+     "hostile_share": 0.273
+    },
+    {
+     "outlet": "Europa Press",
+     "headlines": 73,
+     "mean_stance": 0.045,
+     "ci90": [
+      -0.062,
+      0.144
+     ],
+     "hostile_share": 0.329
+    },
+    {
+     "outlet": "El Confidencial",
+     "headlines": 36,
+     "mean_stance": 0.103,
+     "ci90": [
+      -0.025,
+      0.231
+     ],
+     "hostile_share": 0.25
+    },
+    {
+     "outlet": "El Mundo",
+     "headlines": 41,
+     "mean_stance": 0.215,
+     "ci90": [
+      0.11,
+      0.32
+     ],
+     "hostile_share": 0.22
+    },
+    {
+     "outlet": "La Razón",
+     "headlines": 53,
+     "mean_stance": 0.323,
+     "ci90": [
+      0.219,
+      0.428
+     ],
+     "hostile_share": 0.377
+    },
+    {
+     "outlet": "ABC",
+     "headlines": 75,
+     "mean_stance": 0.356,
+     "ci90": [
+      0.269,
+      0.443
+     ],
+     "hostile_share": 0.373
+    },
+    {
+     "outlet": "Libertad Digital",
+     "headlines": 41,
+     "mean_stance": 0.42,
+     "ci90": [
+      0.317,
+      0.517
+     ],
+     "hostile_share": 0.585
+    }
+   ],
+   "example_headlines": {
+    "side_a": [
+     {
+      "t": "Mentiras, interrogantes, jugadas maestras",
+      "o": "elDiario.es",
+      "u": "https://www.eldiario.es/opinion/zona-critica/mentiras-interrogantes-jugadas-maestras_129_13686518.html"
+     }
+    ],
+    "side_b": [
+     {
+      "t": "La prioridad nacional es expulsar del poder al psicópata Sánchez",
+      "o": "ESdiario",
+      "u": "https://www.esdiario.com/opinion/261124/203776/prioridad-nacional-expulsar-psicopata-sanchez.html"
+     }
+    ]
+   }
+  },
+  {
+   "label_es": "Vivienda",
+   "label_en": "Housing",
+   "side_a": {
+    "es": "El Estado debe intervenir en el mercado: limitar alquileres, frenar desahucios y ampliar la vivienda pública.",
+    "en": "The state must intervene: cap rents, stop evictions, expand public housing."
+   },
+   "side_b": {
+    "es": "Hay que aumentar la oferta, facilitar la construcción y dar seguridad jurídica a los propietarios.",
+    "en": "Increase supply, make building easier and give owners legal certainty."
+   },
+   "headlines_scored": 156,
+   "enough_data": true,
+   "ideological_polarization": 0.28,
+   "affective_polarization": 0.036,
+   "hostile_share": 0.103,
+   "outlet_effect": {
+    "outlet_explains_share_of_stance": 0.151,
+    "expected_by_chance": 0.182,
+    "p_value": 0.7098
+   },
+   "outlets_sample": [
+    {
+     "outlet": "elDiario.es",
+     "headlines": 6,
+     "mean_stance": -0.583,
+     "ci90": [
+      -0.783,
+      -0.35
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "Diario Vasco",
+     "headlines": 6,
+     "mean_stance": -0.383,
+     "ci90": [
+      -0.533,
+      -0.117
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "Europa Press",
+     "headlines": 10,
+     "mean_stance": -0.255,
+     "ci90": [
+      -0.565,
+      0.115
+     ],
+     "hostile_share": 0.2
+    },
+    {
+     "outlet": "El Confidencial",
+     "headlines": 11,
+     "mean_stance": -0.036,
+     "ci90": [
+      -0.318,
+      0.264
+     ],
+     "hostile_share": 0.091
+    },
+    {
+     "outlet": "La Razón",
+     "headlines": 12,
+     "mean_stance": 0.008,
+     "ci90": [
+      -0.242,
+      0.275
+     ],
+     "hostile_share": 0.167
+    },
+    {
+     "outlet": "Ideal",
+     "headlines": 6,
+     "mean_stance": 0.058,
+     "ci90": [
+      -0.383,
+      0.475
+     ],
+     "hostile_share": 0.167
+    },
+    {
+     "outlet": "La Vanguardia",
+     "headlines": 6,
+     "mean_stance": 0.167,
+     "ci90": [
+      -0.2,
+      0.517
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "El País",
+     "headlines": 6,
+     "mean_stance": 0.25,
+     "ci90": [
+      -0.033,
+      0.5
+     ],
+     "hostile_share": 0.167
+    }
+   ],
+   "example_headlines": {
+    "side_a": [
+     {
+      "t": "Bustinduy pide el voto de los trabajadores de Bizkaia por la vivienda frente a \"los buitres que quieren forrarse\"",
+      "o": "Europa Press",
+      "u": "https://www.europapress.es/euskadi/noticia-bustinduy-pide-voto-trabajadores-bizkaia-vivienda-frente-buitres-quieren-forrarse-20261123144001.html"
+     }
+    ],
+    "side_b": [
+     {
+      "t": "El PP promete acabar con la burocracia del urbanismo: externalizará servicios para tener \"licencia de obras en tres meses\"",
+      "o": "El Mundo",
+      "u": "https://www.elmundo.es/elecciones/elecciones-generales/2026/11/24/6b047b7ce85ecec71c8b4586.html"
+     }
+    ]
+   }
+  },
+  {
+   "label_es": "Política migratoria",
+   "label_en": "Migration policy",
+   "side_a": {
+    "es": "Hay que reforzar el control de fronteras, las devoluciones y la cooperación con los países de origen para frenar la llegada irregular.",
+    "en": "Tighten border control, returns and cooperation with origin countries to stop irregular arrivals."
+   },
+   "side_b": {
+    "es": "Hay que priorizar la acogida, los derechos de los migrantes y las vías legales de entrada y regularización.",
+    "en": "Prioritise reception, migrants' rights and legal routes and regularisation."
+   },
+   "headlines_scored": 115,
+   "enough_data": true,
+   "ideological_polarization": 0.254,
+   "affective_polarization": 0.144,
+   "hostile_share": 0.096,
+   "outlet_effect": {
+    "outlet_explains_share_of_stance": 0.431,
+    "expected_by_chance": 0.179,
+    "p_value": 0.0007
+   },
+   "outlets_sample": [
+    {
+     "outlet": "Libertad Digital",
+     "headlines": 10,
+     "mean_stance": -0.36,
+     "ci90": [
+      -0.55,
+      -0.13
+     ],
+     "hostile_share": 0.2
+    },
+    {
+     "outlet": "Canarias7",
+     "headlines": 4,
+     "mean_stance": -0.1,
+     "ci90": [
+      -0.4,
+      0.2
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "ABC",
+     "headlines": 7,
+     "mean_stance": -0.029,
+     "ci90": [
+      -0.286,
+      0.229
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "La Razón",
+     "headlines": 12,
+     "mean_stance": -0.025,
+     "ci90": [
+      -0.217,
+      0.175
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "Europa Press",
+     "headlines": 5,
+     "mean_stance": 0.12,
+     "ci90": [
+      -0.12,
+      0.36
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "El Español",
+     "headlines": 5,
+     "mean_stance": 0.28,
+     "ci90": [
+      -0.1,
+      0.64
+     ],
+     "hostile_share": 0.2
+    },
+    {
+     "outlet": "El País",
+     "headlines": 6,
+     "mean_stance": 0.5,
+     "ci90": [
+      0.133,
+      0.767
+     ],
+     "hostile_share": 0.167
+    },
+    {
+     "outlet": "elDiario.es",
+     "headlines": 7,
+     "mean_stance": 0.586,
+     "ci90": [
+      0.443,
+      0.714
+     ],
+     "hostile_share": 0.143
+    }
+   ],
+   "example_headlines": {
+    "side_a": [
+     {
+      "t": "“En España no cabe toda África; nos tenemos que dedicar a los nuestros”",
+      "o": "Andalucía Información",
+      "u": "https://www.andaluciainformacion.es/provincia-de-cadiz/espana-toda-africa-nos-tenemos-que-dedicar-nuestros/202611241301103546902.html"
+     }
+    ],
+    "side_b": [
+     {
+      "t": "Trump’s Great Persecution: Carlos Joaquín and Balin, life in the eye of the deportation storm",
+      "o": "El País",
+      "u": "https://english.elpais.com/usa/2026-11-23/trumps-great-persecution-carlos-joaquin-and-balin-life-in-the-eye-of-the-deportation-storm.html"
+     }
+    ]
+   }
+  },
+  {
+   "label_es": "Justicia e independencia judicial",
+   "label_en": "Justice and judicial independence",
+   "side_a": {
+    "es": "Los jueces actúan con independencia y las críticas políticas a sus decisiones son una presión sobre la justicia.",
+    "en": "Judges act independently; political attacks on their rulings are pressure on the courts."
+   },
+   "side_b": {
+    "es": "Parte de la judicatura actúa con motivación política y es legítimo denunciarlo y reformar su gobierno.",
+    "en": "Part of the judiciary is politically motivated; it is legitimate to say so and reform it."
+   },
+   "headlines_scored": 93,
+   "enough_data": true,
+   "ideological_polarization": 0.222,
+   "affective_polarization": 0.303,
+   "hostile_share": 0.28,
+   "outlet_effect": {
+    "outlet_explains_share_of_stance": 0.173,
+    "expected_by_chance": 0.2,
+    "p_value": 0.6258
+   },
+   "outlets_sample": [
+    {
+     "outlet": "La Voz de Galicia",
+     "headlines": 4,
+     "mean_stance": 0.0,
+     "ci90": [
+      -0.225,
+      0.3
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "Público",
+     "headlines": 6,
+     "mean_stance": 0.017,
+     "ci90": [
+      -0.283,
+      0.333
+     ],
+     "hostile_share": 0.167
+    },
+    {
+     "outlet": "El País",
+     "headlines": 5,
+     "mean_stance": 0.04,
+     "ci90": [
+      -0.22,
+      0.3
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "ABC",
+     "headlines": 7,
+     "mean_stance": 0.114,
+     "ci90": [
+      -0.2,
+      0.443
+     ],
+     "hostile_share": 0.286
+    },
+    {
+     "outlet": "La Razón",
+     "headlines": 6,
+     "mean_stance": 0.233,
+     "ci90": [
+      -0.0,
+      0.433
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "Libertad Digital",
+     "headlines": 8,
+     "mean_stance": 0.312,
+     "ci90": [
+      -0.025,
+      0.625
+     ],
+     "hostile_share": 0.5
+    },
+    {
+     "outlet": "elDiario.es",
+     "headlines": 6,
+     "mean_stance": 0.367,
+     "ci90": [
+      0.05,
+      0.617
+     ],
+     "hostile_share": 0.167
+    },
+    {
+     "outlet": "El Plural",
+     "headlines": 5,
+     "mean_stance": 0.58,
+     "ci90": [
+      0.48,
+      0.7
+     ],
+     "hostile_share": 0.4
+    }
+   ],
+   "example_headlines": {
+    "side_a": [
+     {
+      "t": "La TVE de Sánchez señalada por la Junta Electoral con un expediente a Silvia Intxaurrondo",
+      "o": "ESdiario",
+      "u": "https://www.esdiario.com/opinion/261124/203782/tve-sanchez-senalada-junta-electoral-expediente-silvia-intxaurrondo.html"
+     }
+    ],
+    "side_b": [
+     {
+      "t": "Bolaños coloca a jueces y fiscales afines en la Comisión de Justicia que asesora sobre las leyes días antes del 29-N",
+      "o": "Libertad Digital",
+      "u": "https://www.libertaddigital.com/espana/2026-11-24/bolanos-coloca-a-jueces-y-fiscales-afines-en-la-comision-de-justicia-que-asesora-sobre-las-leyes-dias-antes-del-29-n-7496042/"
+     }
+    ]
+   }
+  },
+  {
+   "label_es": "Amnistía y Cataluña",
+   "label_en": "Amnesty and Catalonia",
+   "side_a": {
+    "es": "La amnistía y el diálogo con el independentismo son necesarios para la convivencia.",
+    "en": "The amnesty and dialogue with the independence movement are needed for coexistence."
+   },
+   "side_b": {
+    "es": "La amnistía es un privilegio que vulnera la igualdad ante la ley y premia a quien la incumplió.",
+    "en": "The amnesty is a privilege that breaks equality before the law and rewards lawbreakers."
+   },
+   "headlines_scored": 50,
+   "enough_data": false,
+   "ideological_polarization": 0.337,
+   "affective_polarization": 0.311,
+   "hostile_share": 0.32,
+   "outlet_effect": {
+    "outlet_explains_share_of_stance": 0.638,
+    "expected_by_chance": 0.179,
+    "p_value": 0.0017
+   },
+   "outlets_sample": [
+    {
+     "outlet": "Ara",
+     "headlines": 4,
+     "mean_stance": -0.8,
+     "ci90": [
+      -1.0,
+      -0.625
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "VilaWeb",
+     "headlines": 6,
+     "mean_stance": -0.2,
+     "ci90": [
+      -0.483,
+      0.083
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "Diari Públic",
+     "headlines": 4,
+     "mean_stance": -0.125,
+     "ci90": [
+      -0.5,
+      0.25
+     ],
+     "hostile_share": 0.25
+    },
+    {
+     "outlet": "La Vanguardia",
+     "headlines": 4,
+     "mean_stance": 0.025,
+     "ci90": [
+      -0.425,
+      0.5
+     ],
+     "hostile_share": 0.0
+    },
+    {
+     "outlet": "Libertad Digital",
+     "headlines": 5,
+     "mean_stance": 0.72,
+     "ci90": [
+      0.56,
+      0.86
+     ],
+     "hostile_share": 0.8
+    }
+   ],
+   "example_headlines": {
+    "side_a": [
+     {
+      "t": "Amnistia, punt i seguit",
+      "o": "Ara",
+      "u": "https://www.ara.cat/opinio/amnistia-punt-seguit_129_5901901.html"
+     }
+    ],
+    "side_b": [
+     {
+      "t": "La ley de amnistía y Pablo Llarena, un héroe solitario",
+      "o": "Libertad Digital",
+      "u": "https://www.libertaddigital.com/espana/politica/2026-11-23/pablo-planas-la-ley-de-amnistia-y-pablo-llarena-un-heroe-solitario-7496415/"
+     }
+    ]
+   }
+  }
+ ]
+}

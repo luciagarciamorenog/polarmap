@@ -1,6 +1,6 @@
 #!/bin/bash
 # PolarMap · medición diaria de la prensa (sin redes sociales).
-# Unos 40-60 minutos y alrededor de 1 $. Al terminar regenera la web.
+# Unos 40-60 minutos y alrededor de 2,3 $. Al terminar regenera la web.
 #   ./diario.sh
 set -euo pipefail
 cd "$(dirname "$0")"

@@ -1,181 +1,144 @@
 # PolarMap
 
-**An AI pipeline that reads a country's daily news, discovers what is being argued about, and measures how divided the press is on each debate.**
+**An LLM pipeline that reads a day of Spanish news, finds what the press is arguing about, and measures where each outlet stands and how hostile the coverage is.**
 
-Every day the Spanish press publishes a few thousand headlines. PolarMap reads all of them, finds the debates of the day without a predefined topic list, works out the two sides of each debate, and places every headline and every outlet between those two sides. From there it measures two kinds of polarization: *ideological* (are outlets split into camps?) and *affective* (do they use hostile language against the other camp?).
-
-> Status: working prototype on Spain. The pipeline runs end to end; the evaluation below says which parts are reliable today and which are not.
-> Portfolio write-up: [luciagarciamorenog.netlify.app/polarmap](https://luciagarciamorenog.netlify.app/polarmap)
-
-![PolarMap pipeline](docs/img/pipeline_en.png)
+**Live demo → [polarmap.netlify.app](https://polarmap.netlify.app)** · Portfolio: [luciagarciamorenog.netlify.app](https://luciagarciamorenog.netlify.app)
 
 ---
 
-## The headline result
+## Why it exists
 
-On 25 September 2026 the system found four debates in the Spanish press: housing and evictions, migration, judicial independence, and AI regulation. For housing it defined the two sides as *"the state must step in"* (anti-eviction decrees, limits on investment funds) versus *"more supply and respect for contracts"*.
+Polarization worries me, and I believe that informing people about it is one of the first steps to changing the trend. You can't inform people about something you can't see, so PolarMap makes it measurable. Every day it shows which debates divide the Spanish press, which side each outlet leans to, and whether coverage stays a disagreement or turns into hostility toward the other side.
 
-The chart shows where each outlet's housing headlines sit on that axis:
+## What it found (latest run: 24 Nov 2026)
 
-![Outlet positions on the housing debate](docs/img/outlets_housing_en.png)
+In 24 hours PolarMap read **5,931 headlines** from Spanish outlets. The model found **5 debates**, and **1,323 headlines** (22%) were scored inside one of them. Three quarters of the day's news belongs to no debate at all, because most news is not a fight.
 
-- **The outlet a headline comes from explains about a third of its stance** (η² = 0.33, versus ≈ 0.1 when stances are shuffled at random; permutation p < 0.01).
-- **The order matches what any reader of the Spanish press would expect**, from Público and elDiario.es on one side to Libertad Digital on the other, even though the model was never told anything about the outlets.
-- The same story produced headlines on both sides. One side ran *"Las cinco medidas que propone el Sindicato de Inquilinas en su 'decreto Maricarmen'"*; the other ran *"Los falsos amigos de Maricarmen"*. This is exactly the kind of split PolarMap is built to detect.
-
-### Does it replicate? Two months later, a different debate
-
-On 20 November 2026 the system ran again and found a different main debate: the televised face-to-face between Pedro Sánchez and Alberto Núñez Feijóo held the night before, ahead of the 29 November general election (243 headlines, 24 outlets). The model built that axis from scratch, with no memory of September. Outlets were again clearly positioned (outlet explains 27 % of stance variance, permutation p < 0.001).
-
-Then the real test: do outlets sit in the same place on two unrelated debates, two months apart?
-
-![Outlet positions on two days and two debates](docs/img/stability_en.png)
-
-**Yes: Spearman ρ = 0.89 across the 12 outlets present on both days (p < 0.001).** Each debate's axis is generated independently, so this consistency cannot come from a shared prompt or a fixed left–right label. It is the strongest evidence so far that per-outlet stance measures something real.
-
-On thinner debates (fewer than ~80 headlines) the outlet signal is still not distinguishable from chance on a single day. That is the next thing to fix (see [Roadmap](#roadmap)).
-
----
-
-## Is the press split into camps? Measuring outlets, not headlines
-
-A single headline mostly informs: even partisan outlets publish wire copy, quotes from both sides and plain data. On both runs the outlet explains only about 30 % of a headline's stance; the rest varies within each outlet. So the per-headline index answers *"how much does the press editorialise?"*, not *"are outlets split into camps?"*. `analysis/ecosystem.py` answers the second question directly (no API calls):
-
-- **One outlet, one vote.** Every outlet weighs the same, however many headlines it publishes.
-- **Camps of outlets.** The best two-way split of outlet positions, the distance between the two camps on the −1…+1 scale, and how much distance chance alone would produce (stances shuffled across the same outlets). Only the excess over chance is editorial separation.
-- **Agenda polarization.** Whether outlets choose to cover different debates (Jensen–Shannon distance between their agendas vs. chance).
-- **Opinion vs. news**, from the URL, and whether the most extreme outlets are also the most hostile.
-- **A fixed government ↔ opposition axis** (`bloc`, codebook v3), the same for every debate and day. Issue axes deliberately ignore which party a headline hurts; in Spain much of the split is partisan, and without this axis it was invisible.
-
-| Run | Debate | Per headline | One outlet, one vote | Outlet explains | Distance between outlet camps (chance) |
+| Debate (defined by the model) | Headlines | Outlets | Ideological | Affective | Does the outlet predict the stance? |
 |---|---|---|---|---|---|
-| 20 Nov | Election debate (24 outlets) | 0.31 | 0.36 | 27 % (chance 10 %) | **0.58 (0.38), p = 0.04** |
-| 25 Sep | Housing (15 outlets) | 0.23 | 0.24 | 33 % (chance 12 %) | 0.52 (0.41), p = 0.11 |
-| 25 Sep | Judiciary (10 outlets) | 0.48 | 0.44 | 9 % (chance 19 %) | 0.28 (0.42), n.s. |
+| Keep or change the government | 909 | 62 | 0.41 | 0.32 | **Yes.** Outlet explains 23% (7% by chance, p < 0.001) |
+| Housing | 156 | 21 | 0.28 | 0.04 | Not beyond chance today (p = 0.71) |
+| Migration policy | 115 | 15 | 0.25 | 0.14 | **Yes.** 43% (18% by chance, p < 0.001) |
+| Justice and judicial independence | 93 | 14 | 0.22 | 0.30 | Not beyond chance today (p = 0.63) |
+| Amnesty and Catalonia | 50 | 5 | 0.34 | 0.31 | Indicative only (5 outlets) |
 
-- On the election debate the outlets form two camps clearly beyond chance, and the outlets at the extremes are the most hostile (ρ = 0.55 between extremity and hostility).
-- On the judiciary axis ("judges are legitimate" vs. "lawfare"), Público and Libertad Digital land on the same side: the issue axis cuts across the partisan divide. This is the case the government ↔ opposition axis is for.
-- Agendas differ beyond chance on both days (Jensen–Shannon 0.33 vs. 0.26 and 0.29 vs. 0.22): outlets disagree as much in what they cover as in how.
-- Grouping by BIC still finds one cluster of outlets, not two: with one day of data, outlets look like a spectrum rather than two blocs.
+How to read the table:
 
-```bash
-python3 validate/ecosystem_report.py data/internal/<run>_headlines.jsonl
+- **The government debate is both split and hostile.** Five days before the 29 November general election, outlets form camps well beyond chance (distance between outlet camps 0.42 vs 0.31 by chance, p = 0.015). About a third of their headlines use attacking language.
+- **Housing is disagreement without hostility** (affective 0.04): the press argues about policy, not about the other side.
+- **Outlets also differ in *what* they cover.** Agendas differ beyond chance (Jensen–Shannon distance 0.32 vs 0.27, p = 0.001). For example, Catalan outlets covered the amnesty 6–8× more than the average outlet.
+
+The [live demo](https://polarmap.netlify.app) shows every debate, the position of every outlet with its uncertainty, example headlines from each side, and each outlet's daily evolution.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A["GDELT news files<br/>(every 15 min, open data)"] --> B["Python<br/>keep Spanish outlets,<br/>read real headline + lead"]
+    B --> C["Claude Sonnet 4.6<br/>find the day's debates<br/>and their two sides"]
+    C --> D["Claude Haiku 4.5<br/>assign each headline<br/>to a debate or none"]
+    D --> E["Claude Sonnet 4.6<br/>score stance + hostility<br/>(written codebook)"]
+    E --> F["Python<br/>polarization indices,<br/>outlet positions, tests"]
+    F --> G["Static web<br/>(no API calls in the browser)"]
 ```
-
-## Social layer (Bluesky and YouTube)
-
-`pipeline_social.py` runs after a press run and reuses its debates, poles and 24-hour window, so press and social media are measured with the same ruler:
-
-- **Official political communication:** press releases from the Government (La Moncloa) and the parties, read from their RSS feeds (found automatically on each site). Government and parties are treated as senders, like outlets: how hostile their language is, how often they frame "us vs. them", where they stand on each debate and which debates they push compared with the press. Government and opposition are measured together so the layer is not aimed at one side. Source for La Moncloa: "Origen de los datos: sitio web de lamoncloa.gob.es. Ministerio de la Presidencia."
-- **Bluesky accounts:** what parties, politicians, journalists, outlets and government institutions post (public API, no key).
-- **Bluesky replies:** how the public answers them. Authors are pseudonymised (salted hash) and only used in aggregate.
-- **YouTube comments** on videos from outlets and parties (free YouTube Data API key).
-
-The report compares, per debate and layer: the polarization index, mean |stance|, share at the centre, hostility, "us vs. them" framing and the government ↔ opposition axis, plus how each layer leans. Bluesky's Spanish user base leans left, so the report also shows which groups of listed accounts actually posted; a layer missing one side is reported as such, not compared as if it were balanced.
-
-```bash
-python3 pipeline_social.py --check                         # verify the account and channel list (free)
-python3 pipeline_social.py --press-run snapshot_ES_<date>  # ~1.5-2.5 $ per run
-./semanal.sh                                               # weekly: press + social
-```
-
-## How it works
 
 | Step | What happens | Where |
 |---|---|---|
-| 1. Collect | Downloads [GDELT](https://www.gdeltproject.org/) Global Knowledge Graph files (main + translated series, every 15 min) and keeps articles from the country's media domains | `ingest/gkg_files.py` |
-| 2. Clean | Drops articles without a headline, soft sections (sport, horoscopes…) and syndicated copies; reads the real headline and lead of each article; **skips publishers that reserve text-and-data-mining rights** | `analysis/discover.py`, `ingest/leads.py` |
-| 3. Discover debates | Claude Sonnet reads all the day's headlines and proposes the debates, each with two poles | `analysis/discover.py` |
-| 4. Assign | Claude Haiku assigns every headline to one debate or to none (Batch API, half price) | `analysis/discover.py` |
-| 5. Score | Claude Sonnet scores each on-debate headline following a written [codebook](validate/CODEBOOK.md): stance including framing (−1 … +1), hostility of the language (0–2), conflict, "us vs them" | `analysis/discover.py` |
-| 6. Measure | Polarization indices per debate (Esteban-Ray, affective index, composite) and outlet positions with bootstrap intervals; a debate is only shown if it has enough headlines, outlets and source diversity | `analysis/metrics.py`, `analysis/outlets.py`, `analysis/contract.py` |
+| 1. Collect | Downloads [GDELT](https://www.gdeltproject.org/) Global Knowledge Graph files (main + translated series) for 24 hours and keeps articles from Spanish media domains | `ingest/gkg_files.py` |
+| 2. Clean | Drops soft sections (sport, horoscopes…) and syndicated copies, reads each article's real headline and lead, and **skips publishers that reserve text-and-data-mining rights** | `ingest/leads.py`, `analysis/discover.py` |
+| 3. Discover debates | Claude reads the day's headlines and proposes the debates, each with two opposing positions. A fixed catalogue (`data/temas.json`) keeps recurring debates under the same name and sides, so days can be compared | `analysis/discover.py` |
+| 4. Assign | Claude Haiku assigns every headline to one debate or to none | `analysis/discover.py` |
+| 5. Score | Claude Sonnet scores each headline in a debate by following a written [codebook](validate/CODEBOOK.md): stance (−1 … +1), hostility, "us vs them". It writes a short reason before each score | `analysis/discover.py` |
+| 6. Measure | Polarization indices per debate, outlet positions with bootstrap intervals and permutation tests, plus a media-ecosystem report (camps of outlets, agendas, government ↔ opposition axis) | `analysis/metrics.py`, `analysis/outlets.py`, `analysis/ecosystem.py` |
+| 7. Publish | Builds a self-contained web page from the run | `web/build_data.py` |
 
-The output is a compact JSON snapshot defined by a frozen [data contract](CONTRACT.md) for a future map front end. Debate axes are stored in a registry so that the same debate keeps the same orientation across runs.
+All model calls go through the Anthropic **Batch API** (half price). Model output is parsed defensively: malformed JSON is retried and is never read as "no debate".
 
-## Design decisions
+## How polarization is defined and scored
 
-1. **Stance, not sentiment.** A headline about an earthquake is very negative and not divisive at all. Sentiment measures tone; PolarMap measures *which side* a headline takes on a defined axis.
-2. **Disagreement is not polarization.** Opinions spread evenly across a scale are diverse, not polarized. Polarization means clustering into separate camps. That is why the index is Esteban-Ray (rewards separated groups) and not variance.
-3. **Ideological ≠ affective.** Two camps that disagree politely are different from two camps that attack each other. The two are measured separately and combined with a geometric mean, so the composite drops if either is near zero.
-4. **Debates are discovered, not predefined.** The system decides what is being argued about in each country each day, instead of searching for a fixed list of topics.
-5. **Grey beats a wrong colour.** A debate only gets a number if it has ≥ 80 on-topic headlines, ≥ 8 outlets and no outlet above 40 % of the volume (Kish effective sample size and HHI concentration checks). Otherwise it is reported as insufficient data.
-6. **Validate before believing.** Every model-produced field is checked against human labels or a reference set before it is used (below).
+1. **Stance, not sentiment.** A headline about an earthquake is very negative and not divisive at all. PolarMap measures *which side* a headline takes on a defined debate, not its tone.
+2. **Disagreement is not polarization.** Opinions spread evenly across a scale show diversity, not polarization. Polarization means clustering into separate camps. That is why the ideological index is **Esteban-Ray**, which rewards separated groups, and not variance.
+3. **Ideological ≠ affective.** Two camps that disagree politely are not the same as two camps that attack each other. **Affective polarization** counts hostility concentrated at the extremes and aimed at the other side, not generic negativity.
+4. **Debates are discovered, not predefined.** The model decides what is being argued about each day. Both sides of every debate are stored (`data/internal/axes.json`), so every editorial choice the model makes can be audited.
+5. **Outlets, not single headlines.** A single headline mostly informs. Even partisan outlets publish wire copy and quotes from both sides. Positions are therefore reported per outlet, with uncertainty, and tested against chance (stances shuffled across the same outlets).
+6. **Grey beats a wrong colour.** A debate only gets a verdict if it has enough headlines, enough outlets and no outlet dominating the volume. Otherwise it is marked as limited data.
+7. **No outlet is labelled left or right.** An outlet's position comes only from what it publishes.
 
 ## Evaluation
 
-Label-based figures are from the 25 September 2026 run on Spain (1,728 headlines); the replication uses the 20 November 2026 run (2,091 headlines).
-
 | What the model does | Result | Verdict |
 |---|---|---|
-| Assign a headline to the right debate (or none) | **97 % agreement, κ = 0.95** vs 29 human-labelled headlines · **95 %, κ = 0.93** vs a 150-headline reference set | Reliable |
-| Hostility of the language | Spearman ρ = 0.62 (human) · 0.63 (reference) | Usable |
-| Stance of a *single* headline | ρ = 0.33 (human, n = 12) · 0.46 (reference, n = 68); the model puts 32–42 % of headlines at the centre vs 12–17 % for human labels | **Weak** |
-| Stance of an *outlet* (mean of its headlines) | Outlet explains 27–33 % of stance variance on the main debate of each day (p < 0.01); outlet order replicates across two debates two months apart (ρ = 0.89) | Consistent |
+| Assign a headline to the right debate (or none) | **95–97% agreement**, Cohen's κ 0.93–0.95 (vs 29 human-labelled headlines and a 150-headline reference set) | Reliable |
+| Stance of an outlet (mean of its headlines) | Outlet order replicates across two unrelated debates two months apart: **Spearman ρ = 0.89** (12 outlets, p < 0.001) | Consistent |
+| Hostility of the language | Spearman ρ ≈ 0.62 against labels | Usable |
+| Stance of a *single* headline | ρ 0.33–0.46. The model puts more headlines at the centre than humans do | Weak, which is why results are reported per outlet |
 
-The reference set was labelled by a stronger model following the same codebook, so it is not independent of the model being evaluated; the human set is small. Both limits are stated on purpose.
+The labelled sets come from an earlier run (25 Sep 2026). The 150-headline reference set was labelled by a stronger model following the same codebook, so it is not independent of the model being evaluated. The human set is small. Re-evaluating the current codebook on the daily runs is on the roadmap.
 
-**Cost.** One full run for Spain costs **$0.43–0.56** (Claude Sonnet 4.6 + Haiku 4.5 through the Batch API), i.e. **$0.25–0.27 per 1,000 headlines**. Measured from real token usage on both runs, not estimated (`data/internal/*_usage.json`).
+![Outlet positions on two unrelated debates, two months apart](docs/img/stability_en.png)
 
-**Context worth knowing:** 81 % of the day's headlines belong to no debate at all (events, services, sport, data). Most news is not a fight.
+## Cost
 
-## What did not work (yet)
+| Run | Headlines | Cost | Per 1,000 headlines |
+|---|---|---|---|
+| 24 Nov 2026 (current pipeline) | 5,931 | **$2.34** | $0.39 |
 
-- **Per-headline stance is noisy**, and it pulls ambiguous headlines towards the centre. This is why the analysis is moving from single headlines to outlets.
-- **Two methods disagree.** The main index gives Spanish debates moderate ideological polarization (0.25–0.57). A second method tested in a pilot (comparative judgements → Bradley-Terry → groups by BIC, in `validate/pilot/`) finds a single group in all four debates on the same day. Neither is conclusive yet, so no country-level polarization score is published; the outlet positions are.
-- **The bimodality test does not fit the scale.** Hartigan's dip test assumes continuous data; on a five-point stance scale it returns "significant" almost always. It is being replaced by group detection on outlet positions.
-
-## Roadmap
-
-1. Run Spain daily for a week so smaller debates also reach enough headlines per outlet (stability across days: first check passed, ρ = 0.89).
-2. ~~Compute polarization between outlets~~ Done (22 Nov): camps of outlets vs. chance, one outlet one vote, agenda, opinion, government ↔ opposition axis. Next: the same measures over a week of runs.
-3. Expand the human-labelled set to 100+ headlines, with a second annotator to measure the human ceiling.
-4. Extend to the 10 countries in the data contract and validate against [V-Dem](https://www.v-dem.net/) (`validate/ground_truth.py`).
-5. Public map, then an agent that answers questions like *"what does each side argue about housing?"* with cited headlines.
+Breakdown of the latest run: finding debates $0.07 (Sonnet), assigning headlines $0.53 (Haiku), scoring stance and hostility $1.74 (Sonnet). Scoring dominates because the model writes a short reason before each score. Earlier versions skipped that step and read half the GDELT files, and cost $0.43–0.56 per run. A daily run costs about **$70 a month**. All figures are measured from real token usage (`data/internal/*_usage.json`), not estimated.
 
 ## Run it
 
 ```bash
 pip install -r requirements.txt
-cp .env.example .env            # add your Anthropic API key
+export ANTHROPIC_API_KEY=...        # or copy .env.example to .env (git-ignored)
 
 # tests (no network, no API key)
-cd analysis && python3 test_metrics.py && python3 test_outlets.py && cd ..
+python3 analysis/test_metrics.py && python3 analysis/test_outlets.py && python3 analysis/test_discover.py
 
-# count headlines for Spain without calling the API
+# count Spain's headlines without calling the API (free)
 python3 pipeline_discover.py --countries ES --hours 24 --dry-run
 
-# full run: reads every GDELT file (about twice the headlines of the
-# earlier runs, which used --every 2); roughly 40-60 min and ~$1
-python3 pipeline_discover.py --countries ES --hours 24 --out snapshot_ES.json
+# full daily run (40-60 min, ~$2.3) and web rebuild
+./diario.sh                          # = pipeline_discover.py + web/build_data.py
 
-# outlet positions and the media-ecosystem report for a run (no API)
-python3 validate/outlet_positions.py data/internal/snapshot_ES_headlines.jsonl
-python3 validate/ecosystem_report.py data/internal/snapshot_ES_headlines.jsonl
-
-# more precise stance: every headline read 3 times and averaged (stance step x3)
-python3 pipeline_discover.py --countries ES --hours 24 --stance-passes 3 --out snapshot_ES.json
+# rebuild the web page from saved runs (no API)
+python3 web/build_data.py            # writes web/index.html
 ```
+
+To see the output without running anything, open [`examples/ES_2026-11-24.json`](examples/ES_2026-11-24.json) (trimmed real run, with a [field guide](examples/README.md)) or `web/index.html`.
+
+## Roadmap
+
+1. **Daily runs** (started 24 Nov 2026) so each outlet's position and hostility can be followed over time.
+2. **Other European countries and languages**, for a comparable measure of polarization across Europe. Then validate country scores against [V-Dem](https://www.v-dem.net/) (`validate/ground_truth.py`).
+3. **Benchmark models**, including open-weight ones, on accuracy and cost for the scoring step, against the same labelled sets.
+4. **A bigger human-labelled set** (100+ headlines, two annotators to measure the human ceiling), and re-evaluation of the current codebook.
+5. **A Q&A agent (RAG)** on top of the interface, grounded in PolarMap's data and in conflict research such as Amanda Ripley's *High Conflict*. It would help people understand where polarization comes from and how to navigate it.
 
 ## Repository map
 
 ```
 ingest/      GDELT files, real headlines and leads
-analysis/    debate discovery, scoring, polarization metrics, outlet positions, media ecosystem, data contract
-validate/    codebook, labelling tool, scoring against labels, pilot of the second method
-data/        snapshots, debate-axis registry, labels (press excerpts are not redistributed)
-docs/        figures and the original methodology notes (Spanish)
+analysis/    debate discovery, scoring, polarization metrics, outlet positions, media ecosystem
+validate/    codebook, labelling tool, scoring against labels, pilot of an alternative method
+web/         static interface: build script, template, generated index.html (deployed on Netlify)
+data/        run snapshots, usage and logs, fixed debate catalogue, labels
+examples/    a small, readable sample of one run's output
+docs/        figures, data contract, social layer (experimental), original methodology notes
+legacy/      earlier generations of the pipeline, kept for reference
 ```
 
 ## How it was built
 
-I designed the product and the methodology: what to measure, how to measure it, which checks a number has to pass before it is shown, and how to validate it. The code was written with AI coding assistants (Claude and Cursor), with me reviewing, running and testing every step. The project is as much about using AI to *build* as about using AI to *measure*.
+I designed the product and the methodology: what to measure, how to measure it, which checks a number has to pass before it is shown, and how to validate it. The code was written with AI coding assistants (Claude and Cursor), and I reviewed, ran and tested every step. The project is as much about using AI to *build* as about using AI to *measure*.
 
 ## Data and ethics
 
-- Source: the open [GDELT Project](https://www.gdeltproject.org/).
-- Coverage: an outlet counts as Spanish if its domain ends in .es, .cat, .eus or .gal (so the Catalan, Basque and Galician-language press is included since 22 Nov) or it is on an explicit list of Spanish .com outlets in `ingest/gkg_files.py`. Outlets whose URLs carry no readable headline (El Mundo, RTVE, La Voz de Galicia) are now kept and read from the page; before 22 Nov they were dropped entirely. Coverage per outlet still depends on what GDELT collects. The two runs published here (25 Sep, 20 Nov) predate these changes and sampled every other GDELT file.
-- Publishers that reserve their rights to text and data mining are excluded (256 articles on 25 Sep).
-- Headlines' leads are used for analysis only and are not committed to this repository.
-- The poles of each debate are generated by the model and stored in `data/internal/axes.json`, so every editorial choice is visible and auditable.
+- Source: the open [GDELT Project](https://www.gdeltproject.org/). An outlet counts as Spanish if its domain ends in .es, .cat, .eus or .gal, or if it is on an explicit list of Spanish .com outlets. Coverage per outlet depends on what GDELT collects.
+- Publishers that reserve their rights to text and data mining are excluded (631 articles on 24 Nov).
+- Article leads are used for analysis only and are not committed to this repository. The web shows headlines with a link to the original article.
+- API keys are read from environment variables only. `.env` is git-ignored and has never been committed.
+- It measures published media, not public opinion.
+
+An experimental social-media layer (Bluesky, YouTube) is described in [`docs/social_layer.md`](docs/social_layer.md).
 
 — Lucía García-Moreno · [LinkedIn](https://linkedin.com/in/luciagmg)
