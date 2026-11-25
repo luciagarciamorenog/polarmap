@@ -219,6 +219,15 @@ def download_gkg(stamp: str, cache_dir: Path = CACHE_DIR,
 # Parseo
 # ---------------------------------------------------------------------------
 
+# Webs de partidos e instituciones con dominio de país: GDELT las recoge como
+# si fueran medios (pp.es aparecía entre la prensa el 20-nov-2026).
+NOT_PRESS = {
+    "pp.es", "psoe.es", "voxespana.es", "movimientosumar.es", "esquerra.cat",
+    "junts.cat", "eaj-pnv.eus", "ehbildu.eus", "bng.gal", "congreso.es",
+    "senado.es", "poderjudicial.es", "boe.es", "casareal.es",
+}
+
+
 def domain_to_country(domain: str) -> str | None:
     """Resuelve el país del medio: primero lista explícita, luego TLD."""
     if not domain:
@@ -226,8 +235,8 @@ def domain_to_country(domain: str) -> str | None:
     d = domain.lower().strip()
     if d.startswith("www."):
         d = d[4:]
-    if d.endswith(".gob.es"):
-        return None          # webs del Gobierno: no son prensa
+    if d.endswith(".gob.es") or d in NOT_PRESS or any(d.endswith("." + n) for n in NOT_PRESS):
+        return None          # webs del Gobierno, instituciones y partidos: no son prensa
     if d in DOMAIN_COUNTRY:
         return DOMAIN_COUNTRY[d]
     # Subdominios de un medio de la lista (cincodias.elpais.com -> ES)

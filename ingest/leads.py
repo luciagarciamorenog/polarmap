@@ -153,7 +153,10 @@ class LeadFetcher:
                                  allow_redirects=True)
             raw = r.raw.read(MAX_BYTES, decode_content=True)
             r.close()
-        except requests.RequestException as e:
+        except (requests.RequestException, UnicodeError, ValueError, OSError) as e:
+            # Una web rota (p. ej. una redirección con la dirección mal
+            # codificada, 24-nov-2026) no debe tumbar toda la medición:
+            # esa noticia se queda sin entradilla y se sigue.
             return Lead(url, "error", error=type(e).__name__)
         if r.status_code >= 400:
             return Lead(url, f"http_{r.status_code}", final_url=r.url)

@@ -20,4 +20,7 @@ caffeinate -i python3 pipeline_social.py --press-run "${RUN}" \
   --sources bluesky,replies,youtube \
   2>&1 | tee "data/runs/social_ES_${FECHA}.log"
 
-echo "Listo. Informes en data/internal/${RUN}_ecosystem.json y ${RUN}_social_report.json"
+echo "== Web =="
+python3 web/build_data.py
+
+echo "Listo. Web en web/index.html. Informes en data/internal/${RUN}_ecosystem.json y ${RUN}_social_report.json"

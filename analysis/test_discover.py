@@ -495,6 +495,26 @@ def test_discover_debates():
     print("[OK] debates: limpieza, lista vacía y respuesta ilegible")
 
 
+def test_parse_response_v4_speaker():
+    """v4: quién dice las palabras hostiles y contra qué van."""
+    from analysis.discover import _parse_classify_response, combine_passes
+    txt = ('[{"id":1,"stance":0.5,"hostility":1.0,"confidence":0.8,"off_topic":false,'
+           '"speaker":"Santiago Abascal","speaker_org":"Vox","target":"personas"},'
+           '{"id":2,"stance":0,"hostility":0.0,"confidence":0.9,"off_topic":false,'
+           '"speaker":"medio","target":"ideas"},'
+           '{"id":3,"stance":-0.5,"hostility":0.5,"confidence":0.7,"off_topic":false,'
+           '"speaker":"El medio","speaker_org":"PP","target":"otra cosa"},'
+           '{"id":4,"stance":-0.5,"hostility":0.5,"confidence":0.7,"off_topic":false}]')
+    r = _parse_classify_response(txt, ["a", "b", "c", "d"])
+    assert (r[0].speaker, r[0].speaker_org, r[0].target) == ("Santiago Abascal", "Vox", "personas")
+    assert (r[1].speaker, r[1].target) == ("medio", None)       # sin hostilidad: quién habla sí, contra qué no
+    assert (r[2].speaker, r[2].speaker_org, r[2].target) == ("medio", None, None)
+    assert (r[3].speaker, r[3].target) == (None, None)          # campos ausentes
+    c = combine_passes([r, r])
+    assert c[0].speaker == "Santiago Abascal" and c[0].target == "personas"
+    print("[OK] v4: speaker, speaker_org y target")
+
+
 # ─────────────────────────────────────────────────────────────
 # Ejecutar todos los tests
 # ─────────────────────────────────────────────────────────────
@@ -511,6 +531,7 @@ if __name__ == "__main__":
     test_parse_response_clamping()
     test_parse_response_missing_ids()
     test_parse_response_v2_fields()
+    test_parse_response_v4_speaker()
     test_theme_mentions()
     test_admit_filters()
     test_parse_assign_response()

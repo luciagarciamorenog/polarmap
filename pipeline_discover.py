@@ -62,6 +62,15 @@ OUT_DIR = Path("data")
 ENV_PATH = Path(__file__).resolve().parent / ".env"
 INTERNAL_DIR = OUT_DIR / "internal"
 AXES_PATH = INTERNAL_DIR / "axes.json"
+TEMAS_PATH = Path(__file__).resolve().parent / "data" / "temas.json"
+
+
+def load_catalog(country: str) -> list[dict]:
+    """Temas fijos de un país (data/temas.json), o [] si no hay."""
+    if not TEMAS_PATH.exists():
+        return []
+    return [t for t in json.loads(TEMAS_PATH.read_text()).get(country, [])
+            if t.get("label") and t.get("pole_a") and t.get("pole_b")]
 
 # Si más de este porcentaje de titulares de un tema no se pudo
 # clasificar (API o parseo), el tema no vale y la corrida no se publica.
@@ -146,6 +155,7 @@ def score_topic(country: str, arts: list[Article], axis: dict,
             us_them=r.us_them,
             bloc=(round(r.bloc, 3) if np.isfinite(r.bloc) else None),
             why=r.why or None,
+            speaker=r.speaker, speaker_org=r.speaker_org, target=r.target,
             stance_sd=(round(r.stance_sd, 3) if np.isfinite(r.stance_sd) else None),
             confidence=round(r.confidence, 3), off_topic=r.off_topic,
             stance_failed=r.failed)
@@ -278,9 +288,16 @@ def analyze_all(headlines: dict[str, list[Article]], countries: list[str],
             log.info("  [%s] muy pocos titulares → gris", c)
         else:
             eligible.append(c)
+    # Temas fijos: sus polos mandan sobre el registro, y se le pasan sus
+    # nombres al modelo para que reutilice el mismo tema día tras día.
+    catalogs = {c: load_catalog(c) for c in eligible}
+    for c in eligible:
+        for t in catalogs[c]:
+            axes_registry[contract.normalize_label(t["label"])] = [t["pole_a"], t["pole_b"]]
     disc = _run_grouped({c: [(build_discover_body(
         [a.title for a in headlines[c]], COUNTRY_META.get(c, {}).get("name", c),
-        max_debates), None)] for c in eligible}, "debates", mode)
+        max_debates, known=[t["label"] for t in catalogs[c]]), None)]
+        for c in eligible}, "debates", mode)
     debates = {}
     for c in eligible:
         try:

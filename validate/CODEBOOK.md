@@ -1,4 +1,4 @@
-# Libro de códigos PolarMap · v3
+# Libro de códigos PolarMap · v4
 
 Unidad de análisis: **titular + entradilla** de una noticia (lo que lee el
 modelo). Se abre la noticia solo si con eso no se entiende.
@@ -25,6 +25,21 @@ Cambios v3 (22 nov 2026):
   días. `stance` sigue sin mirar a qué partido perjudica; eso va aquí.
 - Varias pasadas (`--stance-passes 3`): cada titular se lee 3 veces en otro
   orden y se promedia; `stance_sd` mide cuánto duda el modelo.
+
+Cambios v4 (24 nov 2026):
+- `speaker` y `speaker_org`: quién habla en cada noticia (siempre). `medio`
+  si es el propio medio; si hay una cita, quién la dice y su partido u
+  organización. Separa a quien enciende de quien lo amplifica.
+- `target`: contra qué va la hostilidad (`ideas`, `personas`, `grupo`).
+  Criticar una medida no es lo mismo que ridiculizar a una persona.
+- Polos de cada debate: siempre políticas o soluciones, nunca juicios sobre
+  un político o su actuación (quién ganó un debate, quién mintió). La campaña
+  y la gestión del Gobierno van a un eje fijo «continuidad o cambio de
+  Gobierno». El 20-nov el eje del cara a cara («Feijóo ofrece un cambio
+  creíble» frente a «Feijóo recurrió a la bronca») dejaba a casi todos los
+  medios del mismo lado.
+- Webs de partidos e instituciones (pp.es, psoe.es…) ya no cuentan como
+  prensa.
 
 ---
 
@@ -118,3 +133,29 @@ comparar días y países.
 
 Una frase de ≤ 15 palabras: qué hecho, cita o ángulo elige el medio y a qué
 polo favorece. Se guarda con cada titular para poder auditar la puntuación.
+
+## `speaker`, `speaker_org` — quién habla (v4)
+
+Siempre, haya hostilidad o no: para calcular la nota de cada actor hace
+falta saber cuántas veces habla en total, no solo cuántas ataca.
+
+- `medio` — nadie habla: es el medio quien cuenta o valora (el enfoque,
+  los adjetivos o la consigna del titular).
+- Nombre público de la persona citada, nombre y primer apellido
+  («Santiago Abascal», «Pedro Sánchez»), o de la organización si habla como
+  tal («PP», «Sindicato de Inquilinas»). Si hay varias citas, la más hostil.
+- `speaker_org`: siglas del partido u organización de esa persona si se
+  conocen con seguridad; `null` si no o si `speaker` es `medio`.
+
+Ejemplo: «Abascal, sobre el debate: "Celebro cuando a un tirano se le pone
+frente al espejo"» → `speaker` Santiago Abascal, `speaker_org` Vox. El medio
+que lo lleva al titular lo amplifica, pero no lo dice.
+
+## `target` — contra qué va la hostilidad (v4)
+
+Solo si `hostility` > 0; si no, `null`.
+
+- `ideas` — critica una medida, una postura o una gestión.
+- `personas` — descalifica, ridiculiza o insulta a personas concretas.
+- `grupo` — descalifica a un colectivo entero (migrantes, jueces, okupas,
+  los votantes de un partido).

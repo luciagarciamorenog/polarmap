@@ -3,9 +3,21 @@
     "El mercado de la vivienda necesita regulación pública, control de alquileres y más vivienda protegida para frenar la especulación.",
     "La solución pasa por facilitar la construcción privada, reducir la burocracia y evitar intervenciones que ahuyenten la inversión."
   ],
+  "amnistia y cataluna": [
+    "La amnistía y el diálogo con el independentismo son necesarios para la convivencia.",
+    "La amnistía es un privilegio que vulnera la igualdad ante la ley y premia a quien la incumplió."
+  ],
   "amnistia y retorno de puigdemont": [
     "El Tribunal Constitucional debe aplicar la amnistía a la malversación y despejar el camino para el regreso de Puigdemont.",
     "Amnistiar la malversación supone una politización de la justicia y un agravio al Estado de derecho."
+  ],
+  "continuidad o cambio de gobierno": [
+    "El Gobierno actual debe continuar.",
+    "Hace falta un cambio de Gobierno."
+  ],
+  "coste de vida": [
+    "El Estado debe intervenir con ayudas, topes y regulación para proteger el poder adquisitivo.",
+    "Las subvenciones y los controles de precios distorsionan el mercado; hay que bajar impuestos y facilitar la competencia."
   ],
   "coste de vida y poder adquisitivo": [
     "Los precios (alquiler, energía, combustible) son insostenibles y el Estado debe intervenir con ayudas y regulación",
@@ -35,13 +47,17 @@
     "El decreto de centros de datos y las restricciones energéticas son necesarios para ordenar el sector y garantizar la sostenibilidad de la red.",
     "La regulación precipitada ahuyenta inversiones estratégicas en tecnología e inteligencia artificial y perjudica la competitividad de España."
   ],
+  "energia y clima": [
+    "Hay que acelerar la transición ecológica aunque exija regulación y cambios en la economía.",
+    "La transición debe ir al ritmo de la economía, sin cargas que resten competitividad ni encarezcan la energía."
+  ],
   "expulsion de diputada por spray de pimienta": [
     "Armengol actuó correctamente al expulsar a la diputada del PP por exhibir un objeto prohibido en el hemiciclo.",
     "La expulsión de Ana Vázquez fue un abuso de autoridad desproporcionado ante un objeto que no constituye un arma."
   ],
   "financiacion autonomica": [
-    "El modelo de financiación debe reformarse para garantizar la igualdad entre territorios, sin privilegios singulares para ninguna comunidad.",
-    "Cada comunidad debe poder negociar su propio modelo de financiación, incluso de forma bilateral, para ajustarlo a su realidad."
+    "El modelo debe ser común y garantizar la igualdad entre territorios, sin acuerdos singulares.",
+    "Cada comunidad debe poder negociar un modelo propio, incluso bilateral, ajustado a su realidad."
   ],
   "independencia judicial y ataques al poder judicial": [
     "El Gobierno ataca sistemáticamente a los jueces que investigan casos de corrupción, socavando la independencia judicial.",
@@ -56,12 +72,16 @@
     "Una regulación excesiva de la inteligencia artificial frena la innovación y debe quedar en manos de actores privados y gobiernos fuertes."
   ],
   "inteligencia artificial y tecnologia": [
-    "El desarrollo acelerado de la IA exige regulación internacional urgente para prevenir riesgos sistémicos, desinformación y sustitución laboral.",
-    "Frenar la IA con regulación prematura lastra la innovación y la competitividad; los beneficios superan los riesgos si se gestiona con responsabilidad empresarial."
+    "La inteligencia artificial y las plataformas digitales necesitan regulación pública estricta para proteger a los ciudadanos.",
+    "Regular en exceso frena la innovación; mejor reglas mínimas y autorregulación de las empresas."
   ],
   "justicia amnistia e instituciones": [
     "La amnistía y las decisiones del Tribunal Constitucional son legítimas y necesarias para la normalización política y el retorno de los exiliados.",
     "La amnistía y la presión sobre jueces socavan el Estado de derecho y suponen una politización inaceptable de la justicia."
+  ],
+  "justicia e independencia judicial": [
+    "Los jueces actúan con independencia y las críticas políticas a sus decisiones son una presión sobre la justicia.",
+    "Parte de la judicatura actúa con motivación política y es legítimo denunciarlo y reformar su gobierno."
   ],
   "justicia y derechos legales": [
     "El sistema judicial protege eficazmente los derechos individuales y actúa con independencia",
@@ -76,8 +96,8 @@
     "Las medidas intervencionistas sobre el mercado del alquiler desincentivan la oferta y no resuelven el problema de acceso a la vivienda."
   ],
   "politica migratoria": [
-    "España debe reforzar el control fronterizo, acelerar las devoluciones y exigir mayor colaboración a Marruecos para frenar la llegada irregular de migrantes.",
-    "La respuesta debe priorizar la acogida humanitaria, los derechos de los menores y la regularización, evitando criminalizar a los migrantes."
+    "Hay que reforzar el control de fronteras, las devoluciones y la cooperación con los países de origen para frenar la llegada irregular.",
+    "Hay que priorizar la acogida, los derechos de los migrantes y las vías legales de entrada y regularización."
   ],
   "regulacion de la inteligencia artificial": [
     "La inteligencia artificial debe regularse con urgencia para proteger los derechos fundamentales, evitar su uso manipulador y preservar la autonomía humana frente a los intereses tecnológicos.",
@@ -94,6 +114,10 @@
   "transformacion urbana y calidad de vida": [
     "Las ciudades deben modernizarse con nuevas normas, zonas verdes y restricciones para mejorar la convivencia",
     "Los cambios urbanos (desahucios, ZBE, regulaciones) perjudican a vecinos vulnerables y limitan libertades cotidianas"
+  ],
+  "vivienda": [
+    "El Estado debe intervenir en el mercado: limitar alquileres, frenar desahucios y ampliar la vivienda pública.",
+    "Hay que aumentar la oferta, facilitar la construcción y dar seguridad jurídica a los propietarios."
   ],
   "vivienda y desahucios": [
     "Las administraciones deben intervenir activamente para garantizar el derecho a la vivienda, frenando desahucios y regulando el alquiler.",

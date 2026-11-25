@@ -860,11 +860,12 @@ ASSIGN_BATCH = 50
 MAX_DISCOVER_TITLES = 1200
 MAX_DEBATES = 6
 
-DISCOVER_INSTRUCTIONS = 'Identifica entre 3 y {max_debates} ASUNTOS DE DEBATE PÚBLICO presentes en estos titulares. Un asunto de debate es una cuestión de fondo en la que actores reales del país (partidos, colectivos, medios, expertos) defienden posturas enfrentadas.\n\nASUNTOS, NO SUCESOS. Los titulares hablan de hechos concretos del día; tu trabajo es agruparlos en el asunto de fondo que los conecta:\n- "Crisis en Ceuta", "llegada de pateras a Canarias" y "ley de nietos" → asunto "Política migratoria".\n- "Desahucio de una vecina", "precio del alquiler" y "ayudas a la compra" → asunto "Vivienda".\n- "Juicio a un cargo público", "amnistía" y "choque Gobierno-jueces" → asunto "Justicia e instituciones".\nSi dos asuntos candidatos comparten actores o se enmarcan igual, fúndelos en uno. Prefiere 4 asuntos que agrupen muchos titulares a 8 que agrupen pocos.\n\nPara cada asunto:\n- label: nombre corto (2-5 palabras) en el idioma principal del país. Debe servir igual otro día: sin nombres propios de personas ni fechas.\n- pole_a y pole_b: las dos posturas enfrentadas sobre QUÉ DEBE HACERSE o CÓMO VALORAR el asunto, cada una en una frase. Evita polos del tipo "el Gobierno lo hace bien / mal" salvo que el asunto sea precisamente la gestión de un actor.\n- includes: 3-6 sucesos o subtemas concretos de estos titulares que caen en el asunto.\n\nCriterios:\n- Cada asunto debe cubrir MUCHOS titulares (idealmente 40 o más). No inventes asuntos para llegar al máximo.\n- Que no se solapen: cada titular debería encajar como mucho en uno.\n- UN SOLO OBJETO POR ASUNTO. No juntes dos cuestiones en un eje (por ejemplo, «independencia judicial» y «corrupción» son dos asuntos: una noticia sobre un caso de corrupción no dice nada sobre si los jueces son independientes). Si un grupo de titulares mezcla dos cuestiones, elige la que más titulares puedan situar o créalas por separado.\n- Cada titular del asunto debe poder situarse en el eje por lo que cuenta. Si para situarlo hubiera que saber a qué partido perjudica, el eje está mal planteado.\n- Los dos polos hablan del MISMO objeto que el label y son posiciones que alguien defiende de verdad. No metas en un polo un asunto distinto (por ejemplo, no conviertas un debate sanitario en uno migratorio).\n- Redacción neutral y simétrica: ninguno de los polos debe sonar como el razonable.\n- Excluye sucesos, deportes, cultura y noticias de servicio que no tengan controversia.\n\nResponde SOLO con un array JSON, ordenado de más a menos titulares:\n[{{"label": "...", "pole_a": "...", "pole_b": "...", "includes": ["...", "..."]}}]\nSi no hay ningún debate, responde [].'
+DISCOVER_INSTRUCTIONS = 'Identifica entre 3 y {max_debates} ASUNTOS DE DEBATE PÚBLICO presentes en estos titulares. Un asunto de debate es una cuestión de fondo en la que actores reales del país (partidos, colectivos, medios, expertos) defienden posturas enfrentadas.\n\nASUNTOS, NO SUCESOS. Los titulares hablan de hechos concretos del día; tu trabajo es agruparlos en el asunto de fondo que los conecta:\n- "Crisis en Ceuta", "llegada de pateras a Canarias" y "ley de nietos" → asunto "Política migratoria".\n- "Desahucio de una vecina", "precio del alquiler" y "ayudas a la compra" → asunto "Vivienda".\n- "Juicio a un cargo público", "amnistía" y "choque Gobierno-jueces" → asunto "Justicia e instituciones".\nSi dos asuntos candidatos comparten actores o se enmarcan igual, fúndelos en uno. Prefiere 4 asuntos que agrupen muchos titulares a 8 que agrupen pocos.\n\nPara cada asunto:\n- label: nombre corto (2-5 palabras) en el idioma principal del país. Debe servir igual otro día: sin nombres propios de personas ni fechas.\n- pole_a y pole_b: las dos posturas enfrentadas sobre QUÉ DEBE HACERSE con el asunto, cada una en una frase. Son políticas o soluciones que alguien defiende, no valoraciones de personas.\n- NUNCA polos que juzguen a un político, un partido o su actuación concreta (quién ganó un debate, quién mintió, quién recurrió a la bronca). Eso no es un debate de fondo y hace que el eje dependa de a qué partido perjudica cada noticia.\n- Campañas electorales, encuestas, pactos y la gestión del Gobierno en general: si forman un asunto, llámalo "Continuidad o cambio de Gobierno" y usa exactamente estos polos: pole_a "El Gobierno actual debe continuar" y pole_b "Hace falta un cambio de Gobierno". Las propuestas concretas de campaña (pensiones, vivienda, inmigración) van a su asunto de política, no a este.\n- includes: 3-6 sucesos o subtemas concretos de estos titulares que caen en el asunto.\n\nCriterios:\n- Cada asunto debe cubrir MUCHOS titulares (idealmente 40 o más). No inventes asuntos para llegar al máximo.\n- Que no se solapen: cada titular debería encajar como mucho en uno.\n- UN SOLO OBJETO POR ASUNTO. No juntes dos cuestiones en un eje (por ejemplo, «independencia judicial» y «corrupción» son dos asuntos: una noticia sobre un caso de corrupción no dice nada sobre si los jueces son independientes). Si un grupo de titulares mezcla dos cuestiones, elige la que más titulares puedan situar o créalas por separado.\n- Cada titular del asunto debe poder situarse en el eje por lo que cuenta. Si para situarlo hubiera que saber a qué partido perjudica, el eje está mal planteado.\n- Los dos polos hablan del MISMO objeto que el label y son posiciones que alguien defiende de verdad. No metas en un polo un asunto distinto (por ejemplo, no conviertas un debate sanitario en uno migratorio).\n- Redacción neutral y simétrica: ninguno de los polos debe sonar como el razonable.\n- Excluye sucesos, deportes, cultura y noticias de servicio que no tengan controversia.\n\nResponde SOLO con un array JSON, ordenado de más a menos titulares:\n[{{"label": "...", "pole_a": "...", "pole_b": "...", "includes": ["...", "..."]}}]\nSi no hay ningún debate, responde [].'
 
 
 def build_discover_body(titles: list[str], country_name: str,
-                        max_debates: int = MAX_DEBATES) -> dict:
+                        max_debates: int = MAX_DEBATES,
+                        known: list[str] | None = None) -> dict:
     sample = titles
     if len(sample) > MAX_DISCOVER_TITLES:
         # Muestra sistemática, no aleatoria: reproducible entre corridas.
@@ -874,13 +875,27 @@ def build_discover_body(titles: list[str], country_name: str,
     prompt = (f"Estos son {len(sample)} titulares de medios de {country_name} de "
               "las últimas 24 horas. Algunos están reconstruidos desde la URL: sin "
               f"tildes y a veces sin artículos.\n\n{block}\n\n"
-              + DISCOVER_INSTRUCTIONS.format(max_debates=max_debates))
+              + DISCOVER_INSTRUCTIONS.format(max_debates=max_debates)
+              + _known_block(known))
     return {
         "model": DISCOVER_MODEL,
         "max_tokens": 2000,
         "temperature": 0.2,
         "messages": [{"role": "user", "content": prompt}],
     }
+
+
+def _known_block(known: list[str] | None) -> str:
+    """Temas fijos del país: si el asunto del día es uno de ellos, se usa
+    exactamente su nombre, para que los días se puedan comparar."""
+    if not known:
+        return ""
+    lines = "\n".join(f"- {k}" for k in known)
+    return ("\n\nTEMAS FIJOS. Estos asuntos ya están definidos con sus polos:\n"
+            f"{lines}\n"
+            "Si un asunto de hoy trata de uno de ellos, usa EXACTAMENTE ese label "
+            "(sus polos se fijarán solos: escribe los tuyos igualmente). Crea un "
+            "label nuevo solo si el asunto no encaja en ninguno.")
 
 
 def parse_debates(text: str, max_debates: int = MAX_DEBATES) -> list[dict]:
@@ -1050,6 +1065,9 @@ class StanceResult:
     bloc: float = float("nan")      # -1 favorable al Gobierno ... +1 a la oposición
     why: str = ""                   # motivo breve que da el modelo antes de puntuar
     stance_sd: float = float("nan") # desviación entre pasadas (si hay varias)
+    speaker: str | None = None      # v4: de quién son las palabras hostiles ("medio" o nombre)
+    speaker_org: str | None = None  # v4: partido u organización de esa persona
+    target: str | None = None       # v4: a qué apunta la hostilidad (uno de TARGETS)
 
 
 CLASSIFY_SYSTEM = """Eres un analista de medios. Codificas noticias para medir polarización en varias dimensiones distintas. No las mezcles.
@@ -1086,8 +1104,16 @@ Cada noticia viene como «titular. entradilla» (a veces solo el titular).
 
 7. off_topic: true SOLO si la noticia trata de algo completamente distinto del debate. Si trata del asunto aunque sea informativa, off_topic=false.
 
+8. speaker (SIEMPRE, haya hostilidad o no): quién habla en la noticia.
+   Si el titular o la entradilla recoge palabras o una postura de alguien (cita directa o indirecta: «Abascal: ...», «Sánchez acusa a ...»), el nombre de esa persona tal como se le conoce públicamente, nombre y primer apellido («Santiago Abascal», «Pedro Sánchez», «Isabel Díaz Ayuso»), o el de la organización si habla como tal («PP», «Sindicato de Inquilinas»). Si hay varias, la principal (si hay hostilidad, la de las palabras más hostiles). Si nadie habla y es el medio quien cuenta o valora, "medio".
+   speaker_org: siglas del partido u organización de esa persona si las conoces con seguridad («PP», «PSOE», «Vox», «Sumar», «Podemos», «ERC», «Junts», «Gobierno»…); null si no, o si speaker es "medio".
+
+9. target (solo si hostility > 0; si no, null): contra qué va la hostilidad.
+   "ideas" si critica una medida, una postura o una gestión; "personas" si descalifica, ridiculiza o insulta a personas concretas; "grupo" si descalifica a un colectivo entero (migrantes, jueces, okupas, los votantes de un partido).
+
 Responde SOLO con un array JSON, un objeto por noticia, con why en primer lugar:
-[{{"id":1,"why":"elige el drama de un desahucio: favorece intervenir","stance":-0.5,"hostility":0.0,"conflict":0.5,"us_them":"no","bloc":null,"confidence":0.8,"off_topic":false}}]"""
+[{{"id":1,"why":"elige el drama de un desahucio: favorece intervenir","stance":-0.5,"hostility":0.0,"conflict":0.5,"us_them":"no","bloc":null,"confidence":0.8,"off_topic":false,"speaker":"medio","speaker_org":null,"target":null}},
+ {{"id":2,"why":"cita que llama tirano al presidente: favorece el cambio","stance":0.5,"hostility":1.0,"conflict":1.0,"us_them":"political","bloc":1.0,"confidence":0.8,"off_topic":false,"speaker":"Santiago Abascal","speaker_org":"Vox","target":"personas"}}]"""
 
 
 def build_classify_bodies(texts: list[str], pole_a: str, pole_b: str,
@@ -1221,6 +1247,15 @@ def _parse_classify_response(text: str, titles: list[str]
         except (TypeError, ValueError):
             bloc = float("nan")
         why = str(item.get("why") or "")[:200]
+        # v4: quién habla se guarda siempre (hace falta el total de sus
+        # frases para calcular su nota); contra qué, solo si hay hostilidad.
+        speaker = _clean_name(item.get("speaker"))
+        if speaker and speaker.lower() in ("medio", "el medio", "periodista"):
+            speaker = "medio"
+        speaker_org = None if speaker in (None, "medio") else _clean_name(item.get("speaker_org"))
+        target = None
+        if hostility > 0:
+            target = item.get("target") if item.get("target") in TARGETS else None
 
         results.append(StanceResult(
             title=title,
@@ -1232,9 +1267,30 @@ def _parse_classify_response(text: str, titles: list[str]
             us_them=us_them,
             bloc=bloc,
             why=why,
+            speaker=speaker,
+            speaker_org=speaker_org,
+            target=target,
         ))
 
     return results
+
+
+TARGETS = ("ideas", "personas", "grupo")
+
+
+def _clean_name(x) -> str | None:
+    """Nombre de quien habla: texto corto o None."""
+    if not isinstance(x, str):
+        return None
+    x = " ".join(x.strip().strip("«»\"'").split())
+    if x.lower() in ("", "null", "none", "n/a"):
+        return None
+    return x[:80]
+
+
+def _mode(values):
+    c = Counter(v for v in values if v)
+    return c.most_common(1)[0][0] if c else None
 
 
 def combine_passes(passes: list[list[StanceResult]]) -> list[StanceResult]:
@@ -1268,5 +1324,8 @@ def combine_passes(passes: list[list[StanceResult]]) -> list[StanceResult]:
             confidence=avg("confidence"), off_topic=off_topic,
             conflict=avg("conflict"), us_them=us[0][0] if us else None,
             bloc=avg("bloc"), why=use[0].why,
-            stance_sd=float(st.std()) if st.size > 1 else float("nan")))
+            stance_sd=float(st.std()) if st.size > 1 else float("nan"),
+            speaker=_mode(r.speaker for r in use),
+            speaker_org=_mode(r.speaker_org for r in use),
+            target=_mode(r.target for r in use)))
     return out
