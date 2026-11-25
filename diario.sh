@@ -1,6 +1,7 @@
 #!/bin/bash
 # PolarMap · medición diaria de la prensa (sin redes sociales).
-# Unos 40-60 minutos y alrededor de 2,3 $. Al terminar regenera la web.
+# Unos 40-60 minutos y alrededor de 2,3 $. Al terminar regenera la web
+# y la publica (GitHub → Netlify).
 #   ./diario.sh
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -15,4 +16,7 @@ caffeinate -i python3 pipeline_discover.py --countries ES --hours 24 \
 echo "== Web =="
 python3 web/build_data.py
 
-echo "Listo. Medición ${RUN} guardada y web actualizada en web/index.html"
+echo "== Publicar =="
+./publicar_web.sh
+
+echo "Listo. Medición ${RUN} guardada y web publicada."
