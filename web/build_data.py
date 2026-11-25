@@ -76,6 +76,7 @@ NAMES = {
 SINCE = "2026-11-24"
 
 HOSTILE = 0.5      # a partir de aquí, el titular ataca o desprecia (codebook: 2)
+SIDE = 0.5         # |postura| desde aquí, el titular se inclina claramente a un lado
 MONTHS = "ene feb mar abr may jun jul ago sep oct nov dic".split()
 
 
@@ -139,16 +140,19 @@ def build_run(stem: str) -> dict | None:
             "outlets": None, "examples": {}}
         if len(press) >= 15:
             d = debate_outlets(press, topic, min_n=3)
-            host = defaultdict(list)
+            host, side = defaultdict(list), defaultdict(list)
             for r in press:
                 host[r["domain"]].append(r.get("hostility") or 0.0)
+                side[r["domain"]].append((r["stance"] >= SIDE) - (r["stance"] <= -SIDE))
             deb["outlets"] = {
                 "eta2": round(d.eta2, 3), "eta2_null": round(d.eta2_null, 3),
                 "p": round(d.p_value, 4),
                 "list": [{"o": name(o.domain), "d": o.domain, "n": o.n,
                           "m": round(o.mean, 3), "lo": round(o.lo, 3), "hi": round(o.hi, 3),
                           "h": round(sum(host[o.domain]) / len(host[o.domain]), 3),
-                          "hs": round(sum(x >= HOSTILE for x in host[o.domain]) / len(host[o.domain]), 3)}
+                          "hs": round(sum(x >= HOSTILE for x in host[o.domain]) / len(host[o.domain]), 3),
+                          # inclinación neta: de cada titular, cuántos más caen de un lado que del otro
+                          "nl": round(abs(sum(side[o.domain])) / len(side[o.domain]), 3)}
                          for o in d.positions]}
         if sel:
             conf = lambda r: r.get("confidence") or 0
