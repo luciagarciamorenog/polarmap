@@ -1,0 +1,50 @@
+{
+  "by_stage": {
+    "debates · claude-sonnet-4-6": {
+      "calls": 1,
+      "input": 38406,
+      "output": 1318,
+      "cache_write": 0,
+      "cache_read": 0,
+      "usd": 0.067494
+    },
+    "asignacion · claude-haiku-4-5": {
+      "calls": 119,
+      "input": 636710,
+      "output": 84343,
+      "cache_write": 0,
+      "cache_read": 0,
+      "usd": 0.5292124999999998
+    },
+    "postura · claude-sonnet-4-6": {
+      "calls": 74,
+      "input": 123317,
+      "output": 202802,
+      "cache_write": 8386,
+      "cache_read": 114368,
+      "usd": 1.7388694499999997
+    }
+  },
+  "usd_total": 2.3355759499999995,
+  "cache_hit_share": 0.12415285930001184,
+  "api_mode": "batch",
+  "countries": [
+    "ES"
+  ],
+  "n_headlines": 5931,
+  "usd_per_country": 2.3355759499999995,
+  "usd_per_1000_headlines": 0.3937912577980104,
+  "prices": {
+    "claude-sonnet-4-6": {
+      "input": 3.0,
+      "output": 15.0
+    },
+    "claude-haiku-4-5": {
+      "input": 1.0,
+      "output": 5.0
+    }
+  },
+  "cache_write": 1.25,
+  "cache_read": 0.1,
+  "batch_discount": 0.5
+}
