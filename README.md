@@ -122,7 +122,7 @@ To see the output without running anything, open [`examples/ES_2026-11-24.json`]
 ingest/      GDELT files, real headlines and leads
 analysis/    debate discovery, scoring, polarization metrics, outlet positions, media ecosystem
 validate/    codebook, labelling tool, scoring against labels, pilot of an alternative method
-web/         static interface: build script, template, generated index.html (deployed on Netlify)
+web/         static interface: build script, template, generated index.html and the About page (deployed on Netlify)
 data/        run snapshots, usage and logs, fixed debate catalogue, labels
 examples/    a small, readable sample of one run's output
 docs/        figures, data contract, social layer (experimental), original methodology notes

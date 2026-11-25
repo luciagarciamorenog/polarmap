@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PolarMap · How divided is the Spanish press today?</title>
+<title>PolarMap · What divides the Spanish press?</title>
 <meta name="description" content="PolarMap reads a day of Spanish news, finds the debates of the day and measures where each outlet stands and how hostile the coverage is.">
-<meta property="og:title" content="PolarMap · How divided is the Spanish press today?">
-<meta property="og:description" content="The day's debates in the Spanish press, where each outlet stands, and how hostile the coverage is. Built with Python and the Claude API.">
+<meta property="og:title" content="PolarMap · What divides the Spanish press?">
+<meta property="og:description" content="The day's debates in the Spanish press, where each outlet stands, and how hostile the coverage is. Also what both sides share.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='9' cy='16' r='6' fill='%23257de0'/%3E%3Ccircle cx='23' cy='16' r='6' fill='%23f47230'/%3E%3C/svg%3E">
 <style>
 :root{
@@ -32,7 +32,10 @@ nav.top a{text-decoration:none;color:var(--ink-2)}nav.top a:hover{color:var(--in
 @media(max-width:640px){nav.top .hide-s{display:none}}
 
 .hero{padding:44px 0 28px}
-.eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.chip-date{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px;margin:0 0 16px}
+.chip-date .live{width:8px;height:8px;border-radius:50%;background:#2e9e5b;box-shadow:0 0 0 3px #2e9e5b22;flex:none}
+.cta{display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;flex-wrap:wrap}
+.cta p{margin:0;color:var(--ink-2)}
 h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1.1;letter-spacing:-.015em;margin:10px 0 14px;max-width:820px}
 .lede{font-size:18px;color:var(--ink-2);max-width:720px;margin:0}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:28px}
@@ -185,14 +188,14 @@ html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none}
 <body>
 <header class="top"><div class="wrap">
   <a class="brand" href="#"><i><b style="background:#257de0"></b><b style="background:#f47230"></b></i>PolarMap</a>
-  <nav class="top"><a class="hide-s" href="#debates" data-t="navDebates">Debates</a><a class="hide-s" href="#outlets" data-t="navOutlets">Outlets</a><a href="#method" data-t="navMethod">Methodology</a>
+  <nav class="top"><a class="hide-s" href="#debates" data-t="navDebates">Debates</a><a class="hide-s" href="#outlets" data-t="navOutlets">Outlets</a><a href="about.html" data-t="navAbout">About</a>
     <span class="lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></span></nav>
 </div></header>
 
 <main>
 <section class="hero"><div class="wrap">
-  <div class="eyebrow" id="eyebrow"></div>
   <h1 id="h1"></h1>
+  <div class="chip-date"><span class="live"></span><span id="chipDate"></span></div>
   <p class="lede" id="lede"></p>
   <div class="stats" id="stats"></div>
 </div></section>
@@ -226,100 +229,7 @@ html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none}
 </div></section>
 
 <section class="block" id="method"><div class="wrap">
-  <h2 data-t="methTitle">Methodology</h2>
-
-  <div lang="en">
-  <p class="sub">A Python pipeline plus three steps done by a language model (Claude). Every number on this page comes from the daily run; your browser only draws the charts.</p>
-  <ol class="steps">
-    <li><b>Collect</b>Every Spanish news article logged by the open GDELT project in 24 hours. The real headline and lead are read from each page. Publishers that reserve text-and-data-mining rights are excluded.</li>
-    <li><b>Find the debates</b>Claude reads the day's headlines and proposes the main debates, each defined by two opposing positions. No predefined topics.</li>
-    <li><b>Assign</b>Claude assigns every headline to one debate, or to none. Most news is not a fight.</li>
-    <li><b>Score</b>Claude scores each headline's stance (−1 to +1 between the two sides) and hostility, following a written codebook and giving a short reason before it scores.</li>
-    <li><b>Measure</b>Python computes the polarization indices and each outlet's position with 90% intervals and tests against chance. Debates with too few headlines or outlets are flagged.</li>
-  </ol>
-  <div class="two">
-    <div class="card"><h3>What is measured</h3><ul class="plain">
-      <li><b>Ideological polarization</b>: do outlets cluster into separate camps? It uses the Esteban-Ray index, which rewards separated groups rather than mere disagreement. Spread-out opinions show diversity, not polarization.</li>
-      <li><b>Affective polarization</b>: hostility concentrated at the extremes and aimed at the other side. Generic negativity does not count.</li>
-      <li><b>Leans to one side</b> (per outlet): out of every 10 headlines in the day's debates, how many more clearly lean to one side than to the other. An outlet that publishes both sides equally scores close to 0%.</li>
-      <li><b>Hostile headlines</b> (per outlet): share of its headlines with language that attacks or belittles the other side.</li>
-      <li><b>Stance, not sentiment</b>: an earthquake is negative news but not divisive. The model scores which side a headline takes.</li>
-      <li><b>Common ground and where they differ</b> (per debate): the model reads clearly one-sided headlines from both sides and states what both share and where the real disagreement lies: goals, means, facts or trust in an actor. It must cite headlines from both sides and at least two outlets; it is asked twice and only shown if both answers agree. It is a model synthesis, not a validated measurement.</li>
-      <li>Labels such as "high conflict" use provisional thresholds (0.15 and 0.30).</li>
-    </ul></div>
-    <div class="card"><h3>Evaluation</h3><table class="ev">
-      <tr><td>Assigning headlines to the right debate</td><td><b>95–97% agreement</b> with reference labels (Cohen's κ 0.93–0.95)</td></tr>
-      <tr><td>Consistency of outlet positions</td><td>Outlet order replicates across two unrelated debates two months apart: <b>Spearman ρ = 0.89</b> (12 outlets)</td></tr>
-      <tr><td>Hostility</td><td>Spearman ρ ≈ 0.62 against labels: usable</td></tr>
-      <tr><td>Stance of a single headline</td><td>Noisy (ρ 0.33–0.46), so positions are reported per outlet, with intervals</td></tr>
-    </table>
-    <p class="note">Labels: 29 headlines labelled by hand plus a 150-headline reference set, from an earlier run (Sep 2026). Re-evaluation on daily runs is ongoing.</p></div>
-  </div>
-  <div class="two" style="margin-top:16px">
-    <div class="card"><h3>Limitations</h3><ul class="plain">
-      <li>It measures published media, not public opinion.</li>
-      <li>Coverage per outlet depends on what GDELT collects.</li>
-      <li>The model writes the two sides of each debate. Recurring debates keep fixed sides so that days can be compared, and every side is published for audit.</li>
-      <li>No outlet is labelled left or right. Its position comes only from what it publishes.</li>
-      <li>Spain only, for now.</li>
-    </ul></div>
-    <div class="card"><h3>What's next</h3><ul class="plain">
-      <li>A run every day, so outlets can be followed over time.</li>
-      <li>Other European countries and languages, for a comparable measure across Europe.</li>
-      <li>Benchmarking models, including open-weight ones, on accuracy and cost for the scoring step.</li>
-      <li>A Q&amp;A agent (RAG) on top of this page, grounded in PolarMap's data and in conflict research such as Amanda Ripley's <i>High Conflict</i>, to help people understand where polarization comes from and how to navigate it.</li>
-    </ul></div>
-  </div>
-  </div>
-
-  <div lang="es">
-  <p class="sub">Un pipeline en Python con tres pasos que hace un modelo de lenguaje (Claude). Todas las cifras de esta página salen de la corrida diaria; tu navegador solo dibuja los gráficos.</p>
-  <ol class="steps">
-    <li><b>Recoger</b>Todas las noticias de medios españoles que registra el proyecto abierto GDELT en 24 horas. De cada página se lee el titular real y la entradilla. Se excluyen los editores que se reservan los derechos de minería de textos.</li>
-    <li><b>Encontrar los debates</b>Claude lee los titulares del día y propone los debates principales, cada uno definido por dos posturas enfrentadas. Sin lista de temas previa.</li>
-    <li><b>Asignar</b>Claude asigna cada titular a un debate o a ninguno. La mayoría de las noticias no son una pelea.</li>
-    <li><b>Puntuar</b>Claude puntúa la postura de cada titular (de −1 a +1 entre los dos lados) y su hostilidad, siguiendo un libro de códigos escrito y dando un motivo breve antes de puntuar.</li>
-    <li><b>Medir</b>Python calcula los índices de polarización y la posición de cada medio con intervalos del 90 % y pruebas frente al azar. Los debates con pocos titulares o pocos medios se marcan como tales.</li>
-  </ol>
-  <div class="two">
-    <div class="card"><h3>Qué se mide</h3><ul class="plain">
-      <li><b>Polarización ideológica</b>: ¿se agrupan los medios en bandos separados? Se usa el índice de Esteban-Ray, que premia los grupos separados y no el simple desacuerdo. Opiniones repartidas son diversidad, no polarización.</li>
-      <li><b>Polarización afectiva</b>: hostilidad concentrada en los extremos y dirigida al otro lado. La negatividad general no cuenta.</li>
-      <li><b>Se inclina a un lado</b> (por medio): de cada 10 titulares en los debates del día, cuántos más se inclinan claramente a un lado que al otro. Un medio que publica los dos lados por igual queda cerca del 0 %.</li>
-      <li><b>Titulares hostiles</b> (por medio): porcentaje de sus titulares con lenguaje que ataca o desprecia al otro lado.</li>
-      <li><b>Postura, no sentimiento</b>: un terremoto es una mala noticia, pero no divide. El modelo puntúa hacia qué lado se inclina un titular.</li>
-      <li><b>Qué comparten y en qué se diferencian</b> (por debate): el modelo lee titulares claramente inclinados de los dos lados y dice qué comparten y dónde está el desacuerdo de verdad: objetivos, medios, hechos o confianza en un actor. Tiene que citar titulares de los dos lados y de al menos dos medios; se le pregunta dos veces y solo se muestra si las dos respuestas coinciden. Es una síntesis del modelo, no una medición validada.</li>
-      <li>Etiquetas como «conflicto alto» usan umbrales provisionales (0,15 y 0,30).</li>
-    </ul></div>
-    <div class="card"><h3>Evaluación</h3><table class="ev">
-      <tr><td>Asignar cada titular a su debate</td><td><b>95–97 % de acuerdo</b> con etiquetas de referencia (kappa de Cohen 0,93–0,95)</td></tr>
-      <tr><td>Consistencia de la posición de los medios</td><td>El orden de los medios se repite en dos debates distintos con dos meses de diferencia: <b>Spearman ρ = 0,89</b> (12 medios)</td></tr>
-      <tr><td>Hostilidad</td><td>Spearman ρ ≈ 0,62 frente a las etiquetas: utilizable</td></tr>
-      <tr><td>Postura de un titular suelto</td><td>Ruidosa (ρ 0,33–0,46); por eso las posiciones se dan por medio, con intervalos</td></tr>
-    </table>
-    <p class="note">Etiquetas: 29 titulares etiquetados a mano y un conjunto de referencia de 150, de una corrida anterior (sep 2026). La reevaluación con las corridas diarias está en marcha.</p></div>
-  </div>
-  <div class="two" style="margin-top:16px">
-    <div class="card"><h3>Limitaciones</h3><ul class="plain">
-      <li>Mide los medios publicados, no la opinión pública.</li>
-      <li>La cobertura de cada medio depende de lo que recoge GDELT.</li>
-      <li>Los dos lados de cada debate los redacta el modelo. Los debates que se repiten mantienen lados fijos para poder comparar días, y todos se publican para poder revisarlos.</li>
-      <li>No se etiqueta a ningún medio como de izquierdas o de derechas. Su posición sale solo de lo que publica.</li>
-      <li>De momento, solo España.</li>
-    </ul></div>
-    <div class="card"><h3>Próximos pasos</h3><ul class="plain">
-      <li>Una corrida cada día, para seguir a los medios en el tiempo.</li>
-      <li>Otros países e idiomas europeos, para tener una medida comparable en Europa.</li>
-      <li>Comparar modelos, incluidos los de pesos abiertos, en acierto y coste para el paso de puntuación.</li>
-      <li>Un agente de preguntas y respuestas (RAG) sobre esta página, basado en los datos de PolarMap y en la investigación sobre conflicto, como <i>High Conflict</i> de Amanda Ripley, para ayudar a entender de dónde viene la polarización y cómo sobrellevarla.</li>
-    </ul></div>
-  </div>
-  </div>
-
-  <div class="links">
-    <a class="btn primary" href="https://github.com/luciagarciamorenog/polarmap" target="_blank" rel="noopener" data-t="btnGit">Code &amp; methodology on GitHub</a>
-    <a class="btn" href="https://luciagarciamorenog.netlify.app" target="_blank" rel="noopener" data-t="btnPort">Lucía García-Moreno · Portfolio</a>
-  </div>
+  <div class="cta"><p data-t="ctaText" data-html="1"></p><a class="btn" href="about.html" data-t="ctaBtn">About PolarMap →</a></div>
 </div></section>
 </main>
 
@@ -330,16 +240,16 @@ html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none}
 <script>
 (()=>{
 const T={
- en:{navDebates:'Debates',navOutlets:'Outlets',navMethod:'Methodology',
+ en:{navDebates:'Debates',navOutlets:'Outlets',navAbout:'About',
   debTitle:"The day's debates",debSub:"Nobody gives the model a list of topics. It reads the day's headlines, finds what the press is arguing about and defines the two opposing sides of each debate. Pick a debate to see where each outlet stands.",
   outTitle:'Outlets over time',outSub:"Two daily scores per outlet, from its headlines in the day's debates. <b>Leans to one side</b>: out of every 10 headlines, how many more fall on one side than on the other (0% = balanced coverage, 100% = every headline on the same side). <b>Hostile headlines</b>: how many attack or belittle the other side.",
   compare:'Compare up to 3 outlets:',chipsNote:"Starts with the three outlets with most headlines in the day's debates.",
   sideTitle:'Leans to one side',sideNote:'0% = balanced · 100% = every headline on the same side',hostTitle:'Hostile headlines',hostNote:'% of its headlines that attack or belittle the other side',
   tableNote:"Outlets with at least 5 headlines in the day's debates. Click a column to sort, or a row to add it to the comparison.",
-  methTitle:'Methodology',btnGit:'Code & methodology on GitHub',btnPort:'Lucía García-Moreno · Portfolio',
-  title:'PolarMap · How divided is the Spanish press today?',
-  eyebrow:d=>`Spanish press · 24 hours to ${d}`,h1:d=>`What divided the Spanish press on ${d}`,
-  lede:(n,k,o)=>`PolarMap read ${n} headlines from the last 24 hours, found the ${k} debates the press was arguing about, and placed ${o} outlets between the two sides of each one.`,
+  
+  title:'PolarMap · What divides the Spanish press?',
+  chip:d=>`Data from ${d} · news from the last 24 hours`,h1:'What divides the Spanish press?',ctaText:'<b>How is it measured?</b> What polarization is, what unites and what divides, and how we calculate it.',ctaBtn:'About PolarMap →',
+  lede:'Every day, PolarMap reads thousands of headlines, finds the debates the press is arguing about and places each outlet between the two sides. It also shows what they share.',
   sRead:'headlines read in 24 hours',sScored:p=>`inside a debate (${p}); the rest of the news is not a fight`,sDeb:t=>`debates found, ${t} with enough data`,sOut:'outlets placed on the debates',
   nHead:'headlines',nOut:'outlets',ideo:'Ideological',aff:'Affective',
   ideoL:'Ideological polarization',affL:'Affective polarization',ideoH:'Do outlets form separate camps?',affH:'Is there hostility at the extremes, aimed at the other side?',
@@ -356,22 +266,22 @@ const T={
   banner:d=>`Daily tracking started on ${d}. Each daily run adds one point per outlet, so these lines grow from here.`,
   add:'Add an outlet…',pick:'Pick an outlet to compare.',remove:'Remove',
   tableTitle:d=>`All outlets · ${d}`,colOut:'Outlet',colN:'Headlines',colSide:'Leans to one side',colHost:'Hostile',more:n=>`Show all ${n} outlets`,fewer:'Show fewer',
-  tipDay:'headlines in debates',foot:d=>`PolarMap · designed and built by Lucía García-Moreno · Data: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> · Headlines link to their original source · Last run: ${d}.`,
+  tipDay:'headlines in debates',foot:d=>`PolarMap · independent project · Data: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> · Headlines link to their original source · Open source on <a href="https://github.com/luciagarciamorenog/polarmap" target="_blank" rel="noopener">GitHub</a> · Last run: ${d}.`,
   cgShared:'Common ground',cgDiffer:'Where they differ',cgNone:"No clear common ground in today's headlines.",
   cgFoot:n=>`Model synthesis from ${n} headlines on both sides · not a validated measurement`,cgShow:'See headlines ▾',cgHide:'Hide headlines ▴',
   cgTypes:{objetivos:['Goals','They want different things or put different values first'],medios:['Means','Same goal, different way to get there'],hechos:['Facts','They disagree on what is happening or why'],confianza:['Trust','They disagree on whether an actor can be trusted, more than on the policy']},
   cgSide:{A:'Side A',B:'Side B'},
   months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],locale:'en-US'},
- es:{navDebates:'Debates',navOutlets:'Medios',navMethod:'Metodología',
+ es:{navDebates:'Debates',navOutlets:'Medios',navAbout:'Sobre PolarMap',
   debTitle:'Los debates del día',debSub:'Nadie le da al modelo una lista de temas. Lee los titulares del día, encuentra de qué discute la prensa y define los dos lados enfrentados de cada debate. Elige un debate para ver dónde se sitúa cada medio.',
   outTitle:'Los medios en el tiempo',outSub:'Dos indicadores diarios por medio, a partir de sus titulares en los debates del día. <b>Se inclina a un lado</b>: de cada 10 titulares, cuántos más caen de un lado que del otro (0 % = cobertura equilibrada, 100 % = todos los titulares del mismo lado). <b>Titulares hostiles</b>: cuántos atacan o desprecian al otro lado.',
   compare:'Compara hasta 3 medios:',chipsNote:'Empieza con los tres medios con más titulares en los debates del día.',
   sideTitle:'Se inclina a un lado',sideNote:'0 % = equilibrado · 100 % = todos los titulares del mismo lado',hostTitle:'Titulares hostiles',hostNote:'% de sus titulares que atacan o desprecian al otro lado',
   tableNote:'Medios con al menos 5 titulares en los debates del día. Pulsa una columna para ordenar, o una fila para añadirla a la comparación.',
-  methTitle:'Metodología',btnGit:'Código y metodología en GitHub',btnPort:'Lucía García-Moreno · Portfolio',
-  title:'PolarMap · ¿Cuánto se divide hoy la prensa española?',
-  eyebrow:d=>`Prensa española · 24 horas hasta el ${d}`,h1:d=>`Qué dividió a la prensa española el ${d}`,
-  lede:(n,k,o)=>`PolarMap leyó ${n} titulares de las últimas 24 horas, encontró los ${k} debates en los que discutía la prensa y situó a ${o} medios entre los dos lados de cada uno.`,
+  
+  title:'PolarMap · ¿Qué divide a la prensa española?',
+  chip:d=>`Datos del ${d} · noticias de las últimas 24 horas`,h1:'¿Qué divide a la prensa española?',ctaText:'<b>¿Cómo se mide?</b> Qué es la polarización, qué une y qué divide, y cómo lo calculamos.',ctaBtn:'Sobre PolarMap →',
+  lede:'Cada día, PolarMap lee miles de titulares, encuentra los debates en los que discute la prensa y sitúa a cada medio entre los dos lados. También muestra lo que comparten.',
   sRead:'titulares leídos en 24 horas',sScored:p=>`dentro de un debate (${p}); el resto de noticias no son una pelea`,sDeb:t=>`debates encontrados, ${t} con datos suficientes`,sOut:'medios situados en los debates',
   nHead:'titulares',nOut:'medios',ideo:'Ideológica',aff:'Afectiva',
   ideoL:'Polarización ideológica',affL:'Polarización afectiva',ideoH:'¿Forman los medios bandos separados?',affH:'¿Hay hostilidad en los extremos, dirigida al otro lado?',
@@ -388,7 +298,7 @@ const T={
   banner:d=>`El seguimiento diario empezó el ${d}. Cada corrida diaria añade un punto por medio, así que estas líneas crecen a partir de aquí.`,
   add:'Añadir un medio…',pick:'Elige un medio para comparar.',remove:'Quitar',
   tableTitle:d=>`Todos los medios · ${d}`,colOut:'Medio',colN:'Titulares',colSide:'Se inclina a un lado',colHost:'Hostiles',more:n=>`Ver los ${n} medios`,fewer:'Ver menos',
-  tipDay:'titulares en debates',foot:d=>`PolarMap · diseñado y construido por Lucía García-Moreno · Datos: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> · Los titulares enlazan a su fuente original · Última corrida: ${d}.`,
+  tipDay:'titulares en debates',foot:d=>`PolarMap · proyecto independiente · Datos: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> · Los titulares enlazan a su fuente original · Código abierto en <a href="https://github.com/luciagarciamorenog/polarmap" target="_blank" rel="noopener">GitHub</a> · Última corrida: ${d}.`,
   cgShared:'Comparten',cgDiffer:'Se diferencian',cgNone:'No hay terreno común claro en los titulares de hoy.',
   cgFoot:n=>`Síntesis del modelo a partir de ${n} titulares de ambos lados · no es una medición validada`,cgShow:'Ver titulares ▾',cgHide:'Ocultar titulares ▴',
   cgTypes:{objetivos:['Objetivos','Quieren cosas distintas o priorizan valores distintos'],medios:['Medios','Mismo objetivo, distinto camino para llegar'],hechos:['Hechos','No coinciden en qué está pasando o por qué'],confianza:['Confianza','Discuten si un actor es de fiar, más que la política en sí']},
@@ -421,6 +331,7 @@ function renderStatic(){
   document.querySelectorAll('[data-t]').forEach(el=>{const v=t(el.dataset.t);if(typeof v!=='string')return;if(el.dataset.html)el.innerHTML=v;else el.textContent=v});
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
   document.getElementById('foot').innerHTML=t('foot')(esc(dlabel(R.id,true)));
+  document.querySelectorAll('a[href^="about.html"]').forEach(x=>x.setAttribute('href','about.html?lang='+lang));
 }
 
 /* ---------- hero ---------- */
@@ -429,9 +340,9 @@ const outletSet=new Set();R.debates.forEach(d=>(d.outlets?.list||[]).forEach(o=>
 const trusted=R.debates.filter(d=>d.trust).length;
 function renderHero(){
   const day=dlabel(R.id,true);
-  document.getElementById('eyebrow').textContent=t('eyebrow')(day);
-  document.getElementById('h1').textContent=t('h1')(day);
-  document.getElementById('lede').textContent=t('lede')(fmt(R.n_headlines),R.debates.length,outletSet.size);
+  document.getElementById('chipDate').textContent=t('chip')(day);
+  document.getElementById('h1').textContent=t('h1');
+  document.getElementById('lede').textContent=t('lede');
   const stats=[[fmt(R.n_headlines),t('sRead')],[fmt(scored),t('sScored')(pct(scored/R.n_headlines))],[String(R.debates.length),t('sDeb')(trusted)],[String(outletSet.size),t('sOut')]];
   document.getElementById('stats').innerHTML=stats.map(s=>`<div class="stat"><div class="n">${esc(s[0])}</div><div class="l">${esc(s[1])}</div></div>`).join('');
 }

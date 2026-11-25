@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About PolarMap · What divides the Spanish press?</title>
+<meta name="description" content="PolarMap measures every day how the Spanish press is divided: what it argues about, where each outlet stands, how much hostility there is and what both sides have in common. It is an independent, free and open-source project.">
+<meta property="og:title" content="About PolarMap">
+<meta property="og:description" content="PolarMap measures every day how the Spanish press is divided: what it argues about, where each outlet stands, how much hostility there is and what both sides have in common. It is an independent, free and open-source project.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='9' cy='16' r='6' fill='%23257de0'/%3E%3Ccircle cx='23' cy='16' r='6' fill='%23f47230'/%3E%3C/svg%3E">
+<!-- Página estática. Los estilos son una copia de los de web/template.html. -->
+<style>
+:root{
+  color-scheme:light;
+  --bg:#fbfaf7; --surface:#ffffff; --ink:#191919; --ink-2:#4a4a4a; --mute:#6b6b6b;
+  --line:#e6e3dc; --line-2:#f0ede7; --track:#efece6; --ci:#bdbab3;
+  --hot:#d64545; --accent:#257de0;
+  --s1:#257de0; --s2:#f47230; --s3:#00b894;
+  --serif:"Iowan Old Style","Charter","Georgia",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:20}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;text-decoration:none}
+.brand i{display:inline-flex;gap:3px}.brand i b{width:10px;height:10px;border-radius:50%;display:block}
+nav.top{display:flex;gap:18px;font-size:14px}
+nav.top a{text-decoration:none;color:var(--ink-2)}nav.top a:hover{color:var(--ink)}
+@media(max-width:640px){nav.top .hide-s{display:none}}
+
+.hero{padding:44px 0 28px}
+.chip-date{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px;margin:0 0 16px}
+.chip-date .live{width:8px;height:8px;border-radius:50%;background:#2e9e5b;box-shadow:0 0 0 3px #2e9e5b22;flex:none}
+.cta{display:flex;justify-content:space-between;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;flex-wrap:wrap}
+.cta p{margin:0;color:var(--ink-2)}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1.1;letter-spacing:-.015em;margin:10px 0 14px;max-width:820px}
+.lede{font-size:18px;color:var(--ink-2);max-width:720px;margin:0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:28px}
+.stat{background:var(--surface);padding:16px 18px}
+.stat .n{font-size:28px;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .l{font-size:13px;color:var(--mute);line-height:1.35;margin-top:2px}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+section.block{padding:40px 0;border-top:1px solid var(--line)}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3vw,30px);letter-spacing:-.01em;margin:0 0 6px}
+.sub{color:var(--ink-2);margin:0 0 22px;max-width:720px}
+h3{font-size:15px;margin:0 0 10px;font-weight:650}
+.note{font-size:13px;color:var(--mute);margin:8px 0 0}
+
+/* Debates */
+.deb-grid{display:grid;grid-template-columns:320px 1fr;gap:24px;align-items:start}
+@media(max-width:860px){.deb-grid{grid-template-columns:1fr}}
+.deb-list{display:flex;flex-direction:column;gap:10px}
+@media(max-width:860px){.deb-list{flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;margin:0 -20px;padding-left:20px;padding-right:20px}.deb-list .deb{min-width:250px;scroll-snap-align:start}}
+.deb{all:unset;cursor:pointer;display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;transition:border-color .15s,box-shadow .15s}
+.deb:hover{border-color:#cfcabf}
+.deb[aria-selected="true"]{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.deb:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.deb .t{font-weight:650;line-height:1.3;display:block}
+.deb .m{font-size:13px;color:var(--mute);display:block;margin-top:3px}
+.mini{display:grid;grid-template-columns:76px 1fr 34px;gap:8px;align-items:center;font-size:12px;color:var(--ink-2);margin-top:8px}
+.mini + .mini{margin-top:4px}
+.mbar{height:6px;background:var(--track);border-radius:4px;overflow:hidden}
+.mbar span{display:block;height:100%;border-radius:4px}
+.mini b{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f1efe9;color:var(--ink-2);margin-top:8px}
+.tag.hot{background:#fbe7e5;color:#9c2a20}.tag.grey{background:#efefef;color:#6b6b6b}
+
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+@media(max-width:640px){.detail{padding:16px}}
+.detail h3.big{font-family:var(--serif);font-size:24px;line-height:1.2;font-weight:600;margin:0 0 8px;letter-spacing:-.01em}
+.verdict{color:var(--ink-2);margin:0 0 16px}
+.poles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.pole{border-radius:10px;padding:12px 14px;background:var(--line-2);font-size:14px;line-height:1.4}
+.pole b{display:block;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);margin-bottom:4px}
+.pole.b{text-align:right}
+@media(max-width:560px){.poles{grid-template-columns:1fr}.pole.b{text-align:left}}
+.meters{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:560px){.meters{grid-template-columns:1fr}}
+.meter .lab{display:flex;justify-content:space-between;font-size:14px;font-weight:600}
+.meter .lab span{font-weight:500;color:var(--ink-2)}
+.meter .mbar{height:8px;margin:6px 0 4px}
+.meter p{font-size:13px;color:var(--mute);margin:0}
+.signal{font-size:14px;padding:10px 12px;border-radius:10px;background:#f4f8fe;color:#1d4f8f;margin:0 0 16px}
+.signal.weak{background:#f5f4f0;color:var(--ink-2)}
+
+.chart-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin:6px 0 8px}
+.toggle{font-size:13px;color:var(--ink-2);display:flex;align-items:center;gap:6px;cursor:pointer}
+.rows{position:relative}
+.row,.axis-row{display:grid;grid-template-columns:132px 1fr 54px;gap:10px;align-items:center}
+@media(max-width:560px){.row,.axis-row{grid-template-columns:96px 1fr 44px;gap:8px}}
+.row{height:30px;border-radius:6px;cursor:default}
+.row:hover,.row.on{background:var(--line-2)}
+.row .o{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-left:4px}
+.row .o small{color:var(--mute);margin-left:4px;font-variant-numeric:tabular-nums}
+.trk{position:relative;height:30px}
+.trk::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line)}
+.trk .mid{position:absolute;left:50%;top:4px;bottom:4px;width:1px;background:#cfcabf}
+.trk .ci{position:absolute;top:50%;height:4px;margin-top:-2px;background:var(--ci);border-radius:4px}
+.trk .dot{position:absolute;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 2px var(--surface)}
+.row .v{font-size:12px;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:5px;justify-content:flex-end;color:var(--ink-2)}
+.row .v i{display:inline-block;height:6px;border-radius:3px;background:var(--hot);min-width:2px}
+.axis-row{font-size:12px;color:var(--mute);margin-bottom:4px}
+.axis-row .ends{display:flex;justify-content:space-between}
+.axis-row .r{text-align:right}
+
+.ex{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+@media(max-width:760px){.ex{grid-template-columns:1fr}}
+.ex ul{list-style:none;padding:0;margin:0}
+.ex li{font-size:14px;line-height:1.35;margin-bottom:10px}
+.ex li a{text-decoration:none}.ex li a:hover{text-decoration:underline}
+.ex li small{display:block;color:var(--mute);font-size:12px;margin-top:2px}
+
+/* Outlets over time */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.chip{all:unset;cursor:pointer;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);display:inline-flex;align-items:center;gap:7px}
+.chip .sw{width:10px;height:10px;border-radius:50%;background:transparent;border:1.5px solid #bbb}
+.chip[aria-pressed="true"]{border-color:var(--ink)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.picker{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.picker select{font:inherit;font-size:14px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);max-width:100%}
+.tcharts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.tcharts{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.card h3{margin-bottom:2px}.card .note{margin:0 0 8px}
+svg text{font-family:var(--sans)}
+.banner{font-size:14px;background:#fff8e6;border:1px solid #f3e2b3;color:#6b5210;border-radius:10px;padding:10px 12px;margin:0 0 14px}
+
+table.ot{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+table.ot th{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);font-weight:600;text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none}
+table.ot th.num,table.ot td.num{text-align:right}
+table.ot th[aria-sort]::after{content:" ↓";color:var(--ink)}
+table.ot td{padding:7px 6px;border-bottom:1px solid var(--line-2);font-variant-numeric:tabular-nums}
+table.ot td .cell{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+table.ot td .cell i{display:inline-block;height:6px;border-radius:3px;min-width:2px}
+.more{all:unset;cursor:pointer;font-size:14px;color:var(--accent);margin-top:10px;display:inline-block}
+
+/* Methodology */
+.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 22px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14px;line-height:1.45;color:var(--ink-2)}
+.steps li::before{counter-increment:s;content:counter(s);display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:700;margin-bottom:8px}
+.steps li b{display:block;color:var(--ink);margin-bottom:3px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+table.ev{width:100%;border-collapse:collapse;font-size:14px}
+table.ev td{padding:9px 6px;border-bottom:1px solid var(--line-2);vertical-align:top}
+table.ev td:first-child{color:var(--ink-2);width:42%}
+table.ev td b{font-variant-numeric:tabular-nums}
+ul.plain{margin:0;padding-left:18px;font-size:14px;color:var(--ink-2)}
+ul.plain li{margin-bottom:6px}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;border:1px solid var(--ink);text-decoration:none;font-weight:600;font-size:14px}
+.btn.primary{background:var(--ink);color:#fff}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:13px;color:var(--mute)}
+
+#tip{position:fixed;z-index:50;pointer-events:none;background:#1f1f1f;color:#fff;font-size:12.5px;line-height:1.4;padding:8px 10px;border-radius:8px;max-width:260px;opacity:0;transition:opacity .08s;box-shadow:0 4px 18px rgba(0,0,0,.18)}
+#tip b{font-weight:650}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.lang button{all:unset;cursor:pointer;font-size:12px;font-weight:650;padding:4px 9px;color:var(--mute)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+nav.top{align-items:center}
+html[data-lang="en"] [lang="es"],html[data-lang="es"] [lang="en"]{display:none}
+.cg{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 2px;margin:-4px 0 18px;font-size:14px;line-height:1.45}
+.cg-row{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:baseline}
+.cg-row+.cg-row{margin-top:8px}
+.cg-k{font-size:12px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+.cg-none{color:var(--mute)}
+.cg-tag{display:inline-block;font-size:11.5px;font-weight:600;padding:1px 8px;border-radius:999px;background:#eef3fb;color:#1d4f8f;margin-right:6px;vertical-align:1px;cursor:help}
+.cg-foot{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:9px;font-size:12px;color:var(--mute)}
+.cg-foot button{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.cg-foot button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cg-ev{margin:10px 0 0;font-size:13px}
+.cg-ev h4{font-size:11.5px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;color:var(--mute);margin:8px 0 4px}
+.cg-ev ul{list-style:none;margin:0;padding:0}
+.cg-ev li{margin:0 0 6px;line-height:1.35}
+.cg-ev li b{font-size:11px;font-weight:650;color:var(--mute);margin-right:6px}
+.cg-ev li a{text-decoration:none}.cg-ev li a:hover{text-decoration:underline}
+.cg-ev li small{color:var(--mute);margin-left:4px}
+@media(max-width:560px){.cg-row{grid-template-columns:1fr;gap:2px}.cg-foot{flex-direction:column;gap:6px}}
+
+nav.top a.on{color:var(--ink);font-weight:600}
+.about .lede{max-width:700px}
+.sec{padding:34px 0;border-top:1px solid var(--line)}
+.sec h2{margin-bottom:12px}
+.sec p.body{max-width:720px;color:var(--ink-2);margin:0 0 10px;font-size:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.grid4{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.grid2,.grid4{grid-template-columns:1fr}}
+.pc{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.pc h3{font-size:17px;margin:10px 0 6px}.pc p{margin:0;color:var(--ink-2);font-size:14.5px}
+.pc .pcx{margin-top:8px;font-size:13px;color:var(--mute)}
+.pc svg{display:block;max-width:100%;height:auto}
+.tg{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;background:#eef3fb;color:#1d4f8f}
+.steps4{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:s}
+@media(max-width:900px){.steps4{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.steps4{grid-template-columns:1fr}}
+.steps4 li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;font-size:14px;color:var(--ink-2)}
+.steps4 li::before{counter-increment:s;content:counter(s);display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:700;margin-bottom:8px}
+.steps4 li b{display:block;color:var(--ink);margin-bottom:3px;font-size:15px}
+ul.not{margin:0;padding-left:18px;color:var(--ink-2);max-width:720px}ul.not li{margin-bottom:6px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><i><b style="background:#257de0"></b><b style="background:#f47230"></b></i>PolarMap</a>
+  <nav class="top"><a class="hide-s" href="index.html#debates"><span lang="en">Debates</span><span lang="es">Debates</span></a><a class="hide-s" href="index.html#outlets"><span lang="en">Outlets</span><span lang="es">Medios</span></a><a class="on" href="about.html" aria-current="page"><span lang="en">About</span><span lang="es">Sobre PolarMap</span></a>
+    <span class="lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="es">ES</button></span></nav>
+</div></header>
+<main class="about">
+<div lang="en">
+<section class="hero"><div class="wrap"><h1>Making polarization visible, so we can reduce it</h1><p class="lede">PolarMap measures every day how the Spanish press is divided: what it argues about, where each outlet stands, how much hostility there is and what both sides have in common. It is an independent, free and open-source project.</p></div></section>
+<section class="sec"><div class="wrap"><h2>Why it exists</h2><p class="body">Polarization is felt, but rarely measured. We believe that informing people about it is one of the first steps to changing the trend. That is why PolarMap doesn't stop at what divides: it also shows what unites, because many fights are about how to get somewhere, not where to go.</p><p class="body">It is built for readers, journalists and students. It doesn't label any outlet as left or right: an outlet's position comes only from what it publishes.</p></div></section>
+<section class="sec"><div class="wrap"><h2>What polarization is</h2><div class="grid2">
+<div class="pc"><svg viewBox="0 0 300 64" width="300" height="64" aria-hidden="true" font-family="-apple-system,Segoe UI,Roboto,Arial,sans-serif" font-size="10.5" fill="#6b6b6b"><text x="0" y="11">Healthy debate: opinions spread out</text><line x1="0" y1="22" x2="300" y2="22" stroke="#e6e3dc"/><circle cx="8.0" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="28.3" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="48.6" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="68.9" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="89.2" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="109.5" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="129.8" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="150.1" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="170.4" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="190.7" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="211.0" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="231.3" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="251.6" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="271.9" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="292.2" cy="22" r="4.5" fill="#9a9a9a"/><text x="0" y="45">Polarization: two blocs</text><line x1="0" y1="56" x2="300" y2="56" stroke="#e6e3dc"/><circle cx="8" cy="56" r="4.5" fill="#257de0"/><circle cx="16" cy="56" r="4.5" fill="#257de0"/><circle cx="24" cy="56" r="4.5" fill="#257de0"/><circle cx="32" cy="56" r="4.5" fill="#257de0"/><circle cx="40" cy="56" r="4.5" fill="#257de0"/><circle cx="48" cy="56" r="4.5" fill="#257de0"/><circle cx="56" cy="56" r="4.5" fill="#257de0"/><circle cx="244" cy="56" r="4.5" fill="#f47230"/><circle cx="252" cy="56" r="4.5" fill="#f47230"/><circle cx="260" cy="56" r="4.5" fill="#f47230"/><circle cx="268" cy="56" r="4.5" fill="#f47230"/><circle cx="276" cy="56" r="4.5" fill="#f47230"/><circle cx="284" cy="56" r="4.5" fill="#f47230"/><circle cx="292" cy="56" r="4.5" fill="#f47230"/></svg><h3>Ideological polarization</h3><p>Disagreeing is not polarizing. In a healthy debate there are all kinds of opinions, spread between the two extremes. There is polarization when those opinions cluster into two opposing blocs and the middle ground empties.</p></div>
+<div class="pc"><svg viewBox="0 0 300 64" width="300" height="64" aria-hidden="true" font-family="-apple-system,Segoe UI,Roboto,Arial,sans-serif" font-size="10.5" fill="#d64545"><circle cx="8" cy="34" r="4.5" fill="#257de0"/><circle cx="16" cy="34" r="4.5" fill="#257de0"/><circle cx="24" cy="34" r="4.5" fill="#257de0"/><circle cx="32" cy="34" r="4.5" fill="#257de0"/><circle cx="40" cy="34" r="4.5" fill="#257de0"/><circle cx="48" cy="34" r="4.5" fill="#257de0"/><circle cx="56" cy="34" r="4.5" fill="#257de0"/><circle cx="244" cy="34" r="4.5" fill="#f47230"/><circle cx="252" cy="34" r="4.5" fill="#f47230"/><circle cx="260" cy="34" r="4.5" fill="#f47230"/><circle cx="268" cy="34" r="4.5" fill="#f47230"/><circle cx="276" cy="34" r="4.5" fill="#f47230"/><circle cx="284" cy="34" r="4.5" fill="#f47230"/><circle cx="292" cy="34" r="4.5" fill="#f47230"/><path d="M66 34 L100 24 L95 34 L130 22 L125 34 L165 24 L160 34 L200 25 L195 34 L234 34" fill="none" stroke="#d64545" stroke-width="2" stroke-linejoin="round"/><text x="150" y="56" text-anchor="middle">attacks, contempt</text></svg><h3>Affective polarization</h3><p>Beyond disagreeing, each side treats the other with hostility: attacks, contempt, “us against them”. It is the kind that does most damage to coexistence.</p></div></div>
+<p class="body" style="margin-top:14px">Each debate is summarized in these two scores, from 0 to 1. Above 0.30 we speak of high conflict.</p></div></section>
+<section class="sec"><div class="wrap"><h2>What unites and what divides</h2><p class="body">For each debate we point out <b>what both sides share</b> (a goal, a fact or a value both accept) and <b>where the real difference lies</b>, which can be of four types:</p><div class="grid4">
+<div class="pc"><span class="tg">Goals</span><p style="margin-top:8px">They want different things or put different values first.</p><p class="pcx">E.g. migration: curb arrivals or prioritise reception?</p></div><div class="pc"><span class="tg">Means</span><p style="margin-top:8px">They want the same thing but disagree on how to get there.</p><p class="pcx">E.g. affordable housing: regulate or build more?</p></div><div class="pc"><span class="tg">Facts</span><p style="margin-top:8px">They disagree on what is happening or why.</p><p class="pcx">E.g. has the economy improved for families or not?</p></div><div class="pc"><span class="tg">Trust</span><p style="margin-top:8px">They disagree on whether an actor (government, judges, a party) can be trusted, more than on the policy itself.</p><p class="pcx">E.g. do judges act impartially?</p></div></div></div></section>
+<section class="sec"><div class="wrap"><h2>How we measure it</h2><ol class="steps4"><li><b>Read</b>All Spanish news from the last 24 hours, from the open GDELT database.</li><li><b>Find the debates</b>An artificial intelligence system detects what is being argued about that day, with no predefined topic list.</li><li><b>Place headlines and outlets</b>Each headline is scored between the two sides and for hostility, following written, public rules. Each outlet is placed by the average of its headlines.</li><li><b>Check</b>Tested against human labels: 95–97% accuracy in assigning each headline to its debate. When there isn't enough data, we say so.</li></ol></div></section>
+<section class="sec"><div class="wrap"><h2>What PolarMap is not</h2><ul class="not"><li>It doesn't measure public opinion: it measures what the media publish.</li><li>It doesn't judge who is right in any debate.</li><li>A single headline can be misclassified; that is why conclusions are drawn per outlet, with their margin of error.</li></ul>
+<div class="cta" style="margin-top:22px"><p>Full methodology, evaluation and open-source code.</p><a class="btn" href="https://github.com/luciagarciamorenog/polarmap" target="_blank" rel="noopener">See on GitHub ↗</a></div></div></section>
+</div>
+<div lang="es">
+<section class="hero"><div class="wrap"><h1>Hacer visible la polarización para poder reducirla</h1><p class="lede">PolarMap mide cada día cómo se divide la prensa española: de qué discute, dónde se sitúa cada medio, cuánta hostilidad hay y qué tienen en común los dos lados. Es un proyecto independiente, gratuito y con el código abierto.</p></div></section>
+<section class="sec"><div class="wrap"><h2>Por qué existe</h2><p class="body">La polarización se nota, pero casi nunca se mide. Creemos que informar sobre ella es uno de los primeros pasos para cambiar la tendencia. Por eso PolarMap no se queda en lo que separa: también enseña lo que une, porque muchas peleas son sobre cómo llegar, no sobre adónde ir.</p><p class="body">Está pensado para lectores, periodistas y estudiantes. No etiqueta a ningún medio como de izquierdas o de derechas: su posición sale solo de lo que publica.</p></div></section>
+<section class="sec"><div class="wrap"><h2>Qué es la polarización</h2><div class="grid2">
+<div class="pc"><svg viewBox="0 0 300 64" width="300" height="64" aria-hidden="true" font-family="-apple-system,Segoe UI,Roboto,Arial,sans-serif" font-size="10.5" fill="#6b6b6b"><text x="0" y="11">Debate sano: opiniones repartidas</text><line x1="0" y1="22" x2="300" y2="22" stroke="#e6e3dc"/><circle cx="8.0" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="28.3" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="48.6" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="68.9" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="89.2" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="109.5" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="129.8" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="150.1" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="170.4" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="190.7" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="211.0" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="231.3" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="251.6" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="271.9" cy="22" r="4.5" fill="#9a9a9a"/><circle cx="292.2" cy="22" r="4.5" fill="#9a9a9a"/><text x="0" y="45">Polarización: dos bloques</text><line x1="0" y1="56" x2="300" y2="56" stroke="#e6e3dc"/><circle cx="8" cy="56" r="4.5" fill="#257de0"/><circle cx="16" cy="56" r="4.5" fill="#257de0"/><circle cx="24" cy="56" r="4.5" fill="#257de0"/><circle cx="32" cy="56" r="4.5" fill="#257de0"/><circle cx="40" cy="56" r="4.5" fill="#257de0"/><circle cx="48" cy="56" r="4.5" fill="#257de0"/><circle cx="56" cy="56" r="4.5" fill="#257de0"/><circle cx="244" cy="56" r="4.5" fill="#f47230"/><circle cx="252" cy="56" r="4.5" fill="#f47230"/><circle cx="260" cy="56" r="4.5" fill="#f47230"/><circle cx="268" cy="56" r="4.5" fill="#f47230"/><circle cx="276" cy="56" r="4.5" fill="#f47230"/><circle cx="284" cy="56" r="4.5" fill="#f47230"/><circle cx="292" cy="56" r="4.5" fill="#f47230"/></svg><h3>Polarización ideológica</h3><p>Discrepar no es polarizar. En un debate sano hay opiniones de todo tipo, repartidas entre los dos extremos. Hay polarización cuando esas opiniones se agrupan en dos bloques enfrentados y el terreno intermedio se vacía.</p></div>
+<div class="pc"><svg viewBox="0 0 300 64" width="300" height="64" aria-hidden="true" font-family="-apple-system,Segoe UI,Roboto,Arial,sans-serif" font-size="10.5" fill="#d64545"><circle cx="8" cy="34" r="4.5" fill="#257de0"/><circle cx="16" cy="34" r="4.5" fill="#257de0"/><circle cx="24" cy="34" r="4.5" fill="#257de0"/><circle cx="32" cy="34" r="4.5" fill="#257de0"/><circle cx="40" cy="34" r="4.5" fill="#257de0"/><circle cx="48" cy="34" r="4.5" fill="#257de0"/><circle cx="56" cy="34" r="4.5" fill="#257de0"/><circle cx="244" cy="34" r="4.5" fill="#f47230"/><circle cx="252" cy="34" r="4.5" fill="#f47230"/><circle cx="260" cy="34" r="4.5" fill="#f47230"/><circle cx="268" cy="34" r="4.5" fill="#f47230"/><circle cx="276" cy="34" r="4.5" fill="#f47230"/><circle cx="284" cy="34" r="4.5" fill="#f47230"/><circle cx="292" cy="34" r="4.5" fill="#f47230"/><path d="M66 34 L100 24 L95 34 L130 22 L125 34 L165 24 L160 34 L200 25 L195 34 L234 34" fill="none" stroke="#d64545" stroke-width="2" stroke-linejoin="round"/><text x="150" y="56" text-anchor="middle">ataques, desprecio</text></svg><h3>Polarización afectiva</h3><p>Además de discrepar, cada lado trata al otro con hostilidad: ataques, desprecio, «nosotros contra ellos». Es la que más daña la convivencia.</p></div></div>
+<p class="body" style="margin-top:14px">Cada debate se resume en estos dos indicadores, de 0 a 1. Por encima de 0,30 hablamos de conflicto alto.</p></div></section>
+<section class="sec"><div class="wrap"><h2>Lo que une y lo que divide</h2><p class="body">En cada debate señalamos <b>qué comparten</b> los dos lados (un objetivo, un hecho o un valor que ambos dan por bueno) y <b>dónde está la diferencia de verdad</b>, que puede ser de cuatro tipos:</p><div class="grid4">
+<div class="pc"><span class="tg">Objetivos</span><p style="margin-top:8px">Quieren cosas distintas o priorizan valores distintos.</p><p class="pcx">Ej.: migración, ¿frenar las llegadas o priorizar la acogida?</p></div><div class="pc"><span class="tg">Medios</span><p style="margin-top:8px">Quieren lo mismo, pero discrepan en cómo conseguirlo.</p><p class="pcx">Ej.: vivienda asequible, ¿regulando o construyendo más?</p></div><div class="pc"><span class="tg">Hechos</span><p style="margin-top:8px">No coinciden en qué está pasando o en por qué.</p><p class="pcx">Ej.: ¿ha mejorado o no la economía de las familias?</p></div><div class="pc"><span class="tg">Confianza</span><p style="margin-top:8px">Discuten si un actor (Gobierno, jueces, un partido) es de fiar, más que la política en sí.</p><p class="pcx">Ej.: ¿actúan los jueces con imparcialidad?</p></div></div></div></section>
+<section class="sec"><div class="wrap"><h2>Cómo lo medimos</h2><ol class="steps4"><li><b>Leemos</b>Todas las noticias de medios españoles de las últimas 24 horas, a partir de la base de datos abierta GDELT.</li><li><b>Encontramos los debates</b>Un sistema de inteligencia artificial detecta de qué se discute ese día, sin una lista de temas previa.</li><li><b>Situamos titulares y medios</b>Cada titular se puntúa entre los dos lados y según su hostilidad, con reglas escritas y públicas. Cada medio se sitúa con la media de sus titulares.</li><li><b>Comprobamos</b>Contrastado con etiquetas humanas: 95–97 % de acierto al asignar cada titular a su debate. Si no hay datos suficientes, lo decimos.</li></ol></div></section>
+<section class="sec"><div class="wrap"><h2>Lo que PolarMap no es</h2><ul class="not"><li>No mide la opinión pública: mide lo que publican los medios.</li><li>No juzga quién tiene razón en ningún debate.</li><li>Un titular suelto puede estar mal clasificado; por eso las conclusiones se sacan por medio, con su margen de error.</li></ul>
+<div class="cta" style="margin-top:22px"><p>Metodología completa, evaluación y código abierto.</p><a class="btn" href="https://github.com/luciagarciamorenog/polarmap" target="_blank" rel="noopener">Ver en GitHub ↗</a></div></div></section>
+</div>
+</main>
+<footer><div class="wrap"><span lang="en">PolarMap · independent project · Data: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> · Open source on <a href="https://github.com/luciagarciamorenog/polarmap" target="_blank" rel="noopener">GitHub</a></span><span lang="es">PolarMap · proyecto independiente · Datos: <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT Project</a> · Código abierto en <a href="https://github.com/luciagarciamorenog/polarmap" target="_blank" rel="noopener">GitHub</a></span></div></footer>
+<script>
+(()=>{
+const TITLES={"en": "About PolarMap · What divides the Spanish press?", "es": "Sobre PolarMap · ¿Qué divide a la prensa española?"};
+let lang='en';
+try{const q=new URLSearchParams(location.search).get('lang');const s=localStorage.getItem('polarmap-lang');lang=(q==='es'||q==='en')?q:(s==='es'||s==='en')?s:'en'}catch(e){}
+const links=[...document.querySelectorAll('a[href^="index.html"]')].map(a=>[a,a.getAttribute('href').split('#')[1]]);
+function apply(){document.documentElement.lang=lang;document.documentElement.dataset.lang=lang;document.title=TITLES[lang];
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
+  links.forEach(([a,h])=>a.setAttribute('href','index.html?lang='+lang+(h?'#'+h:'')));}
+document.querySelector('.lang').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.dataset.lang===lang)return;lang=b.dataset.lang;
+  try{localStorage.setItem('polarmap-lang',lang)}catch(_){}
+  try{const u=new URL(location.href);u.searchParams.set('lang',lang);history.replaceState(null,'',u)}catch(_){}
+  apply()});
+apply();
+})();
+</script>
+</body>
+</html>
