@@ -11,7 +11,7 @@ POR PAÍS:
   4. Por debate: clasifica con el libro de códigos v2 (validate/CODEBOOK.md):
      postura con framing, hostilidad del lenguaje, conflictividad y
      «nosotros contra ellos», y calcula métricas de polarización.
-  5. Genera snapshot.json con el contrato v1 (CONTRACT.md) para el mapa,
+  5. Genera snapshot.json con el contrato v1 (docs/CONTRACT.md) para el mapa,
      y el detalle interno en data/internal/.
 
 Uso (la key se lee de .env en la raíz del proyecto; ver .env.example):
@@ -615,7 +615,7 @@ def main():
         "--min-articles", type=int, default=30,
         help="Mínimo de artículos para analizar un tema (default: 30). "
              "Suelo de análisis, no de trust: trust exige n>=80 "
-             "(CONTRACT.md §3)",
+             "(docs/docs/CONTRACT.md §3)",
     )
     ap.add_argument(
         "--stance-passes", type=int, default=1,

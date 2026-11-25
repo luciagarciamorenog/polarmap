@@ -1,5 +1,5 @@
 """
-Tests del contrato v1 (CONTRACT.md). Sin red, sin API.
+Tests del contrato v1 (docs/CONTRACT.md). Sin red, sin API.
 
     cd analysis && python3 test_contract.py
 """

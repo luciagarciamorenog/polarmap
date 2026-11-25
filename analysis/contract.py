@@ -1,12 +1,12 @@
 """
-Contrato de datos v1 del mapa (ver CONTRACT.md).
+Contrato de datos v1 del mapa (ver docs/CONTRACT.md).
 
 Todo lo que decide qué ve el frontend vive aquí y es puro: sin red,
 sin API, sin disco. El pipeline le pasa resultados por tema y esto
 devuelve el snapshot público. Así los umbrales se pueden testear
 offline (analysis/test_contract.py).
 
-Si cambias una forma o un umbral, sube CONTRACT_VERSION y CONTRACT.md.
+Si cambias una forma o un umbral, sube CONTRACT_VERSION y docs/CONTRACT.md.
 """
 
 from __future__ import annotations
