@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25 13:28",
+ "generated": "2026-11-25 14:32",
  "families": {
   "government": "Elections & government",
   "housing": "Housing",
@@ -779,6 +779,92 @@
        }
       ]
      },
+     "cg": {
+      "n": 40,
+      "shared": {
+       "es": "Ambos lados reconocen que los servicios públicos y las pensiones son un terreno de disputa central en estas elecciones.",
+       "en": "Both sides acknowledge that public services and pensions are a central battleground in this election.",
+       "ev": [
+        {
+         "t": "29N: Pensiones y servicios públicos. Derechas a destruirlos; izquierdas a conservarlos y mejorarlos",
+         "o": "Andalucía Información",
+         "u": "https://www.andaluciainformacion.es/blog/rafael-fenoy/29n-pensiones-servicios-publicos-derechas-destruirlos-izquierdas-conservarlos-mejorarlos/202611240939313546509.html",
+         "s": "A",
+         "id": "A8"
+        },
+        {
+         "t": "La derecha mediática prepara el terreno a Feijóo: pensiones que bajen cuando haya más jubilados o crezca la esperanza de vida",
+         "o": "El Plural",
+         "u": "https://www.elplural.com/economia/derecha-mediatica-prepara-terreno-feijoo-pensiones-bajen-cuando-haya-mas-jubilados-crezca-esperanza-vida_805128102",
+         "s": "A",
+         "id": "A3"
+        },
+        {
+         "t": "Núñez: «El Partido Popular va a derogar el sanchismo, que nadie tenga ninguna duda»",
+         "o": "ABC",
+         "u": "https://www.abc.es/espana/castilla-la-mancha/nunez-partido-popular-derogar-sanchismo-ninguna-duda-20261124135232-nt.html",
+         "s": "B",
+         "id": "B1"
+        },
+        {
+         "t": "Pepa Millán, portavoz de Vox: \"Todo lo que se recauda va para los regadíos de Marruecos o para sus trenes, mientras los nuestros están descarrilando\"",
+         "o": "El Confidencial",
+         "u": "https://www.elconfidencial.com/espana/2026-11-23/pepa-millan-vox-economia-debate_4471079/",
+         "s": "B",
+         "id": "B8"
+        }
+       ]
+      },
+      "differ": {
+       "es": "Un lado ve al Gobierno como garante de derechos y democracia; el otro lo considera ilegítimo y una amenaza al sistema.",
+       "en": "One side sees the Government as a guarantor of rights and democracy; the other views it as illegitimate and a threat to the system.",
+       "type": "confianza",
+       "ev": [
+        {
+         "t": "Patxi López acusa a PP y Vox de \"alimentar a los que prefieren una dictadura a una democracia\"",
+         "o": "Público",
+         "u": "https://www.publico.es/politica/partidos/patxi-lopez-acusa-pp-vox-alimentar-prefieren-dictadura-democracia.html",
+         "s": "A",
+         "id": "A5"
+        },
+        {
+         "t": "Patxi López (PSOE), sobre la corrupción: \"Nos repugna y por eso actuamos inmediatamente y con contundencia como hemos demostrado en nuestros casos\"",
+         "o": "El Confidencial",
+         "u": "https://www.elconfidencial.com/espana/2026-11-23/patxi-lopez-psoe-corrupcion-debate_4471089/",
+         "s": "A",
+         "id": "A7"
+        },
+        {
+         "t": "Ayuso avisa de \"circunstancias anómalas\" de cara al 29-N: \"Nos gobierna un proyecto mafioso\"",
+         "o": "La Razón",
+         "u": "https://www.larazon.es/madrid/ayuso-avisa-circunstancias-anomalas-cara-29n-nos-gobierna-proyecto-mafioso_202611246b05516350b7057c6d14f083.html",
+         "s": "B",
+         "id": "B2"
+        },
+        {
+         "t": "\"Hay motivos para tenerle miedo\": Abascal agita la tesis de las \"trampas\" de Sánchez para llamar a una \"movilización gigantesca\"",
+         "o": "El Mundo",
+         "u": "https://www.elmundo.es/elecciones/elecciones-generales/2026/11/23/6b049d72e9cf4abb598b45af.html",
+         "s": "B",
+         "id": "B6"
+        },
+        {
+         "t": "Abascal acusa en Palencia a Pedro Sánchez de intentar \"robar las elecciones\" y pide una movilización masiva para impedirlo",
+         "o": "COPE",
+         "u": "https://www.cope.es/emisoras/castilla-y-leon/palencia-provincia/palencia/noticias/abascal-acusa-palencia-pedro-sanchez-intentar-robar-elecciones-pide-movilizacion-masiva-impedirlo-20261123_3480623.html",
+         "s": "B",
+         "id": "B11"
+        },
+        {
+         "t": "Vox sostiene que «si Pedro Sánchez vuelve a gobernar, va a suponer la ruina de nuestro país»",
+         "o": "La Verdad",
+         "u": "https://www.laverdad.es/murcia/vox-sostiene-pedro-sanchez-vuelve-gobernar-suponer-20261124120711-nt.html",
+         "s": "B",
+         "id": "B20"
+        }
+       ]
+      }
+     },
      "label_en": "Keep or change the government",
      "family": "government",
      "a_en": "The current government should stay.",
@@ -1095,6 +1181,71 @@
        }
       ]
      },
+     "cg": {
+      "n": 40,
+      "shared": {
+       "es": "Ambos lados reconocen que existe una crisis real de acceso a la vivienda que afecta especialmente a jóvenes y familias.",
+       "en": "Both sides acknowledge a real housing access crisis affecting especially young people and families.",
+       "ev": [
+        {
+         "t": "No podemos resignarnos a vivir peor",
+         "o": "elDiario.es",
+         "u": "https://www.eldiario.es/canariasahora/opinion/no-resignarnos-vivir-peor_132_13687263.html",
+         "s": "A",
+         "id": "A3"
+        },
+        {
+         "t": "Vox promete «un futuro de oportunidades» a los 13.585 jóvenes almerienses que quieran volver a casa",
+         "o": "Ideal",
+         "u": "https://www.ideal.es/almeria/almeria/vox-promete-futuro-oportunidades-13585-jovenes-almerienses-20261124133713-nt.html",
+         "s": "B",
+         "id": "B4"
+        },
+        {
+         "t": "El PP promete acabar con la burocracia del urbanismo: externalizará servicios para tener \"licencia de obras en tres meses\"",
+         "o": "El Mundo",
+         "u": "https://www.elmundo.es/elecciones/elecciones-generales/2026/11/24/6b047b7ce85ecec71c8b4586.html",
+         "s": "B",
+         "id": "B9"
+        }
+       ]
+      },
+      "differ": {
+       "es": "El desacuerdo central es si la solución es regular e intervenir el mercado o aumentar la oferta construyendo más y dando garantías a propietarios.",
+       "en": "The core disagreement is whether the solution is to regulate and intervene in the market or to boost supply by building more and protecting landlords.",
+       "type": "medios",
+       "ev": [
+        {
+         "t": "Gabriel Rufián (ERC), sobre la vivienda en España: \"Habrá izquierdas que digan que hay que fabricar más pisos... hay que intervenir el mercado\"",
+         "o": "El Confidencial",
+         "u": "https://www.elconfidencial.com/espana/2026-11-23/gabriel-rufian-erc-vivienda-debate_4471075/",
+         "s": "A",
+         "id": "A4"
+        },
+        {
+         "t": "Javier Gil, investigador: «Se puede revertir la crisis de la vivienda sin construir más»",
+         "o": "Canarias7",
+         "u": "https://www.canarias7.es/canarias/gran-canaria/las-palmas-de-gran-canaria/javier-gil-investigador-puede-revertir-crisis-vivienda-20261124075400-nt.html",
+         "s": "A",
+         "id": "A8"
+        },
+        {
+         "t": "El PP promete acabar con la burocracia del urbanismo: externalizará servicios para tener \"licencia de obras en tres meses\"",
+         "o": "El Mundo",
+         "u": "https://www.elmundo.es/elecciones/elecciones-generales/2026/11/24/6b047b7ce85ecec71c8b4586.html",
+         "s": "B",
+         "id": "B9"
+        },
+        {
+         "t": "El PP cree que la política de vivienda precisa altura de miras: «El problema no mejorará con las propuestas ideológicas de la izquierda»",
+         "o": "La Voz de Asturias",
+         "u": "https://www.lavozdeasturias.es/noticia/elecciones-29n/2026/11/23/pp-cree-politica-vivienda-precisa-altura-miras-problema-mejorara-propuestasideologicas-izquierda/00031795463651605865252.htm",
+         "s": "B",
+         "id": "B11"
+        }
+       ]
+      }
+     },
      "label_en": "Housing",
      "family": "housing",
      "a_en": "The state must intervene: cap rents, stop evictions, expand public housing.",
@@ -1345,6 +1496,59 @@
        }
       ]
      },
+     "cg": {
+      "n": 40,
+      "shared": null,
+      "differ": {
+       "es": "El desacuerdo central es de objetivos: un lado prioriza frenar la llegada irregular aunque implique devoluciones y presión a países de origen; el otro prioriza proteger derechos individuales y vías legales aunque eso implique más acogida.",
+       "en": "The core disagreement is about objectives: one side prioritizes stopping irregular arrivals even through returns and pressure on origin countries; the other prioritizes protecting individual rights and legal pathways even if that means more reception.",
+       "type": "objetivos",
+       "ev": [
+        {
+         "t": "Sergio Ramos advierte a los países emisores de cayucos: \"Si no controlan sus fronteras, se les acaba el chiringuito\"",
+         "o": "Libertad Digital",
+         "u": "https://www.libertaddigital.com/canarias/2026-11-24/sergio-ramos-advierte-a-los-paises-emisores-de-cayucos-si-no-controlan-sus-fronteras-se-les-acaba-el-chiringuito-7496575/",
+         "s": "A",
+         "id": "A1"
+        },
+        {
+         "t": "“En España no cabe toda África; nos tenemos que dedicar a los nuestros”",
+         "o": "Andalucía Información",
+         "u": "https://www.andaluciainformacion.es/provincia-de-cadiz/espana-toda-africa-nos-tenemos-que-dedicar-nuestros/202611241301103546902.html",
+         "s": "A",
+         "id": "A5"
+        },
+        {
+         "t": "Más de 800 inmigrantes llegan a Canarias en 24 horas mientras Vox exige aplicar la Ley de Extranjería y devolverlos",
+         "o": "Libertad Digital",
+         "u": "https://www.libertaddigital.com/canarias/2026-11-24/mas-de-800-inmigrantes-llegan-a-canarias-en-24-horas-mientras-vox-exige-aplicar-la-ley-de-extranjeria-y-devolverlos-7496535/",
+         "s": "A",
+         "id": "A13"
+        },
+        {
+         "t": "Óscar Camps, director de Open Arms, responde a Feijóo tras sus palabras en El Hierro: \"Es una indignidad democrática\"",
+         "o": "El Español",
+         "u": "https://diariodeavisos.elespanol.com/2026/11/oscar-camps-feijoo-open-arms-derechos-migrantes-el-hierro/",
+         "s": "B",
+         "id": "B3"
+        },
+        {
+         "t": "82%: los inmigrantes llegan por avión y delinquen menos que los españoles",
+         "o": "infoLibre",
+         "u": "https://www.infolibre.es/opinion/columnas/buzon-de-voz/el-dato-y-las-tripas/82-inmigrantes-llegan-avion-delinquen-espanoles_129_2240650.html",
+         "s": "B",
+         "id": "B12"
+        },
+        {
+         "t": "El padre y la hija arrestados por el ICE en Seattle habían solicitado asilo y viajaban a un bautizo",
+         "o": "Diario Vasco",
+         "u": "https://www.diariovasco.com/internacional/eeuu/padre-hija-arrestados-ice-seattle-solicitado-asilo-20261123200951-ntrc.html",
+         "s": "B",
+         "id": "B15"
+        }
+       ]
+      }
+     },
      "label_en": "Migration policy",
      "family": "migration",
      "a_en": "Tighten border control, returns and cooperation with origin countries to stop irregular arrivals.",
@@ -1573,6 +1777,85 @@
         "u": "https://www.europapress.es/sociedad/noticia-intxaurrondo-jec-neutral-junta-electoral-fascismo-democracia-20261124093747.html"
        }
       ]
+     },
+     "cg": {
+      "n": 33,
+      "shared": {
+       "es": "Ambos lados aceptan que los tribunales son la vía legítima para resolver disputas sobre decisiones judiciales o electorales.",
+       "en": "Both sides accept that courts are the legitimate avenue to resolve disputes over judicial or electoral decisions.",
+       "ev": [
+        {
+         "t": "intxaurrondo recibe orgullo expediente sancionador junta electoral central iremos tribunales",
+         "o": "RTVE",
+         "u": "https://www.rtve.es/noticias/20261124/intxaurrondo-recibe-orgullo-expediente-sancionador-junta-electoral-central-iremos-tribunales/17328686.shtml",
+         "s": "A",
+         "id": "A6"
+        },
+        {
+         "t": "Silvia Intxaurrondo irá a los tribunales y desafía a la JEC: ”¿Es neutral la Junta Electoral entre el fascismo y la democracia?”",
+         "o": "La Vanguardia",
+         "u": "https://www.lavanguardia.com/politica/20261124/11691884/silvia-intxaurrondo-ira-tribunales-desafia-jec-neutral-junta-electoral-fascismo-democracia.html",
+         "s": "B",
+         "id": "B8"
+        },
+        {
+         "t": "Silvia Intxaurrondo, al ataque tras la sanción de la Junta Electoral: «La recibo con orgullo y honor. Me querían rebajar la multa por pronto pago»",
+         "o": "Diario Vasco",
+         "u": "https://www.diariovasco.com/politica/silvia-intxaurrondo-ataque-tras-sancion-junta-electoral-orgullo-honor-rebaja-pronto-pago-20261124100456-nt.html",
+         "s": "B",
+         "id": "B20"
+        }
+       ]
+      },
+      "differ": {
+       "es": "El desacuerdo central es si jueces y órganos como la JEC actúan con imparcialidad o responden a intereses políticos.",
+       "en": "The core disagreement is whether judges and bodies like the JEC act impartially or respond to political interests.",
+       "type": "confianza",
+       "ev": [
+        {
+         "t": "La Audiencia Nacional rechaza de nuevo imputar a Cospedal y al PP en 'Kitchen' pese a los nuevos audios de Villarejo",
+         "o": "Público",
+         "u": "https://www.publico.es/politica/tribunales/audiencia-nacional-rechaza-nuevo-imputar-cospedal-pp-kitchen-pese-nuevos-audios-villarejo.html",
+         "s": "A",
+         "id": "A7"
+        },
+        {
+         "t": "La AN rechaza imputar a Cospedal por los audios con Villarejo relativos al caso Kitchen",
+         "o": "Diario de Pontevedra",
+         "u": "https://www.diariodepontevedra.es/espana/an-rechaza-imputar-cospedal-audios-villarejo-relativos-caso-kitchen/202611231703461478280.html",
+         "s": "A",
+         "id": "A10"
+        },
+        {
+         "t": "La Audiencia Nacional rechaza imputar a Cospedal en la pieza sobre el espionaje a Bárcenas del 'caso Villarejo'",
+         "o": "La Gaceta de Salamanca",
+         "u": "https://www.lagacetadesalamanca.es/nacional/audiencia-nacional-rechaza-imputar-cospedal-pieza-sobre-20261123145249-nt.html",
+         "s": "A",
+         "id": "A11"
+        },
+        {
+         "t": "Ernesto Ekaizer: “En el món de la justícia, Marchena mana i el PP obeeix”",
+         "o": "Ara",
+         "u": "https://www.ara.cat/politica/mon-justicia-marchena-mana-pp-obeeix_128_5919737.html",
+         "s": "B",
+         "id": "B6"
+        },
+        {
+         "t": "Silvia Intxaurrondo se pregunta si la Junta Electoral \"es neutral entre fascismo y democracia\" y avisa: \"Me niego a regatear con la libertad de prensa\"",
+         "o": "elDiario.es",
+         "u": "https://www.eldiario.es/vertele/noticias/silvia-intxaurrondo-rtve-junta-electoral-pregunta-si-neutral-fascismo-democracia-avisa-sancion-niego-regatear-libertad-prensa_1_13687958.html",
+         "s": "B",
+         "id": "B3"
+        },
+        {
+         "t": "Intxaurrondo a la JEC: \"¿Es neutral la Junta Electoral entre el fascismo y la democracia?\"",
+         "o": "Europa Press",
+         "u": "https://www.europapress.es/sociedad/noticia-intxaurrondo-jec-neutral-junta-electoral-fascismo-democracia-20261124093747.html",
+         "s": "B",
+         "id": "B17"
+        }
+       ]
+      }
      },
      "label_en": "Justice and judicial independence",
      "family": "judiciary",
