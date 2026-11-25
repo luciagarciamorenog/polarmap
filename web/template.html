@@ -46,12 +46,11 @@ h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,46px);lin
 @media(max-width:520px){.stat .n{font-size:22px}}
 .brk{display:grid;gap:10px}
 .brk .r{display:grid;grid-template-columns:auto 1fr;gap:0 12px;align-items:baseline}
-.brk .r .n{min-width:66px}
-.brk .r.sub2{padding-left:18px;position:relative}
-.brk .r.sub2::before{content:"↳";position:absolute;left:0;top:4px;color:var(--mute);font-size:15px}
-.brk .r.sub2 .n{font-size:22px}
-.brk .bar{grid-column:2;height:6px;border-radius:3px;background:var(--track);position:relative;overflow:hidden;margin-top:6px}
-.brk .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px}
+.brk .one{height:14px;border-radius:7px;background:#cfcac0;position:relative;overflow:hidden}
+.brk .one i{position:absolute;left:0;top:0;bottom:0;background:var(--hot)}
+.brk .leg{font-size:13px;color:var(--ink-2);display:flex;align-items:baseline;flex-wrap:wrap;gap:0 4px}
+.brk .leg b{color:var(--ink)}
+.brk .leg .sw{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--hot);margin-right:6px;align-self:center}
 .brk small{color:var(--mute)}
 
 section.block{padding:40px 0;border-top:1px solid var(--line)}
@@ -379,9 +378,11 @@ function renderHero(){
   document.getElementById('lede').textContent=t('lede');
   const hostN=R.debates.reduce((s,d)=>s+(d.n_hostile||0),0);
   const one=(n,l)=>`<div class="stat"><div class="n">${esc(n)}</div><div class="l">${esc(l)}</div></div>`;
+  const hp=scored?hostN/scored:0;
   const brk=`<div class="stat wide"><div class="brk">`+
-    `<div class="r"><div class="n">${pct(scored/R.n_headlines)}</div><div class="l">${esc(t('sDebPct'))} <small>(${esc(t('sOf')(fmt(scored),fmt(R.n_headlines)))})</small></div><div class="bar"><i style="width:${(scored/R.n_headlines*100).toFixed(1)}%;background:var(--ink)"></i></div></div>`+
-    `<div class="r sub2"><div class="n">${pct(scored?hostN/scored:0)}</div><div class="l">${esc(t('sHost'))} <small>(${esc(t('sOf')(fmt(hostN),fmt(scored)))})</small></div><div class="bar"><i style="width:${(scored?hostN/scored*100:0).toFixed(1)}%;background:var(--hot)"></i></div></div>`+
+    `<div class="r"><div class="n">${pct(scored/R.n_headlines)}</div><div class="l">${esc(t('sDebPct'))} <small>(${esc(t('sOf')(fmt(scored),fmt(R.n_headlines)))})</small></div></div>`+
+    `<div class="one" role="img" aria-label="${esc(pct(hp)+' '+t('sHost'))}"><i style="width:${(hp*100).toFixed(1)}%"></i></div>`+
+    `<div class="leg"><span class="sw"></span><b>${pct(hp)}</b>&nbsp;${esc(t('sHost'))} <small>(${esc(t('sOf')(fmt(hostN),fmt(scored)))})</small></div>`+
     `</div></div>`;
   document.getElementById('stats').innerHTML=one(fmt(R.n_headlines),t('sRead'))+brk+one(String(R.debates.length),t('sDeb')(trusted))+one(String(outletSet.size),t('sOut'));
 }
