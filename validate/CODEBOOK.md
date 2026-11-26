@@ -1,4 +1,4 @@
-# Libro de códigos PolarMap · v4
+# Libro de códigos PolarMap · v5
 
 Unidad de análisis: **titular + entradilla** de una noticia (lo que lee el
 modelo). Se abre la noticia solo si con eso no se entiende.
@@ -47,6 +47,15 @@ Cambios v4 (24 nov 2026):
 
 Uno de los debates del día o `none`. Un titular va a un debate si trata de su
 asunto, aunque sea informativo. Si encaja en varios, el más central.
+
+Regla de la campaña (v5, 26 nov 2026, decisión de Lucía):
+- Toda noticia de las elecciones o de la campaña (29-N, candidatos, mítines,
+  encuestas, escaños, mesas, sueldos de diputados, pactos) va a «Continuidad o
+  cambio de Gobierno», aunque solo informe y no tome postura.
+- Excepción: si la noticia de campaña trata de un asunto con debate propio
+  (vivienda, migración…), va a ese debate. «Colau propone expropiar 400.000
+  pisos turísticos» → Vivienda; «Vox rescata las vallas contra la
+  inmigración» → Política migratoria.
 
 Si es `none`, `none_type`:
 - `no_stance` — no admite postura: suceso, servicio, dato, empresa, cultura.
