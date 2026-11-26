@@ -77,12 +77,16 @@ def human_topic(label: dict, debates: list[str]) -> str | None:
     return debates[t] if isinstance(t, int) and t < len(debates) else None
 
 
+OTROS = "otros debates del catálogo"
+
+
 def human_extra(label: dict, debates: list[str], extras: list[str]) -> str | None:
-    """Debate del catálogo que no estaba activo ese día, si lo eligió."""
+    """Si eligió un debate del catálogo que no estaba activo ese día, devuelve
+    el grupo «otros debates del catálogo» (26 nov: con tan poco volumen no se
+    miden por separado). Sirve tanto para etiquetas con los 5 extra sueltos
+    (índices 5–9) como para el codificador agrupado (un único índice 5)."""
     t = label.get("topic")
-    if isinstance(t, int) and t >= len(debates) and t - len(debates) < len(extras):
-        return extras[t - len(debates)]
-    return None
+    return OTROS if isinstance(t, int) and t >= len(debates) else None
 
 
 def main(sample_path: str, labels_dir: str):
@@ -120,7 +124,7 @@ def main(sample_path: str, labels_dir: str):
         t = human_topic(l, debates)
         x = human_extra(l, debates, extras)
         cats["debería estar en: " + t if t else
-             "debate del catálogo fuera ese día: " + x if x else
+             x + " (inactivos ese día)" if x else
              {"no_stance": "sin postura posible",
               "political": "político, de otro asunto",
               "nonpolitical_controversy": "controversia no política",

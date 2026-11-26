@@ -129,6 +129,9 @@
 
   fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 8px; min-width: 0; }
   [hidden] { display: none !important; }
+  .opts button.extra { border-style: dashed; }
+  .opts .sep { flex-basis: 100%; font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .debates h4 { margin: 8px 0 0; font-size: 13px; color: var(--muted); font-weight: 600; }
   legend { font-weight: 600; padding: 0; margin-bottom: 8px; }
   legend small { font-weight: 400; color: var(--muted); }
   .opts { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -305,11 +308,15 @@
   const INPUT = "headline_lead";
   function needsReview(l) { return !!l && l.input !== INPUT; }
 
+  // Los debates «extra» del catálogo (el modelo no los tenía ese día) no piden postura.
+  function needsStance(t) { return typeof t === "number" && !!debates[t] && !debates[t].extra; }
+
   function isComplete(l) {
     if (!l || needsReview(l)) return false;
     if (l.garbled) return true;
     if (l.topic === undefined || l.topic === null) return false;
-    if (l.topic === "none" ? !l.none_type : l.stance === undefined || l.stance === null) return false;
+    if (l.topic === "none") { if (!l.none_type) return false; }
+    else if (needsStance(l.topic) && (l.stance === undefined || l.stance === null)) return false;
     return l.hostility !== undefined && l.hostility !== null && !!l.us_them;
   }
 
@@ -344,10 +351,24 @@
   function renderCodebook() {
     const box = $("debates");
     box.textContent = "";
-    debates.forEach((d) => {
+    debates.forEach((d, i) => {
+      if (d.extra && (i === 0 || !debates[i - 1].extra)) {
+        const h4 = document.createElement("h4");
+        h4.textContent = "Otros debates del catálogo (ese día el modelo no los tenía)";
+        box.appendChild(h4);
+      }
       const el = document.createElement("div");
       el.className = "debate";
       const h = document.createElement("h3"); h.textContent = d.label;
+      if (d.members) {
+        // Grupo «otros debates del catálogo»: lista de temas, sin polos
+        const ul = document.createElement("p");
+        ul.className = "hint";
+        ul.textContent = "Agrupa: " + d.members.join(" · ") + ". Sin pregunta de postura.";
+        el.append(h, ul);
+        box.appendChild(el);
+        return;
+      }
       const poles = document.createElement("div"); poles.className = "poles";
       [["a", "Polo A", d.pole_a], ["b", "Polo B", d.pole_b]].forEach(([k, name, text]) => {
         const p = document.createElement("div"); p.className = "pole " + k;
@@ -363,6 +384,12 @@
   function optionRow(container, options, current, onPick) {
     container.textContent = "";
     options.forEach((o) => {
+      if ("sep" in o) {
+        const sp = document.createElement("span");
+        sp.className = "sep"; sp.textContent = o.sep;
+        container.appendChild(sp);
+        return;
+      }
       const b = document.createElement("button");
       b.type = "button";
       b.textContent = o.t;
@@ -389,15 +416,21 @@
     $("item-state").textContent = ok ? "Codificado" : review ? "Revisar con entradilla" : "Pendiente";
     $("item-state").className = "state-chip" + (ok ? " ok" : review ? " review" : "");
 
-    const topicOpts = debates.map((d, i) => ({ v: i, t: d.label }))
-      .concat([{ v: "none", t: "Ninguno de estos" }]);
+    const topicOpts = [];
+    debates.forEach((d, i) => {
+      if (d.extra && (i === 0 || !debates[i - 1].extra))
+        topicOpts.push({ sep: d.members ? "" : "Otros debates del catálogo (ese día el modelo no los tenía; sin pregunta de postura):" });
+      topicOpts.push({ v: i, t: d.label, c: d.extra ? "extra" : "" });
+    });
+    topicOpts.push({ sep: "" }, { v: "none", t: "Ninguno de estos" });
     optionRow($("opts-topic"), topicOpts, l.topic, (v) => {
       const patch = { topic: v };
-      if (v === "none") patch.stance = null; else patch.none_type = null;
+      if (v === "none" || !needsStance(v)) patch.stance = null;
+      if (v !== "none") patch.none_type = null;
       save(it.id, patch);
     });
 
-    const isDebate = typeof l.topic === "number";
+    const isDebate = needsStance(l.topic);
     $("q-stance").hidden = !isDebate;
     $("q-none").hidden = l.topic !== "none";
     // Vaciar siempre: así nunca quedan botones del titular anterior
