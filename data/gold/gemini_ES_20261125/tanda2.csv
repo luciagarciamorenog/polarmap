@@ -1,0 +1,51 @@
+id;tema;postura;tipo;hostilidad;nosotros_ellos;dudoso;nota
+ES-051;ninguno;;politico_otro;0;no;no;
+ES-052;ninguno;;sin_postura;0;no;no;
+ES-053;T1;1;;2;politicos;si;ataque personal a Montero pero con encuadre de campaña y derrota politica
+ES-054;T1;-0.5;;1;no;no;
+ES-055;ninguno;;politico_otro;0;no;si;comparativa salarial entre administraciones sanitarias
+ES-056;T7;;;0;politicos;si;pacto de investidura condicionado a financiacion y convenios bilaterales canarios
+ES-057;T1;0.5;;1;politicos;no;
+ES-058;T2;0;;0;no;si;cronica de campana centrada en actos del 25N
+ES-059;T2;-0.5;;0;no;no;
+ES-060;T3;-0.5;;0;no;si;titular duro de un partido pero entradilla de debate electoral plural
+ES-061;T1;1;;1;politicos;no;
+ES-062;T2;-0.5;;1;politicos;no;
+ES-063;T3;0;;1;politicos;no;
+ES-064;ninguno;;sin_postura;0;no;si;titular desconectado de la entradilla sobre la veda de sondeos
+ES-065;T2;-0.5;;0;no;no;
+ES-066;T2;-0.5;;0;no;no;
+ES-067;ninguno;;sin_postura;0;no;no;
+ES-068;T3;0;;0;no;no;
+ES-069;T4;1;;1;politicos;no;
+ES-070;T2;0;;0;no;no;
+ES-071;T1;1;;2;politicos;no;
+ES-072;T1;0.5;;1;politicos;no;
+ES-073;T3;0;;0;no;no;
+ES-074;T1;0;;0;no;no;
+ES-075;ninguno;;sin_postura;0;no;no;
+ES-076;T4;-0.5;;0;no;no;
+ES-077;T1;1;;2;politicos;no;
+ES-078;T2;-0.5;;0;no;no;
+ES-079;T2;-0.5;;0;no;no;
+ES-080;T1;0;;0;politicos;no;
+ES-081;T3;-0.5;;1;politicos;no;
+ES-082;T2;-0.5;;0;no;no;
+ES-083;ninguno;;controversia_no_politica;0;no;si;brecha de genero en cultura sin referencia al 25N ni violencia machista
+ES-084;ninguno;;sin_postura;0;no;no;
+ES-085;T1;-0.5;;0;no;no;
+ES-086;T1;0.5;;1;politicos;si;tema aborto fuera de catalogo pero encuadrado como promesa electoral y guerra politica
+ES-087;T1;0.5;;1;politicos;no;
+ES-088;T2;-0.5;;0;no;no;
+ES-089;T4;0;;0;no;no;
+ES-090;ninguno;;sin_postura;0;no;no;
+ES-091;T3;-0.5;;1;politicos;no;
+ES-092;T1;0.5;;1;politicos;no;
+ES-093;T3;-0.5;;1;politicos;no;
+ES-094;T1;0.5;;0;politicos;si;denuncia de irregularidades en voto exterior en campana del 29N
+ES-095;ninguno;;controversia_no_politica;0;rivales_no_politicos;no;
+ES-096;T4;-0.5;;1;politicos;no;
+ES-097;T2;-0.5;;1;grupos_sociales;no;
+ES-098;ninguno;;sin_postura;0;no;no;
+ES-099;ninguno;;politico_otro;0;no;no;
+ES-100;ninguno;;sin_postura;0;no;no;

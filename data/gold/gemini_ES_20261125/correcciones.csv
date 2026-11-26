@@ -1,0 +1,9 @@
+id;tema;postura;tipo;hostilidad;nosotros_ellos;dudoso;nota
+ES-060;T3;-0.5;;0;politicos;si;revision Gemini: cita dura de Vox frente a PP y PSOE
+ES-063;T3;0.5;;1;politicos;no;revision Gemini: defiende la acogida de menores
+ES-081;T3;-0.5;;1;politicos;si;revision Gemini: mezcla T3 con T1
+ES-085;T1;-0.5;;0;no;si;revision Gemini: promesa central sobre desahucios (Vivienda) en un mitin
+ES-128;T3;0;;0;politicos;no;revision Gemini: recoge los dos polos
+ES-135;T1;-0.5;;0;no;si;revision Gemini: desmonta bulos sobre fraude electoral
+ES-157;T1;-0.5;;0;no;si;revision Gemini: promesa electoral de pensiones
+ES-223;ninguno;;politico_otro;0;no;no;revision Gemini: patronales sin enfrentamiento

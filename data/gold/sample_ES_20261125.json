@@ -5827,5 +5827,33 @@
    },
    "stratum": "S"
   }
- ]
+ ],
+ "extra_debates": [
+  {
+   "label": "Vivienda",
+   "pole_a": "El Estado debe intervenir en el mercado: limitar alquileres, frenar desahucios y ampliar la vivienda pública.",
+   "pole_b": "Hay que aumentar la oferta, facilitar la construcción y dar seguridad jurídica a los propietarios."
+  },
+  {
+   "label": "Financiación autonómica",
+   "pole_a": "El modelo debe ser común y garantizar la igualdad entre territorios, sin acuerdos singulares.",
+   "pole_b": "Cada comunidad debe poder negociar un modelo propio, incluso bilateral, ajustado a su realidad."
+  },
+  {
+   "label": "Coste de vida",
+   "pole_a": "El Estado debe intervenir con ayudas, topes y regulación para proteger el poder adquisitivo.",
+   "pole_b": "Las subvenciones y los controles de precios distorsionan el mercado; hay que bajar impuestos y facilitar la competencia."
+  },
+  {
+   "label": "Energía y clima",
+   "pole_a": "Hay que acelerar la transición ecológica aunque exija regulación y cambios en la economía.",
+   "pole_b": "La transición debe ir al ritmo de la economía, sin cargas que resten competitividad ni encarezcan la energía."
+  },
+  {
+   "label": "Inteligencia artificial y tecnología",
+   "pole_a": "La inteligencia artificial y las plataformas digitales necesitan regulación pública estricta para proteger a los ciudadanos.",
+   "pole_b": "Regular en exceso frena la innovación; mejor reglas mínimas y autorregulación de las empresas."
+  }
+ ],
+ "artifact": "https://claude.ai/artifact/LQoJvYoz6CZXxkiBX7tymW"
 }

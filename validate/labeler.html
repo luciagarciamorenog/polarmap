@@ -1,4 +1,4 @@
-<title>Codificador Polarmap</title>
+<title>Codificador PolarMap · 26 nov</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500&display=swap">
@@ -128,6 +128,7 @@
   .hint { font-size: 12px; color: var(--muted); margin: 0; }
 
   fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 8px; min-width: 0; }
+  [hidden] { display: none !important; }
   legend { font-weight: 600; padding: 0; margin-bottom: 8px; }
   legend small { font-weight: 400; color: var(--muted); }
   .opts { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -183,7 +184,7 @@
   <header>
     <span class="eyebrow">Polarmap · set de referencia · Nivel 3</span>
     <h1>Codifica cada titular a ciegas</h1>
-    <p class="lede">Lee el titular y la entradilla, lo mismo que lee el modelo, y contesta como lo entenderías tú. No ves lo que respondió el modelo; tus respuestas se guardan solas y Claude las compara después con las del pipeline.</p>
+    <p class="lede">Lee el titular y la entradilla, lo mismo que lee el modelo, y contesta como lo entenderías tú. No ves lo que respondió el modelo; tus respuestas se guardan solas y Claude las compara después con las del pipeline. Va por tandas de 50: cuando acabes una, avisa y se abre la siguiente.</p>
   </header>
 
   <div class="status" aria-live="polite">
@@ -201,7 +202,7 @@
     <ul class="rules">
       <li>Un titular va a un debate si trata de su asunto, aunque sea informativo y no tome postura.</li>
       <li>Postura: dónde queda el titular entre el polo A y el polo B. Neutro si solo informa.</li>
-      <li>Hostilidad: agresividad del lenguaje, no desacuerdo. «Critica» es algo; «ataca», «vergüenza», «terminal» es alta.</li>
+      <li>Hostilidad: agresividad del lenguaje, no desacuerdo ni gravedad del hecho. Cuentan también las citas que el medio elige destacar. «Choque», «arremete», «chantaje» es algo; insulto, burla o descalificación moral («cloacas», «invasión», «fracaso moral») es alta.</li>
       <li>«Nosotros contra ellos»: si el titular enfrenta a bandos, sean políticos o no (clubes, artistas, colectivos).</li>
       <li>Codifica con el titular y la entradilla. Abre la noticia solo si con eso no se entiende; el modelo no lee más.</li>
     </ul>
@@ -233,7 +234,8 @@
     </fieldset>
 
     <fieldset id="q-none" hidden>
-      <legend>2. ¿Qué tipo de titular es?</legend>
+      <legend>2. No es de ningún debate: ¿qué es entonces?</legend>
+      <p class="hint">Sirve para saber qué deja fuera el modelo: si se le escapan noticias políticas con postura, aquí se ve.</p>
       <div class="opts" id="opts-none"></div>
     </fieldset>
 
@@ -398,6 +400,9 @@
     const isDebate = typeof l.topic === "number";
     $("q-stance").hidden = !isDebate;
     $("q-none").hidden = l.topic !== "none";
+    // Vaciar siempre: así nunca quedan botones del titular anterior
+    $("opts-stance").textContent = "";
+    $("opts-none").textContent = "";
     if (isDebate) {
       const d = debates[l.topic];
       $("stance-debate").textContent = "· " + d.label;

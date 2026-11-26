@@ -1,0 +1,51 @@
+id;tema;postura;tipo;hostilidad;nosotros_ellos;dudoso;nota
+ES-101;T3;-0.5;;0;no;no;
+ES-102;T5;0.5;;0;politicos;si;debate sobre independencia de RTVE y expediente de la JEC
+ES-103;T2;0.5;;2;politicos;si;critica a la hipocresia feminista del PSOE mas que al modelo de ley
+ES-104;T3;0.5;;1;grupos_sociales;no;
+ES-105;T2;-0.5;;0;no;no;
+ES-106;T2;-0.5;;1;politicos;no;
+ES-107;T2;0;;0;politicos;no;
+ES-108;T1;0.5;;1;politicos;si;mezcla campana electoral derechos de mujeres y criticas al CGPJ
+ES-109;ninguno;;sin_postura;0;no;no;
+ES-110;T2;0;;0;no;no;
+ES-111;T1;-0.5;;0;no;no;
+ES-112;T6;;;1;grupos_sociales;no;
+ES-113;T1;0;;1;rivales_no_politicos;si;rifirrafe en redes entre exfutbolista y diputado en campana
+ES-114;T1;-0.5;;1;politicos;no;
+ES-115;T1;1;;2;politicos;no;
+ES-116;T1;0.5;;0;politicos;no;
+ES-117;T1;-0.5;;1;politicos;no;
+ES-118;T2;0.5;;1;politicos;si;uso del 25N para atacar la credibilidad del PSOE en campana
+ES-119;ninguno;;sin_postura;0;no;no;
+ES-120;T1;0.5;;0;politicos;no;
+ES-121;ninguno;;sin_postura;0;no;no;
+ES-122;ninguno;;sin_postura;0;no;no;
+ES-123;T5;0.5;;0;no;si;investigacion judicial de corrupcion ligada al entorno socialista
+ES-124;T5;0.5;;0;politicos;no;
+ES-125;T5;0.5;;0;politicos;no;
+ES-126;ninguno;;sin_postura;0;no;no;
+ES-127;T1;0.5;;1;no;no;
+ES-128;T3;0.5;;0;politicos;no;
+ES-129;T1;-0.5;;1;politicos;no;
+ES-130;T1;-0.5;;0;politicos;no;
+ES-131;T3;-1;;2;grupos_sociales;no;
+ES-132;T1;-0.5;;1;politicos;no;
+ES-133;T5;0;;0;no;no;
+ES-134;T1;1;;1;politicos;no;
+ES-135;T3;0.5;;0;no;si;desmentido de bulos sobre empadronamiento de migrantes y voto
+ES-136;T1;0.5;;0;no;no;
+ES-137;ninguno;;sin_postura;0;no;no;
+ES-138;ninguno;;sin_postura;0;no;no;
+ES-139;ninguno;;sin_postura;0;no;no;
+ES-140;ninguno;;sin_postura;0;no;no;
+ES-141;T2;-0.5;;0;no;no;
+ES-142;ninguno;;politico_otro;0;politicos;no;
+ES-143;ninguno;;sin_postura;0;no;no;
+ES-144;T1;0;;0;no;no;
+ES-145;ninguno;;politico_otro;0;no;no;
+ES-146;ninguno;;sin_postura;0;no;no;
+ES-147;T1;0.5;;0;no;no;
+ES-148;ninguno;;sin_postura;0;no;no;
+ES-149;T1;0.5;;1;politicos;no;
+ES-150;T2;-0.5;;1;politicos;no;

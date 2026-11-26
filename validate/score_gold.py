@@ -70,12 +70,24 @@ def load(sample_path: Path, labels_dir: Path):
 
 
 def human_topic(label: dict, debates: list[str]) -> str | None:
+    """Debate del día elegido por la persona. Los debates «extra» del
+    catálogo (índice >= len(debates): el modelo no los tenía ese día)
+    cuentan como «ninguno» al comparar con el modelo."""
     t = label.get("topic")
-    return debates[t] if isinstance(t, int) else None
+    return debates[t] if isinstance(t, int) and t < len(debates) else None
+
+
+def human_extra(label: dict, debates: list[str], extras: list[str]) -> str | None:
+    """Debate del catálogo que no estaba activo ese día, si lo eligió."""
+    t = label.get("topic")
+    if isinstance(t, int) and t >= len(debates) and t - len(debates) < len(extras):
+        return extras[t - len(debates)]
+    return None
 
 
 def main(sample_path: str, labels_dir: str):
     sample, debates, labels = load(Path(sample_path), Path(labels_dir))
+    extras = [d["label"] for d in sample.get("extra_debates", [])]
     items = [it for it in sample["items"] if it["id"] in labels
              and not labels[it["id"]].get("garbled")
              and labels[it["id"]].get("topic") is not None]
@@ -106,7 +118,9 @@ def main(sample_path: str, labels_dir: str):
     for it in none_items:
         l = labels[it["id"]]
         t = human_topic(l, debates)
+        x = human_extra(l, debates, extras)
         cats["debería estar en: " + t if t else
+             "debate del catálogo fuera ese día: " + x if x else
              {"no_stance": "sin postura posible",
               "political": "político, de otro asunto",
               "nonpolitical_controversy": "controversia no política",
