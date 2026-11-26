@@ -20,11 +20,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from analysis.discover import build_assign_bodies, parse_assign, GOV_LABEL  # noqa: E402
 
 def api_key() -> str:
+    """Igual que el pipeline (pipeline_discover.load_env): la clave de .env
+    gana sobre la exportada en la terminal, que puede ser una vieja."""
+    env = Path(__file__).resolve().parents[1] / ".env"
+    if env.exists():
+        for line in env.read_text().splitlines():
+            k, _, v = line.strip().partition("=")
+            if k.strip().removeprefix("export ").strip() == "ANTHROPIC_API_KEY" and v.strip():
+                return v.strip().strip('"').strip("'")
     k = os.environ.get("ANTHROPIC_API_KEY")
     if k: return k
-    for line in Path(".env").read_text().splitlines():
-        if line.strip().startswith("ANTHROPIC_API_KEY"):
-            return line.split("=", 1)[1].strip().strip('"').strip("'")
     raise SystemExit("Falta ANTHROPIC_API_KEY")
 
 def call(body: dict, key: str) -> tuple[str | None, dict]:
