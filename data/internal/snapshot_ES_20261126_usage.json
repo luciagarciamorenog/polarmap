@@ -1,0 +1,58 @@
+{
+  "by_stage": {
+    "debates · claude-sonnet-4-6": {
+      "calls": 1,
+      "input": 38168,
+      "output": 1135,
+      "cache_write": 0,
+      "cache_read": 0,
+      "usd": 0.0657645
+    },
+    "asignacion · claude-haiku-4-5": {
+      "calls": 118,
+      "input": 611332,
+      "output": 83548,
+      "cache_write": 0,
+      "cache_read": 0,
+      "usd": 0.5145360000000001
+    },
+    "postura · claude-sonnet-4-6": {
+      "calls": 75,
+      "input": 124735,
+      "output": 204617,
+      "cache_write": 6700,
+      "cache_read": 118213,
+      "usd": 1.7520244500000004
+    },
+    "terreno_comun · claude-sonnet-4-6": {
+      "calls": 8,
+      "input": 33014,
+      "output": 1788,
+      "cache_write": 0,
+      "cache_read": 0,
+      "usd": 0.06293099999999999
+    }
+  },
+  "usd_total": 2.3952559500000006,
+  "cache_hit_share": 0.1268159397186326,
+  "api_mode": "batch",
+  "countries": [
+    "ES"
+  ],
+  "n_headlines": 5875,
+  "usd_per_country": 2.3952559500000006,
+  "usd_per_1000_headlines": 0.407703140425532,
+  "prices": {
+    "claude-sonnet-4-6": {
+      "input": 3.0,
+      "output": 15.0
+    },
+    "claude-haiku-4-5": {
+      "input": 1.0,
+      "output": 5.0
+    }
+  },
+  "cache_write": 1.25,
+  "cache_read": 0.1,
+  "batch_discount": 0.5
+}

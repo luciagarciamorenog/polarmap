@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25 16:42",
+ "generated": "2026-11-26 13:40",
  "families": {
   "government": "Elections & government",
   "housing": "Housing",
@@ -9,6 +9,2332 @@
   "ai": "AI & technology"
  },
  "runs": [
+  {
+   "id": "2026-11-26",
+   "label": "26 nov 2026",
+   "stem": "snapshot_ES_20261126",
+   "country": "ES",
+   "n_headlines": 5875,
+   "none_share": 0.752,
+   "debates": [
+    {
+     "label": "Continuidad o cambio de Gobierno",
+     "a": "El Gobierno actual debe continuar.",
+     "b": "Hace falta un cambio de Gobierno.",
+     "includes": [
+      "Debate electoral a cuatro entre Sánchez, Feijóo, Abascal y Colau previo al 29N",
+      "Feijóo llama a culminar las ganas de cambio y echar a los delincuentes del Gobierno",
+      "Sánchez busca la remontada apelando a los logros sociales del Ejecutivo",
+      "Colau va al debate a cuatro al choque con Feijóo y a marcar diferencias con Sánchez",
+      "Carmena, Bescansa, Garzón y excargos de Podemos piden el voto para Frente Amplio",
+      "Rajoy defiende votar al PP porque España no se merece este gobierno"
+     ],
+     "n_articles": 627,
+     "n": 595,
+     "trust": true,
+     "ideo": 0.468,
+     "aff": 0.343,
+     "hostile_share": 0.343,
+     "n_hostile": 204,
+     "hist": [
+      9,
+      1,
+      13,
+      12,
+      8,
+      67,
+      12,
+      17,
+      3,
+      0,
+      158,
+      1,
+      8,
+      21,
+      13,
+      87,
+      10,
+      44,
+      35,
+      5,
+      71
+     ],
+     "neutral_share": 0.563,
+     "us_them": 0.649,
+     "outlets": {
+      "eta2": 0.293,
+      "eta2_null": 0.095,
+      "p": 0.0003,
+      "list": [
+       {
+        "o": "Tercera Información",
+        "d": "tercerainformacion.es",
+        "n": 4,
+        "m": -0.45,
+        "lo": -0.825,
+        "hi": -0.0,
+        "h": 0.25,
+        "hs": 0.5,
+        "nl": 0.5
+       },
+       {
+        "o": "La Voz de Asturias",
+        "d": "lavozdeasturias.es",
+        "n": 3,
+        "m": -0.433,
+        "lo": -0.667,
+        "hi": -0.2,
+        "h": 0.067,
+        "hs": 0.0,
+        "nl": 0.667
+       },
+       {
+        "o": "infoLibre",
+        "d": "infolibre.es",
+        "n": 11,
+        "m": -0.382,
+        "lo": -0.609,
+        "hi": -0.127,
+        "h": 0.3,
+        "hs": 0.364,
+        "nl": 0.545
+       },
+       {
+        "o": "Praza",
+        "d": "praza.gal",
+        "n": 4,
+        "m": -0.375,
+        "lo": -0.75,
+        "hi": 0.0,
+        "h": 0.125,
+        "hs": 0.25,
+        "nl": 0.5
+       },
+       {
+        "o": "Público",
+        "d": "publico.es",
+        "n": 14,
+        "m": -0.314,
+        "lo": -0.493,
+        "hi": -0.136,
+        "h": 0.164,
+        "hs": 0.286,
+        "nl": 0.429
+       },
+       {
+        "o": "VilaWeb",
+        "d": "vilaweb.cat",
+        "n": 6,
+        "m": -0.267,
+        "lo": -0.517,
+        "hi": 0.0,
+        "h": 0.367,
+        "hs": 0.5,
+        "nl": 0.5
+       },
+       {
+        "o": "El Plural",
+        "d": "elplural.com",
+        "n": 17,
+        "m": -0.259,
+        "lo": -0.394,
+        "hi": -0.112,
+        "h": 0.265,
+        "hs": 0.471,
+        "nl": 0.471
+       },
+       {
+        "o": "RTVE",
+        "d": "rtve.es",
+        "n": 4,
+        "m": -0.2,
+        "lo": -0.41,
+        "hi": 0.0,
+        "h": 0.2,
+        "hs": 0.25,
+        "nl": 0.25
+       },
+       {
+        "o": "Canal Sur",
+        "d": "canalsur.es",
+        "n": 3,
+        "m": -0.133,
+        "lo": -0.567,
+        "hi": 0.3,
+        "h": 0.1,
+        "hs": 0.0,
+        "nl": 0.0
+       },
+       {
+        "o": "El Periódico",
+        "d": "elperiodico.cat",
+        "n": 5,
+        "m": -0.12,
+        "lo": -0.36,
+        "hi": 0.12,
+        "h": 0.18,
+        "hs": 0.0,
+        "nl": 0.2
+       },
+       {
+        "o": "elDiario.es",
+        "d": "eldiario.es",
+        "n": 30,
+        "m": -0.103,
+        "lo": -0.253,
+        "hi": 0.043,
+        "h": 0.16,
+        "hs": 0.3,
+        "nl": 0.1
+       },
+       {
+        "o": "Diario Jaén",
+        "d": "diariojaen.es",
+        "n": 4,
+        "m": -0.075,
+        "lo": -0.5,
+        "hi": 0.4,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.25
+       },
+       {
+        "o": "El Norte de Castilla",
+        "d": "elnortedecastilla.es",
+        "n": 3,
+        "m": -0.067,
+        "lo": -0.467,
+        "hi": 0.333,
+        "h": 0.167,
+        "hs": 0.333,
+        "nl": 0.0
+       },
+       {
+        "o": "laSexta",
+        "d": "lasexta.com",
+        "n": 11,
+        "m": -0.045,
+        "lo": -0.309,
+        "hi": 0.227,
+        "h": 0.327,
+        "hs": 0.455,
+        "nl": 0.182
+       },
+       {
+        "o": "Ideal",
+        "d": "ideal.es",
+        "n": 5,
+        "m": -0.04,
+        "lo": -0.46,
+        "hi": 0.38,
+        "h": 0.06,
+        "hs": 0.0,
+        "nl": 0.0
+       },
+       {
+        "o": "Ara",
+        "d": "ara.cat",
+        "n": 9,
+        "m": -0.033,
+        "lo": -0.211,
+        "hi": 0.167,
+        "h": 0.156,
+        "hs": 0.111,
+        "nl": 0.111
+       },
+       {
+        "o": "El País",
+        "d": "elpais.com",
+        "n": 17,
+        "m": -0.024,
+        "lo": -0.165,
+        "hi": 0.129,
+        "h": 0.076,
+        "hs": 0.118,
+        "nl": 0.059
+       },
+       {
+        "o": "Diario de Sevilla",
+        "d": "diariodesevilla.es",
+        "n": 5,
+        "m": 0.0,
+        "lo": -0.36,
+        "hi": 0.38,
+        "h": 0.34,
+        "hs": 0.6,
+        "nl": 0.2
+       },
+       {
+        "o": "3cat.cat",
+        "d": "3cat.cat",
+        "n": 3,
+        "m": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.0
+       },
+       {
+        "o": "El Progreso",
+        "d": "elprogreso.es",
+        "n": 6,
+        "m": 0.017,
+        "lo": -0.233,
+        "hi": 0.25,
+        "h": 0.133,
+        "hs": 0.167,
+        "nl": 0.0
+       },
+       {
+        "o": "La Rioja",
+        "d": "larioja.com",
+        "n": 7,
+        "m": 0.029,
+        "lo": -0.229,
+        "hi": 0.314,
+        "h": 0.286,
+        "hs": 0.286,
+        "nl": 0.0
+       },
+       {
+        "o": "Las Provincias",
+        "d": "lasprovincias.es",
+        "n": 5,
+        "m": 0.04,
+        "lo": -0.2,
+        "hi": 0.32,
+        "h": 0.1,
+        "hs": 0.2,
+        "nl": 0.0
+       },
+       {
+        "o": "Diario de Burgos",
+        "d": "diariodeburgos.es",
+        "n": 3,
+        "m": 0.067,
+        "lo": -0.533,
+        "hi": 0.667,
+        "h": 0.167,
+        "hs": 0.333,
+        "nl": 0.0
+       },
+       {
+        "o": "El Correo",
+        "d": "elcorreo.com",
+        "n": 8,
+        "m": 0.1,
+        "lo": -0.2,
+        "hi": 0.388,
+        "h": 0.312,
+        "hs": 0.5,
+        "nl": 0.125
+       },
+       {
+        "o": "La Región",
+        "d": "laregion.es",
+        "n": 12,
+        "m": 0.108,
+        "lo": -0.083,
+        "hi": 0.3,
+        "h": 0.15,
+        "hs": 0.25,
+        "nl": 0.083
+       },
+       {
+        "o": "Andalucía Información",
+        "d": "andaluciainformacion.es",
+        "n": 14,
+        "m": 0.157,
+        "lo": -0.05,
+        "hi": 0.379,
+        "h": 0.071,
+        "hs": 0.143,
+        "nl": 0.143
+       },
+       {
+        "o": "Europa Press",
+        "d": "europapress.es",
+        "n": 33,
+        "m": 0.158,
+        "lo": 0.003,
+        "hi": 0.312,
+        "h": 0.273,
+        "hs": 0.424,
+        "nl": 0.091
+       },
+       {
+        "o": "La Verdad",
+        "d": "laverdad.es",
+        "n": 3,
+        "m": 0.167,
+        "lo": -0.333,
+        "hi": 0.667,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.0
+       },
+       {
+        "o": "La Vanguardia",
+        "d": "lavanguardia.com",
+        "n": 16,
+        "m": 0.169,
+        "lo": 0.0,
+        "hi": 0.338,
+        "h": 0.125,
+        "hs": 0.188,
+        "nl": 0.312
+       },
+       {
+        "o": "El Mundo",
+        "d": "elmundo.es",
+        "n": 22,
+        "m": 0.173,
+        "lo": 0.032,
+        "hi": 0.323,
+        "h": 0.136,
+        "hs": 0.227,
+        "nl": 0.182
+       },
+       {
+        "o": "Diario Vasco",
+        "d": "diariovasco.com",
+        "n": 4,
+        "m": 0.175,
+        "lo": -0.25,
+        "hi": 0.6,
+        "h": 0.2,
+        "hs": 0.25,
+        "nl": 0.0
+       },
+       {
+        "o": "El Confidencial Digital",
+        "d": "elconfidencialdigital.com",
+        "n": 6,
+        "m": 0.233,
+        "lo": 0.0,
+        "hi": 0.5,
+        "h": 0.167,
+        "hs": 0.167,
+        "nl": 0.167
+       },
+       {
+        "o": "La Tribuna de Albacete",
+        "d": "latribunadealbacete.es",
+        "n": 7,
+        "m": 0.243,
+        "lo": -0.057,
+        "hi": 0.543,
+        "h": 0.071,
+        "hs": 0.143,
+        "nl": 0.429
+       },
+       {
+        "o": "La Voz de Galicia",
+        "d": "lavozdegalicia.es",
+        "n": 12,
+        "m": 0.25,
+        "lo": 0.075,
+        "hi": 0.417,
+        "h": 0.108,
+        "hs": 0.167,
+        "nl": 0.333
+       },
+       {
+        "o": "Onda Cero",
+        "d": "ondacero.es",
+        "n": 7,
+        "m": 0.257,
+        "lo": 0.1,
+        "hi": 0.414,
+        "h": 0.043,
+        "hs": 0.0,
+        "nl": 0.429
+       },
+       {
+        "o": "ABC",
+        "d": "abc.es",
+        "n": 41,
+        "m": 0.276,
+        "lo": 0.141,
+        "hi": 0.41,
+        "h": 0.268,
+        "hs": 0.39,
+        "nl": 0.39
+       },
+       {
+        "o": "La Tribuna de Toledo",
+        "d": "latribunadetoledo.es",
+        "n": 5,
+        "m": 0.3,
+        "lo": -0.1,
+        "hi": 0.8,
+        "h": 0.3,
+        "hs": 0.4,
+        "nl": 0.2
+       },
+       {
+        "o": "Diario de Ávila",
+        "d": "diariodeavila.es",
+        "n": 4,
+        "m": 0.3,
+        "lo": -0.2,
+        "hi": 0.775,
+        "h": 0.125,
+        "hs": 0.25,
+        "nl": 0.25
+       },
+       {
+        "o": "El Comercio",
+        "d": "elcomercio.es",
+        "n": 5,
+        "m": 0.32,
+        "lo": -0.04,
+        "hi": 0.62,
+        "h": 0.06,
+        "hs": 0.0,
+        "nl": 0.4
+       },
+       {
+        "o": "Huelva Información",
+        "d": "huelvainformacion.es",
+        "n": 3,
+        "m": 0.333,
+        "lo": -0.267,
+        "hi": 0.933,
+        "h": 0.1,
+        "hs": 0.0,
+        "nl": 0.333
+       },
+       {
+        "o": "Diario de León",
+        "d": "diariodeleon.es",
+        "n": 3,
+        "m": 0.333,
+        "lo": 0.0,
+        "hi": 0.667,
+        "h": 0.333,
+        "hs": 0.333,
+        "nl": 0.333
+       },
+       {
+        "o": "Diario Palentino",
+        "d": "diariopalentino.es",
+        "n": 6,
+        "m": 0.333,
+        "lo": -0.183,
+        "hi": 0.8,
+        "h": 0.083,
+        "hs": 0.167,
+        "nl": 0.333
+       },
+       {
+        "o": "COPE",
+        "d": "cope.es",
+        "n": 4,
+        "m": 0.375,
+        "lo": 0.0,
+        "hi": 0.75,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.5
+       },
+       {
+        "o": "El Confidencial",
+        "d": "elconfidencial.com",
+        "n": 21,
+        "m": 0.376,
+        "lo": 0.238,
+        "hi": 0.514,
+        "h": 0.243,
+        "hs": 0.381,
+        "nl": 0.524
+       },
+       {
+        "o": "diariodejerez.es",
+        "d": "diariodejerez.es",
+        "n": 4,
+        "m": 0.425,
+        "lo": 0.125,
+        "hi": 0.75,
+        "h": 0.125,
+        "hs": 0.25,
+        "nl": 0.5
+       },
+       {
+        "o": "Expansión",
+        "d": "expansion.com",
+        "n": 4,
+        "m": 0.425,
+        "lo": 0.0,
+        "hi": 0.775,
+        "h": 0.125,
+        "hs": 0.25,
+        "nl": 0.5
+       },
+       {
+        "o": "El Día de Córdoba",
+        "d": "eldiadecordoba.es",
+        "n": 3,
+        "m": 0.433,
+        "lo": 0.1,
+        "hi": 0.767,
+        "h": 0.167,
+        "hs": 0.333,
+        "nl": 0.333
+       },
+       {
+        "o": "Estrella Digital",
+        "d": "estrelladigital.es",
+        "n": 3,
+        "m": 0.467,
+        "lo": 0.133,
+        "hi": 0.8,
+        "h": 0.167,
+        "hs": 0.333,
+        "nl": 0.333
+       },
+       {
+        "o": "Vozpópuli",
+        "d": "vozpopuli.com",
+        "n": 11,
+        "m": 0.491,
+        "lo": 0.309,
+        "hi": 0.664,
+        "h": 0.473,
+        "hs": 0.636,
+        "nl": 0.727
+       },
+       {
+        "o": "La Razón",
+        "d": "larazon.es",
+        "n": 49,
+        "m": 0.512,
+        "lo": 0.414,
+        "hi": 0.604,
+        "h": 0.324,
+        "hs": 0.469,
+        "nl": 0.673
+       },
+       {
+        "o": "Diario de Navarra",
+        "d": "diariodenavarra.es",
+        "n": 5,
+        "m": 0.56,
+        "lo": 0.2,
+        "hi": 0.92,
+        "h": 0.48,
+        "hs": 0.6,
+        "nl": 0.6
+       },
+       {
+        "o": "ESdiario",
+        "d": "esdiario.com",
+        "n": 20,
+        "m": 0.57,
+        "lo": 0.395,
+        "hi": 0.715,
+        "h": 0.475,
+        "hs": 0.6,
+        "nl": 0.8
+       },
+       {
+        "o": "Málaga Hoy",
+        "d": "malagahoy.es",
+        "n": 3,
+        "m": 0.6,
+        "lo": 0.267,
+        "hi": 0.933,
+        "h": 0.333,
+        "hs": 0.333,
+        "nl": 0.667
+       },
+       {
+        "o": "Libertad Digital",
+        "d": "libertaddigital.com",
+        "n": 39,
+        "m": 0.649,
+        "lo": 0.554,
+        "hi": 0.741,
+        "h": 0.387,
+        "hs": 0.564,
+        "nl": 0.795
+       },
+       {
+        "o": "Periodista Digital",
+        "d": "periodistadigital.com",
+        "n": 13,
+        "m": 0.754,
+        "lo": 0.469,
+        "hi": 0.954,
+        "h": 0.677,
+        "hs": 0.923,
+        "nl": 0.846
+       }
+      ]
+     },
+     "examples": {
+      "a": [
+       {
+        "t": "El odio a Sánchez",
+        "o": "Público",
+        "u": "https://www.publico.es/opinion/columnas/odio-sanchez.html"
+       },
+       {
+        "t": "Maratón de Besteiro a prol de Sánchez fronte a un Feijóo \"acompañado pola mentira\"",
+        "o": "Praza",
+        "u": "https://praza.gal/politica/maraton-de-besteiro-a-prol-de-sanchez-fronte-a-un-feijoo-acompanado-pola-mentira"
+       },
+       {
+        "t": "29N: Pensiones y servicios públicos. Derechas a destruirlos; izquierdas a conservarlos y mejorarlos",
+        "o": "Tercera Información",
+        "u": "https://www.tercerainformacion.es/opinion/26/11/2026/29n-pensiones-y-servicios-publicos-derechas-a-destruirlos-izquierdas-a-conservarlos-y-mejorarlos/"
+       }
+      ],
+      "b": [
+       {
+        "t": "¡En la cárcel y asustados!",
+        "o": "Libertad Digital",
+        "u": "https://www.libertaddigital.com/espana/politica/2026-11-25/agapito-maestre-en-la-carcel-y-asustados-7497351/"
+       },
+       {
+        "t": "El hipócrita Sánchez no se atreve a ondear la bandera de España en Barcelona y agita histérico la catalana",
+        "o": "Periodista Digital",
+        "u": "https://www.periodistadigital.com/politica/20261125/hipocrita-sanchez-atreve-ondear-bandera-espana-barcelona-agita-histerico-catalana-noticia-689405270636/"
+       },
+       {
+        "t": "Sánchez buscó un pucherazo con la ley de nietos: la treta le ha salido regular",
+        "o": "ESdiario",
+        "u": "https://www.esdiario.com/opinion/261126/203994/sanchez-busco-pucherazo-ley-nietos-treta-le-salido-regular.html"
+       }
+      ],
+      "hot": [
+       {
+        "t": "Albert Rivera, convencido de cuál va a ser su voto en las elecciones generales del 29N: «Entre un corrupto de izquierdas y un honrado de derechas, está por delante la honradez»",
+        "o": "ABC",
+        "u": "https://www.abc.es/recreo/albert-rivera-convencido-voto-elecciones-generales-29n-20261126110930-nt.html"
+       },
+       {
+        "t": "Paremos el fascismo, defendamos nuestra democracia",
+        "o": "Periodista Digital",
+        "u": "https://www.periodistadigital.com/politica/opinion/cartas-al-director/20261126/paremos-fascismo-defendamos-democracia-noticia-689405270997/"
+       },
+       {
+        "t": "Alberto Costa Egea: ¿Daremos alas a estas ideas?",
+        "o": "La Rioja",
+        "u": "https://www.larioja.com/opinion/cartas-al-director/alberto-costa-egea-daremos-alas-ideas-20261126221237-nt.html"
+       }
+      ]
+     },
+     "cg": {
+      "n": 40,
+      "shared": {
+       "es": "Ambos lados mencionan dudas sobre la limpieza del proceso electoral, aunque con causas opuestas.",
+       "en": "Both sides mention doubts about the integrity of the electoral process, though blaming opposite causes.",
+       "ev": [
+        {
+         "t": "Tensión electoral: de los avisos sobre un posible fraude al último cartucho del debate a cuatro",
+         "o": "La Vanguardia",
+         "u": "https://www.lavanguardia.com/politica/20261126/11693470/tension-electoral-avisos-sobre-posible-fraude-ultimo-cartucho-debate-cuatro.html",
+         "s": "A",
+         "id": "A18"
+        },
+        {
+         "t": "Vox no va a la Diputación Permanente para denunciar el «fraude electoralista» del Gobierno",
+         "o": "La Voz de Galicia",
+         "u": "https://www.lavozdegalicia.es/noticia/elecciones-29n/2026/11/26/vox-va-diputacion-permanente-denunciar-fraude-electoralista-gobierno/00031795685666951648634.htm",
+         "s": "B",
+         "id": "B12"
+        },
+        {
+         "t": "Tonia Etxarri: El sistema funciona",
+         "o": "El Correo",
+         "u": "https://www.elcorreo.com/politica/sistema-funciona-20261125192322-nt.html",
+         "s": "B",
+         "id": "B18"
+        },
+        {
+         "t": "Vamos a ganar seguro, pero si no ganamos es porque la izquierda ha hecho trampa",
+         "o": "infoLibre",
+         "u": "https://www.infolibre.es/medios/ganar-seguro-si-no-ganamos-izquierda-hecho-trampa_1_2241238.html",
+         "s": "A",
+         "id": "A4"
+        }
+       ]
+      },
+      "differ": {
+       "es": "El desacuerdo central es si el Gobierno de Sánchez es legítimo y fiable, o corrupto e ilegítimo.",
+       "en": "The core disagreement is whether Sánchez's Government is legitimate and trustworthy, or corrupt and illegitimate.",
+       "type": "confianza",
+       "ev": [
+        {
+         "t": "Cuerpo reivindica el crecimiento económico y acusa al PP de poner en riesgo el Estado del bienestar",
+         "o": "ABC",
+         "u": "https://www.abc.es/espana/castilla-la-mancha/toledo/cuerpo-reivindica-crecimiento-economico-acusa-pp-poner-20261125135426-nt.html",
+         "s": "A",
+         "id": "A6"
+        },
+        {
+         "t": "Sánchez: “Estamos tocando con la yema de los dedos la mayoría progresista, si llegamos al 75% la podemos tener”",
+         "o": "El País",
+         "u": "https://elpais.com/espana/2026-11-26/sanchez-estamos-tocando-con-la-yema-de-los-dedos-la-mayoria-progresista-si-llegamos-al-75-la-podemos-tener.html",
+         "s": "A",
+         "id": "A16"
+        },
+        {
+         "t": "Feijóo llama en Madrid a “culminar las ganas de cambio” y echar a los “delincuentes del Gobierno”",
+         "o": "La Vanguardia",
+         "u": "https://www.lavanguardia.com/politica/20261125/11693483/feijoo-llama-madrid-culminar-ganas-cambio-echar-delincuentes-gobierno.html",
+         "s": "B",
+         "id": "B10"
+        },
+        {
+         "t": "Hipotecados por el talonario electoral",
+         "o": "Diario de Navarra",
+         "u": "https://www.diariodenavarra.es/noticias/opinion/2026/11/26/hipotecados-talonario-electoral-843744-52.html",
+         "s": "B",
+         "id": "B15"
+        }
+       ]
+      }
+     },
+     "label_en": "Keep or change the government",
+     "family": "government",
+     "a_en": "The current government should stay.",
+     "b_en": "Spain needs a change of government."
+    },
+    {
+     "label": "Violencia de género",
+     "a": "Reforzar las políticas públicas, recursos y reconocimiento institucional de la violencia machista",
+     "b": "Reformar o sustituir el modelo actual de protección, cuestionando su eficacia o su marco ideológico",
+     "includes": [
+      "Miles de mujeres marchan en Madrid en un 25N marcado por las elecciones del 29N",
+      "La violencia machista eleva la crispación en el Parlamento andaluz en la recta final de la campaña",
+      "La Junta General aprueba una declaración por el 25N sin el apoyo de Vox, que exige remigración y endurecer penas",
+      "Bolaños pide votar al PSOE para evitar una España negra con ministros que no creen en violencia de género",
+      "Gavira sostiene que las mujeres andaluzas no han perdido protección judicial con Vox",
+      "Por el mantenimiento de la Ley de Violencia de Género"
+     ],
+     "n_articles": 550,
+     "n": 547,
+     "trust": true,
+     "ideo": 0.194,
+     "aff": 0.143,
+     "hostile_share": 0.165,
+     "n_hostile": 90,
+     "hist": [
+      11,
+      15,
+      44,
+      72,
+      57,
+      158,
+      45,
+      46,
+      13,
+      0,
+      12,
+      0,
+      7,
+      12,
+      6,
+      12,
+      6,
+      11,
+      8,
+      7,
+      5
+     ],
+     "neutral_share": 0.737,
+     "us_them": 0.349,
+     "outlets": {
+      "eta2": 0.271,
+      "eta2_null": 0.099,
+      "p": 0.0003,
+      "list": [
+       {
+        "o": "El Día de Córdoba",
+        "d": "eldiadecordoba.es",
+        "n": 4,
+        "m": -0.8,
+        "lo": -1.0,
+        "hi": -0.625,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 1.0
+       },
+       {
+        "o": "Tercera Información",
+        "d": "tercerainformacion.es",
+        "n": 3,
+        "m": -0.733,
+        "lo": -0.867,
+        "hi": -0.6,
+        "h": 0.1,
+        "hs": 0.0,
+        "nl": 1.0
+       },
+       {
+        "o": "Huelva Información",
+        "d": "huelvainformacion.es",
+        "n": 5,
+        "m": -0.72,
+        "lo": -0.86,
+        "hi": -0.6,
+        "h": 0.12,
+        "hs": 0.0,
+        "nl": 1.0
+       },
+       {
+        "o": "El Correo",
+        "d": "elcorreo.com",
+        "n": 5,
+        "m": -0.66,
+        "lo": -0.8,
+        "hi": -0.52,
+        "h": 0.22,
+        "hs": 0.2,
+        "nl": 0.8
+       },
+       {
+        "o": "Ideal",
+        "d": "ideal.es",
+        "n": 17,
+        "m": -0.606,
+        "lo": -0.671,
+        "hi": -0.535,
+        "h": 0.071,
+        "hs": 0.118,
+        "nl": 0.941
+       },
+       {
+        "o": "Público",
+        "d": "publico.es",
+        "n": 6,
+        "m": -0.583,
+        "lo": -0.783,
+        "hi": -0.4,
+        "h": 0.25,
+        "hs": 0.5,
+        "nl": 0.667
+       },
+       {
+        "o": "Diario de León",
+        "d": "diariodeleon.es",
+        "n": 5,
+        "m": -0.58,
+        "lo": -0.64,
+        "hi": -0.52,
+        "h": 0.1,
+        "hs": 0.2,
+        "nl": 1.0
+       },
+       {
+        "o": "Canarias7",
+        "d": "canarias7.es",
+        "n": 8,
+        "m": -0.575,
+        "lo": -0.675,
+        "hi": -0.475,
+        "h": 0.075,
+        "hs": 0.125,
+        "nl": 0.875
+       },
+       {
+        "o": "La Voz de Cádiz",
+        "d": "lavozdigital.es",
+        "n": 4,
+        "m": -0.575,
+        "lo": -0.6,
+        "hi": -0.525,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 1.0
+       },
+       {
+        "o": "Diario de Ávila",
+        "d": "diariodeavila.es",
+        "n": 6,
+        "m": -0.567,
+        "lo": -0.7,
+        "hi": -0.433,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.667
+       },
+       {
+        "o": "Diario Vasco",
+        "d": "diariovasco.com",
+        "n": 5,
+        "m": -0.56,
+        "lo": -0.68,
+        "hi": -0.42,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.8
+       },
+       {
+        "o": "Diario de Cádiz",
+        "d": "diariodecadiz.es",
+        "n": 10,
+        "m": -0.55,
+        "lo": -0.65,
+        "hi": -0.48,
+        "h": 0.05,
+        "hs": 0.1,
+        "nl": 0.9
+       },
+       {
+        "o": "El País",
+        "d": "elpais.com",
+        "n": 15,
+        "m": -0.54,
+        "lo": -0.6,
+        "hi": -0.48,
+        "h": 0.033,
+        "hs": 0.067,
+        "nl": 0.867
+       },
+       {
+        "o": "elDiario.es",
+        "d": "eldiario.es",
+        "n": 22,
+        "m": -0.527,
+        "lo": -0.659,
+        "hi": -0.373,
+        "h": 0.291,
+        "hs": 0.409,
+        "nl": 0.773
+       },
+       {
+        "o": "laSexta",
+        "d": "lasexta.com",
+        "n": 11,
+        "m": -0.527,
+        "lo": -0.709,
+        "hi": -0.318,
+        "h": 0.245,
+        "hs": 0.455,
+        "nl": 0.545
+       },
+       {
+        "o": "La Rioja",
+        "d": "larioja.com",
+        "n": 4,
+        "m": -0.525,
+        "lo": -0.625,
+        "hi": -0.4,
+        "h": 0.125,
+        "hs": 0.25,
+        "nl": 0.5
+       },
+       {
+        "o": "El Comercio",
+        "d": "elcomercio.es",
+        "n": 15,
+        "m": -0.52,
+        "lo": -0.6,
+        "hi": -0.433,
+        "h": 0.02,
+        "hs": 0.0,
+        "nl": 0.8
+       },
+       {
+        "o": "Diario de Pontevedra",
+        "d": "diariodepontevedra.es",
+        "n": 7,
+        "m": -0.5,
+        "lo": -0.6,
+        "hi": -0.414,
+        "h": 0.043,
+        "hs": 0.0,
+        "nl": 0.429
+       },
+       {
+        "o": "Diario Jaén",
+        "d": "diariojaen.es",
+        "n": 5,
+        "m": -0.5,
+        "lo": -0.66,
+        "hi": -0.36,
+        "h": 0.1,
+        "hs": 0.2,
+        "nl": 0.6
+       },
+       {
+        "o": "Andalucía Información",
+        "d": "andaluciainformacion.es",
+        "n": 42,
+        "m": -0.486,
+        "lo": -0.543,
+        "hi": -0.426,
+        "h": 0.069,
+        "hs": 0.095,
+        "nl": 0.619
+       },
+       {
+        "o": "La Tribuna de Albacete",
+        "d": "latribunadealbacete.es",
+        "n": 7,
+        "m": -0.486,
+        "lo": -0.6,
+        "hi": -0.371,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.571
+       },
+       {
+        "o": "La Voz de Galicia",
+        "d": "lavozdegalicia.es",
+        "n": 24,
+        "m": -0.483,
+        "lo": -0.579,
+        "hi": -0.371,
+        "h": 0.083,
+        "hs": 0.167,
+        "nl": 0.75
+       },
+       {
+        "o": "RTVE",
+        "d": "rtve.es",
+        "n": 6,
+        "m": -0.483,
+        "lo": -0.567,
+        "hi": -0.383,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.667
+       },
+       {
+        "o": "VilaWeb",
+        "d": "vilaweb.cat",
+        "n": 5,
+        "m": -0.48,
+        "lo": -0.84,
+        "hi": 0.06,
+        "h": 0.08,
+        "hs": 0.0,
+        "nl": 0.6
+       },
+       {
+        "o": "La Verdad",
+        "d": "laverdad.es",
+        "n": 11,
+        "m": -0.473,
+        "lo": -0.618,
+        "hi": -0.309,
+        "h": 0.109,
+        "hs": 0.091,
+        "nl": 0.818
+       },
+       {
+        "o": "Hoy",
+        "d": "hoy.es",
+        "n": 8,
+        "m": -0.45,
+        "lo": -0.6,
+        "hi": -0.3,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.625
+       },
+       {
+        "o": "Europa Sur",
+        "d": "europasur.es",
+        "n": 5,
+        "m": -0.44,
+        "lo": -0.5,
+        "hi": -0.38,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.6
+       },
+       {
+        "o": "La Gaceta de Salamanca",
+        "d": "lagacetadesalamanca.es",
+        "n": 13,
+        "m": -0.438,
+        "lo": -0.5,
+        "hi": -0.385,
+        "h": 0.038,
+        "hs": 0.077,
+        "nl": 0.385
+       },
+       {
+        "o": "El Español",
+        "d": "elespanol.com",
+        "n": 3,
+        "m": -0.433,
+        "lo": -0.7,
+        "hi": -0.167,
+        "h": 0.1,
+        "hs": 0.0,
+        "nl": 0.667
+       },
+       {
+        "o": "Diario de Burgos",
+        "d": "diariodeburgos.es",
+        "n": 4,
+        "m": -0.425,
+        "lo": -0.475,
+        "hi": -0.4,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.25
+       },
+       {
+        "o": "Europa Press",
+        "d": "europapress.es",
+        "n": 78,
+        "m": -0.413,
+        "lo": -0.486,
+        "hi": -0.336,
+        "h": 0.126,
+        "hs": 0.167,
+        "nl": 0.538
+       },
+       {
+        "o": "El Norte de Castilla",
+        "d": "elnortedecastilla.es",
+        "n": 5,
+        "m": -0.4,
+        "lo": -0.68,
+        "hi": -0.04,
+        "h": 0.06,
+        "hs": 0.0,
+        "nl": 0.6
+       },
+       {
+        "o": "La Voz de Asturias",
+        "d": "lavozdeasturias.es",
+        "n": 8,
+        "m": -0.388,
+        "lo": -0.738,
+        "hi": -0.025,
+        "h": 0.237,
+        "hs": 0.25,
+        "nl": 0.5
+       },
+       {
+        "o": "La Tribuna de Toledo",
+        "d": "latribunadetoledo.es",
+        "n": 11,
+        "m": -0.382,
+        "lo": -0.591,
+        "hi": -0.136,
+        "h": 0.145,
+        "hs": 0.182,
+        "nl": 0.545
+       },
+       {
+        "o": "El Periódico",
+        "d": "elperiodico.cat",
+        "n": 4,
+        "m": -0.375,
+        "lo": -0.5,
+        "hi": -0.125,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.75
+       },
+       {
+        "o": "El Progreso",
+        "d": "elprogreso.es",
+        "n": 5,
+        "m": -0.34,
+        "lo": -0.72,
+        "hi": 0.18,
+        "h": 0.2,
+        "hs": 0.2,
+        "nl": 0.4
+       },
+       {
+        "o": "Canal Sur",
+        "d": "canalsur.es",
+        "n": 3,
+        "m": -0.333,
+        "lo": -0.5,
+        "hi": -0.167,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.667
+       },
+       {
+        "o": "Diario Palentino",
+        "d": "diariopalentino.es",
+        "n": 5,
+        "m": -0.32,
+        "lo": -0.68,
+        "hi": 0.26,
+        "h": 0.2,
+        "hs": 0.4,
+        "nl": 0.6
+       },
+       {
+        "o": "La Región",
+        "d": "laregion.es",
+        "n": 4,
+        "m": -0.3,
+        "lo": -0.5,
+        "hi": 0.1,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.75
+       },
+       {
+        "o": "El Plural",
+        "d": "elplural.com",
+        "n": 8,
+        "m": -0.3,
+        "lo": -0.537,
+        "hi": 0.025,
+        "h": 0.2,
+        "hs": 0.25,
+        "nl": 0.5
+       },
+       {
+        "o": "Diario de Sevilla",
+        "d": "diariodesevilla.es",
+        "n": 4,
+        "m": -0.225,
+        "lo": -0.55,
+        "hi": 0.2,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.0
+       },
+       {
+        "o": "Diario Sur",
+        "d": "diariosur.es",
+        "n": 8,
+        "m": -0.212,
+        "lo": -0.575,
+        "hi": 0.163,
+        "h": 0.225,
+        "hs": 0.375,
+        "nl": 0.375
+       },
+       {
+        "o": "El Mundo",
+        "d": "elmundo.es",
+        "n": 8,
+        "m": -0.15,
+        "lo": -0.375,
+        "hi": 0.101,
+        "h": 0.188,
+        "hs": 0.375,
+        "nl": 0.125
+       },
+       {
+        "o": "El Diario Montañés",
+        "d": "eldiariomontanes.es",
+        "n": 7,
+        "m": -0.143,
+        "lo": -0.443,
+        "hi": 0.186,
+        "h": 0.186,
+        "hs": 0.286,
+        "nl": 0.286
+       },
+       {
+        "o": "La Razón",
+        "d": "larazon.es",
+        "n": 18,
+        "m": -0.128,
+        "lo": -0.333,
+        "hi": 0.094,
+        "h": 0.156,
+        "hs": 0.222,
+        "nl": 0.278
+       },
+       {
+        "o": "La Vanguardia",
+        "d": "lavanguardia.com",
+        "n": 8,
+        "m": -0.125,
+        "lo": -0.438,
+        "hi": 0.213,
+        "h": 0.225,
+        "hs": 0.25,
+        "nl": 0.25
+       },
+       {
+        "o": "Antena 3",
+        "d": "antena3.com",
+        "n": 5,
+        "m": -0.12,
+        "lo": -0.5,
+        "hi": 0.26,
+        "h": 0.12,
+        "hs": 0.2,
+        "nl": 0.2
+       },
+       {
+        "o": "ABC",
+        "d": "abc.es",
+        "n": 21,
+        "m": -0.114,
+        "lo": -0.29,
+        "hi": 0.071,
+        "h": 0.19,
+        "hs": 0.238,
+        "nl": 0.333
+       },
+       {
+        "o": "El Confidencial",
+        "d": "elconfidencial.com",
+        "n": 4,
+        "m": -0.025,
+        "lo": -0.35,
+        "hi": 0.325,
+        "h": 0.075,
+        "hs": 0.0,
+        "nl": 0.25
+       },
+       {
+        "o": "Libertad Digital",
+        "d": "libertaddigital.com",
+        "n": 11,
+        "m": 0.073,
+        "lo": -0.264,
+        "hi": 0.391,
+        "h": 0.3,
+        "hs": 0.364,
+        "nl": 0.091
+       },
+       {
+        "o": "Las Provincias",
+        "d": "lasprovincias.es",
+        "n": 3,
+        "m": 0.133,
+        "lo": -0.333,
+        "hi": 0.6,
+        "h": 0.2,
+        "hs": 0.0,
+        "nl": 0.0
+       },
+       {
+        "o": "ESdiario",
+        "d": "esdiario.com",
+        "n": 6,
+        "m": 0.65,
+        "lo": 0.217,
+        "hi": 0.917,
+        "h": 0.65,
+        "hs": 0.833,
+        "nl": 0.667
+       },
+       {
+        "o": "Periodista Digital",
+        "d": "periodistadigital.com",
+        "n": 3,
+        "m": 0.933,
+        "lo": 0.867,
+        "hi": 1.0,
+        "h": 0.933,
+        "hs": 1.0,
+        "nl": 1.0
+       }
+      ]
+     },
+     "examples": {
+      "a": [
+       {
+        "t": "Los versos más tristes",
+        "o": "Huelva Información",
+        "u": "https://www.huelvainformacion.es/opinion/articulos/versos-tristes_0_2008588320.html"
+       },
+       {
+        "t": "“Contra el patriarcado y sus violencias, organización y resistencia”",
+        "o": "Andalucía Información",
+        "u": "https://www.andaluciainformacion.es/cadiz/cadiz-local/patriarcado-violencias-organizacion-resistencia/202611251913393548765.html"
+       },
+       {
+        "t": "Frente Amplio advierte del riesgo de que un Gobierno de derechas elimine el Ministerio de Igualdad",
+        "o": "Diario de Cádiz",
+        "u": "https://www.diariodecadiz.es/noticias-provincia-cadiz/frente-amplio-advierte-riesgo-gobierno_0_2008585163.html"
+       }
+      ],
+      "b": [
+       {
+        "t": "Del p*tero Ábalos a la saltarina desquiciada de Begoña Gómez: el feminismo de pandereta del Gobierno Sánchez",
+        "o": "Periodista Digital",
+        "u": "https://www.periodistadigital.com/politica/20261126/ptero-abalos-saltarina-desquiciada-begona-gomez-feminismo-pandereta-gobierno-sanchez-noticia-689405270989/"
+       },
+       {
+        "t": "Cayetana Álvarez de Toledo remata el feminismo del PSOE con el repaso más letal: \"Mujeres como mercancía para ministros\"",
+        "o": "ESdiario",
+        "u": "https://www.esdiario.com/nacional/261125/203975/cayetana-alvarez-toledo-remata-feminismo-psoe-repaso-mujeres-mercancia-ministros.html"
+       }
+      ],
+      "hot": [
+       {
+        "t": "Del p*tero Ábalos a la saltarina desquiciada de Begoña Gómez: el feminismo de pandereta del Gobierno Sánchez",
+        "o": "Periodista Digital",
+        "u": "https://www.periodistadigital.com/politica/20261126/ptero-abalos-saltarina-desquiciada-begona-gomez-feminismo-pandereta-gobierno-sanchez-noticia-689405270989/"
+       },
+       {
+        "t": "Una tertuliana de Canal Extremadura compara a Pedro Sánchez con “el novio que maltrata a su novia” en pleno 25N",
+        "o": "elDiario.es",
+        "u": "https://www.eldiario.es/extremadura/sociedad/tertuliana-canal-extremadura-compara-pedro-sanchez-novio-maltrata-novia-pleno-25n_1_13693350.html"
+       },
+       {
+        "t": "El mensaje de Cayetana Álvarez de Toledo este 25N desde el edificio de Jésica Rodríguez: \"El Gobierno le puso un piso a una puta\"",
+        "o": "El Progreso",
+        "u": "https://www.elprogreso.es/elecciones-generales-29n/mensaje-alvarez-toledo-edificio-jesica-rodriguez-gobierno-puso-piso-puta/202611251850382016619.html"
+       }
+      ]
+     },
+     "cg": {
+      "n": 40,
+      "shared": {
+       "es": "Ambos lados reconocen que las víctimas de violencia contra la mujer necesitan protección efectiva y que los mecanismos actuales tienen fallos concretos.",
+       "en": "Both sides acknowledge that victims of violence against women need effective protection and that current mechanisms have concrete failures.",
+       "ev": [
+        {
+         "t": "Asturias clama por «más justicia» contra la violencia machista: «No basta con contar asesinadas»",
+         "o": "El Comercio",
+         "u": "https://www.elcomercio.es/asturias/asturias-clama-justicia-violencia-machista-manifestacion-miles-personas-20261125204721-nt.html",
+         "s": "A",
+         "id": "A7"
+        },
+        {
+         "t": "PP y Vox confluyen el 25-N en las Corts: Menos campañas y más protección policial a mujeres",
+         "o": "La Vanguardia",
+         "u": "https://www.lavanguardia.com/local/valencia/20261126/11693103/pp-vox-confluyen-25-n-corts-campanas-mas-proteccion-policial-mujeres.html",
+         "s": "B",
+         "id": "B8"
+        },
+        {
+         "t": "Catalá y Camarero denuncian que el sistema de pulseras antimaltrato hace aguas",
+         "o": "Las Provincias",
+         "u": "https://www.lasprovincias.es/comunitat/catala-camarero-denuncian-sistema-pulseras-antimaltrato-aguas-20261125180509-nt.html",
+         "s": "B",
+         "id": "B18"
+        }
+       ]
+      },
+      "differ": {
+       "es": "Un lado defiende el marco ideológico feminista y sus instituciones; el otro lo rechaza como propaganda y acusa al Gobierno de desproteger a las mujeres.",
+       "en": "One side defends the feminist ideological framework and its institutions; the other rejects it as propaganda and accuses the Government of leaving women unprotected.",
+       "type": "objetivos",
+       "ev": [
+        {
+         "t": "UPC defiende mantener el Ministerio de Igualdad y que \"no esté camuflado\" en otras áreas",
+         "o": "elDiario.es",
+         "u": "https://www.eldiario.es/canariasahora/politica/upc-defiende-mantener-ministerio-igualdad-no-camuflado-areas_1_13692153.html",
+         "s": "A",
+         "id": "A3"
+        },
+        {
+         "t": "Sí, tiene nombre y se llama violencia machista",
+         "o": "Ideal",
+         "u": "https://www.ideal.es/jaen/jaen/nombre-llama-violencia-machista-20261125132559-nt.html",
+         "s": "A",
+         "id": "A5"
+        },
+        {
+         "t": "Patricia Rueda: «El Gobierno es una estafa para las mujeres porque las desprotege»",
+         "o": "Diario Sur",
+         "u": "https://www.diariosur.es/elecciones/generales/malaga-elecciones-vox-mujeres-violencia-patricia-rueda-gobierno-estafa-mujeres-desprotege-20261125165706-nt.html",
+         "s": "B",
+         "id": "B7"
+        },
+        {
+         "t": "El PP acusa al PSOE de \"utilización ideológica de la mujer\"",
+         "o": "La Tribuna de Toledo",
+         "u": "https://www.latribunadetoledo.es/noticia/zf4065bea-bf5e-477f-9a4baba2df4b5575/202611/el-pp-acusa-al-psoe-de-utilizacion-ideologica-de-la-mujer",
+         "s": "B",
+         "id": "B14"
+        }
+       ]
+      }
+     },
+     "label_en": "Violencia de género",
+     "family": null,
+     "a_en": "Reforzar las políticas públicas, recursos y reconocimiento institucional de la violencia machista",
+     "b_en": "Reformar o sustituir el modelo actual de protección, cuestionando su eficacia o su marco ideológico"
+    },
+    {
+     "label": "Política migratoria",
+     "a": "Hay que reforzar el control de fronteras, las devoluciones y la cooperación con los países de origen para frenar la llegada irregular.",
+     "b": "Hay que priorizar la acogida, los derechos de los migrantes y las vías legales de entrada y regularización.",
+     "includes": [
+      "El Hierro en colapso sistémico: Canarias declara la emergencia y pide el despliegue de la UME",
+      "120 militares enviados a El Hierro para estabilizar la situación sanitaria de miles de migrantes",
+      "Aragón lleva a Sánchez ante la ley por los traslados opacos desde El Hierro",
+      "Castilla-La Mancha exige a Canarias que rectifique sus acusaciones sobre la acogida de menas",
+      "La factura oculta de la externalización: por qué los 240 millones de la UE en África han acabado empujando la ruta hacia El Hierro",
+      "Urtasun y Rufián acusan de racismo a PP y Vox, que defienden un giro en gestión migratoria"
+     ],
+     "n_articles": 142,
+     "n": 140,
+     "trust": true,
+     "ideo": 0.277,
+     "aff": 0.17,
+     "hostile_share": 0.179,
+     "n_hostile": 25,
+     "hist": [
+      6,
+      3,
+      5,
+      4,
+      5,
+      26,
+      8,
+      23,
+      2,
+      1,
+      14,
+      1,
+      2,
+      3,
+      2,
+      12,
+      6,
+      10,
+      2,
+      1,
+      4
+     ],
+     "neutral_share": 0.757,
+     "us_them": 0.45,
+     "outlets": {
+      "eta2": 0.406,
+      "eta2_null": 0.176,
+      "p": 0.0003,
+      "list": [
+       {
+        "o": "Canarias7",
+        "d": "canarias7.es",
+        "n": 4,
+        "m": -0.65,
+        "lo": -0.925,
+        "hi": -0.375,
+        "h": 0.2,
+        "hs": 0.25,
+        "nl": 0.75
+       },
+       {
+        "o": "Vozpópuli",
+        "d": "vozpopuli.com",
+        "n": 5,
+        "m": -0.64,
+        "lo": -0.84,
+        "hi": -0.44,
+        "h": 0.34,
+        "hs": 0.6,
+        "nl": 0.6
+       },
+       {
+        "o": "El Mundo",
+        "d": "elmundo.es",
+        "n": 3,
+        "m": -0.633,
+        "lo": -0.767,
+        "hi": -0.5,
+        "h": 0.267,
+        "hs": 0.333,
+        "nl": 1.0
+       },
+       {
+        "o": "Libertad Digital",
+        "d": "libertaddigital.com",
+        "n": 12,
+        "m": -0.542,
+        "lo": -0.667,
+        "hi": -0.4,
+        "h": 0.25,
+        "hs": 0.333,
+        "nl": 0.75
+       },
+       {
+        "o": "La Razón",
+        "d": "larazon.es",
+        "n": 8,
+        "m": -0.512,
+        "lo": -0.662,
+        "hi": -0.363,
+        "h": 0.225,
+        "hs": 0.25,
+        "nl": 0.75
+       },
+       {
+        "o": "El Español",
+        "d": "elespanol.com",
+        "n": 4,
+        "m": -0.475,
+        "lo": -0.5,
+        "hi": -0.425,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.75
+       },
+       {
+        "o": "ABC",
+        "d": "abc.es",
+        "n": 8,
+        "m": -0.188,
+        "lo": -0.375,
+        "hi": 0.0,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.375
+       },
+       {
+        "o": "Ideal",
+        "d": "ideal.es",
+        "n": 3,
+        "m": -0.167,
+        "lo": -0.833,
+        "hi": 0.5,
+        "h": 0.333,
+        "hs": 0.667,
+        "nl": 0.333
+       },
+       {
+        "o": "El Confidencial",
+        "d": "elconfidencial.com",
+        "n": 3,
+        "m": -0.1,
+        "lo": -0.467,
+        "hi": 0.267,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.0
+       },
+       {
+        "o": "ESdiario",
+        "d": "esdiario.com",
+        "n": 4,
+        "m": -0.05,
+        "lo": -0.6,
+        "hi": 0.5,
+        "h": 0.125,
+        "hs": 0.25,
+        "nl": 0.0
+       },
+       {
+        "o": "La Región",
+        "d": "laregion.es",
+        "n": 3,
+        "m": -0.033,
+        "lo": -0.3,
+        "hi": 0.233,
+        "h": 0.1,
+        "hs": 0.0,
+        "nl": 0.333
+       },
+       {
+        "o": "laSexta",
+        "d": "lasexta.com",
+        "n": 4,
+        "m": -0.025,
+        "lo": -0.3,
+        "hi": 0.25,
+        "h": 0.125,
+        "hs": 0.25,
+        "nl": 0.25
+       },
+       {
+        "o": "Europa Press",
+        "d": "europapress.es",
+        "n": 12,
+        "m": 0.017,
+        "lo": -0.175,
+        "hi": 0.217,
+        "h": 0.025,
+        "hs": 0.0,
+        "nl": 0.083
+       },
+       {
+        "o": "Diario Vasco",
+        "d": "diariovasco.com",
+        "n": 3,
+        "m": 0.1,
+        "lo": -0.367,
+        "hi": 0.567,
+        "h": 0.267,
+        "hs": 0.333,
+        "nl": 0.333
+       },
+       {
+        "o": "elDiario.es",
+        "d": "eldiario.es",
+        "n": 10,
+        "m": 0.11,
+        "lo": -0.11,
+        "hi": 0.34,
+        "h": 0.03,
+        "hs": 0.0,
+        "nl": 0.3
+       },
+       {
+        "o": "La Vanguardia",
+        "d": "lavanguardia.com",
+        "n": 4,
+        "m": 0.125,
+        "lo": -0.15,
+        "hi": 0.4,
+        "h": 0.125,
+        "hs": 0.25,
+        "nl": 0.25
+       },
+       {
+        "o": "Antena 3",
+        "d": "antena3.com",
+        "n": 3,
+        "m": 0.233,
+        "lo": -0.1,
+        "hi": 0.567,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.333
+       },
+       {
+        "o": "Ara",
+        "d": "ara.cat",
+        "n": 3,
+        "m": 0.333,
+        "lo": 0.167,
+        "hi": 0.5,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.667
+       },
+       {
+        "o": "Público",
+        "d": "publico.es",
+        "n": 5,
+        "m": 0.36,
+        "lo": -0.1,
+        "hi": 0.76,
+        "h": 0.2,
+        "hs": 0.4,
+        "nl": 0.4
+       },
+       {
+        "o": "El País",
+        "d": "elpais.com",
+        "n": 8,
+        "m": 0.375,
+        "lo": 0.05,
+        "hi": 0.663,
+        "h": 0.062,
+        "hs": 0.125,
+        "nl": 0.5
+       }
+      ]
+     },
+     "examples": {
+      "a": [
+       {
+        "t": "Sergio Ramos, PP: «La mejor política migratoria es que las personas no lleguen a las islas. No tenemos espacio ni capacidad»",
+        "o": "Canarias7",
+        "u": "https://www.canarias7.es/elecciones/generales/mejor-politica-migratoria-personas-lleguen-islas-espacio-20261126083002-nt.html"
+       },
+       {
+        "t": "Canarias busca auxilio en Bruselas ante la llegada de ilegales a El Hierro y el desprecio de Sánchez",
+        "o": "Vozpópuli",
+        "u": "https://www.vozpopuli.com/espana/canarias/canarias-busca-auxilio-en-bruselas-ante-la-llegada-de-ilegales-a-el-hierro-y-el-desprecio-de-sanchez.html"
+       },
+       {
+        "t": "Vox se compromete a recuperar la seguridad y proteger las fronteras ante la inmigración ilegal",
+        "o": "Ideal",
+        "u": "https://www.ideal.es/almeria/almeria/vox-compromete-recuperar-seguridad-proteger-fronteras-ante-20261125140537-nt.html"
+       }
+      ],
+      "b": [
+       {
+        "t": "El ideólogo de la “remigración” europea lanza en plena campaña un plan de deportaciones para un hipotético Gobierno del PP y Vox",
+        "o": "El País",
+        "u": "https://elpais.com/espana/elecciones-generales/2026-11-25/el-ideologo-de-la-remigracion-europea-lanza-en-plena-campana-un-plan-de-deportaciones-para-un-hipotetico-gobierno-del-pp-y-vox.html"
+       },
+       {
+        "t": "El salvadoreño Kilmar Ábrego, símbolo de la resistencia contra el ICE de Trump, se autodeporta a España",
+        "o": "Público",
+        "u": "https://www.publico.es/internacional/america-latina/salvadoreno-kilmar-abrego-simbolo-resistencia-ice-trump-autodeporta-espana.html"
+       },
+       {
+        "t": "Siete días de travesía y cuatro de vida: la niña que ha nacido a bordo de un cayuco",
+        "o": "Antena 3",
+        "u": "https://www.antena3.com/noticias/sociedad/siete-dias-travesia-cuatro-vida-nina-que-nacido-bordo-cayuco_202611256b071a56c0d5c85b96c78a85.html"
+       }
+      ],
+      "hot": [
+       {
+        "t": "Sánchez dice que la situación migratoria en Canarias está \"bajo control\" y Abascal responde: \"Claro. Tú diriges la invasión\"",
+        "o": "La Razón",
+        "u": "https://www.larazon.es/espana/sanchez-dice-que-situacion-migratoria-canarias-esta-control-abascal-responde-claro-diriges-invasion_202611256b07113ef6da642efefaf9a2.html"
+       },
+       {
+        "t": "Sanidad solo recoge \"un tercio de las intervenciones\" a invasores para ocultar el colapso sanitario de Ceuta",
+        "o": "Libertad Digital",
+        "u": "https://www.libertaddigital.com/espana/politica/2026-11-26/el-satse-sobre-la-situacion-de-la-sanidad-en-ceuta-el-ingesa-miente-son-expertos-en-maquillar-las-estadisticas-7497347/"
+       },
+       {
+        "t": "\"El voto musulmán\" sostiene al PSOE en Ceuta con la pugna PP-Vox en un puñado de votos",
+        "o": "El Mundo",
+        "u": "https://www.elmundo.es/espana/2026/11/26/6b005c94fc6c83305c8b45b7.html"
+       }
+      ]
+     },
+     "cg": {
+      "n": 40,
+      "shared": {
+       "es": "Ambos lados reconocen que la llegada masiva de migrantes a El Hierro ha desbordado los recursos de la isla y constituye una crisis real.",
+       "en": "Both sides acknowledge that the mass arrival of migrants to El Hierro has overwhelmed the island's resources and constitutes a real crisis.",
+       "ev": [
+        {
+         "t": "Clavijo solicita la UME para responder a la crisis migratoria en El Hierro y activa la emergencia en Canarias",
+         "o": "ABC",
+         "u": "https://www.abc.es/espana/canarias/clavijo-solicita-ume-responder-crisis-migratoria-hierro-20261125163315-nt.html",
+         "s": "A",
+         "id": "A3"
+        },
+        {
+         "t": "El hospital de El Hierro se enfrenta a su enésima crisis migratoria: “Esto no es asumible, ha sido lo nunca visto”",
+         "o": "El País",
+         "u": "https://elpais.com/espana/2026-11-26/el-hospital-de-el-hierro-se-enfrenta-a-su-enesima-crisis-migratoria-esto-no-es-asumible-ha-sido-lo-nunca-visto.html",
+         "s": "A",
+         "id": "A12"
+        },
+        {
+         "t": "En menys d’un mes han arribat mil menors a El Hierro: “Alguns arriben directament inconscients”",
+         "o": "Ara",
+         "u": "https://www.ara.cat/societat/immigracio/canaries-declara-l-emergencia-demana-l-ajuda-l-ume-davant-l-arribada-massiva-migrants_1_5922981.html",
+         "s": "B",
+         "id": "B5"
+        },
+        {
+         "t": "Más de 2.100 migrantes llegan a Canarias en un solo día, entre ellos un bebé de cuatro días y un fallecido",
+         "o": "Canal Sur",
+         "u": "https://www.canalsur.es/noticias/espana/1200-migrantes-llegan-canarias-dia-2-100_1_1455746.html",
+         "s": "B",
+         "id": "B20"
+        },
+        {
+         "t": "«Es toda una locura: vienen muy mal, exhaustos, sin dormir, nerviosos, con úlceras...»",
+         "o": "La Gaceta de Salamanca",
+         "u": "https://www.lagacetadesalamanca.es/salamanca/locura-vienen-mal-exhaustos-dormir-nerviosos-ulceras-20261125120415-nt.html",
+         "s": "B",
+         "id": "B18"
+        }
+       ]
+      },
+      "differ": {
+       "es": "Un lado pide frenar las llegadas como prioridad; el otro pide proteger los derechos de quienes llegan. Son objetivos distintos.",
+       "en": "One side prioritizes stopping arrivals; the other prioritizes protecting the rights of those who arrive. These are different goals.",
+       "type": "objetivos",
+       "ev": [
+        {
+         "t": "Sergio Ramos, PP: «La mejor política migratoria es que las personas no lleguen a las islas. No tenemos espacio ni capacidad»",
+         "o": "Canarias7",
+         "u": "https://www.canarias7.es/elecciones/generales/mejor-politica-migratoria-personas-lleguen-islas-espacio-20261126083002-nt.html",
+         "s": "A",
+         "id": "A4"
+        },
+        {
+         "t": "Vox se compromete a recuperar la seguridad y proteger las fronteras ante la inmigración ilegal",
+         "o": "Ideal",
+         "u": "https://www.ideal.es/almeria/almeria/vox-compromete-recuperar-seguridad-proteger-fronteras-ante-20261125140537-nt.html",
+         "s": "A",
+         "id": "A9"
+        },
+        {
+         "t": "El ministro España cree que pedir que se despliegue la Armada en el Hierro para hacer frente a la crisis migratoria es de \"extrema derecha\"",
+         "o": "ESdiario",
+         "u": "https://www.esdiario.com/comunidad-valenciana/261116/203052/ministro-espana-cree-pedir-despliegue-armada-hierro-frente-crisis-migratoria-extrema-derecha.html",
+         "s": "B",
+         "id": "B6"
+        },
+        {
+         "t": "Ander Izagirre: Prioridades",
+         "o": "Diario Vasco",
+         "u": "https://www.diariovasco.com/opinion/ander-izagirre-prioridades-20261126064255-nt.html",
+         "s": "B",
+         "id": "B7"
+        }
+       ]
+      }
+     },
+     "label_en": "Migration policy",
+     "family": "migration",
+     "a_en": "Tighten border control, returns and cooperation with origin countries to stop irregular arrivals.",
+     "b_en": "Prioritise reception, migrants' rights and legal routes and regularisation."
+    },
+    {
+     "label": "Vivienda",
+     "a": "El Estado debe intervenir en el mercado: limitar alquileres, frenar desahucios y ampliar la vivienda pública.",
+     "b": "Hay que aumentar la oferta, facilitar la construcción y dar seguridad jurídica a los propietarios.",
+     "includes": [
+      "La Comunidad de Madrid recurrirá al Constitucional el decreto de vivienda por invadir competencias autonómicas",
+      "El PSC descarta expropiar a fondos buitre como medida estrella de la izquierda en vivienda",
+      "La vivienda sube de precio un 15% pese a que las ventas caen desde hace 10 meses",
+      "En Madrid el 25% de los pisos en venta desaparece en solo 18 días",
+      "Las políticas de vivienda enfrentan a PSC, ERC y Comuns con Junts, PP y Vox en el debate de 3Cat",
+      "El desahucio sin fin de Andrea y su hija de 13 años en una habitación de una pensión de Sevilla"
+     ],
+     "n_articles": 138,
+     "n": 131,
+     "trust": true,
+     "ideo": 0.26,
+     "aff": 0.113,
+     "hostile_share": 0.076,
+     "n_hostile": 10,
+     "hist": [
+      0,
+      1,
+      9,
+      13,
+      9,
+      14,
+      5,
+      13,
+      4,
+      0,
+      28,
+      0,
+      3,
+      6,
+      3,
+      8,
+      8,
+      6,
+      0,
+      1,
+      0
+     ],
+     "neutral_share": 0.809,
+     "us_them": 0.382,
+     "outlets": {
+      "eta2": 0.322,
+      "eta2_null": 0.203,
+      "p": 0.0387,
+      "list": [
+       {
+        "o": "Ideal",
+        "d": "ideal.es",
+        "n": 5,
+        "m": -0.58,
+        "lo": -0.76,
+        "hi": -0.4,
+        "h": 0.2,
+        "hs": 0.4,
+        "nl": 0.6
+       },
+       {
+        "o": "elDiario.es",
+        "d": "eldiario.es",
+        "n": 9,
+        "m": -0.467,
+        "lo": -0.678,
+        "hi": -0.222,
+        "h": 0.089,
+        "hs": 0.111,
+        "nl": 0.556
+       },
+       {
+        "o": "Público",
+        "d": "publico.es",
+        "n": 4,
+        "m": -0.425,
+        "lo": -0.85,
+        "hi": 0.3,
+        "h": 0.15,
+        "hs": 0.0,
+        "nl": 0.5
+       },
+       {
+        "o": "La Voz de Galicia",
+        "d": "lavozdegalicia.es",
+        "n": 3,
+        "m": -0.367,
+        "lo": -0.633,
+        "hi": -0.1,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.333
+       },
+       {
+        "o": "El Mundo",
+        "d": "elmundo.es",
+        "n": 3,
+        "m": -0.333,
+        "lo": -0.533,
+        "hi": -0.133,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.333
+       },
+       {
+        "o": "El Correo",
+        "d": "elcorreo.com",
+        "n": 3,
+        "m": -0.267,
+        "lo": -0.433,
+        "hi": -0.1,
+        "h": 0.1,
+        "hs": 0.0,
+        "nl": 0.333
+       },
+       {
+        "o": "El Plural",
+        "d": "elplural.com",
+        "n": 3,
+        "m": -0.167,
+        "lo": -0.633,
+        "hi": 0.3,
+        "h": 0.267,
+        "hs": 0.333,
+        "nl": 0.333
+       },
+       {
+        "o": "El Confidencial Digital",
+        "d": "elconfidencialdigital.com",
+        "n": 8,
+        "m": -0.15,
+        "lo": -0.338,
+        "hi": 0.05,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.125
+       },
+       {
+        "o": "La Vanguardia",
+        "d": "lavanguardia.com",
+        "n": 6,
+        "m": -0.067,
+        "lo": -0.433,
+        "hi": 0.317,
+        "h": 0.133,
+        "hs": 0.167,
+        "nl": 0.0
+       },
+       {
+        "o": "El Confidencial",
+        "d": "elconfidencial.com",
+        "n": 5,
+        "m": 0.0,
+        "lo": -0.34,
+        "hi": 0.32,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.2
+       },
+       {
+        "o": "Expansión",
+        "d": "expansion.com",
+        "n": 3,
+        "m": 0.033,
+        "lo": -0.367,
+        "hi": 0.433,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.0
+       },
+       {
+        "o": "Europa Press",
+        "d": "europapress.es",
+        "n": 7,
+        "m": 0.043,
+        "lo": -0.214,
+        "hi": 0.3,
+        "h": 0.143,
+        "hs": 0.0,
+        "nl": 0.143
+       },
+       {
+        "o": "El País",
+        "d": "elpais.com",
+        "n": 6,
+        "m": 0.083,
+        "lo": -0.317,
+        "hi": 0.433,
+        "h": 0.05,
+        "hs": 0.0,
+        "nl": 0.167
+       },
+       {
+        "o": "Las Provincias",
+        "d": "lasprovincias.es",
+        "n": 4,
+        "m": 0.1,
+        "lo": -0.25,
+        "hi": 0.425,
+        "h": 0.125,
+        "hs": 0.25,
+        "nl": 0.0
+       },
+       {
+        "o": "ABC",
+        "d": "abc.es",
+        "n": 4,
+        "m": 0.15,
+        "lo": -0.1,
+        "hi": 0.35,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.25
+       },
+       {
+        "o": "Vozpópuli",
+        "d": "vozpopuli.com",
+        "n": 3,
+        "m": 0.2,
+        "lo": -0.167,
+        "hi": 0.567,
+        "h": 0.0,
+        "hs": 0.0,
+        "nl": 0.333
+       },
+       {
+        "o": "La Razón",
+        "d": "larazon.es",
+        "n": 6,
+        "m": 0.233,
+        "lo": 0.05,
+        "hi": 0.4,
+        "h": 0.133,
+        "hs": 0.167,
+        "nl": 0.167
+       },
+       {
+        "o": "Libertad Digital",
+        "d": "libertaddigital.com",
+        "n": 3,
+        "m": 0.733,
+        "lo": 0.633,
+        "hi": 0.833,
+        "h": 0.4,
+        "hs": 0.667,
+        "nl": 1.0
+       }
+      ]
+     },
+     "examples": {
+      "a": [
+       {
+        "t": "Aplazado el desahucio de Nines y su familia: la batalla por conservar una casa que lleva 30 años pagada",
+        "o": "Público",
+        "u": "https://www.publico.es/sociedad/aplazado-desahucio-nines-familia-batalla-conservar-casa-lleva-30-anos-pagada.html"
+       },
+       {
+        "t": "El cierre del colegio Decroly: donde manda el dinero no manda la educación",
+        "o": "elDiario.es",
+        "u": "https://www.eldiario.es/opinion/cierre-colegio-decroly-manda-dinero-no-manda-educacion_129_13692171.html"
+       },
+       {
+        "t": "Adelante Andalucía exige declarar Granada zona tensionada tras reunirse con Stop Desahucios",
+        "o": "Ideal",
+        "u": "https://www.ideal.es/elecciones/generales/granada/adelante-andalucia-exige-declarar-granada-zona-tensionada-20261125103044-nt.html"
+       }
+      ],
+      "b": [
+       {
+        "t": "De Alemania del Este a España: cómo Sánchez copia las peores políticas de vivienda",
+        "o": "Libertad Digital",
+        "u": "https://www.libertaddigital.com/libremercado/2026-11-26/de-alemania-del-este-a-espana-como-pedro-sanchez-copia-las-peores-politicas-de-vivienda-7497118/"
+       },
+       {
+        "t": "La Comunidad de Madrid recurre el decreto Maricarmen por invasión de competencias",
+        "o": "Vozpópuli",
+        "u": "https://www.vozpopuli.com/espana/madrid/la-comunidad-de-madrid-recurre-el-decreto-maricarmen-por-invasion-de-competencias.html"
+       },
+       {
+        "t": "Madrid recurrirá al TC el decreto de medidas de vivienda de Sánchez por \"invadir\" competencias autonómicas",
+        "o": "La Razón",
+        "u": "https://www.larazon.es/madrid/madrid-recurrira-decreto-medidas-vivienda-sanchez-invadir-competencias-autonomicas_202611256b06ce04ff6fec29219a9ec1.html"
+       }
+      ],
+      "hot": [
+       {
+        "t": "El último chiste de Sánchez sobre vivienda",
+        "o": "Libertad Digital",
+        "u": "https://www.libertaddigital.com/libremercado/2026-11-25/el-ultimo-chiste-de-sanchez-la-vivienda-va-a-ser-nuestra-gran-prioridad-7497296/"
+       }
+      ]
+     },
+     "cg": {
+      "n": 40,
+      "shared": {
+       "es": "Ambos lados reconocen que hay un déficit o escasez de vivienda asequible que exige respuesta política.",
+       "en": "Both sides acknowledge a deficit or shortage of affordable housing that demands a political response.",
+       "ev": [
+        {
+         "t": "Cáceres construye 87 viviendas de alquiler por menos de 400 €",
+         "o": "El Confidencial Digital",
+         "u": "https://www.elconfidencialdigital.com/elconfidencialdigital/ecd-judicial/legal/caceres-construye-87-viviendas-alquiler-menos-400/202611251737581505693.html",
+         "s": "A",
+         "id": "A7"
+        },
+        {
+         "t": "Entregan en San Sebastián los 109 pisos protegidos en cooperativa de Txomin Enea: alquiler de por vida por entre 600 y 1.050 euros al mes",
+         "o": "Diario Vasco",
+         "u": "https://www.diariovasco.com/san-sebastian/entregan-llaves-pisos-protegidos-cooperativa-txomin-enea-20261126191247-nt.html",
+         "s": "A",
+         "id": "A17"
+        },
+        {
+         "t": "De Alemania del Este a España: cómo Sánchez copia las peores políticas de vivienda",
+         "o": "Libertad Digital",
+         "u": "https://www.libertaddigital.com/libremercado/2026-11-26/de-alemania-del-este-a-espana-como-pedro-sanchez-copia-las-peores-politicas-de-vivienda-7497118/",
+         "s": "B",
+         "id": "B1"
+        },
+        {
+         "t": "Pladur pide paso para construir más rápido",
+         "o": "La Vanguardia",
+         "u": "https://www.lavanguardia.com/dinero/bolsillo/20261126/11690055/pladur-construccion-oferta-residencial.html",
+         "s": "B",
+         "id": "B19"
+        }
+       ]
+      },
+      "differ": {
+       "es": "El desacuerdo central es si regular y limitar el mercado soluciona el problema o lo agrava, frente a si aumentar la oferta es la única vía eficaz.",
+       "en": "The core disagreement is whether regulating and restricting the market solves the problem or worsens it, versus whether increasing supply is the only effective path.",
+       "type": "medios",
+       "ev": [
+        {
+         "t": "Sánchez afirma que PP, Vox y Junts han sido un \"tapón\" para regular la vivienda y que \"construir sin regular\" llevaría a una burbuja",
+         "o": "laSexta",
+         "u": "https://www.lasexta.com/elecciones/generales/sanchez-afirma-que-vox-junts-han-sido-tapon-regular-vivienda-que-construir-regular-llevaria-burbuja_202611256b06a2bc50b7057c6d15be32.html",
+         "s": "A",
+         "id": "A10"
+        },
+        {
+         "t": "La nueva ley de vivienda prohíbe a un casero que alquila su piso por habitaciones cobrar entre todas más de lo que pediría por el piso entero",
+         "o": "Expansión",
+         "u": "https://www.expansion.com/inmobiliario/mercado-inmobiliario/2026/11/26/nueva-ley-vivienda-prohibe-casero-alquila-piso-habitaciones-cobrar-todas-pediria-piso-entero.html",
+         "s": "A",
+         "id": "A11"
+        },
+        {
+         "t": "De Alemania del Este a España: cómo Sánchez copia las peores políticas de vivienda",
+         "o": "Libertad Digital",
+         "u": "https://www.libertaddigital.com/libremercado/2026-11-26/de-alemania-del-este-a-espana-como-pedro-sanchez-copia-las-peores-politicas-de-vivienda-7497118/",
+         "s": "B",
+         "id": "B1"
+        },
+        {
+         "t": "Steffen Krach, líder del SPD en Berlín: “No creo que nacionalizar viviendas baje los alquileres, al contrario”",
+         "o": "El País",
+         "u": "https://elpais.com/internacional/2026-11-25/steffen-krach-lider-del-spd-en-berlin-no-creo-que-nacionalizar-viviendas-baje-los-alquileres-al-contrario.html",
+         "s": "B",
+         "id": "B18"
+        }
+       ]
+      }
+     },
+     "label_en": "Housing",
+     "family": "housing",
+     "a_en": "The state must intervene: cap rents, stop evictions, expand public housing.",
+     "b_en": "Increase supply, make building easier and give owners legal certainty."
+    }
+   ],
+   "usd": 2.4
+  },
   {
    "id": "2026-11-25",
    "label": "25 nov 2026",
