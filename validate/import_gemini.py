@@ -6,7 +6,13 @@ Las etiquetas de Gemini son un anotador aparte («gemini»): NO son el set de
 referencia humano y no se mezclan con las de la página de etiquetado.
 
 Uso:
-    python3 validate/import_gemini.py data/gold/gemini_ES_20261125
+    python3 validate/import_gemini.py data/gold/gemini_ES_20261125 \
+        [--base data/gold/labels_gemini_tanda1_ES_20261125.json]
+
+Orden: --base (etiquetas ya en JSON, p. ej. la tanda 1 hecha en la página),
+después tanda*.csv y por último correcciones*.csv (revisiones de Gemini, en
+orden alfabético), que sustituyen la fila entera de ese id. Con --base la
+salida es labels_gemini_todas_<país>_<fecha>.json.
 """
 import csv, json, sys
 from pathlib import Path
@@ -17,16 +23,16 @@ NONE_TYPE = {"sin_postura": "no_stance", "politico_otro": "political",
 US = {"no": "no", "politicos": "political", "grupos_sociales": "social_groups",
       "rivales_no_politicos": "nonpolitical_rivals"}
 
-def main(folder: str):
+def main(folder: str, base: list[str] = ()):
     folder = Path(folder)
     out, problems = {}, []
+    for b in base:
+        out.update(json.loads(Path(b).read_text()))
     # Las tandas primero; después correcciones.csv (revisión de Gemini sobre
     # sus propias respuestas), que sustituye la fila entera de ese id.
-    files = sorted(folder.glob("tanda*.csv"))
-    if (folder / "correcciones.csv").exists():
-        files.append(folder / "correcciones.csv")
+    files = sorted(folder.glob("tanda*.csv")) + sorted(folder.glob("correcciones*.csv"))
     for f in files:
-        revision = f.name == "correcciones.csv"
+        revision = f.name.startswith("correcciones")
         for row in csv.DictReader(f.open(encoding="utf-8"), delimiter=";"):
             rid = row["id"].strip()
             tema = row["tema"].strip()
@@ -53,15 +59,22 @@ def main(folder: str):
             if (row.get("nota") or "").strip(): l["note"] = row["nota"].strip()
             if revision:
                 if rid not in out: problems.append(f"{rid}: corrección sin fila original")
-                l["revised"] = True
+                prev = out.get(rid, {}).get("revised")
+                l["revised"] = (prev if isinstance(prev, list) else []) + [f.stem]
             elif rid in out:
                 problems.append(f"{rid}: repetido")
             out[rid] = l
-    dest = folder.parent / (folder.name.replace("gemini_", "labels_gemini_") + ".json")
+    name = folder.name.replace("gemini_", "labels_gemini_todas_" if base else "labels_gemini_")
+    dest = folder.parent / (name + ".json")
     dest.write_text(json.dumps(out, ensure_ascii=False, indent=1))
     print(f"{len(out)} etiquetas de Gemini → {dest}")
     for p in problems: print("  PROBLEMA", p)
     return out
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("folder")
+    ap.add_argument("--base", action="append", default=[])
+    a = ap.parse_args()
+    main(a.folder, a.base)

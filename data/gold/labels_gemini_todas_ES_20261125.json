@@ -179,14 +179,18 @@
  },
  "ES-017": {
   "item": "ES-017",
-  "labeled_by": "gemini (tanda 1, vía Lucía en la página)",
+  "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "no_stance",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.5,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": true,
+  "note": "cuestionamiento a la JEC en contexto preelectoral",
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-018": {
   "item": "ES-018",
@@ -212,14 +216,17 @@
  },
  "ES-020": {
   "item": "ES-020",
-  "labeled_by": "gemini (tanda 1, vía Lucía en la página)",
+  "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
-  "hostility": 1,
-  "us_them": "no",
-  "unsure": false
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.5,
+  "hostility": 0,
+  "us_them": "social_groups",
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-021": {
   "item": "ES-021",
@@ -245,14 +252,17 @@
  },
  "ES-023": {
   "item": "ES-023",
-  "labeled_by": "gemini (tanda 1, vía Lucía en la página)",
+  "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": -0.5,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-024": {
   "item": "ES-024",
@@ -289,25 +299,31 @@
  },
  "ES-027": {
   "item": "ES-027",
-  "labeled_by": "gemini (tanda 1, vía Lucía en la página)",
+  "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": -0.5,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-028": {
   "item": "ES-028",
-  "labeled_by": "gemini (tanda 1, vía Lucía en la página)",
+  "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
-  "hostility": 1,
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
+  "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-029": {
   "item": "ES-029",
@@ -355,14 +371,17 @@
  },
  "ES-033": {
   "item": "ES-033",
-  "labeled_by": "gemini (tanda 1, vía Lucía en la página)",
+  "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 1,
   "us_them": "nonpolitical_rivals",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-034": {
   "item": "ES-034",
@@ -443,25 +462,31 @@
  },
  "ES-041": {
   "item": "ES-041",
-  "labeled_by": "gemini (tanda 1, vía Lucía en la página)",
+  "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-042": {
   "item": "ES-042",
-  "labeled_by": "gemini (tanda 1, vía Lucía en la página)",
+  "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "no_stance",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-043": {
   "item": "ES-043",
@@ -555,12 +580,15 @@
   "item": "ES-051",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-052": {
   "item": "ES-052",
@@ -665,7 +693,9 @@
   "us_them": "political",
   "unsure": true,
   "note": "revision Gemini: cita dura de Vox frente a PP y PSOE",
-  "revised": true
+  "revised": [
+   "correcciones"
+  ]
  },
  "ES-061": {
   "item": "ES-061",
@@ -700,19 +730,24 @@
   "us_them": "political",
   "unsure": false,
   "note": "revision Gemini: defiende la acogida de menores",
-  "revised": true
+  "revised": [
+   "correcciones"
+  ]
  },
  "ES-064": {
   "item": "ES-064",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "no_stance",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
   "unsure": true,
-  "note": "titular desconectado de la entradilla sobre la veda de sondeos"
+  "note": "titular desconectado de entradilla sobre veda de sondeos",
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-065": {
   "item": "ES-065",
@@ -901,7 +936,9 @@
   "us_them": "political",
   "unsure": true,
   "note": "revision Gemini: mezcla T3 con T1",
-  "revised": true
+  "revised": [
+   "correcciones"
+  ]
  },
  "ES-082": {
   "item": "ES-082",
@@ -948,7 +985,9 @@
   "us_them": "no",
   "unsure": true,
   "note": "revision Gemini: promesa central sobre desahucios (Vivienda) en un mitin",
-  "revised": true
+  "revised": [
+   "correcciones"
+  ]
  },
  "ES-086": {
   "item": "ES-086",
@@ -1099,12 +1138,15 @@
   "item": "ES-099",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-100": {
   "item": "ES-100",
@@ -1324,12 +1366,15 @@
   "item": "ES-119",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "no_stance",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-120": {
   "item": "ES-120",
@@ -1431,7 +1476,9 @@
   "us_them": "political",
   "unsure": false,
   "note": "revision Gemini: recoge los dos polos",
-  "revised": true
+  "revised": [
+   "correcciones"
+  ]
  },
  "ES-129": {
   "item": "ES-129",
@@ -1510,7 +1557,9 @@
   "us_them": "no",
   "unsure": true,
   "note": "revision Gemini: desmonta bulos sobre fraude electoral",
-  "revised": true
+  "revised": [
+   "correcciones"
+  ]
  },
  "ES-136": {
   "item": "ES-136",
@@ -1593,12 +1642,15 @@
   "item": "ES-143",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "no_stance",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-144": {
   "item": "ES-144",
@@ -1615,23 +1667,29 @@
   "item": "ES-145",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-146": {
   "item": "ES-146",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "no_stance",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-147": {
   "item": "ES-147",
@@ -1725,12 +1783,15 @@
   "item": "ES-155",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-156": {
   "item": "ES-156",
@@ -1754,7 +1815,9 @@
   "us_them": "no",
   "unsure": true,
   "note": "revision Gemini: promesa electoral de pensiones",
-  "revised": true
+  "revised": [
+   "correcciones"
+  ]
  },
  "ES-158": {
   "item": "ES-158",
@@ -1882,12 +1945,15 @@
   "item": "ES-169",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-170": {
   "item": "ES-170",
@@ -2125,12 +2191,15 @@
   "item": "ES-191",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "no_stance",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-192": {
   "item": "ES-192",
@@ -2224,12 +2293,15 @@
   "item": "ES-200",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.5,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-201": {
   "item": "ES-201",
@@ -2477,25 +2549,31 @@
   "item": "ES-223",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
-  "us_them": "no",
+  "us_them": "social_groups",
   "unsure": false,
-  "note": "revision Gemini: patronales sin enfrentamiento",
-  "revised": true
+  "revised": [
+   "correcciones",
+   "correcciones_regla_campana"
+  ]
  },
  "ES-224": {
   "item": "ES-224",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "no_stance",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": true,
+  "note": "prevision meteorologica para el fin de semana electoral",
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-225": {
   "item": "ES-225",
@@ -2721,12 +2799,15 @@
   "item": "ES-245",
   "labeled_by": "gemini",
   "input": "headline_lead",
-  "topic": "none",
-  "stance": null,
-  "none_type": "political",
+  "topic": 0,
+  "none_type": null,
+  "stance": 0.0,
   "hostility": 0,
   "us_them": "no",
-  "unsure": false
+  "unsure": false,
+  "revised": [
+   "correcciones_regla_campana"
+  ]
  },
  "ES-246": {
   "item": "ES-246",
