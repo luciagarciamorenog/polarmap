@@ -953,7 +953,7 @@ ASSIGN_FAILED = -1   # no se pudo asignar (API o respuesta ilegible)
 # Regla de la campaña (codebook v5, 26 nov 2026). Solo se añade si entre los
 # debates del día está el eje fijo del Gobierno.
 GOV_LABEL = "Continuidad o cambio de Gobierno"
-CAMPAIGN_RULE = False   # en pruebas (validate/test_assign_rule.py); la corrida diaria no la usa aún
+CAMPAIGN_RULE = "b2"   # en producción desde la corrida del 27 nov 2026 (A/B: validate/test_assign_rule.py)
 
 
 def _campaign_rules(k_gov: int) -> str:

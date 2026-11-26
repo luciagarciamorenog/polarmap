@@ -56,6 +56,10 @@ Regla de la campaña (v5, 26 nov 2026, decisión de Lucía):
   (vivienda, migración…), va a ese debate. «Colau propone expropiar 400.000
   pisos turísticos» → Vivienda; «Vox rescata las vallas contra la
   inmigración» → Política migratoria.
+- En el pipeline: el paso de asignación aplica esta regla desde la corrida
+  del 27 nov 2026 (versión B2 en analysis/discover.py: primero el asunto de
+  fondo, después la campaña). Prueba A/B contra las etiquetas de Gemini:
+  25 nov 90,0 % → 91,6 %; 26 nov 82,0 % → 90,0 % (mismos lotes).
 
 Si es `none`, `none_type`:
 - `no_stance` — no admite postura: suceso, servicio, dato, empresa, cultura.
