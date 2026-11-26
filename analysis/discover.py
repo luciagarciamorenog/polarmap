@@ -970,15 +970,35 @@ def _campaign_rules(k_gov: int) -> str:
         f"{k_gov}.\n")
 
 
+def _campaign_rules_b2(k_gov: int) -> str:
+    """Versión B2: primero el asunto de fondo, después la campaña."""
+    return (
+        f"- Primero, el asunto: si la noticia trata DE FONDO una política que tiene "
+        f"su propio debate en la lista (una propuesta, medida, dato o polémica concreta "
+        f"sobre ese asunto), va a ese debate, aunque ocurra en plena campaña o la "
+        f"protagonice un candidato.\n"
+        f"- Después, la campaña: el resto de noticias de las elecciones o de la campaña "
+        f"(candidatos, mítines, debates electorales, encuestas, reparto de escaños, mesas, "
+        f"voto, sueldos de diputados, pactos de investidura) o de la gestión del Gobierno "
+        f"en general va al debate {k_gov} ({GOV_LABEL}), aunque solo informe y no tome "
+        f"postura. Una mención de pasada a una política dentro de una crónica general de "
+        f"campaña no basta para sacarla de este debate.\n")
+
+
 def build_assign_bodies(texts: list[str], debates: list[dict],
-                        campaign_rule: bool | None = None
+                        campaign_rule: bool | str | None = None
                         ) -> list[tuple[dict, int]]:
     """Una petición por cada ASSIGN_BATCH textos. La lista de debates va
     en el bloque de sistema cacheable: es igual en todos los lotes del país."""
     if campaign_rule is None:
         campaign_rule = CAMPAIGN_RULE
     k_gov = next((k for k, d in enumerate(debates, 1) if d["label"] == GOV_LABEL), None)
-    extra_rules = _campaign_rules(k_gov) if (campaign_rule and k_gov) else ""
+    if not (campaign_rule and k_gov):
+        extra_rules = ""
+    elif campaign_rule == "b2":
+        extra_rules = _campaign_rules_b2(k_gov)
+    else:
+        extra_rules = _campaign_rules(k_gov)
     def describe(k, d):
         line = f"{k}. {d['label']} (de «{d['pole_a']}» a «{d['pole_b']}»)"
         if d.get("includes"):

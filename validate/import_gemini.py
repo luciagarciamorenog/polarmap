@@ -26,6 +26,10 @@ US = {"no": "no", "politicos": "political", "grupos_sociales": "social_groups",
 def main(folder: str, base: list[str] = ()):
     folder = Path(folder)
     out, problems = {}, []
+    # Nº de debates activos ese día (los de postura); el siguiente T es «otros»
+    sample = folder.parent / folder.name.replace("gemini_", "sample_")
+    n_active = len(json.loads(Path(str(sample) + ".json").read_text())["debates"]) \
+        if Path(str(sample) + ".json").exists() else 5
     for b in base:
         out.update(json.loads(Path(b).read_text()))
     # Las tandas primero; después correcciones.csv (revisión de Gemini sobre
@@ -44,7 +48,7 @@ def main(folder: str, base: list[str] = ()):
             elif tema in TOPIC:
                 l["topic"] = TOPIC[tema]; l["none_type"] = None
                 l["stance"] = None if post == "" else ("na" if post == "na" else float(post))
-                if TOPIC[tema] < 5 and post == "":
+                if TOPIC[tema] < n_active and post == "":
                     problems.append(f"{rid}: tema {tema} sin postura")
             else:
                 problems.append(f"{rid}: tema desconocido {tema!r}")

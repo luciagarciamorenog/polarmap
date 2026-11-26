@@ -55,7 +55,7 @@ def main(sample_path: str, labels_path: str):
     texts = [f"{it['title']}. {it['lead']}" if it["lead"] else it["title"] for it in items]
     key = api_key()
     out, cost_in, cost_out = {}, 0, 0
-    for name, rule in (("A_actual", False), ("B_regla", True)):
+    for name, rule in (("A_actual", False), ("B_regla", True), ("B2_regla", "b2")):
         bodies = build_assign_bodies(texts, debates, campaign_rule=rule)
         resp = []
         for body, n in bodies:
@@ -65,7 +65,7 @@ def main(sample_path: str, labels_path: str):
         ks = parse_assign(resp, bodies, len(debates))
         out[name] = [debates[k - 1]["label"] if k > 0 else ("ninguno" if k == 0 else "fallo") for k in ks]
     usd = cost_in / 1e6 * 1.0 + cost_out / 1e6 * 5.0   # Haiku 4.5: 1 $/M entrada, 5 $/M salida
-    Path("data/gold/assign_ab_ES_20261125.json").write_text(json.dumps(
+    Path(f"data/gold/assign_ab_{sample['country']}_{run[-8:]}.json").write_text(json.dumps(
         {"items": [it["id"] for it in items], **out}, ensure_ascii=False, indent=1))
 
     ref = json.loads(Path(labels_path).read_text())
@@ -74,33 +74,40 @@ def main(sample_path: str, labels_path: str):
     def r_lab(l):
         t = l["topic"]
         if t == "none": return "ninguno"
-        return labs[t] if t < len(labs) else "extra:" + extras[t - len(labs)]
+        return labs[t] if t < len(labs) else "extra:otros debates del catálogo"
     R = [r_lab(ref[it["id"]]) for it in items]
     Rcmp = ["ninguno" if x.startswith("extra:") else x for x in R]   # el modelo no tenía esos debates
     print(f"Coste de la prueba ≈ {usd:.3f} $ ({cost_in} tokens de entrada, {cost_out} de salida)\n")
-    print(f"{'':34}{'A actual':>12}{'B con regla':>14}")
-    for name in ("A_actual", "B_regla"):
-        pass
-    acc = {n: sum(a == b for a, b in zip(out[n], Rcmp)) / len(items) for n in out}
-    print(f"{'Acierto total (asignación)':34}{acc['A_actual']:12.0%}{acc['B_regla']:14.0%}")
+    names = list(out)
+    print(f"{'':34}" + "".join(f"{n:>14}" for n in names))
+    print(f"{'Acierto total (asignación)':34}" + "".join(
+        f"{sum(a == b for a, b in zip(out[n], Rcmp)) / len(items):14.1%}" for n in names))
     for d in labs + ["ninguno"]:
-        row = []
-        for n in out:
+        cells = []
+        for n in names:
             tp = sum(a == d and b == d for a, b in zip(out[n], Rcmp))
             nm, nh = out[n].count(d), Rcmp.count(d)
-            row.append(f"{(tp/nm if nm else float('nan')):.0%}/{(tp/nh if nh else float('nan')):.0%}")
-        print(f"  {d[:32]:32}{row[0]:>12}{row[1]:>14}   (precisión/recobrado; ref {Rcmp.count(d)})")
-    print("\nTitulares que cambian de A a B:")
-    for it, a, b, r in zip(items, out["A_actual"], out["B_regla"], R):
-        if a != b:
-            ok = "✓" if b == ("ninguno" if r.startswith("extra:") else r) else "✗"
-            print(f"  {ok} {it['id']}: {a[:22]} → {b[:22]} | ref {r[:30]} | {it['title'][:80]}")
-    print("\nB manda a un debate de política (no Gobierno) noticias de campaña:")
-    for it, b, r in zip(items, out["B_regla"], R):
-        if b not in (GOV_LABEL, "ninguno", "fallo") and r == GOV_LABEL:
-            print(f"  {it['id']}: B {b} | ref Gobierno | {it['title'][:90]}")
-    print("\nReferencia en debates inactivos ese día (T6–T10):", dict(Counter(x for x in R if x.startswith("extra:"))))
-    print("B en esos titulares:", dict(Counter(b for b, r in zip(out["B_regla"], R) if r.startswith("extra:"))))
+            cells.append(f"{(tp/nm if nm else float('nan')):.0%}/{(tp/nh if nh else float('nan')):.0%}")
+        print(f"  {d[:32]:32}" + "".join(f"{c:>14}" for c in cells) + f"   (precisión/recobrado; ref {Rcmp.count(d)})")
+    for n in names[1:]:
+        print(f"\nTitulares que cambian de A a {n}:")
+        for it, a, b, r in zip(items, out["A_actual"], out[n], R):
+            if a != b:
+                rc = "ninguno" if r.startswith("extra:") else r
+                ok = "✓" if b == rc else ("✗" if a == rc else "·")
+                print(f"  {ok} {it['id']}: {a[:22]} → {b[:22]} | ref {r[:30]} | {it['title'][:80]}")
+    for n in names[1:]:
+        print(f"\n{n} manda a un debate de política lo que la referencia tiene en Gobierno:")
+        for it, b, r in zip(items, out[n], R):
+            if b not in (GOV_LABEL, "ninguno", "fallo") and r == GOV_LABEL:
+                print(f"  {it['id']}: {b} | {it['title'][:90]}")
+        print(f"{n} manda a Gobierno lo que la referencia tiene en un debate de política activo:")
+        for it, b, r in zip(items, out[n], R):
+            if b == GOV_LABEL and r in labs and r != GOV_LABEL:
+                print(f"  {it['id']}: ref {r} | {it['title'][:90]}")
+    print("\nReferencia en «otros debates del catálogo»:", sum(1 for x in R if x.startswith("extra:")),
+          "| dónde los pone cada versión:", {n: dict(Counter(b for b, x in zip(out[n], R) if x.startswith("extra:"))) for n in names})
+
 
 if __name__ == "__main__":
     main(*sys.argv[1:3])
