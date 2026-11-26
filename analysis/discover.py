@@ -950,10 +950,35 @@ ASSIGN_NONE = 0      # no pertenece a ningún debate
 ASSIGN_FAILED = -1   # no se pudo asignar (API o respuesta ilegible)
 
 
-def build_assign_bodies(texts: list[str], debates: list[dict]
+# Regla de la campaña (codebook v5, 26 nov 2026). Solo se añade si entre los
+# debates del día está el eje fijo del Gobierno.
+GOV_LABEL = "Continuidad o cambio de Gobierno"
+CAMPAIGN_RULE = False   # en pruebas (validate/test_assign_rule.py); la corrida diaria no la usa aún
+
+
+def _campaign_rules(k_gov: int) -> str:
+    return (
+        f"- Elecciones y campaña: toda noticia de las elecciones o de la campaña "
+        f"(candidatos, mítines, debates electorales, encuestas, reparto de escaños, "
+        f"mesas, voto, sueldos de diputados, pactos de investidura) o de la gestión "
+        f"del Gobierno en general va al debate {k_gov} ({GOV_LABEL}), aunque solo "
+        f"informe y no tome postura.\n"
+        f"- Excepción: si la noticia de campaña trata DE FONDO una política que tiene "
+        f"su propio debate en la lista (por ejemplo, una propuesta o medida concreta "
+        f"sobre vivienda o sobre inmigración), va a ese debate. Una mención de pasada "
+        f"dentro de una crónica general de campaña no cuenta: esa crónica va al debate "
+        f"{k_gov}.\n")
+
+
+def build_assign_bodies(texts: list[str], debates: list[dict],
+                        campaign_rule: bool | None = None
                         ) -> list[tuple[dict, int]]:
     """Una petición por cada ASSIGN_BATCH textos. La lista de debates va
     en el bloque de sistema cacheable: es igual en todos los lotes del país."""
+    if campaign_rule is None:
+        campaign_rule = CAMPAIGN_RULE
+    k_gov = next((k for k, d in enumerate(debates, 1) if d["label"] == GOV_LABEL), None)
+    extra_rules = _campaign_rules(k_gov) if (campaign_rule and k_gov) else ""
     def describe(k, d):
         line = f"{k}. {d['label']} (de «{d['pole_a']}» a «{d['pole_b']}»)"
         if d.get("includes"):
@@ -969,7 +994,7 @@ Reglas:
 - topic = número del debate si la noticia trata de su asunto, aunque sea de forma informativa y sin tomar postura. Cada debate es un asunto amplio: cuenta cualquier hecho del día que forme parte de él, no solo los ejemplos listados.
 - topic = 0 si no trata de ninguno. Ante la duda, 0: es mejor perder una noticia que meter una que no toca.
 - Si encaja en varios, el más central.
-
+{extra_rules}
 Responde SOLO con un array JSON, un elemento por noticia:
 [{{"id": 1, "topic": 0}}]"""
     bodies = []
