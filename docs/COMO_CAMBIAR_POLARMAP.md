@@ -24,7 +24,7 @@ cambio en ~/dev/polarmap  →  ./publicar.sh  →  GitHub  →  Netlify (demo)
    - Si cambia lo que calcula el pipeline (prompts, métricas, debates):
      lanza una corrida con `./diario.sh`, que publica sola. Antes, guarda el
      cambio de código con `./publicar.sh "qué has cambiado"`.
-4. **Comprueba** https://polarmap.netlify.app en 1-2 minutos (en incógnito).
+4. **Comprueba** https://luciagarciamorenog.github.io/polarmap/ en 1-2 minutos (en incógnito).
 
 ## Qué hace `publicar.sh`
 

@@ -2,7 +2,7 @@
 
 **An LLM pipeline that reads a day of Spanish news, finds what the press is arguing about, and measures where each outlet stands and how hostile the coverage is.**
 
-**Live demo → [polarmap.netlify.app](https://polarmap.netlify.app)** · Portfolio: [luciagarciamorenog.netlify.app](https://luciagarciamorenog.netlify.app)
+**Live demo → [luciagarciamorenog.github.io/polarmap](https://luciagarciamorenog.github.io/polarmap/)** · Portfolio: [luciagarciamorenog.netlify.app](https://luciagarciamorenog.netlify.app)
 
 ---
 
@@ -28,7 +28,7 @@ How to read the table:
 - **Housing is disagreement without hostility** (affective 0.04): the press argues about policy, not about the other side.
 - **Outlets also differ in *what* they cover.** Agendas differ beyond chance (Jensen–Shannon distance 0.32 vs 0.27, p = 0.001). For example, Catalan outlets covered the amnesty 6–8× more than the average outlet.
 
-The [live demo](https://polarmap.netlify.app) shows every debate, the position of every outlet with its uncertainty, example headlines from each side, and each outlet's daily evolution.
+The [live demo](https://luciagarciamorenog.github.io/polarmap/) shows every debate, the position of every outlet with its uncertainty, example headlines from each side, and each outlet's daily evolution.
 
 ## Architecture
 

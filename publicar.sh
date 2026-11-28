@@ -3,7 +3,7 @@
 #   ./publicar.sh "qué has cambiado"
 # 1) pasa los tests, 2) regenera la web, 3) comprueba que no se cuela
 # ninguna clave, 4) guarda el cambio en git y lo sube a GitHub.
-# Netlify está conectado a GitHub y publica https://polarmap.netlify.app solo.
+# GitHub Pages publica https://luciagarciamorenog.github.io/polarmap/ solo.
 # Si algo falla, no se publica nada.
 set -uo pipefail
 cd "$(dirname "$0")"
@@ -49,7 +49,7 @@ else
   git commit -q -m "$MSG" && echo "   guardado: $MSG"
 fi
 if git push -q origin main; then
-  echo "Listo. GitHub actualizado; la web se publica en 1-2 minutos: https://polarmap.netlify.app"
+  echo "Listo. GitHub actualizado; la web se publica en 1-2 minutos: https://luciagarciamorenog.github.io/polarmap/"
 else
   echo "No se pudo subir a GitHub (¿sin conexión?). El cambio está guardado; repite: ./publicar.sh \"$MSG\""
 fi
